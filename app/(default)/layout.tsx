@@ -1,10 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
-
 import AOS from "aos";
 import "aos/dist/aos.css";
 
+import { LangProvider } from "@/context/lang-context";
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 
@@ -20,15 +20,13 @@ export default function DefaultLayout({
       duration: 700,
       easing: "ease-out-cubic",
     });
-  });
+  }, []);
 
   return (
-    <>
+    <LangProvider>
       <Header />
-
       <main className="grow">{children}</main>
-
       <Footer border={true} />
-    </>
+    </LangProvider>
   );
 }

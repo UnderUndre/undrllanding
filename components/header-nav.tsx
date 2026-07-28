@@ -2,21 +2,20 @@
 
 import { useState, useEffect } from "react";
 import Logo from "./ui/logo";
+import { useLang } from "@/context/lang-context";
+import { Language } from "@/lib/i18n";
 
-type Language = "ru" | "en";
 type ThemeMode = "system" | "dark" | "light";
 
 export default function HeaderNav() {
-  const [lang, setLang] = useState<Language>("ru");
+  const { lang, setLang, t } = useLang();
   const [theme, setTheme] = useState<ThemeMode>("dark");
 
   useEffect(() => {
-    // Получаем тему из localStorage или системной настройки
     const savedTheme = localStorage.getItem("undrlla_theme") as ThemeMode | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-      applyTheme(savedTheme);
-    }
+    const modeToApply = savedTheme || "dark";
+    setTheme(modeToApply);
+    applyTheme(modeToApply);
   }, []);
 
   const applyTheme = (mode: ThemeMode) => {
@@ -28,7 +27,6 @@ export default function HeaderNav() {
       root.classList.remove("dark");
       root.setAttribute("data-theme", "undrlla");
     } else {
-      // system
       const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       if (systemDark) {
         root.classList.add("dark");
@@ -47,43 +45,41 @@ export default function HeaderNav() {
   };
 
   const toggleLang = () => {
-    const nextLang = lang === "ru" ? "en" : "ru";
+    const nextLang: Language = lang === "ru" ? "en" : "ru";
     setLang(nextLang);
-    // Пробрасываем событие смены языка для страницы
-    window.dispatchEvent(new CustomEvent("undrlla_lang_change", { detail: nextLang }));
   };
 
   return (
     <header className="fixed top-2 z-50 w-full px-4 sm:px-6 md:top-4">
       <div className="mx-auto max-w-6xl">
-        <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border border-slate-800/80 bg-slate-950/80 px-4 shadow-xl backdrop-blur-xl transition-colors">
-          {/* Бренд Логотип */}
+        <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/80 px-4 shadow-xl backdrop-blur-xl transition-colors">
           <div className="flex items-center">
             <Logo />
           </div>
 
-          {/* Правая панель: Переключатели Языка, Темы и Кнопка Waitlist */}
           <div className="flex items-center gap-3">
-            {/* i18n Переключатель языка (RU / EN) */}
+            {/* i18n Language Toggle (RU / EN) */}
             <button
               type="button"
               onClick={toggleLang}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-800 bg-slate-900 px-2.5 py-1 text-xs font-bold text-slate-300 hover:border-slate-700 hover:text-white transition-all cursor-pointer"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-2.5 py-1 text-xs font-bold text-slate-700 dark:text-slate-300 hover:border-slate-400 dark:hover:border-slate-700 transition-all cursor-pointer"
               title="Switch language / Сменить язык"
             >
               <span>🌐</span>
               <span>{lang.toUpperCase()}</span>
             </button>
 
-            {/* Переключатель Темы (Системная / Тёмная / Светлая) */}
-            <div className="relative flex items-center rounded-xl border border-slate-800 bg-slate-900 p-0.5 text-xs text-slate-400">
+            {/* Theme Controller (System / Dark / Light) */}
+            <div className="relative flex items-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 p-0.5 text-xs text-slate-500 dark:text-slate-400">
               <button
                 type="button"
                 onClick={() => handleThemeChange("system")}
                 className={`px-2 py-1 rounded-lg transition-all ${
-                  theme === "system" ? "bg-slate-800 text-white font-bold" : "hover:text-slate-200"
+                  theme === "system"
+                    ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold shadow-xs"
+                    : "hover:text-slate-900 dark:hover:text-slate-200"
                 }`}
-                title="Системная тема"
+                title="System theme"
               >
                 💻
               </button>
@@ -91,9 +87,11 @@ export default function HeaderNav() {
                 type="button"
                 onClick={() => handleThemeChange("dark")}
                 className={`px-2 py-1 rounded-lg transition-all ${
-                  theme === "dark" ? "bg-slate-800 text-white font-bold" : "hover:text-slate-200"
+                  theme === "dark"
+                    ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold shadow-xs"
+                    : "hover:text-slate-900 dark:hover:text-slate-200"
                 }`}
-                title="Тёмная тема"
+                title="Dark mode"
               >
                 🌙
               </button>
@@ -101,20 +99,22 @@ export default function HeaderNav() {
                 type="button"
                 onClick={() => handleThemeChange("light")}
                 className={`px-2 py-1 rounded-lg transition-all ${
-                  theme === "light" ? "bg-slate-800 text-white font-bold" : "hover:text-slate-200"
+                  theme === "light"
+                    ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold shadow-xs"
+                    : "hover:text-slate-900 dark:hover:text-slate-200"
                 }`}
-                title="Светлая тема"
+                title="Light mode"
               >
                 ☀️
               </button>
             </div>
 
-            {/* Кнопка быстрого перехода к Waitlist */}
+            {/* CTA Button */}
             <a
               href="#waitlist"
               className="hidden sm:inline-flex items-center gap-1.5 rounded-xl bg-gradient-to-r from-orange-500 to-amber-500 px-4 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-orange-500/20 hover:scale-105 active:scale-95 transition-all"
             >
-              <span>{lang === "ru" ? "Забронировать место" : "Reserve Spot"}</span>
+              <span>{t("nav_reserve")}</span>
               <span>→</span>
             </a>
           </div>
