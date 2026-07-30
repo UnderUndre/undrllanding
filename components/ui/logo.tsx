@@ -1,16 +1,33 @@
 import Link from "next/link";
+import Image from "next/image";
+import logoIcon from "@/public/images/undrlla-icon.png";
+import logoText from "@/public/images/undrlla.png";
 
 export default function Logo() {
   return (
     <Link href="/" className="inline-flex items-center gap-2.5 group" aria-label="Undrlla">
-      <div className="h-8 w-8 rounded-xl bg-gradient-to-br from-[#4e007a] via-[#b45500] to-[#69a700] p-0.5 shadow-md shadow-purple-900/20 group-hover:scale-105 transition-transform">
-        <div className="h-full w-full bg-slate-950 rounded-[10px] flex items-center justify-center font-extrabold text-white text-sm tracking-tighter">
-          U
-        </div>
+      {/* Иконка логотипа */}
+      <div className="relative h-8 w-8 overflow-hidden rounded-xl group-hover:scale-105 transition-transform flex items-center justify-center">
+        <Image
+          src={logoIcon}
+          alt="Undrlla Icon"
+          width={32}
+          height={32}
+          className="h-8 w-8 object-contain"
+          priority
+        />
       </div>
-      <span className="font-extrabold text-white text-lg tracking-tight">
-        undrlla<span className="text-orange-400">.</span>
-      </span>
+
+      {/* ПНГшка надписи логотипа */}
+      <div className="relative h-6 flex items-center">
+        <Image
+          src={logoText}
+          alt="Undrlla"
+          height={22}
+          className="h-5.5 w-auto object-contain dark:invert-0 dark:brightness-100 transition-all"
+          priority
+        />
+      </div>
     </Link>
   );
 }

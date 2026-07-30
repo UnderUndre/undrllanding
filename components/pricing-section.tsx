@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 import BentoGlowCard from "./bento-glow-card";
 
@@ -24,18 +25,32 @@ export default function PricingSection() {
           <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg mt-3">
             {t("pricing_sub")}
           </p>
+
+          <div className="mt-4">
+            <Link
+              href="/economics"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-orange-500 dark:text-orange-400 hover:underline"
+            >
+              <span>{t("pricing_manifest_link")}</span>
+              <span>→</span>
+            </Link>
+          </div>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 items-stretch">
-          {/* Alpha Card */}
-          <BentoGlowCard glowColor="rgba(249, 115, 22, 0.45)" className="flex flex-col justify-between border-2 border-orange-500">
+        {/* Pricing Cards — Alpha anchored (MasterClass-style best value) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-20 items-stretch md:items-center">
+          {/* Alpha Card — visual hero of pricing */}
+          <BentoGlowCard
+            glowColor="rgba(180, 85, 0, 0.5)"
+            className="flex flex-col justify-between border-2 border-orange-500 md:scale-105 md:z-10 md:shadow-2xl md:shadow-orange-500/20 relative overflow-hidden"
+          >
+            <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-orange-500/20 blur-2xl" />
             <div className="text-left">
               <div className="flex justify-between items-center mb-2">
                 <span className="text-xs font-bold uppercase tracking-wider text-orange-500 dark:text-orange-400">
                   {t("card_alpha_tag")}
                 </span>
-                <span className="px-3 py-1 rounded-full bg-orange-500 text-slate-950 font-bold text-[10px] uppercase">
+                <span className="px-3 py-1 rounded-full bg-orange-500 text-slate-950 font-bold text-[10px] uppercase animate-pulse motion-safe-pulse">
                   {t("card_alpha_badge")}
                 </span>
               </div>
@@ -72,7 +87,7 @@ export default function PricingSection() {
             <div className="pt-8">
               <a
                 href="#waitlist"
-                className="block w-full rounded-xl bg-orange-500 hover:bg-orange-400 py-3.5 px-4 text-xs font-bold text-slate-950 text-center transition-all shadow-md shadow-orange-500/20"
+                className="block w-full rounded-xl bg-orange-500 hover:bg-orange-400 py-3.5 px-4 text-xs font-bold text-slate-950 text-center transition-all shadow-lg shadow-orange-500/30 hover:shadow-orange-500/45 active:scale-[0.98]"
               >
                 {t("card_alpha_btn")}
               </a>

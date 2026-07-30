@@ -1,73 +1,138 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 import WaitlistForm from "./waitlist-form";
 import HeroTypingShowcase from "./hero-typing-showcase";
+import AlphaSpotsCounter from "./alpha-spots-counter";
+import {
+  assignH1Variant,
+  h1Keys,
+  trackH1Event,
+  type H1Variant,
+} from "@/lib/h1-ab";
+import type { translations } from "@/lib/i18n";
+
+type I18nKey = keyof typeof translations.ru;
 
 export default function HeroUndrlla() {
   const { t } = useLang();
+  const [variant, setVariant] = useState<H1Variant | null>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const force = params.get("h1");
+    const v = assignH1Variant(force);
+    setVariant(v);
+    trackH1Event("h1_view", v);
+  }, []);
+
+  const keys = h1Keys(variant ?? "a");
+  const title1 = t(keys.title_1 as I18nKey);
+  const titleAccent = t(keys.title_accent as I18nKey);
+  const title2 = t(keys.title_2 as I18nKey);
+  const subtitle = t(keys.subtitle as I18nKey);
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden bg-slate-50 dark:bg-[#080808] text-slate-900 dark:text-slate-100 transition-colors duration-300">
-      {/* Фоновая сетка */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:3.5rem_3.5rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-40 dark:opacity-20 pointer-events-none" />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-gradient-to-tr from-purple-500/15 via-orange-500/15 to-amber-500/10 blur-[140px] rounded-full pointer-events-none" />
+    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-slate-50 dark:bg-[#0a0a0a] text-slate-900 dark:text-slate-50 transition-colors duration-300">
+      {/* Subtle grid — no purple mesh blob (P1) */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.35] dark:opacity-20"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, #cbd5e1 1px, transparent 1px), linear-gradient(to bottom, #cbd5e1 1px, transparent 1px)",
+          backgroundSize: "48px 48px",
+          maskImage: "radial-gradient(ellipse 70% 55% at 50% 0%, #000 55%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 70% 55% at 50% 0%, #000 55%, transparent 100%)",
+        }}
+      />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[min(900px,100%)] h-[280px] bg-orange-500/10 dark:bg-orange-500/[0.07] blur-[100px] rounded-full pointer-events-none hero-glow" />
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center max-w-4xl mx-auto mb-12">
-          {/* Альфа бейдж */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-300 mb-6 shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs font-semibold text-slate-700 dark:text-slate-200 mb-6 shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse motion-safe-pulse" />
             <span>{t("hero_badge_alpha")}</span>
-            <span className="text-slate-300 dark:text-slate-600">•</span>
+            <span className="text-slate-300 dark:text-slate-600">·</span>
             <span className="text-orange-600 dark:text-orange-400 font-bold">
               {t("hero_badge_offer")}
             </span>
           </div>
 
-          {/* H1 Заголовок */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.1] mb-6">
-            {t("hero_title_1")}{" "}
-            <span className="bg-gradient-to-r from-orange-600 via-amber-600 to-emerald-600 dark:from-orange-400 dark:via-amber-400 dark:to-emerald-400 bg-clip-text text-transparent">
-              {t("hero_title_accent")}
-            </span>{" "}
-            {t("hero_title_2")}
+          <h1
+            className="text-4xl sm:text-5xl md:text-[3.35rem] font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.08] mb-5 min-h-[2.4em] sm:min-h-[2.2em]"
+            data-h1-variant={variant ?? "pending"}
+            suppressHydrationWarning
+          >
+            {title1}{" "}
+            <span className="text-orange-500 dark:text-orange-400">{titleAccent}</span>
+            {title2.trim() ? ` ${title2.trim()}` : null}
           </h1>
 
-          {/* Подзаголовок */}
-          <p className="text-lg md:text-xl text-slate-600 dark:text-slate-300 font-normal max-w-2xl mx-auto leading-relaxed mb-8">
-            {t("hero_subtitle")}
+          <p
+            className="text-base md:text-lg text-slate-600 dark:text-slate-300 font-normal max-w-2xl mx-auto leading-relaxed mb-6 min-h-[3rem]"
+            suppressHydrationWarning
+          >
+            {subtitle}
           </p>
 
-          {/* Социальные индикаторы */}
-          <div className="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-600 dark:text-slate-400">
-            <div className="flex items-center gap-2">
-              <span className="text-emerald-600 dark:text-emerald-400 text-base font-bold">
-                0 / 50
+          {/* Trust strip under value prop */}
+          <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs md:text-sm text-slate-600 dark:text-slate-400 mb-6">
+            <li className="flex items-center gap-1.5">
+              <span className="text-emerald-500 font-bold">✓</span>
+              {t("hero_trust_1")}
+            </li>
+            <li className="flex items-center gap-1.5">
+              <span className="text-emerald-500 font-bold">✓</span>
+              {t("hero_trust_2")}
+            </li>
+            <li className="flex items-center gap-1.5">
+              <span className="text-emerald-500 font-bold">✓</span>
+              {t("hero_trust_3")}
+            </li>
+          </ul>
+
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+            <a
+              href="#waitlist"
+              className="inline-flex items-center gap-2 rounded-xl bg-orange-500 hover:bg-orange-400 active:scale-[0.98] px-5 py-2.5 text-sm font-bold text-slate-950 shadow-md shadow-orange-500/25 transition-all"
+            >
+              {t("nav_reserve")}
+              <span aria-hidden>→</span>
+            </a>
+            <Link
+              href="/economics"
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-transparent hover:bg-slate-200/80 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-semibold transition-all border border-slate-300 dark:border-slate-700"
+            >
+              {t("hero_btn_manifest")}
+            </Link>
+          </div>
+
+          <div className="flex flex-wrap items-end justify-center gap-6 sm:gap-10 text-xs text-slate-600 dark:text-slate-400">
+            <AlphaSpotsCounter variant="hero" />
+            <div className="hidden sm:block h-12 w-px bg-slate-300 dark:bg-slate-700 self-center" />
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-orange-600 dark:text-orange-400 text-2xl font-extrabold tabular-nums leading-none">
+                0%
               </span>
-              <span>{t("hero_stat_alpha")}</span>
-            </div>
-            <div className="hidden sm:block text-slate-300 dark:text-slate-700">•</div>
-            <div className="flex items-center gap-2">
-              <span className="text-amber-600 dark:text-amber-400 text-base font-bold">$0</span>
               <span>{t("hero_stat_cost")}</span>
             </div>
-            <div className="hidden sm:block text-slate-300 dark:text-slate-700">•</div>
-            <div className="flex items-center gap-2">
-              <span className="text-orange-600 dark:text-orange-400 text-base font-bold">
-                Medusa 2.0
+            <div className="hidden sm:block h-12 w-px bg-slate-300 dark:bg-slate-700 self-center" />
+            <div className="flex flex-col items-center gap-1 max-w-[8rem] text-center">
+              <span className="text-slate-900 dark:text-white text-sm font-bold leading-snug">
+                {t("hero_stat_engine")}
               </span>
-              <span>{t("hero_stat_engine")}</span>
             </div>
           </div>
         </div>
 
-        {/* Сетка */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-12">
-          <div id="waitlist" className="lg:col-span-6 scroll-mt-32">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div id="waitlist" className="lg:col-span-6 scroll-mt-28">
             <WaitlistForm />
           </div>
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-6 lg:pt-2">
             <HeroTypingShowcase />
           </div>
         </div>

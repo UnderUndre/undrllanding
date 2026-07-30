@@ -1,8 +1,73 @@
 # CHANGELOG.md
 
+## [undrlla-landing-0.3.0] - 2026-07-30
+
+### Undrlla waitlist CRO + counter + H1 A/B
+
+**Conversion (P0)**
+
+- Outcome H1 + email-first waitlist (Telegram/socials optional accordion)
+- Trust chips next to form; header primary CTA → `#waitlist`
+- Mobile sticky CTA when waitlist is off-screen
+- Economics page retained for manifesto deep-dive
+
+**Visual (P1)**
+
+- Reduce purple mesh / neon-SaaS look; orange primary CTAs, slate surfaces
+- `prefers-reduced-motion` for AOS, confetti, decorative pulse/ping
+- Bento cards / CTA / pricing polish
+
+**Wow (P2)**
+
+- Deploy story section (`#how`): claim → deploy → storefront
+- Submit confetti + success pop
+- Alpha pricing card scale/anchor
+- Typing CLI showcase motion-safe
+
+**Live alpha counter**
+
+- `lib/waitlist-store.ts` + `GET/POST /api/waitlist` stats
+- `components/alpha-spots-counter.tsx`, `lib/use-alpha-stats.ts`
+- Env: `WAITLIST_ALPHA_LIMIT`, `WAITLIST_BASE_CLAIMED`
+- Telegram alert includes claimed/remaining
+
+**H1 A/B**
+
+- Variant A: outcome (“live / in one deploy”)
+- Variant B: fee framing (“0% tax / $0 alpha”)
+- `lib/h1-ab.ts` — 50/50 sticky assign, `?h1=a|b` force
+- Events: `h1_view`, `waitlist_submit` → `dataLayer` / `undrllaEvents`
+- POST + TG alert include `h1_variant`; GET returns `h1_variants` session counts
+- Fixed empty `hero_title_2` (EN/RU split accent + trailing phrase)
+
+**Docs**
+
+- README rewritten for Undrlla (was Cruip template boilerplate)
+
+### Files added
+
+- `components/alpha-spots-counter.tsx`
+- `components/deploy-story.tsx`
+- `components/sticky-cta.tsx`
+- `lib/h1-ab.ts`
+- `lib/use-alpha-stats.ts`
+- `lib/waitlist-store.ts`
+
+---
+
+## [undrlla-landing-0.2.0] - 2026-07 (prior)
+
+- Rebrand homepage to Undrlla, waitlist API + Telegram alerts
+- Dark mode, i18n RU/EN, pricing/economics, Medusa/Paddle narrative
+- SpecKit `specs/001-init-storefront-miniapp` retargeted to Medusa Store API
+
+---
+
+## Template history (Cruip Simple Light)
+
 ## [4.0.0] - 2025-02-04
 
-- Updgrade to Tailwind v4
+- Upgrade to Tailwind v4
 - Update dependencies
 
 ## [3.1.0] - 2024-12-08
@@ -78,7 +143,3 @@ Conversion to Next.js
 ## [1.0.1] - 2020-10-19
 
 Fix issue with testimonail image on mobile
-
-## [1.0.0] - 2020-10-15
-
-First release

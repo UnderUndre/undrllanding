@@ -14,11 +14,13 @@ export default function DefaultLayout({
   children: React.ReactNode;
 }) {
   useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     AOS.init({
       once: true,
-      disable: "phone",
-      duration: 700,
+      disable: reduce ? true : "phone",
+      duration: 500,
       easing: "ease-out-cubic",
+      offset: 40,
     });
   }, []);
 

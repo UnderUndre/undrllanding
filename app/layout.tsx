@@ -10,8 +10,17 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Undrlla — Запуск автономных маркетплейсов в 1 клик",
-  description: "Платформа разворачивания маркетплейсов на Medusa 2.0 с уникальным брендингом и лендингом.",
+  title: {
+    default: "Undrlla — 1-Click Autonomous Marketplace Platform",
+    template: "%s | Undrlla",
+  },
+  description:
+    "Launch your autonomous marketplace powered by Medusa 2.0 with custom branding, custom Next.js 15 storefront, custom domain, card (Paddle/Stripe) and crypto (SHKeeper) payments.",
+  icons: {
+    icon: "/images/undrlla-icon.png",
+    shortcut: "/images/undrlla-icon.png",
+    apple: "/images/undrlla-icon.png",
+  },
 };
 
 export default function RootLayout({
@@ -20,9 +29,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className="scroll-smooth dark" data-theme="undrlla-dark">
+    <html lang="en" className="scroll-smooth dark" data-theme="undrlla-dark" suppressHydrationWarning>
       <body
-        className={`${inter.variable} font-inter tracking-tight bg-slate-50 text-slate-900 dark:bg-[#080808] dark:text-slate-100 antialiased selection:bg-orange-500 selection:text-slate-950 transition-colors duration-300`}
+        suppressHydrationWarning
+        className={`${inter.variable} font-inter tracking-tight bg-slate-50 text-slate-900 dark:bg-[#0b0114] dark:text-purple-50 antialiased selection:bg-orange-500 selection:text-purple-950 transition-colors duration-300`}
       >
         <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
           {children}

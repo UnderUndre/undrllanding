@@ -42,7 +42,7 @@ export default function GlobalStats() {
             </h3>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {stats.map((stat, idx) => (
               <div key={idx} className="text-center space-y-2">
                 <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-orange-500 via-amber-500 to-emerald-500 dark:from-orange-400 dark:via-amber-300 dark:to-emerald-400 bg-clip-text text-transparent">
@@ -56,6 +56,13 @@ export default function GlobalStats() {
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* Примечание Радикальной Честности: Гарантии Экономики vs Инженерные Ориентиры */}
+          <div className="pt-6 border-t border-slate-200 dark:border-slate-800 text-center">
+            <p className="text-xs text-slate-500 dark:text-slate-400 max-w-3xl mx-auto font-medium">
+              {t("stats_guarantee_note")}
+            </p>
           </div>
         </BentoGlowCard>
       </div>
