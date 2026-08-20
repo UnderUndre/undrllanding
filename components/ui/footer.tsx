@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Logo from "./logo";
 import { useLang } from "@/context/lang-context";
+import { getActiveProjectConfig } from "@/lib/project-config";
 import {
   IconGitHub,
   IconTwitter,
@@ -15,6 +16,8 @@ import {
 
 export default function Footer({ border = false }: { border?: boolean }) {
   const { t } = useLang();
+  const config = getActiveProjectConfig();
+  const isUndreseller = config.slug === "undreseller";
 
   const socialLinks = [
     { key: "github", url: process.env.NEXT_PUBLIC_SOCIAL_GITHUB, label: "GitHub", icon: IconGitHub },
@@ -33,10 +36,12 @@ export default function Footer({ border = false }: { border?: boolean }) {
           <div className="space-y-3 sm:col-span-12 lg:col-span-4 text-left">
             <Logo />
             <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed max-w-sm">
-              {t("footer_desc")}
+              {isUndreseller
+                ? "Productized Engineering Bureau — Production-grade B2B MVPs & self-hosted systems shipped in 3–14 days with zero seat fees."
+                : t("footer_desc")}
             </p>
             <div className="text-[11px] text-slate-400 dark:text-slate-500">
-              &copy; {new Date().getFullYear()} Undrlla. {t("footer_rights")}
+              &copy; {new Date().getFullYear()} {config.name}. All rights reserved.
             </div>
           </div>
 
@@ -50,35 +55,68 @@ export default function Footer({ border = false }: { border?: boolean }) {
                   {t("nav_pricing")}
                 </a>
               </li>
-              <li>
-                <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#waitlist">
-                  Waitlist
-                </a>
-              </li>
-              <li>
-                <Link className="hover:text-slate-900 dark:hover:text-white transition-colors" href="/economics">
-                  {t("nav_manifest")}
-                </Link>
-              </li>
+              {isUndreseller ? (
+                <>
+                  <li>
+                    <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
+                      Sprint A ($3.5k)
+                    </a>
+                  </li>
+                  <li>
+                    <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
+                      Sprint B ($4.9k)
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#waitlist">
+                      Waitlist
+                    </a>
+                  </li>
+                  <li>
+                    <Link className="hover:text-slate-900 dark:hover:text-white transition-colors" href="/economics">
+                      {t("nav_manifest")}
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
 
           <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-2 text-left">
-            <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Payments</h3>
+            <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Payments & Escrow</h3>
             <ul className="space-y-2">
-              <li>
-                <span className="text-slate-700 dark:text-slate-300">Paddle Billing MoR</span>
-              </li>
-              <li>
-                <span className="text-slate-700 dark:text-slate-300">Stripe Integration</span>
-              </li>
-              <li>
-                <span className="text-emerald-600 dark:text-emerald-400 font-semibold">SHKeeper Crypto</span>
-              </li>
+              {isUndreseller ? (
+                <>
+                  <li>
+                    <span className="text-slate-700 dark:text-slate-300 font-semibold text-emerald-600 dark:text-emerald-400">Upwork Escrow (0% fee)</span>
+                  </li>
+                  <li>
+                    <span className="text-slate-700 dark:text-slate-300">DocuSeal e-Signed MSAs</span>
+                  </li>
+                  <li>
+                    <span className="text-slate-700 dark:text-slate-300">Stripe / Lemon Squeezy</span>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <span className="text-slate-700 dark:text-slate-300">Paddle Billing MoR</span>
+                  </li>
+                  <li>
+                    <span className="text-slate-700 dark:text-slate-300">Stripe Integration</span>
+                  </li>
+                  <li>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">SHKeeper Crypto</span>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
 
-          {/* Dinamically rendered Social Media Links from ENV */}
+          {/* Dynamically rendered Social Media Links from ENV */}
           {socialLinks.length > 0 && (
             <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-4 text-left">
               <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Socials</h3>
