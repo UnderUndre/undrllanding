@@ -12,7 +12,7 @@ export default function HeroUndreseller() {
         {/* Top Trust Badge with Undesign Green Status */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-950/40 border border-purple-800/40 text-orange-400 text-xs font-semibold tracking-wide uppercase mb-8 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
-          UPWORK ESCROW VERIFIED | 100% FIXED SCOPE | ZERO HOURLY BILLING
+          3X SALESFORCE CERTIFIED DEVELOPER | UPWORK ESCROW VERIFIED | 100% FIXED SCOPE
         </div>
 
         {/* H1 Main Headline with Brand Colors */}

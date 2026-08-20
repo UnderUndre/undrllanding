@@ -42,6 +42,12 @@ export default function ComparisonMatrix() {
                 <td className="p-4 text-slate-500 dark:text-purple-300/60">$30–$80/hr (Scope bloat)</td>
               </tr>
               <tr>
+                <td className="p-4 font-semibold text-slate-900 dark:text-slate-100">CRM User Seat Fees</td>
+                <td className="p-4 font-bold text-brand-green">$0 / month (Self-Hosted Open Source)</td>
+                <td className="p-4 text-slate-500 dark:text-purple-300/60">$15,000 – $35,000 / yr (Salesforce/HubSpot)</td>
+                <td className="p-4 text-slate-500 dark:text-purple-300/60">No CRM integration included</td>
+              </tr>
+              <tr>
                 <td className="p-4 font-semibold text-slate-900 dark:text-slate-100">Capital Security</td>
                 <td className="p-4 font-bold text-brand-green">100% Upwork Escrow Protection</td>
                 <td className="p-4 text-slate-500 dark:text-purple-300/60">50% non-refundable upfront deposit</td>

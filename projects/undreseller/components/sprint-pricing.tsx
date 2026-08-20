@@ -39,6 +39,7 @@ export default function SprintPricing() {
               <div className="space-y-3 mb-6">
                 <div className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-purple-200">Included Scope (Fixed Scope):</div>
                 <ul className="space-y-2 text-sm text-slate-600 dark:text-purple-200/80">
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Open-Source CRM deployment (Twenty CRM / EspoCRM) with 0 monthly seat licenses.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Dedicated n8n workflow deployment or Trigger.dev v3 code tasks.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Strict runtime payload validation powered by TypeScript Zod.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Intelligent document & inquiry parsing via AI API.</li>
