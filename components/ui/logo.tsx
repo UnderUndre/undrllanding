@@ -2,8 +2,31 @@ import Link from "next/link";
 import Image from "next/image";
 import logoIcon from "@/public/images/undrlla-icon.png";
 import logoText from "@/public/images/undrlla.png";
+import { getActiveProjectConfig } from "@/lib/project-config";
 
 export default function Logo() {
+  const config = getActiveProjectConfig();
+
+  if (config.slug === "undreseller") {
+    return (
+      <Link href="/" className="inline-flex items-center gap-2.5 group" aria-label="Undreseller">
+        <div className="relative h-8 w-8 overflow-hidden rounded-lg group-hover:scale-105 transition-transform flex items-center justify-center">
+          <Image
+            src={config.iconUrl}
+            alt="Undreseller Logo"
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain"
+            priority
+          />
+        </div>
+        <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-slate-100">
+          Undreseller
+        </span>
+      </Link>
+    );
+  }
+
   return (
     <Link href="/" className="inline-flex items-center gap-2.5 group" aria-label="Undrlla">
       {/* Иконка логотипа */}
