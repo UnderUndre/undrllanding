@@ -12,21 +12,21 @@ export default function HeroUndreseller() {
         {/* Top Trust Badge with Undesign Green Status */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-950/40 border border-purple-800/40 text-orange-400 text-xs font-semibold tracking-wide uppercase mb-8 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse" />
-          3X SALESFORCE CERTIFIED DEVELOPER | UPWORK ESCROW VERIFIED | 100% FIXED SCOPE
+          3X SALESFORCE CERTIFIED DEVELOPER | ERASE $15K–$40K/YR SAAS TAXES | UPWORK ESCROW VERIFIED
         </div>
 
         {/* H1 Main Headline with Brand Colors */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
-          Production-Grade B2B MVPs & Workflows Shipped in{" "}
+          Production-Grade B2B MVPs & Self-Hosted Systems Shipped in{" "}
           <span className="text-brand-orange bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-500 to-orange-600">
             3–14 Days
           </span>
-          . Zero Budget Drag.
+          . Zero Seat Fees.
         </h1>
 
         {/* Subtitle */}
         <p className="text-lg sm:text-xl text-slate-600 dark:text-purple-100/80 max-w-3xl mx-auto mb-10 leading-relaxed">
-          We replace slow $40k agencies and unpredictable freelancers with a fixed-price productized engineering conveyor. Built on Next.js 15, Supabase, Trigger.dev v3 & n8n. Protected by Upwork Direct Contracts Escrow.
+          We replace slow $40k agencies, unpredictable freelancers, and bloated SaaS seat taxes (Salesforce, Notion, Linear, Intercom) with a fixed-price productized engineering conveyor. Built on Next.js 15, Supabase, Twenty CRM, Trigger.dev v3 & n8n.
         </p>
 
         {/* CTA Buttons with Brand Colors & Live Sandbox Link */}
@@ -59,15 +59,15 @@ export default function HeroUndreseller() {
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto text-left pt-6 border-t border-purple-900/20">
           <div className="p-3 bg-purple-950/20 rounded-lg border border-purple-900/30">
             <div className="text-xs text-purple-300/70 uppercase font-semibold">Escrow Protection</div>
-            <div className="text-sm font-bold text-slate-800 dark:text-purple-100">Upwork Direct</div>
+            <div className="text-sm font-bold text-slate-800 dark:text-purple-100">Upwork / DocuSeal</div>
           </div>
           <div className="p-3 bg-purple-950/20 rounded-lg border border-purple-900/30">
             <div className="text-xs text-purple-300/70 uppercase font-semibold">Modern Stack</div>
             <div className="text-sm font-bold text-slate-800 dark:text-purple-100">Next.js 15 + Supabase</div>
           </div>
           <div className="p-3 bg-purple-950/20 rounded-lg border border-purple-900/30">
-            <div className="text-xs text-purple-300/70 uppercase font-semibold">AI Automation</div>
-            <div className="text-sm font-bold text-slate-800 dark:text-purple-100">AI + Trigger.dev</div>
+            <div className="text-xs text-purple-300/70 uppercase font-semibold">FOSS Office Stack</div>
+            <div className="text-sm font-bold text-slate-800 dark:text-purple-100">Twenty CRM + Outline</div>
           </div>
           <div className="p-3 bg-purple-950/20 rounded-lg border border-purple-900/30">
             <div className="text-xs text-purple-300/70 uppercase font-semibold">Legal Code</div>

@@ -8,13 +8,13 @@ export default function SprintPricing() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
-            Two Core SKUs Only
+            Two Core SKUs Only — Fixed Price
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
             Two Fixed-Price Packages. Zero Hidden Surcharges.
           </h2>
           <p className="mt-4 text-slate-600 dark:text-purple-200/70 max-w-2xl mx-auto">
-            Pick your sprint. Lock scope. Funds remain in third-party Upwork Direct Contracts Escrow until production deployment is verified.
+            Pick your sprint. Lock scope. Funds remain in third-party Upwork Direct Contracts Escrow or DocuSeal e-Signed agreement until production deployment is verified.
           </p>
         </div>
 
@@ -23,11 +23,11 @@ export default function SprintPricing() {
           <div className="p-8 bg-slate-50 dark:bg-[#110721]/80 rounded-2xl border border-purple-900/30 flex flex-col justify-between hover:border-purple-600/50 transition-colors">
             <div>
               <span className="inline-block px-3 py-1 bg-purple-950/40 text-purple-300 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-purple-800/40">
-                OPERATIONAL EFFICIENCY SPRINT
+                GRAND SLAM FOSS OFFICE & OPERATIONS SPRINT
               </span>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">SKU 1: B2B Operations & Workflow Plumbing</h3>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">SKU 1: B2B Operations & FOSS Office Stack</h3>
               <p className="mt-2 text-sm text-slate-600 dark:text-purple-200/70">
-                Complete elimination of manual back-office drag. High-throughput automation infrastructure engineered for data resilience.
+                Erase $15k–$40k/yr in SaaS seat taxes (Salesforce, Notion, Linear, Intercom, Calendly) with a self-hosted FOSS suite on Hetzner.
               </p>
 
               <div className="my-6">
@@ -39,10 +39,10 @@ export default function SprintPricing() {
               <div className="space-y-3 mb-6">
                 <div className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-purple-200">Included Scope (Fixed Scope):</div>
                 <ul className="space-y-2 text-sm text-slate-600 dark:text-purple-200/80">
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Open-Source CRM deployment (Twenty CRM / EspoCRM) with 0 monthly seat licenses.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Open-Source CRM (Twenty CRM / EspoCRM) with 0 monthly seat licenses.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Grand Slam FOSS Office: Outline (Docs), Plane (Tasks), Chatwoot (Support), Cal.com.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Dedicated n8n workflow deployment or Trigger.dev v3 code tasks.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Strict runtime payload validation powered by TypeScript Zod.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Intelligent document & inquiry parsing via AI API.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Supabase PostgreSQL audit log & Dead-Letter Queue (DLQ).</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Multi-channel notification routing (Telegram / Slack / Email).</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> 7-Day post-deployment Bugfix SLA Knife (P1/P2 incidents).</li>
@@ -50,7 +50,7 @@ export default function SprintPricing() {
               </div>
 
               <div className="p-4 bg-orange-950/20 border border-orange-800/30 rounded-lg text-xs text-orange-300 mb-6">
-                <strong>Fixed Scope Knife:</strong> Excludes customer-facing frontend portals. Additional third-party API integrations beyond the 3 agreed services are billed at $100/hr in Phase 2.
+                <strong>Fixed Scope Knife:</strong> Excludes customer-facing frontend portals & production email server hosting (email stays on Google Workspace / M365). Additional third-party API integrations beyond the 3 agreed services are billed at $100/hr in Phase 2.
               </div>
             </div>
 
@@ -60,7 +60,7 @@ export default function SprintPricing() {
               rel="noopener noreferrer"
               className="w-full py-3 px-6 bg-purple-900 hover:bg-purple-800 text-white font-semibold rounded-lg text-center transition-colors border border-purple-700/40"
             >
-              Deploy Workflow Sprint via Escrow →
+              Deploy Workflow & FOSS Office via Escrow →
             </a>
           </div>
 
