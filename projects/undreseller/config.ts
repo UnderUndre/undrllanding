@@ -3,6 +3,8 @@ import LoomDemoSection from "./components/loom-demo-section";
 import SprintPricing from "./components/sprint-pricing";
 import OpsecProtocol from "./components/opsec-protocol";
 import ComparisonMatrix from "./components/comparison-matrix";
+import VibeCodingWarning from "./components/vibe-coding-warning";
+import FaqSection from "./components/faq-section";
 import CtaUndreseller from "./components/cta-undreseller";
 
 export const undresellerProject = {
@@ -17,5 +19,7 @@ export const undresellerProject = {
   Pricing: SprintPricing,
   Opsec: OpsecProtocol,
   Comparison: ComparisonMatrix,
+  VibeWarning: VibeCodingWarning,
+  FAQ: FaqSection,
   CTA: CtaUndreseller,
 };

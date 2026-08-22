@@ -16,7 +16,7 @@ export function generateMetadata() {
 }
 
 export default function Home() {
-  const { Hero, LoomDemo, Pricing, Opsec, Comparison, CTA } = undresellerProject;
+  const { Hero, LoomDemo, Pricing, Opsec, Comparison, VibeWarning, FAQ, CTA } = undresellerProject;
 
   return (
     <main className="bg-white dark:bg-[#080808] text-slate-900 dark:text-slate-100 min-h-screen transition-colors">
@@ -25,6 +25,8 @@ export default function Home() {
       <Pricing />
       <Opsec />
       <Comparison />
+      <VibeWarning />
+      <FAQ />
       <CTA />
     </main>
   );

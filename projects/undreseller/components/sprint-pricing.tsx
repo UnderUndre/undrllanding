@@ -90,7 +90,7 @@ export default function SprintPricing() {
                 <ul className="space-y-2 text-sm text-slate-600 dark:text-purple-200/80">
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Next.js 15 (App Router, Server Actions, Tailwind CSS, Shadcn UI).</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Supabase PostgreSQL, RLS policies, Auth (Email, Google OAuth).</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Stripe Checkout / Lemon Squeezy subscription webhooks & portal.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Stripe Checkout / Paddle subscription webhooks & portal.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Trigger.dev v3 / Inngest SUL-free background workflows in TS.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> NACE 62.01 Code Handover: Git repo, OpenAPI 3.0, DDL SQL, Docker.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> 60-Minute Live Onboarding Protocol on Day 14 with $1 test run.</li>
