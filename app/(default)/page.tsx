@@ -1,22 +1,31 @@
-export const metadata = {
-  title: "Home - Simple",
-  description: "Page description",
-};
+import { undresellerProject } from "@/projects/undreseller/config";
+import { getActiveProjectConfig } from "@/lib/project-config";
 
-import Hero from "@/components/hero-home";
-import BusinessCategories from "@/components/business-categories";
-import FeaturesPlanet from "@/components/features-planet";
-import LargeTestimonial from "@/components/large-testimonial";
-import Cta from "@/components/cta";
+export function generateMetadata() {
+  const config = getActiveProjectConfig();
+  
+  return {
+    title: config.title,
+    description: config.description,
+    icons: {
+      icon: config.iconUrl,
+      shortcut: config.iconUrl,
+      apple: config.iconUrl,
+    },
+  };
+}
 
 export default function Home() {
+  const { Hero, LoomDemo, Pricing, Opsec, Comparison, CTA } = undresellerProject;
+
   return (
-    <>
+    <main className="bg-white dark:bg-[#080808] text-slate-900 dark:text-slate-100 min-h-screen transition-colors">
       <Hero />
-      <BusinessCategories />
-      <FeaturesPlanet />
-      <LargeTestimonial />
-      <Cta />
-    </>
+      <LoomDemo />
+      <Pricing />
+      <Opsec />
+      <Comparison />
+      <CTA />
+    </main>
   );
 }

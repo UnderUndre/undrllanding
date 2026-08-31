@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* Tailwind v4 class-based dark mode variant override */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* Additional styles */
 @import './additional-styles/utility-patterns.css' layer(components);
 @import './additional-styles/theme.css';
@@ -11,6 +14,46 @@
 @theme {
   --font-inter: Inter, sans-serif;
   --font-mono: Roboto Mono, monospace;
+
+  /* @underundre/undesign Brand & Scale Tokens */
+  --color-brand-purple: #4e007a;
+  --color-brand-orange: #b45500;
+  --color-brand-green: #69a700;
+  --color-brand-red: #CC0000;
+
+  --color-purple-50: #f5eeff;
+  --color-purple-100: #e5ccff;
+  --color-purple-200: #c999ff;
+  --color-purple-300: #aa66ff;
+  --color-purple-400: #8833ff;
+  --color-purple-500: #4e007a;
+  --color-purple-600: #40005f;
+  --color-purple-700: #330049;
+  --color-purple-800: #260036;
+  --color-purple-900: #1a0026;
+  --color-purple-950: #0d0214;
+
+  --color-orange-50: #fff3e6;
+  --color-orange-100: #ffddb3;
+  --color-orange-200: #ffbf66;
+  --color-orange-300: #ff9f1a;
+  --color-orange-400: #e07000;
+  --color-orange-500: #b45500;
+  --color-orange-600: #994800;
+  --color-orange-700: #7d3b00;
+  --color-orange-800: #612e00;
+  --color-orange-900: #452100;
+
+  --color-green-50: #f2ffcc;
+  --color-green-100: #d9f599;
+  --color-green-200: #b8e866;
+  --color-green-300: #95d833;
+  --color-green-400: #78c200;
+  --color-green-500: #69a700;
+  --color-green-600: #578d00;
+  --color-green-700: #457300;
+  --color-green-800: #345900;
+  --color-green-900: #243f00;
 
   --text-xs: 0.75rem;
   --text-xs--line-height: 1.5;
@@ -43,165 +86,112 @@
   --text-7xl: 4.5rem;
   --text-7xl--line-height: 1;
   --text-7xl--letter-spacing: -0.037em;
-
-  --animate-code-1: code-1;
-  --animate-code-2: code-2;
-  --animate-code-3: code-3;
-  --animate-code-4: code-4;
-  --animate-code-5: code-5;
-  --animate-code-6: code-6;
-  --animate-breath: breath;
-  --animate-float: float;
-  --animate-line: line;
-  --animate-infinite-scroll: infinite-scroll;  
-
-  @keyframes code-1 {
-    0% {
-      opacity: 0;
-    }
-    2.5% {
-      opacity: 1;
-    }
-    97.5% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes code-2 {
-    16.2% {
-      opacity: 0;
-    }
-    18.75% {
-      opacity: 1;
-    }
-    97.5% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes code-3 {
-    32.5% {
-      opacity: 0;
-    }
-    35% {
-      opacity: 1;
-    }
-    97.5% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes code-4 {
-    48.75% {
-      opacity: 0;
-    }
-    51.25% {
-      opacity: 1;
-    }
-    97.5% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes code-5 {
-    65% {
-      opacity: 0;
-    }
-    72.5% {
-      opacity: 1;
-    }
-    97.5% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes code-6 {
-    81.25% {
-      opacity: 0;
-    }
-    83.75% {
-      opacity: 1;
-    }
-    97.5% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes breath {
-    0%,
-    100% {
-      transform: scale(0.95);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-  }
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-5%);
-    }
-  }
-  @keyframes line {
-    0%,
-    100% {
-      left: 0;
-      opacity: 0;
-    }
-    50% {
-      left: 100%;
-      transform: translateX(-100%);
-    }
-    10%,
-    40%,
-    60%,
-    90% {
-      opacity: 0;
-    }
-    25%,
-    75% {
-      opacity: 1;
-    }
-  }
-  @keyframes infinite-scroll {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-100%);
-    }
-  }
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
   ::before,
   ::backdrop,
   ::file-selector-button {
-    border-color: var(--color-gray-200, currentColor);
+    border-color: var(--color-slate-200, currentColor);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
+
+/* —— Landing motion (GPU-friendly: transform + opacity only) —— */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--dx, 20px), 120px, 0) rotate(var(--rot, 200deg)) scale(0.4);
+  }
+}
+
+@keyframes success-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.45s ease-out both;
+}
+
+.success-pop {
+  animation: success-pop 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.confetti-piece {
+  --dx: 24px;
+  animation: confetti-fall 0.85s ease-in forwards;
+}
+
+.confetti-piece:nth-child(odd) {
+  --dx: -28px;
+}
+.confetti-piece:nth-child(3n) {
+  --dx: 40px;
+}
+.confetti-piece:nth-child(4n) {
+  --dx: -16px;
+}
+
+.btn-primary-cta:focus-visible {
+  outline: 2px solid #b45500;
+  outline-offset: 3px;
+}
+
+/* Respect reduced motion — kill decorative loops */
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe-pulse,
+  .motion-safe-ping,
+  .animate-pulse,
+  .animate-ping {
+    animation: none !important;
+  }
+
+  .animate-fade-up,
+  .success-pop,
+  .confetti-piece,
+  .confetti-root {
+    animation: none !important;
+  }
+
+  .confetti-root {
+    display: none !important;
+  }
+}
+

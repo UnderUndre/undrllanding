@@ -1,51 +1,33 @@
-import Image from "next/image";
-import Stripes from "@/public/images/stripes-dark.svg";
+"use client";
+
+import { useLang } from "@/context/lang-context";
 
 export default function Cta() {
+  const { t } = useLang();
+
   return (
-    <section>
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div
-          className="relative overflow-hidden rounded-2xl text-center shadow-xl before:pointer-events-none before:absolute before:inset-0 before:-z-10 before:rounded-2xl before:bg-gray-900"
-          data-aos="zoom-y-out"
-        >
-          {/* Glow */}
-          <div
-            className="absolute bottom-0 left-1/2 -z-10 -translate-x-1/2 translate-y-1/2"
-            aria-hidden="true"
-          >
-            <div className="h-56 w-[480px] rounded-full border-[20px] border-blue-500 blur-3xl" />
-          </div>
-          {/* Stripes illustration */}
-          <div
-            className="pointer-events-none absolute left-1/2 top-0 -z-10 -translate-x-1/2 transform"
-            aria-hidden="true"
-          >
-            <Image
-              className="max-w-none"
-              src={Stripes}
-              width={768}
-              height={432}
-              alt="Stripes"
-            />
-          </div>
-          <div className="px-4 py-12 md:px-12 md:py-20">
-            <h2 className="mb-6 border-y text-3xl font-bold text-gray-200 [border-image:linear-gradient(to_right,transparent,--theme(--color-slate-700/.7),transparent)1] md:mb-12 md:text-4xl">
-              Create your next project with Simple
-            </h2>
-            <div className="mx-auto max-w-xs sm:flex sm:max-w-none sm:justify-center">
-              <a
-                className="btn group mb-4 w-full bg-linear-to-t from-blue-600 to-blue-500 bg-[length:100%_100%] bg-[bottom] text-white shadow-sm hover:bg-[length:100%_150%] sm:mb-0 sm:w-auto"
-                href="#0"
-              >
-                <span className="relative inline-flex items-center">
-                  Start Free Trial{" "}
-                  <span className="ml-1 tracking-normal text-blue-300 transition-transform group-hover:translate-x-0.5">
-                    -&gt;
-                  </span>
-                </span>
-              </a>
-            </div>
+    <section className="py-20 bg-white dark:bg-[#080808] border-t border-slate-200 dark:border-slate-800 transition-colors">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6" data-aos="fade-up">
+        <div className="relative overflow-hidden rounded-3xl border border-orange-500/25 dark:border-orange-500/20 bg-slate-50 dark:bg-slate-950 p-8 md:p-14 text-center shadow-2xl shadow-orange-500/10 transition-colors">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-48 bg-orange-500/15 blur-3xl rounded-full pointer-events-none" />
+
+          <span className="inline-block text-xs font-bold uppercase tracking-wider text-orange-500 dark:text-orange-400 mb-3">
+            {t("cta_tag")}
+          </span>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4 max-w-2xl mx-auto">
+            {t("cta_title")}
+          </h2>
+          <p className="text-slate-600 dark:text-slate-300 text-base md:text-lg mb-8 max-w-xl mx-auto">
+            {t("cta_sub")}
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a
+              href="#waitlist"
+              className="w-full sm:w-auto rounded-xl bg-orange-500 hover:bg-orange-400 py-4 px-8 text-sm font-bold text-slate-950 shadow-lg shadow-orange-500/30 hover:shadow-orange-500/45 active:scale-[0.98] transition-all text-center"
+            >
+              {t("cta_btn")}
+            </a>
           </div>
         </div>
       </div>

@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=undreseller next dev --turbopack",
+    "dev:undreseller": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=undreseller next dev --turbopack",
+    "dev:undrlla": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=undrlla next dev --turbopack",
     "build": "next build",
+    "build:undreseller": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=undreseller next build",
+    "build:undrlla": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=undrlla next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -13,6 +17,7 @@
     "@types/node": "^22.13.0",
     "@types/react": "19.0.8",
     "@types/react-dom": "19.0.3",
+    "@underundre/undesign": "^0.1.0",
     "aos": "3.0.0-beta.6",
     "next": "^15.1.11",
     "prettier-plugin-tailwindcss": "^0.6.11",
@@ -24,6 +29,7 @@
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/postcss": "^4.0.3",
     "@types/aos": "^3.0.7",
+    "cross-env": "^7.0.3",
     "postcss": "^8.5.1",
     "tailwindcss": "^4.0.3"
   },

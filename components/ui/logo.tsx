@@ -1,22 +1,56 @@
 import Link from "next/link";
+import Image from "next/image";
+import logoIcon from "@/public/images/undrlla-icon.png";
+import logoText from "@/public/images/undrlla.png";
+import { getActiveProjectConfig } from "@/lib/project-config";
 
 export default function Logo() {
+  const config = getActiveProjectConfig();
+
+  if (config.slug === "undreseller") {
+    return (
+      <Link href="/" className="inline-flex items-center gap-2.5 group" aria-label="Undreseller">
+        <div className="relative h-8 w-8 overflow-hidden rounded-lg group-hover:scale-105 transition-transform flex items-center justify-center">
+          <Image
+            src={config.iconUrl}
+            alt="Undreseller Logo"
+            width={32}
+            height={32}
+            className="h-8 w-8 object-contain"
+            priority
+          />
+        </div>
+        <span className="font-extrabold text-xl tracking-tight text-slate-900 dark:text-slate-100">
+          Undreseller
+        </span>
+      </Link>
+    );
+  }
+
   return (
-    <Link href="/" className="inline-flex" aria-label="Cruip">
-      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28">
-        <path
-          className="fill-blue-500"
-          fillRule="evenodd"
-          d="M15.052 0c6.914.513 12.434 6.033 12.947 12.947h-5.015a7.932 7.932 0 0 1-7.932-7.932V0Zm-2.105 22.985V28C6.033 27.487.513 21.967 0 15.053h5.015a7.932 7.932 0 0 1 7.932 7.932Z"
-          clipRule="evenodd"
+    <Link href="/" className="inline-flex items-center gap-2.5 group" aria-label="Undrlla">
+      {/* Иконка логотипа */}
+      <div className="relative h-8 w-8 overflow-hidden rounded-xl group-hover:scale-105 transition-transform flex items-center justify-center">
+        <Image
+          src={logoIcon}
+          alt="Undrlla Icon"
+          width={32}
+          height={32}
+          className="h-8 w-8 object-contain"
+          priority
         />
-        <path
-          className="fill-blue-300"
-          fillRule="evenodd"
-          d="M0 12.947C.513 6.033 6.033.513 12.947 0v5.015a7.932 7.932 0 0 1-7.932 7.932H0Zm22.984 2.106h5.015C27.486 21.967 21.966 27.487 15.052 28v-5.015a7.932 7.932 0 0 1 7.932-7.932Z"
-          clipRule="evenodd"
+      </div>
+
+      {/* ПНГшка надписи логотипа */}
+      <div className="relative h-6 flex items-center">
+        <Image
+          src={logoText}
+          alt="Undrlla"
+          height={22}
+          className="h-5.5 w-auto object-contain dark:invert-0 dark:brightness-100 transition-all"
+          priority
         />
-      </svg>
+      </div>
     </Link>
   );
 }

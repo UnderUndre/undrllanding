@@ -1,91 +1,189 @@
-# Free Tailwind landing page template
+# undrllanding
 
-![Simple TailwindCSS template preview](https://github.com/cruip/tailwind-landing-page-template/assets/2683512/f9a98fab-a1bc-4fb5-8572-4de0b6bd932a)
+**Undrlla** marketing + waitlist landing (and future storefront shell).  
+Next.js 15 · React 19 · Tailwind CSS v4 · `@underundre/undesign` tokens.
 
-**Simple Light** is a free landing page template built on top of **TailwindCSS** and fully coded in **React** / **Next.js**. Simple light is designed to provide all the basic components a developer need to create a landing page for SaaS products, online services, and more.
+Ecosystem role: customer UI for **client shops** (Medusa Store API) and later **flagship** Undrlla.com modules (`FEATURES` flags).  
+Product SoT: [`specs/001-init-storefront-miniapp/`](./specs/001-init-storefront-miniapp/) · cross-repo glue: `undrlla/specs/ECOSYSTEM.md`.
 
-**UPDATE 2025-02-04** Added Tailwind v4 support!
+> Based on a Cruip Simple Light template; heavily rebranded for Undrlla (waitlist, alpha economics, Medusa narrative).
 
-Use it for whatever you want, and be sure to reach us out on X if you build anything cool/useful with it.
-Created and maintained with ❤️ by [Cruip.com](https://cruip.com/).
+---
 
-_Version 1.3.3 built with Tailwind CSS and React + Vite is available [here](https://github.com/cruip/tailwind-landing-page-template/releases/tag/1.3.3)._
-
-## Live demo
-
-Check the live demo here 👉️ [https://simple.cruip.com/](https://simple.cruip.com/)
-
-## Simple Pro
-
-[![Simple Pro](https://github.com/cruip/tailwind-landing-page-template/assets/2683512/992be2ba-3de7-4838-be41-12e85686c193)](https://cruip.com/)
-
-## Design files
-
-If you need the design files, you can download them from Figma's Community 👉 https://bit.ly/3HOZMpf
-
-## Usage
-
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-### Getting Started
-
-First, run the development server:
+## Quick start
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+pnpm install
+pnpm dev          # http://localhost:3000  (turbopack)
+pnpm build
+pnpm start
+pnpm exec tsc --noEmit
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Copy env template:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+cp .env.example .env.local   # if present; otherwise create .env.local
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### Environment
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+| Variable | Required | Description |
+|----------|----------|-------------|
+| `TELEGRAM_BOT_TOKEN` | for alerts | Bot token for waitlist notifications |
+| `TELEGRAM_CHAT_ID` | for alerts | Chat/channel id (personal: `/start` bot first; channel: `-100…`) |
+| `WAITLIST_ALPHA_LIMIT` | no | Alpha seat cap (default `50`) |
+| `WAITLIST_BASE_CLAIMED` | no | Seats already claimed **outside** this process (CRM / previous deploys). Cold start memory resets — keep this in sync on serverless. |
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Waitlist storage is **in-process** (`lib/waitlist-store.ts`). Fine for dogfood; production should move to a real DB and drop `BASE_CLAIMED` hacks.
 
-### Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Site map
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Route | Purpose |
+|-------|---------|
+| `/` | Waitlist landing (CRO hero, deploy story, features, pricing, CTA) |
+| `/economics` | Economics manifesto (0% GMV, alpha, rebate, hub fees) |
+| `/api/waitlist` | `GET` stats · `POST` signup |
+| `/api/hello` | Template leftover |
+| `/signin`, `/signup`, `/reset-password` | Auth shell (template; not Wave-1 product) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+---
 
-### Deploy on Vercel
+## Landing product notes (2026-07)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Work in this pass focused on **waitlist conversion** + **wow that sells the product**, not heavy 3D.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### CRO (P0)
 
-### Support notes
+- Outcome-focused H1 (A/B — see below)
+- Waitlist form: **email-first**; Telegram/socials behind “add contacts”
+- Trust chips at form: `0% GMV` · Alpha free · Paddle/crypto
+- Header: primary = Waitlist; secondary = How / Pricing / Manifest
+- **Sticky CTA** on mobile when waitlist leaves viewport (`components/sticky-cta.tsx`)
 
-This template has been developed with the App Router (`app`) and React Server Components. If you’re unfamiliar with these beta features, you can find more information about them on the Next.js beta documentation page. So, please note that any request dealing with React (e.g. extra features, customisations, et cetera) is to be considered out of the support scope.
+### Visual (P1)
 
-For more information about what support covers, please see our (FAQs)[https://cruip.com/faq/].
+- Less purple mesh / “AI SaaS soup”; slate + **orange** primary CTA
+- `prefers-reduced-motion` respected (AOS off, confetti off, pulse/ping off)
+- Brand tokens via undesign / CSS theme (`app/css/style.css`)
 
-## Credits
+### Wow without thrash (P2)
 
-- [Nucleo](https://nucleoapp.com/)
+- **Deploy story** (`#how`): Claim → Deploy → Storefront (`components/deploy-story.tsx`)
+- Success confetti (~0.9s) + check pop on submit
+- Alpha pricing card visually anchored
+- CLI typing demo (`hero-typing-showcase.tsx`)
 
-## Terms and License
+### Live alpha counter
 
-- Released under the [GPL](https://www.gnu.org/licenses/gpl-3.0.html).
-- Copyright 2024 [Cruip](https://cruip.com/).
-- Use it for personal and commercial projects, but please don’t republish, redistribute, or resell the template.
-- Attribution is not required, although it is really appreciated.
+| Surface | Component / API |
+|---------|-----------------|
+| Hero | `AlphaSpotsCounter` variant `hero` |
+| Waitlist form | variant `inline` (bar + remaining) |
+| Sticky bar | claimed/remaining text |
+| API | `GET /api/waitlist` → `{ claimed, remaining, limit, open, h1_variants }` |
+| After submit | `publishAlphaStats` updates all clients without reload |
+| Poll | ~20–30s via `useAlphaStats` |
 
-## About Us
+`claimed = WAITLIST_BASE_CLAIMED + signups_in_this_process`.
 
-We're an Italian developer/designer duo creating high-quality design/code resources for developers, makers, and startups.
+### H1 A/B test
 
-## Stay in the loop
+| Variant | Intent | EN (structure) |
+|---------|--------|----------------|
+| **A** | Outcome / speed | `title_1` + accent **live** + `title_2` **in one deploy** |
+| **B** | Fee / risk | 0% platform tax · turnkey store · $0 alpha |
 
-If you would like to know when we release new resources, you can follow [@pacovitiello](https://x.com/pacovitiello) and [@DavidePacilio](https://x.com/DavidePacilio) on X, or you can subscribe to our [newsletter](https://cruip.com/newsletter/).
+- Split: **50/50**, sticky 30 days (`localStorage` `undrlla_h1_variant` + cookie `undrlla_h1`)
+- Force QA: `/?h1=a` or `/?h1=b`
+- Events: `h1_view`, `waitlist_submit` → `window.dataLayer` + `window.undrllaEvents` (dev console)
+- POST body includes `h1_variant`; Telegram alert shows variant + session A/B counts
+- Code: `lib/h1-ab.ts`, copy in `lib/i18n.ts` (`hero_*` / `hero_b_*`)
 
+**Do not** change form + color + H1 in the same experiment week — isolate the variable.
+
+---
+
+## Key files
+
+```
+app/
+  (default)/page.tsx          # home composition
+  (default)/layout.tsx        # AOS + LangProvider + header/footer
+  api/waitlist/route.ts       # GET stats, POST signup + TG alert
+  economics/page.tsx
+  css/style.css               # tokens, confetti, reduced-motion
+components/
+  hero-undrlla.tsx            # H1 A/B + waitlist grid
+  waitlist-form.tsx           # email-first + confetti
+  alpha-spots-counter.tsx
+  deploy-story.tsx
+  sticky-cta.tsx
+  pricing-section.tsx
+  marketplace-preview-demo.tsx
+  shopify-style-features.tsx
+  economics-client.tsx
+lib/
+  i18n.ts                     # RU/EN
+  h1-ab.ts                    # A/B assign + track
+  waitlist-store.ts           # in-memory store + stats
+  use-alpha-stats.ts          # client poll + custom event
+specs/001-init-storefront-miniapp/
+  spec.md                     # Wave-1 Medusa + Paddle target
+```
+
+i18n: `context/lang-context.tsx` · toggle in header (RU/EN).
+
+---
+
+## Spec / roadmap alignment
+
+| Wave | Scope (spec) | Landing today |
+|------|----------------|---------------|
+| **Wave 1** | Catalog/cart/checkout Medusa + Paddle; Medusa customer auth | **Waitlist marketing** + economics (pre-shop code) |
+| **Wave 2** | Telegram Mini App `initData` | Not implemented |
+| **Wave 3+** | Flagship housing / hub / unet flags | Not implemented |
+
+Do not implement Directus client-shop paths; commerce SoT = **undreseller** Medusa.
+
+---
+
+## Scripts reference
+
+| Command | Action |
+|---------|--------|
+| `pnpm dev` | Dev server (turbopack) |
+| `pnpm build` | Production build |
+| `pnpm start` | Serve production build |
+| `pnpm lint` | ESLint (if configured) |
+
+---
+
+## Related repos
+
+| Repo | Role |
+|------|------|
+| `undreseller` | Medusa template-shop (Gate 0) |
+| `undevops` | One-click provision of shop + this image |
+| `undrlla` | IdP, housing, polity, ProvisioningManifest SoT |
+| `undrepay` | Crypto + ledger (Phase C) |
+| `undesign` | Shared design tokens package |
+
+---
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for template history + Undrlla landing releases.
+
+## License
+
+Original template: GPL / Cruip terms (see historical notice below).  
+Product copy, Undrlla branding, and custom components: project / UnderUndre as applicable.
+
+---
+
+### Template provenance
+
+Originally derived from [Cruip Simple Light](https://github.com/cruip/tailwind-landing-page-template) (Tailwind + Next.js). Credits: Cruip, Nucleo icons where still used.
