@@ -21,25 +21,25 @@ export default function OpsecProtocol() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
           <div className="p-6 bg-white dark:bg-[#12081f] rounded-xl border border-purple-900/30 shadow-sm relative">
             <div className="w-8 h-8 bg-brand-orange text-white rounded-full flex items-center justify-center font-bold text-sm mb-4">1</div>
-            <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-2">Escrow / DocuSeal (Day 1)</h3>
+            <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-2">Escrow & Architecture Audit (Day 1)</h3>
             <p className="text-xs text-slate-500 dark:text-purple-200/60">
-              You deposit sprint funds into Upwork Direct Contracts Escrow OR sign an instant eIDAS-compliant MSA via DocuSeal (<span className="font-mono text-orange-400">sign.undreseller.com</span>). Funds remain frozen until release.
+              You fund escrow safely. We audit your business model: if a battle-tested engine (Shopify, FOSS CRM) fits best, we leverage it and engineer the custom Next.js landing/checkout layer. If proprietary architecture is required, we lock custom DDL schemas.
             </p>
           </div>
 
           <div className="p-6 bg-white dark:bg-[#12081f] rounded-xl border border-purple-900/30 shadow-sm relative">
             <div className="w-8 h-8 bg-brand-orange text-white rounded-full flex items-center justify-center font-bold text-sm mb-4">2</div>
-            <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-2">Conveyor Build (Days 1–13)</h3>
+            <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-2">Conveyor Build & Staging (Days 1–13)</h3>
             <p className="text-xs text-slate-500 dark:text-purple-200/60">
-              Development runs in an isolated staging environment using pre-built Next.js 15 / Supabase / Trigger.dev modules with daily Git commits to your private repo.
+              Development runs in an isolated bureau staging environment. You get private staging preview URLs and walkthroughs to inspect live progress with zero blind spots.
             </p>
           </div>
 
           <div className="p-6 bg-white dark:bg-[#12081f] rounded-xl border border-purple-900/30 shadow-sm relative">
             <div className="w-8 h-8 bg-brand-orange text-white rounded-full flex items-center justify-center font-bold text-sm mb-4">3</div>
-            <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-2">Live Onboarding (Day 14)</h3>
+            <h3 className="font-bold text-slate-900 dark:text-slate-100 mb-2">Live Verification & Handover (Day 14)</h3>
             <p className="text-xs text-slate-500 dark:text-purple-200/60">
-              A 60-minute handover session. You inject your live production API keys. We run a live $1 transaction through your Stripe. You release escrow only after confirming payment receipt.
+              A 60-minute live session. We execute a live $1 Stripe transaction to verify the pipeline. Upon confirming functionality, you authorize escrow release and simultaneously receive 100% Git repo ownership and master infrastructure credentials.
             </p>
           </div>
 
@@ -52,17 +52,31 @@ export default function OpsecProtocol() {
           </div>
         </div>
 
-        {/* NACE 62.01 & DocuSeal Banner */}
-        <div className="p-6 bg-[#120524] text-white rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-purple-800/40">
+        {/* Code Handover & DocuSeal Banner */}
+        <div className="p-6 bg-[#120524] text-white rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-purple-800/40 mb-8">
           <div>
-            <span className="text-xs font-mono font-bold text-orange-400 uppercase">LEGAL & COMPLIANCE STANDARD</span>
-            <h4 className="text-lg font-bold mt-1">NACE 62.01 Code Handover & DocuSeal ESIGN Protocol</h4>
+            <span className="text-xs font-mono font-bold text-orange-400 uppercase">LEGAL & CODE HANDOVER STANDARD</span>
+            <h4 className="text-lg font-bold mt-1">Full IP Code Handover & DocuSeal ESIGN Protocol</h4>
             <p className="text-xs text-purple-200/70 mt-1">
-              Source code, DDL SQL schemas, and OpenAPI specs are transferred under EU NACE 62.01 classification. Contracts signed via self-hosted DocuSeal conform to ESIGN Act 2000 & eIDAS 910/2014 standards.
+              Source code, DDL SQL schemas, and OpenAPI specs are 100% transferred to your private GitHub & infrastructure. Contracts signed via self-hosted DocuSeal conform to ESIGN Act 2000 & eIDAS 910/2014 standards.
             </p>
           </div>
           <div className="px-4 py-2 bg-purple-900/40 text-brand-green border border-purple-700/40 rounded-lg text-xs font-mono whitespace-nowrap">
-            ESIGN & NACE 62.01 CERTIFIED
+            ESIGN & FULL IP CERTIFIED
+          </div>
+        </div>
+
+        {/* ASYNC-FIRST COMM PROTOCOL */}
+        <div className="p-6 bg-white dark:bg-[#12081f] text-slate-900 dark:text-white rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-purple-900/30 text-left">
+          <div>
+            <span className="text-xs font-mono font-bold text-orange-400 uppercase">COMMUNICATION PROTOCOL</span>
+            <h4 className="text-base font-bold text-slate-900 dark:text-white mt-1">Async-First Velocity: Zero Meeting Fatigue</h4>
+            <p className="text-xs text-slate-500 dark:text-purple-200/70 mt-1">
+              We protect your delivery timeline by eliminating daily Zoom overhead. Daily updates and build walkthroughs are delivered asynchronously via Loom and Telegram. Synchronous calls are strictly reserved for <strong>Day 1 Kickoff (30 min)</strong> and <strong>Day 14 Live Verification (60 min)</strong>.
+            </p>
+          </div>
+          <div className="px-4 py-2 bg-purple-950 text-brand-green border border-purple-800/40 rounded-lg text-xs font-mono whitespace-nowrap">
+            100% BUILD FOCUS
           </div>
         </div>
       </div>

@@ -92,7 +92,7 @@ export default function SprintPricing() {
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Supabase PostgreSQL, RLS policies, Auth (Email, Google OAuth).</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Stripe Checkout / Paddle subscription webhooks & portal.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Trigger.dev v3 / Inngest SUL-free background workflows in TS.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> NACE 62.01 Code Handover: Git repo, OpenAPI 3.0, DDL SQL, Docker.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Full Code & IP Handover: Private Git repo, OpenAPI 3.0, DDL SQL, Docker.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> 60-Minute Live Onboarding Protocol on Day 14 with $1 test run.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> 7-Day Bugfix SLA Knife covering all critical post-launch bugs.</li>
                 </ul>

@@ -77,6 +77,12 @@ export default function ComparisonMatrix() {
                 <td className="p-4 text-slate-500 dark:text-purple-300/60">Proprietary CMS lock-in</td>
                 <td className="p-4 text-slate-500 dark:text-purple-300/60">Incomplete repository handover</td>
               </tr>
+              <tr>
+                <td className="p-4 font-semibold text-slate-900 dark:text-slate-100">DIY AI Vibe-Coding Risk</td>
+                <td className="p-4 font-bold text-brand-green">0% Slop: Strict DDL PostgreSQL schemas & Zod runtime guards</td>
+                <td className="p-4 text-slate-500 dark:text-purple-300/60">Slow manual boilerplate</td>
+                <td className="p-4 text-slate-500 dark:text-purple-300/60">Prompt-and-pray slop ($10k/wk cleanup rot)</td>
+              </tr>
             </tbody>
           </table>
         </div>

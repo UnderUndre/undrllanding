@@ -59,12 +59,12 @@ export default function Footer({ border = false }: { border?: boolean }) {
                 <>
                   <li>
                     <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
-                      Sprint A ($3.5k)
+                      SKU 1: FOSS Office ($3.5k)
                     </a>
                   </li>
                   <li>
                     <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
-                      Sprint B ($4.9k)
+                      SKU 2: SaaS MVP ($4.9k)
                     </a>
                   </li>
                 </>
@@ -97,7 +97,7 @@ export default function Footer({ border = false }: { border?: boolean }) {
                     <span className="text-slate-700 dark:text-slate-300">DocuSeal e-Signed MSAs</span>
                   </li>
                   <li>
-                    <span className="text-slate-700 dark:text-slate-300">Stripe / Lemon Squeezy</span>
+                    <span className="text-slate-700 dark:text-slate-300">Stripe / Paddle</span>
                   </li>
                 </>
               ) : (

@@ -52,7 +52,7 @@ export default function HeroUndreseller() {
 
         {/* Microcopy Under Buttons */}
         <p className="text-xs text-slate-500 dark:text-purple-300/60 mb-12">
-          ⚡ Instant test: Log in as Demo Admin on <span className="font-mono text-orange-400">demo.undreseller.com</span> in 1 click. Escrow released only after your live $1 checkout verification.
+          ⚡ Instant test: Log in as Demo Admin on <span className="font-mono text-orange-400">demo.undreseller.com</span> in 1 click. Escrow released during live Day 14 onboarding upon successful $1 checkout verification.
         </p>
 
         {/* Trust Badges Grid using Undesign Theme Tokens */}
@@ -70,8 +70,8 @@ export default function HeroUndreseller() {
             <div className="text-sm font-bold text-slate-800 dark:text-purple-100">Twenty CRM + Outline</div>
           </div>
           <div className="p-3 bg-purple-950/20 rounded-lg border border-purple-900/30">
-            <div className="text-xs text-purple-300/70 uppercase font-semibold">Legal Code</div>
-            <div className="text-sm font-bold text-slate-800 dark:text-purple-100">NACE 62.01 Standard</div>
+            <div className="text-xs text-purple-300/70 uppercase font-semibold">IP Ownership</div>
+            <div className="text-sm font-bold text-slate-800 dark:text-purple-100">100% Code Transfer</div>
           </div>
           <div className="p-3 bg-purple-950/20 rounded-lg border border-purple-900/30 col-span-2 md:col-span-1">
             <div className="text-xs text-purple-300/70 uppercase font-semibold">Warranty</div>

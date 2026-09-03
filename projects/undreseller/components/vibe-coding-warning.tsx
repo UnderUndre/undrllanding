@@ -29,7 +29,7 @@ export default function VibeCodingWarning() {
               <div className="p-4 bg-[#090212]/80 rounded-xl border border-[#69a700]/40">
                 <div className="text-brand-green font-bold text-xs uppercase font-mono mb-1">✓ The Undreseller Standard</div>
                 <div className="text-xs text-purple-200/70">
-                  Engineered with strict PostgreSQL schemas, end-to-end Zod type safety, modular Next.js 15 server actions, and immutable Docker configurations from Day 1.
+                  Zero premature over-engineering. We deploy Shopify/FOSS cores when standard solutions suffice + custom Next.js 15 landing funnels, or full-stack Supabase DDL architectures when proprietary scale demands it.
                 </div>
               </div>
             </div>

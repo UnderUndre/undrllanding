@@ -34,6 +34,7 @@ export default function CtaUndreseller() {
               <label className="block text-xs font-medium text-purple-200 mb-1">Work Email Address *</label>
               <input
                 type="email"
+                name="email"
                 required
                 placeholder="name@company.com"
                 className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
@@ -44,6 +45,7 @@ export default function CtaUndreseller() {
               <label className="block text-xs font-medium text-purple-200 mb-1">Telegram Username / WhatsApp *</label>
               <input
                 type="text"
+                name="telegram"
                 required
                 placeholder="@username or phone"
                 className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
@@ -52,7 +54,7 @@ export default function CtaUndreseller() {
 
             <div>
               <label className="block text-xs font-medium text-purple-200 mb-1">Select Sprint *</label>
-              <select className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange">
+              <select name="sprint" className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange">
                 <option value="sku2">SKU 2 - 14-Day SaaS MVP Factory ($4,900 flat)</option>
                 <option value="sku1">SKU 1 - B2B Operations & Workflow Plumbing ($3,500 + $500/mo)</option>
               </select>
@@ -61,6 +63,7 @@ export default function CtaUndreseller() {
             <div>
               <label className="block text-xs font-medium text-purple-200 mb-1">Describe your product or automation bottleneck in 2-3 sentences *</label>
               <textarea
+                name="bottleneck"
                 required
                 rows={3}
                 placeholder="e.g. Need Next.js + Supabase auth, Stripe subscriptions, and Trigger.dev v3 background workflows..."
