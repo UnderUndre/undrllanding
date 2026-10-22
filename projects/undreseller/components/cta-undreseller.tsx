@@ -53,10 +53,11 @@ export default function CtaUndreseller() {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">Select Sprint *</label>
+              <label className="block text-xs font-medium text-purple-200 mb-1">Select Sprint / Package *</label>
               <select name="sprint" className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange">
-                <option value="sku2">SKU 2 - 14-Day SaaS MVP Factory ($4,900 flat)</option>
-                <option value="sku1">SKU 1 - B2B Operations & Workflow Plumbing ($3,500 + $500/mo)</option>
+                <option value="tripwire">Product 0 — 24h Architecture Audit & Blueprint ($350 flat)</option>
+                <option value="sku2">SKU 2 — 14-Day SaaS MVP Factory ($4,900 flat)</option>
+                <option value="sku1">SKU 1 — B2B Operations & FOSS Office Stack ($3,500 + $500/mo)</option>
               </select>
             </div>
 
@@ -66,7 +67,7 @@ export default function CtaUndreseller() {
                 name="bottleneck"
                 required
                 rows={3}
-                placeholder="e.g. Need Next.js + Supabase auth, Stripe subscriptions, and Trigger.dev v3 background workflows..."
+                placeholder="e.g. Need Next.js 15 + Supabase auth, Stripe/NOWPayments checkout, and Inngest background workflows..."
                 className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
               ></textarea>
             </div>
@@ -81,16 +82,34 @@ export default function CtaUndreseller() {
         )}
 
         <div className="pt-6 border-t border-purple-900/30 text-xs text-purple-300/60">
-          <p className="mb-2">Prefer to bypass forms and initiate the contract directly?</p>
-          <a
-            href="https://www.upwork.com/direct-contracts"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-4 py-2 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 rounded-lg font-semibold transition-colors border border-purple-800/40"
-          >
-            Open Direct Upwork Escrow Contract →
-          </a>
-          <p className="mt-2 text-purple-300/40">Standard Upwork Direct Contract. 0% extra client fee, full third-party dispute mediation included.</p>
+          <p className="mb-2">Prefer instant booking or direct e-sign?</p>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="https://demo.undreseller.com/book"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-emerald-950/60 hover:bg-emerald-900/70 text-emerald-300 rounded-lg font-semibold transition-colors border border-emerald-800/40"
+            >
+              Book 1-on-1 Audit Slot ($350) →
+            </a>
+            <a
+              href="https://www.upwork.com/direct-contracts"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 rounded-lg font-semibold transition-colors border border-purple-800/40"
+            >
+              Open Direct Upwork Escrow (5%) →
+            </a>
+            <a
+              href="https://sign.underundre.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-4 py-2 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 rounded-lg font-semibold transition-colors border border-purple-800/40"
+            >
+              DocuSeal e-Sign MSA →
+            </a>
+          </div>
+          <p className="mt-2 text-purple-300/40">Standard Upwork Direct Contract (5% fee) or sovereign DocuSeal e-Sign with 100% IP code transfer.</p>
         </div>
       </div>
     </section>

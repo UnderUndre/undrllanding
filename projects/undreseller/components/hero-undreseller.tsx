@@ -26,7 +26,7 @@ export default function HeroUndreseller() {
 
         {/* Subtitle */}
         <p className="text-lg sm:text-xl text-slate-600 dark:text-purple-100/80 max-w-3xl mx-auto mb-10 leading-relaxed">
-          We replace slow $40k agencies, unpredictable freelancers, and bloated SaaS seat taxes (Salesforce, Notion, Linear, Intercom) with a fixed-price productized engineering conveyor. Built on Next.js 15, Supabase, Twenty CRM, Trigger.dev v3 & n8n.
+          We replace slow $40k agencies, unpredictable freelancers, and bloated SaaS seat taxes (Salesforce, Notion, Linear, Intercom) with a fixed-price productized engineering conveyor. Built on Next.js 15, Supabase PostgreSQL, Twenty CRM, Trigger.dev v3 & Inngest.
         </p>
 
         {/* CTA Buttons with Brand Colors & Live Sandbox Link */}
@@ -52,14 +52,14 @@ export default function HeroUndreseller() {
 
         {/* Microcopy Under Buttons */}
         <p className="text-xs text-slate-500 dark:text-purple-300/60 mb-12">
-          ⚡ Instant test: Log in as Demo Admin on <span className="font-mono text-orange-400">demo.undreseller.com</span> in 1 click. Escrow released during live Day 14 onboarding upon successful $1 checkout verification.
+          ⚡ Instant test: Explore the live sovereign commerce app on <span className="font-mono text-orange-400">demo.undreseller.com</span> with slot booking & crypto/Stars payments. Escrow released during live Day 14 onboarding upon successful $1 checkout verification.
         </p>
 
         {/* Trust Badges Grid using Undesign Theme Tokens */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto text-left pt-6 border-t border-purple-900/20">
           <div className="p-3 bg-purple-950/20 rounded-lg border border-purple-900/30">
             <div className="text-xs text-purple-300/70 uppercase font-semibold">Escrow Protection</div>
-            <div className="text-sm font-bold text-slate-800 dark:text-purple-100">Upwork / DocuSeal</div>
+            <div className="text-sm font-bold text-slate-800 dark:text-purple-100">Upwork 5% / DocuSeal</div>
           </div>
           <div className="p-3 bg-purple-950/20 rounded-lg border border-purple-900/30">
             <div className="text-xs text-purple-300/70 uppercase font-semibold">Modern Stack</div>

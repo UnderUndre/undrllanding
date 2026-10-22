@@ -9,11 +9,11 @@ import CtaUndreseller from "./components/cta-undreseller";
 
 export const undresellerProject = {
   slug: "undreseller",
-  name: "Undreseller",
-  domain: "undreseller.com",
-  title: "Undreseller — Productized Engineering & Turnkey B2B Systems",
+  name: "UnderUndre",
+  domain: "underundre.com",
+  title: "UnderUndre — Sovereign Engineering Bureau & Turnkey B2B Systems",
   description:
-    "Production-Grade B2B MVPs & Workflows Shipped in 3–14 Days. Zero Budget Drag. Next.js 15, Supabase, n8n, AI. Protected by Upwork Direct Contracts Escrow.",
+    "Production-Grade B2B MVPs & Sovereign Systems Shipped in 3–14 Days. Next.js 15, PostgreSQL, Twenty CRM, Trigger.dev v3, Inngest. Escrow-protected via Upwork Direct Contracts (5%) & DocuSeal.",
   Hero: HeroUndreseller,
   LoomDemo: LoomDemoSection,
   Pricing: SprintPricing,
