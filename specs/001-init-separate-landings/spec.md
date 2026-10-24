@@ -152,14 +152,17 @@ undrllanding/
 4. Copy sweep: `undreseller.com` → `underundre.com`; `demo.undreseller.com` → flagship links (6.3); `video.undreseller.com` → `video.underundre.com`; `sign.undreseller.com` → `sign.underundre.com`. Telegram links (`t.me/UnderUndreBot`) unchanged. `projects/undrlla/` untouched.
 5. Acceptance gate: `grep -ri "undreseller" projects/ app/ lib/ public/` must return zero public-facing occurrences (code-history references allowed only in specs/).
 
-### 6.3 Routing Delta (supersedes the FR-008 host table)
+### 6.3 Routing (single root domain — decision 2026-10-24, supersedes FR-008 host table)
+
+One root domain; no separate hostname for the landing:
 
 | Host | Target | Note |
 |---|---|---|
-| `underundre.com` | the owner's **flagship fork instance** (undreseller template deployment) | NOT the marketing lander anymore |
-| `bureau.underundre.com` *(proposed)* | `undrllanding:3000` | new home for the rebranded bureau lander — final hostname is an open question (6.5) |
-| `demo.undreseller.com` | retired | demo CTAs point at the flagship |
-| `shop.underundre.com` | flagship or client-demo instance as configured | keep only if still needed |
+| `underundre.com` | `undrllanding:3000` | the domain **greets visitors with the bureau landing** (rebranded `underundre` project) |
+| `shop.underundre.com` | the owner's **flagship fork instance** (undreseller template deployment) | the live product behind the landing; same root domain, subdomain routing as in the original FR-008 |
+| `demo.undreseller.com` | retired | demo CTAs point at `shop.underundre.com` |
+
+Rejected: a dedicated landing hostname (`bureau.underundre.com` §6.5.1 — resolved as "no").
 
 ### 6.4 How Product/Service Cards Appear on `underundre.com` (verified in `undreseller`, 2026-10-24)
 
@@ -172,11 +175,11 @@ The flagship site's storefront is **database-driven, not seed-driven**:
 
 ### 6.5 Open Questions
 
-1. Final hostname for the bureau lander (proposed: `bureau.underundre.com`).
-2. Where the content-admin UI ships: undreseller spec 004 backlog vs a fork-specific follow-up spec.
+1. ~~Final hostname for the bureau lander~~ — **Resolved 2026-10-24**: no separate hostname; `underundre.com` serves the landing, the flagship app lives at `shop.underundre.com`.
+2. ~~Where the content-admin UI ships~~ — **Resolved 2026-10-24**: undreseller spec 004 (research-first: external best-practices research prompt precedes detailed requirements).
 
 ### 6.6 New Requirements (continue numbering)
 
 - **FR-009**: The flagship site's storefront cards MUST come from live database records (Item/Service/ProfessionalProfile/ShopSettings) via the undreseller fork data path; the seed script MUST NOT be the production content source.
 - **FR-010**: After the rename, no public-facing asset, string, or metadata in `undrllanding` may reference the "undreseller" brand (grep gate, 6.2.5).
-- **FR-011**: The bureau lander MUST deep-link to the flagship as the live proof ("see it running on our own product"): `https://underundre.com` and the booking demo CTA `https://underundre.com/book`.
+- **FR-011**: The bureau lander MUST deep-link to the flagship as the live proof ("see it running on our own product"): `https://shop.underundre.com` and the booking demo CTA `https://shop.underundre.com/book`.

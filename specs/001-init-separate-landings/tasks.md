@@ -74,8 +74,8 @@ TASK-301 → TASK-302 → TASK-303
 
 - [ ] TASK-401 [FE] Rename `projects/undreseller/` → `projects/underundre/` (folder, `config.ts` slug/title/metadata, component files `hero-undreseller` → `hero-underundre`, `cta-undreseller` → `cta-underundre`, all imports)
 - [ ] TASK-402 [FE] Update `lib/project-config.ts`: accepted values `underundre` | `undrlla`, transition alias `undreseller` → `underundre`, fallback `undrlla` unchanged
-- [ ] TASK-403 [FE] Copy sweep: `undreseller.com` → `underundre.com`, `demo.undreseller.com` → flagship links, `video./sign.undreseller.com` → `video./sign.underundre.com`; add flagship dogfooding CTA (`underundre.com/book`) per FR-011
+- [ ] TASK-403 [FE] Copy sweep: `undreseller.com` → `underundre.com`, `demo.undreseller.com` → `shop.underundre.com` flagship links, `video./sign.undreseller.com` → `video./sign.underundre.com`; add flagship dogfooding CTA (`underundre.com/book`) per FR-011
 - [ ] TASK-404 [E2E] Rename acceptance gate: `grep -ri "undreseller" projects/ app/ lib/ public/` returns zero occurrences; `NEXT_PUBLIC_PROJECT_NAME=underundre` and `=undrlla` both build and render cleanly
-- [ ] TASK-405 [DOC] Update Traefik/compose routing per spec §6.3 (underundre.com → flagship instance; bureau lander host per open question 6.5.1)
+- [ ] TASK-405 [DOC] Update Traefik/compose routing per spec §6.3 (single-domain: underundre.com → landing, shop.underundre.com → flagship)
 
 **Dependencies**: TASK-401 → TASK-402 → TASK-403 → TASK-404; TASK-405 independent (blocked by 6.5.1 decision).
