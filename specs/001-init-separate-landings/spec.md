@@ -3,7 +3,7 @@
 **Feature Directory**: `specs/001-init-separate-landings`  
 **Repository**: `undrllanding`  
 **Created**: 2026-07-19  
-**Updated**: 2026-10-19 (Aligned with UnderUndre Business Plan v18.3 & Sovereign Commerce Engine routing)  
+**Updated**: 2026-10-24 (§6: UnderUndre brand hierarchy, flagship fork routing, content mechanics — supersedes affected parts of FR-005/007/008)  
 **Status**: Active  
 **Commercial Source of Truth**: `undreplans/docs/projects/undreseller/undreseller-business-plan.md` **v18.3**  
 **Input**: Multi-project landing architecture for `undrlla` (Medusa storefront marketplace) and `undreseller` (Productized Engineering B2B bureau with 3-tier product ladder: $350 Tripwire, $3,500 FOSS Office Stack, $4,900 14-Day SaaS MVP).
@@ -131,3 +131,52 @@ undrllanding/
 - **SC-002**: Switching `NEXT_PUBLIC_PROJECT_NAME` completely swaps metadata, Hero, features, pricing, and CTAs without leftover styles from other projects.
 - **SC-003**: Root page load time is **< 1.0 second** on Vercel Edge / Hetzner CPX42 deployments.
 - **SC-004**: Traefik v3 reverse proxy correctly routes domain names to respective containers in the shared `web_gateway` Docker network without port collisions.
+
+---
+
+## 6. Update 2026-10-24 — UnderUndre Brand Hierarchy, Flagship Fork & Content Mechanics
+
+> Added after the brand decision: **UnderUndre is the public brand; `undreseller` is the internal template repo only.**
+
+### 6.1 Brand Hierarchy [DECISION 2026-10-24]
+
+- **`underundre.com` = the owner's own site**, a live instance (fork) of the `undreseller` booking template — the flagship and dogfooding demo: "we run our own product".
+- **`undreseller` = the fork base for client deployments** (white-label template repo). It is no longer a public-facing brand: `undreseller.com` references disappear from all landers.
+- The B2B Productized Engineering lander currently living as `projects/undreseller/` is **rebranded to `underundre`** (same 3-tier ladder content, new brand identity).
+
+### 6.2 Rename Checklist (what & how in `undrllanding`)
+
+1. `projects/undreseller/` → `projects/underundre/` — folder, `config.ts` (`slug: "underundre"`, title/metadata as UnderUndre bureau).
+2. Component renames: `hero-undreseller.tsx` → `hero-underundre.tsx`, `cta-undreseller.tsx` → `cta-underundre.tsx` (+ all imports).
+3. `lib/project-config.ts`: accepted values become `underundre` | `undrlla`; keep a transition alias mapping `undreseller` → `underundre`; `undrlla` remains the fallback (unchanged).
+4. Copy sweep: `undreseller.com` → `underundre.com`; `demo.undreseller.com` → flagship links (6.3); `video.undreseller.com` → `video.underundre.com`; `sign.undreseller.com` → `sign.underundre.com`. Telegram links (`t.me/UnderUndreBot`) unchanged. `projects/undrlla/` untouched.
+5. Acceptance gate: `grep -ri "undreseller" projects/ app/ lib/ public/` must return zero public-facing occurrences (code-history references allowed only in specs/).
+
+### 6.3 Routing Delta (supersedes the FR-008 host table)
+
+| Host | Target | Note |
+|---|---|---|
+| `underundre.com` | the owner's **flagship fork instance** (undreseller template deployment) | NOT the marketing lander anymore |
+| `bureau.underundre.com` *(proposed)* | `undrllanding:3000` | new home for the rebranded bureau lander — final hostname is an open question (6.5) |
+| `demo.undreseller.com` | retired | demo CTAs point at the flagship |
+| `shop.underundre.com` | flagship or client-demo instance as configured | keep only if still needed |
+
+### 6.4 How Product/Service Cards Appear on `underundre.com` (verified in `undreseller`, 2026-10-24)
+
+The flagship site's storefront is **database-driven, not seed-driven**:
+
+- The home page renders live queries: `Item` (`isActive`, newest first), active services, published professional profiles, and `ShopSettings` (business name/logo/contacts). A card appears the moment its record is active in the database.
+- `scripts/seed.ts` (2 demo services + 1 product + settings + weekly hours) is **bootstrap demo data only** — never the production content path. Real content is created after deploy.
+- Content entry (exists today, **API-only**): `POST/GET /api/admin/items` (Zod-validated, admin-authenticated — title, price in minor units, currency, `imageUrl`, `itemType`, `durationMin`, stock, `isActive`), plus `/api/admin/services` and `/api/admin/profiles` (staff RBAC, OPERATOR+).
+- **Known gap**: there is no admin UI for content yet — the only admin screen is `/admin/bookings`. Until it ships, the flagship's cards are managed via the admin API/scripts. The content-admin UI (items/services/profiles CRUD screens) is a recorded dependency (6.5, candidate: undreseller spec 004 backlog).
+
+### 6.5 Open Questions
+
+1. Final hostname for the bureau lander (proposed: `bureau.underundre.com`).
+2. Where the content-admin UI ships: undreseller spec 004 backlog vs a fork-specific follow-up spec.
+
+### 6.6 New Requirements (continue numbering)
+
+- **FR-009**: The flagship site's storefront cards MUST come from live database records (Item/Service/ProfessionalProfile/ShopSettings) via the undreseller fork data path; the seed script MUST NOT be the production content source.
+- **FR-010**: After the rename, no public-facing asset, string, or metadata in `undrllanding` may reference the "undreseller" brand (grep gate, 6.2.5).
+- **FR-011**: The bureau lander MUST deep-link to the flagship as the live proof ("see it running on our own product"): `https://underundre.com` and the booking demo CTA `https://underundre.com/book`.
