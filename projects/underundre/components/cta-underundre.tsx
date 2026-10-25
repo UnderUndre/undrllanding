@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 
-export default function CtaUndreseller() {
+export default function CtaUnderundre() {
   const [submitted, setSubmitted] = useState(false);
 
   return (
@@ -55,9 +55,12 @@ export default function CtaUndreseller() {
             <div>
               <label className="block text-xs font-medium text-purple-200 mb-1">Select Sprint / Package *</label>
               <select name="sprint" className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange">
-                <option value="tripwire">Product 0 — 24h Architecture Audit & Blueprint ($350 flat)</option>
-                <option value="sku2">SKU 2 — 14-Day SaaS MVP Factory ($4,900 flat)</option>
-                <option value="sku1">SKU 1 — B2B Operations & FOSS Office Stack ($3,500 + $500/mo)</option>
+                <option value="tripwire">Product 0 — 24h Architecture Audit & Blueprint ($350–$490 flat)</option>
+                <option value="sprint-b">Sprint B — Service Booking & Portfolio Template ($4,900 flat, 14 days)</option>
+                <option value="sprint-a">Sprint A — B2B Operations & FOSS Office Stack ($3,500 + $500/mo)</option>
+                <option value="fork-tailored">Fork Tailored — Custom Development ($6,800 + Care $349/mo)</option>
+                <option value="fork-foundation">Fork Foundation — Clean Deploy ($4,900 + Care $149/mo)</option>
+                <option value="fork-enterprise">Fork Enterprise-Lite — Complex Scenarios ($8,900+)</option>
               </select>
             </div>
 
@@ -85,7 +88,7 @@ export default function CtaUndreseller() {
           <p className="mb-2">Prefer instant booking or direct e-sign?</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
-              href="https://demo.undreseller.com/book"
+              href="https://shop.underundre.com/book?itemId=sovereign-architecture-audit"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-4 py-2 bg-emerald-950/60 hover:bg-emerald-900/70 text-emerald-300 rounded-lg font-semibold transition-colors border border-emerald-800/40"

@@ -11,10 +11,10 @@ export default function SprintPricing() {
             Sovereign Product Ladder — Fixed Price & SLA
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
-            Three Fixed-Price Packages. Zero Hidden Surcharges.
+            Fixed-Price Product Ladder. Zero Hourly Billing.
           </h2>
           <p className="mt-4 text-slate-600 dark:text-purple-200/70 max-w-3xl mx-auto">
-            Pick your entry point. From a rapid 24h architectural audit to a turnkey 14-day production SaaS MVP. Funds remain protected in Upwork Direct Contracts Escrow (5% fee) or DocuSeal e-Signed agreements.
+            Pick your entry point: a 24-48h architecture audit, a turnkey FOSS office stack, a 14-day booking website — and a custom-development line for when the standard template is not enough. Funds stay protected in Upwork Direct Contracts Escrow (5% fee) or DocuSeal e-Signed agreements.
           </p>
         </div>
 
@@ -54,7 +54,7 @@ export default function SprintPricing() {
 
             <div className="space-y-3">
               <a
-                href="https://demo.undreseller.com/book"
+                href="https://shop.underundre.com/book?itemId=sovereign-architecture-audit"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full block py-3.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-center transition-colors shadow-lg shadow-emerald-950/40 text-sm"
@@ -116,7 +116,7 @@ export default function SprintPricing() {
             </a>
           </div>
 
-          {/* SKU 2: Sprint B 14-Day SaaS MVP (HERO) */}
+          {/* SKU 2: Sprint B — Service Booking & Professional Portfolio Template (HERO) */}
           <div className="p-8 bg-purple-950/30 dark:bg-[#180a2e]/90 rounded-2xl border-2 border-brand-orange flex flex-col justify-between relative shadow-2xl">
             <div className="absolute -top-3 right-6 px-3 py-1 bg-brand-orange text-white text-xs font-extrabold rounded-full uppercase tracking-wider shadow-md">
               HERO SKU — 14 DAYS
@@ -124,34 +124,34 @@ export default function SprintPricing() {
 
             <div>
               <span className="inline-block px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-orange-500/20">
-                FULL-STACK SAAS LAUNCH
+                SERVICE BOOKING TEMPLATE
               </span>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">14-Day SaaS MVP Factory</h3>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Service Booking & Professional Portfolio Template</h3>
               <p className="mt-2 text-sm text-slate-600 dark:text-purple-200/70">
-                Turnkey production-ready B2B SaaS application deployed directly to your private cloud, verified to charge customers on Day 14.
+                For private specialists and small service companies: a branded business page with per-master portfolio pages, services, schedule and online booking — deployed to your own domain and verified live on Day 14.
               </p>
 
               <div className="my-6">
-                <div className="text-4xl font-extrabold text-slate-900 dark:text-slate-100">$4,900 <span className="text-base font-normal text-slate-500 dark:text-purple-300/60">one-time flat fee</span></div>
-                <div className="text-sm font-semibold text-brand-green mt-1">Guaranteed Timebox Delivery</div>
+                <div className="text-4xl font-extrabold text-slate-900 dark:text-slate-100">$4,900 <span className="text-base font-normal text-slate-500 dark:text-purple-300/60">flat fee</span></div>
+                <div className="text-sm font-semibold text-brand-green mt-1">50% escrow up front, 50% on Day-14 acceptance</div>
                 <div className="text-xs text-slate-500 dark:text-purple-300/60 mt-2 font-mono">🚀 Delivery: 14 Calendar Days Flat</div>
               </div>
 
               <div className="space-y-3 mb-6">
                 <div className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-purple-200">Included Scope (Fixed Scope Knife):</div>
                 <ul className="space-y-2 text-sm text-slate-600 dark:text-purple-200/80">
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Next.js 15 App Router, TypeScript, Tailwind CSS, Shadcn UI.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Supabase PostgreSQL, Prisma ORM, RLS policies, Auth.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Prepayment & Commerce: Telegram Stars, Crypto (NOWPayments), Stripe/Paddle.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Code-First TS Workflows: Inngest / Trigger.dev v3 (n8n strictly excluded from SaaS).</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Telegram Mini App (TMA) & WhatsApp Cloud API autoresponder.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Day-14 Live Onboarding Protocol: 60-min handover with $1 verification charge.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> 7-Day Bugfix SLA Knife covering all P1/P2 issues.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Branded business page + public per-master pages with portfolio & services.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Online booking: catalog, schedule, free slots, confirm/cancel, double-booking protection.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Three roles: OWNER / OPERATOR / PERFORMER, individual accounts, access revocation.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Client Telegram bot + staff bot + Mini App; online payments: Telegram Stars & crypto (NOWPayments).</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> ru/en out of the box; currency, timezone & branding via configuration.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> ≤500 MB RAM per instance — one cheap VPS, no microservices.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Day-14 Live Onboarding: 60-min handover; 7-Day Bugfix SLA (P1/P2).</li>
                 </ul>
               </div>
 
               <div className="p-3 bg-orange-950/20 border border-orange-800/30 rounded-lg text-xs text-orange-300 mb-6">
-                <strong>Scope Knife:</strong> Max 2 roles (Admin + User), 1 core process. Excludes native mobile apps and custom AI fine-tuning. Phase 2 features billed at $100/hr.
+                <strong>Scope Knife:</strong> 3 roles, 1 core process (booking), ≤1 external API integration agreed before start. Excludes product sales, inventory, native apps & microservices. Need more? See the Fork & Care line below.
               </div>
             </div>
 

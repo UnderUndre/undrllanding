@@ -14,21 +14,21 @@ export default function LoomDemoSection() {
             We Run on Our Own Code. Test Our Live Sandbox App.
           </h2>
           <p className="mt-4 text-slate-600 dark:text-purple-200/70 max-w-2xl mx-auto">
-            Every lead, payload, and payment at Undreseller is processed by the exact same architecture we deploy for you. Don't take our word for it — test the live production stand.
+            Every lead, payload, and payment at UnderUndre is processed by the exact same architecture we deploy for you. Don't take our word for it — test our own live instance at shop.underundre.com.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4 mt-6">
             <a
-              href="https://demo.undreseller.com"
+              href="https://shop.underundre.com"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg transition-colors text-sm shadow-md flex items-center gap-2"
             >
-              <span>Open Live Sandbox App (demo.undreseller.com)</span>
+              <span>Open Our Live Booking Site (shop.underundre.com)</span>
               <span>↗</span>
             </a>
             <a
-              href="https://demo.undreseller.com/api/docs"
+              href="https://shop.underundre.com/api/docs"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 font-semibold rounded-lg transition-colors text-sm border border-purple-800/40 flex items-center gap-2"

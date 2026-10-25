@@ -23,7 +23,7 @@ export default function ComparisonMatrix() {
             <thead>
               <tr className="border-b border-purple-900/30 bg-slate-50 dark:bg-[#110721]/60">
                 <th className="p-4 font-bold text-slate-900 dark:text-slate-100">Evaluation Metric</th>
-                <th className="p-4 font-bold text-orange-400">Undreseller Productized Bureau</th>
+                <th className="p-4 font-bold text-orange-400">UnderUndre Productized Bureau</th>
                 <th className="p-4 font-bold text-slate-500 dark:text-purple-300/50">Traditional Software Agencies</th>
                 <th className="p-4 font-bold text-slate-500 dark:text-purple-300/50">Marketplace Freelancers</th>
               </tr>

@@ -1,4 +1,4 @@
-import { undresellerProject } from "@/projects/undreseller/config";
+import { underundreProject } from "@/projects/underundre/config";
 import { getActiveProjectConfig } from "@/lib/project-config";
 
 export function generateMetadata() {
@@ -16,13 +16,14 @@ export function generateMetadata() {
 }
 
 export default function Home() {
-  const { Hero, LoomDemo, Pricing, Opsec, Comparison, VibeWarning, FAQ, CTA } = undresellerProject;
+  const { Hero, LoomDemo, Pricing, Opsec, Comparison, VibeWarning, FAQ, ForkServiceLine, CTA } = underundreProject;
 
   return (
     <main className="bg-white dark:bg-[#080808] text-slate-900 dark:text-slate-100 min-h-screen transition-colors">
       <Hero />
       <LoomDemo />
       <Pricing />
+      <ForkServiceLine />
       <Opsec />
       <Comparison />
       <VibeWarning />

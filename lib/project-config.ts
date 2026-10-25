@@ -12,14 +12,14 @@ export interface ProjectConfig {
   };
 }
 
-export const undresellerConfig: ProjectConfig = {
-  slug: "undreseller",
-  name: "Undreseller",
-  domain: "undreseller.com",
-  title: "Undreseller — Productized Engineering & Turnkey B2B Systems",
+export const underundreConfig: ProjectConfig = {
+  slug: "underundre",
+  name: "UnderUndre",
+  domain: "underundre.com",
+  title: "UnderUndre — Productized Engineering & Turnkey B2B Systems",
   description:
     "Production-Grade B2B MVPs & Workflows Shipped in 3–14 Days. Zero Budget Drag. Next.js 15, Supabase, n8n, AI. Protected by Upwork Direct Contracts Escrow.",
-  iconUrl: "/projects/undreseller/icon.svg",
+  iconUrl: "/projects/underundre/icon.svg",
   heroBadge: "UPWORK ESCROW VERIFIED | 100% FIXED SCOPE | ZERO HOURLY BILLING",
   theme: {
     primaryColor: "#4e007a",
@@ -43,11 +43,13 @@ export const undrllaConfig: ProjectConfig = {
 };
 
 export function getActiveProjectConfig(): ProjectConfig {
-  const projectName = (process.env.NEXT_PUBLIC_PROJECT_NAME || "undreseller").toLowerCase();
-  
+  const raw = (process.env.NEXT_PUBLIC_PROJECT_NAME || "underundre").toLowerCase();
+  // Spec 001 §6.2.3: transition alias — "undreseller" (legacy template name) resolves to "underundre".
+  const projectName = raw === "undreseller" ? "underundre" : raw;
+
   if (projectName === "undrlla") {
     return undrllaConfig;
   }
-  
-  return undresellerConfig;
+
+  return underundreConfig;
 }

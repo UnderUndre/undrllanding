@@ -5,7 +5,7 @@
 **Created**: 2026-07-19  
 **Updated**: 2026-10-24 (§6: UnderUndre brand hierarchy, flagship fork routing, content mechanics — supersedes affected parts of FR-005/007/008)  
 **Status**: Active  
-**Commercial Source of Truth**: `undreplans/docs/projects/undreseller/undreseller-business-plan.md` **v18.3**  
+**Commercial Source of Truth**: `undreplans/docs/projects/undreseller/undreseller-business-plan.md` **v18.6**  
 **Input**: Multi-project landing architecture for `undrlla` (Medusa storefront marketplace) and `undreseller` (Productized Engineering B2B bureau with 3-tier product ladder: $350 Tripwire, $3,500 FOSS Office Stack, $4,900 14-Day SaaS MVP).
 
 ---
@@ -183,3 +183,9 @@ The flagship site's storefront is **database-driven, not seed-driven**:
 - **FR-009**: The flagship site's storefront cards MUST come from live database records (Item/Service/ProfessionalProfile/ShopSettings) via the undreseller fork data path; the seed script MUST NOT be the production content source.
 - **FR-010**: After the rename, no public-facing asset, string, or metadata in `undrllanding` may reference the "undreseller" brand (grep gate, 6.2.5).
 - **FR-011**: The bureau lander MUST deep-link to the flagship as the live proof ("see it running on our own product"): `https://shop.underundre.com` and the booking demo CTA `https://shop.underundre.com/book`.
+
+---
+
+## 7. Execution Note — 2026-10-25 (§6 rename + business plan v18.6 content)
+
+Executed: `projects/undreseller/` → `projects/underundre/` (folder, config, hero/cta renames, assets), resolver alias `undreseller`→`underundre`, brand sweep (grep gate clean — only the code-level alias remains, per §6.2.3). Content aligned to business plan v18.6: Sprint B repositioned as "Service Booking & Professional Portfolio Template" ($4,900, 14 days, 3 roles, per plan v18.4 scope); NEW `fork-service-line.tsx` section (Product 3: Fork Foundation $4,900 / Tailored $6,800 hero / Enterprise-Lite $8,900+, Care Essential $149 / Standard $349 hero / Priority $690 deferred, Change Packs $490/$990/$1,990 + $100/h overage, Ladder Protection, upgrade policy, Split IP); all demo links → `shop.underundre.com` (FR-011/§6.3, `demo.undreseller.com` retired); Tripwire booking CTA → `shop.underundre.com/book?itemId=sovereign-architecture-audit`. Builds green: `underundre`, `undrlla`, legacy alias `undreseller`.

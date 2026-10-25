@@ -2,7 +2,7 @@
 
 import React from "react";
 
-export default function HeroUndreseller() {
+export default function HeroUnderundre() {
   return (
     <section className="relative pt-24 pb-16 bg-white dark:bg-[#06020a] text-slate-900 dark:text-slate-100 transition-colors border-b border-purple-900/30">
       {/* Background Subtle Brand Purple Radial Gradient */}
@@ -17,16 +17,16 @@ export default function HeroUndreseller() {
 
         {/* H1 Main Headline with Brand Colors */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
-          Production-Grade B2B MVPs & Self-Hosted Systems Shipped in{" "}
+          Your Booking Website Live in{" "}
           <span className="text-brand-orange bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-500 to-orange-600">
-            3–14 Days
+            14 Days
           </span>
-          . Zero Seat Fees.
+          . Fixed $4,900. We Run Our Own Product.
         </h1>
 
         {/* Subtitle */}
         <p className="text-lg sm:text-xl text-slate-600 dark:text-purple-100/80 max-w-3xl mx-auto mb-10 leading-relaxed">
-          We replace slow $40k agencies, unpredictable freelancers, and bloated SaaS seat taxes (Salesforce, Notion, Linear, Intercom) with a fixed-price productized engineering conveyor. Built on Next.js 15, Supabase PostgreSQL, Twenty CRM, Trigger.dev v3 & Inngest.
+          UnderUndre is a productized engineering bureau. For private specialists and small service companies we deploy a fixed-scope booking website: branded business page, per-master portfolio pages, services, schedule and online booking — 3 roles (OWNER / OPERATOR / PERFORMER), up to 1 external integration. We run the exact same template on shop.underundre.com — see it live before you pay.
         </p>
 
         {/* CTA Buttons with Brand Colors & Live Sandbox Link */}
@@ -37,22 +37,22 @@ export default function HeroUndreseller() {
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-4 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg shadow-lg shadow-orange-950/30 transition-all text-base text-center btn-primary-cta"
           >
-            Book 14-Day Sprint via Escrow →
+            Lock Your 14-Day Deploy via Escrow →
           </a>
           <a
-            href="https://demo.undreseller.com"
+            href="https://shop.underundre.com"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full sm:w-auto px-8 py-4 bg-purple-950/40 hover:bg-purple-900/50 text-purple-200 font-semibold rounded-lg transition-all text-base border border-purple-800/40 text-center flex items-center justify-center gap-2 group"
           >
-            <span>Explore Live Sandbox App</span>
+            <span>See Our Own Live Instance</span>
             <span className="text-orange-400 group-hover:translate-x-0.5 transition-transform">↗</span>
           </a>
         </div>
 
         {/* Microcopy Under Buttons */}
         <p className="text-xs text-slate-500 dark:text-purple-300/60 mb-12">
-          ⚡ Instant test: Explore the live sovereign commerce app on <span className="font-mono text-orange-400">demo.undreseller.com</span> with slot booking & crypto/Stars payments. Escrow released during live Day 14 onboarding upon successful $1 checkout verification.
+          ⚡ Live proof: <span className="font-mono text-orange-400">shop.underundre.com</span> — our own booking site running the same template you get: slot booking, ru/en, Telegram bots, crypto/Stars payments. Escrow via Upwork Direct Contracts (5%) or DocuSeal (sign.underundre.com).
         </p>
 
         {/* Trust Badges Grid using Undesign Theme Tokens */}
