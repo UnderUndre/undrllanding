@@ -4,13 +4,25 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Logo from "./ui/logo";
 import { useLang } from "@/context/lang-context";
+import { getActiveProjectConfig } from "@/lib/project-config";
 import { Language } from "@/lib/i18n";
-
-type ThemeMode = "system" | "dark" | "light";
+import {
+  IconGitHub,
+  IconTwitter,
+  IconTelegram,
+  IconYouTube,
+  IconReddit,
+  IconDiscord,
+  IconLinkedIn,
+} from "./social-svg-icons";
 
 export default function HeaderNav() {
   const { lang, setLang, t } = useLang();
+  const config = getActiveProjectConfig();
+  const isUnderundre = config.slug === "underundre" || config.slug === "undreseller";
   const [theme, setTheme] = useState<ThemeMode>("dark");
+
+  type ThemeMode = "system" | "dark" | "light";
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("undrlla_theme") as ThemeMode | null;
@@ -56,20 +68,42 @@ export default function HeaderNav() {
         <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/80 px-4 shadow-xl backdrop-blur-xl transition-colors">
           <div className="flex items-center gap-5 min-w-0">
             <Logo />
-            {/* Secondary only — primary path is waitlist (CRO single purpose) */}
-            <nav className="hidden lg:flex items-center gap-3 text-xs font-semibold text-slate-500 dark:text-slate-400">
-              <a href="#how" className="hover:text-orange-500 transition-colors">
-                {t("nav_how")}
-              </a>
-              <a href="#pricing" className="hover:text-orange-500 transition-colors">
-                {t("nav_pricing")}
-              </a>
-              <Link
-                href="/economics"
-                className="hover:text-orange-500 transition-colors opacity-80"
-              >
-                {t("nav_manifest")}
-              </Link>
+            {/* Nav items dependent on active project config */}
+            <nav className="hidden lg:flex items-center gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
+              {isUnderundre ? (
+                <>
+                  <a href="#audit" className="hover:text-orange-500 transition-colors">
+                    TCO Audit
+                  </a>
+                  <a href="#stack" className="hover:text-orange-500 transition-colors">
+                    FOSS Stack
+                  </a>
+                  <a href="#pricing" className="hover:text-orange-500 transition-colors">
+                    Pricing
+                  </a>
+                  <a href="#comparison" className="hover:text-orange-500 transition-colors">
+                    Comparison
+                  </a>
+                  <a href="#faq" className="hover:text-orange-500 transition-colors">
+                    FAQ
+                  </a>
+                </>
+              ) : (
+                <>
+                  <a href="#how" className="hover:text-orange-500 transition-colors">
+                    {t("nav_how")}
+                  </a>
+                  <a href="#pricing" className="hover:text-orange-500 transition-colors">
+                    {t("nav_pricing")}
+                  </a>
+                  <Link
+                    href="/economics"
+                    className="hover:text-orange-500 transition-colors opacity-80"
+                  >
+                    {t("nav_manifest")}
+                  </Link>
+                </>
+              )}
             </nav>
           </div>
 
@@ -123,11 +157,10 @@ export default function HeaderNav() {
             </div>
 
             <a
-              href="#waitlist"
+              href={isUnderundre ? "#contact" : "#waitlist"}
               className="inline-flex items-center gap-1.5 rounded-xl bg-orange-500 hover:bg-orange-400 px-3 sm:px-4 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-orange-500/25 active:scale-95 transition-all"
             >
-              <span className="hidden xs:inline sm:inline">{t("nav_reserve")}</span>
-              <span className="sm:hidden">Waitlist</span>
+              <span>{isUnderundre ? "Book Audit ($490)" : t("nav_reserve")}</span>
               <span aria-hidden>→</span>
             </a>
           </div>

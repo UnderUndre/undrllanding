@@ -14,60 +14,54 @@ export default function SprintPricing() {
             Fixed-Price Product Ladder. Zero Hourly Billing.
           </h2>
           <p className="mt-4 text-slate-600 dark:text-purple-200/70 max-w-3xl mx-auto">
-            Pick your entry point: a 24-48h architecture audit, a turnkey FOSS office stack, a 14-day booking website — and a custom-development line for when the standard template is not enough. Funds stay protected in Upwork Direct Contracts Escrow (5% fee) or DocuSeal e-Signed agreements.
+            Pick your entry point: a 48-hour Workaround TCO Audit, a turnkey FOSS office stack, or a 14-day sovereign booking sprint. Funds stay protected in Upwork Direct Contracts Escrow (5% fee).
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto items-stretch">
-          {/* Product 0: Tripwire Specification */}
-          <div className="p-8 bg-slate-50 dark:bg-[#0e051b]/80 rounded-2xl border border-purple-900/40 flex flex-col justify-between hover:border-emerald-500/50 transition-colors">
+          {/* Product 0: Workaround TCO Audit & Architecture Spec (HERO TRIPWIRE) */}
+          <div className="p-8 bg-purple-950/30 dark:bg-[#180a2e]/90 rounded-2xl border-2 border-brand-orange flex flex-col justify-between relative shadow-2xl">
+            <div className="absolute -top-3 right-6 px-3 py-1 bg-brand-orange text-white text-xs font-extrabold rounded-full uppercase tracking-wider shadow-md">
+              HERO ENTRY (100% CREDITED)
+            </div>
             <div>
               <span className="inline-block px-3 py-1 bg-emerald-950/40 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-emerald-800/40">
-                PRODUCT 0 — 24H–48H TRIPWIRE
+                PRODUCT 0 — 48H WORKAROUND AUDIT
               </span>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Architecture & Codebase Audit</h3>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Workaround TCO Audit & Architecture Spec</h3>
               <p className="mt-2 text-sm text-slate-600 dark:text-purple-200/70">
-                Low-risk entry tier under corporate card limits ($500). De-risk your technical architecture and receive verified production blueprints.
+                Low-risk entry under corporate card limits ($500). Odometer for manual labor payroll leaks & SaaS waste using TDABC.
               </p>
 
               <div className="my-6">
-                <div className="text-4xl font-extrabold text-slate-900 dark:text-slate-100">$350 <span className="text-base font-normal text-slate-500 dark:text-purple-300/60">flat fee</span></div>
-                <div className="text-sm font-semibold text-emerald-400 mt-1">or 17,500 Telegram Stars (XTR)</div>
+                <div className="text-4xl font-extrabold text-slate-900 dark:text-slate-100">$490 <span className="text-base font-normal text-slate-500 dark:text-purple-300/60">flat fee</span></div>
+                <div className="text-sm font-semibold text-emerald-400 mt-1">100% credited toward Sprint A or B implementation</div>
                 <div className="text-xs text-slate-500 dark:text-purple-300/60 mt-2 font-mono">⚡ Turnaround: 24–48 Hours SLA</div>
               </div>
 
               <div className="space-y-3 mb-6">
                 <div className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-purple-200">Included Deliverables (EU NACE 62.01):</div>
                 <ul className="space-y-2 text-sm text-slate-600 dark:text-purple-200/80">
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> 1-on-1 Deep-Dive Technical Audit with 3x Certified Salesforce & Full-Stack Architect.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Complete OpenAPI 3.0 specification for core business flows.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Supabase PostgreSQL DDL SQL schema with RLS and constraints.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Docker Compose Mock Server committed to client Git repository.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> 100% credited toward Sprint A or B upon project expansion.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> TDABC Cost Forensics: uncovers WhatsApp copy-paste, billing reconciliation & DSO leaks.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Official Via Negativa Verdict: stops wasteful automation when switching costs exceed savings.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> OpenAPI 3.0 specification for automated bypass.</li>
+                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> PostgreSQL DDL schema & Docker Compose mock container.</li>
                 </ul>
               </div>
 
               <div className="p-3 bg-emerald-950/20 border border-emerald-800/30 rounded-lg text-xs text-emerald-300 mb-6">
-                <strong>Instant Booking:</strong> Select your live audit window directly in our sovereign booking engine.
+                <strong>Demand Gate:</strong> Required first step before executing large custom engineering sprints.
               </div>
             </div>
 
             <div className="space-y-3">
               <a
-                href="https://shop.underundre.com/book?itemId=sovereign-architecture-audit"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full block py-3.5 px-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-center transition-colors shadow-lg shadow-emerald-950/40 text-sm"
-              >
-                Book 1-on-1 Audit Slot ($350) →
-              </a>
-              <a
                 href="https://www.upwork.com/direct-contracts"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full block py-2 px-4 bg-purple-950/50 hover:bg-purple-900/60 text-purple-200 text-xs font-medium rounded-lg text-center border border-purple-800/30"
+                className="w-full block py-3.5 px-4 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-center transition-colors shadow-lg shadow-orange-950/40 text-sm"
               >
-                Order via Upwork Escrow (5%)
+                Book 48-Hour TCO Audit ($490) via Escrow →
               </a>
             </div>
           </div>
@@ -97,12 +91,11 @@ export default function SprintPricing() {
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Docker Compose Memory Fencing: 16GB NVMe Swap against OOM.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Dedicated n8n workflow instance or Trigger.dev v3 tasks.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Traefik v3 reverse proxy with automated Let's Encrypt SSL.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> 7-Day post-deployment Bugfix SLA Knife (P1/P2 resolution &lt; 24h).</li>
                 </ul>
               </div>
 
               <div className="p-3 bg-purple-950/20 border border-purple-800/30 rounded-lg text-xs text-purple-300 mb-6">
-                <strong>Deployment:</strong> Single Hetzner CPX42 (€82.69/mo). Email stays on Google Workspace / M365 (production blacklist on mail servers).
+                <strong>Deployment:</strong> Single Hetzner CPX42 (€82.69/mo). Emergency cash-flow valve.
               </div>
             </div>
 
@@ -116,24 +109,20 @@ export default function SprintPricing() {
             </a>
           </div>
 
-          {/* SKU 2: Sprint B — Service Booking & Professional Portfolio Template (HERO) */}
-          <div className="p-8 bg-purple-950/30 dark:bg-[#180a2e]/90 rounded-2xl border-2 border-brand-orange flex flex-col justify-between relative shadow-2xl">
-            <div className="absolute -top-3 right-6 px-3 py-1 bg-brand-orange text-white text-xs font-extrabold rounded-full uppercase tracking-wider shadow-md">
-              HERO SKU — 14 DAYS
-            </div>
-
+          {/* SKU 2: Sprint B — Service Booking & Professional Portfolio Template (GATED) */}
+          <div className="p-8 bg-slate-50 dark:bg-[#0e051b]/80 rounded-2xl border border-purple-900/40 flex flex-col justify-between opacity-90 hover:opacity-100 transition-opacity">
             <div>
-              <span className="inline-block px-3 py-1 bg-orange-500/10 text-orange-400 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-orange-500/20">
-                SERVICE BOOKING TEMPLATE
+              <span className="inline-block px-3 py-1 bg-purple-950/40 text-purple-300 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-purple-800/40">
+                SPRINT B — POST-AUDIT SPRINT
               </span>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Service Booking & Professional Portfolio Template</h3>
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-slate-100">Sovereign Booking & Custom Systems</h3>
               <p className="mt-2 text-sm text-slate-600 dark:text-purple-200/70">
-                For private specialists and small service companies: a branded business page with per-master portfolio pages, services, schedule and online booking — deployed to your own domain and verified live on Day 14.
+                Turnkey booking platform for multi-staff service businesses (3–25 employees). Available upon successful TCO audit completion.
               </p>
 
               <div className="my-6">
                 <div className="text-4xl font-extrabold text-slate-900 dark:text-slate-100">$4,900 <span className="text-base font-normal text-slate-500 dark:text-purple-300/60">flat fee</span></div>
-                <div className="text-sm font-semibold text-brand-green mt-1">50% escrow up front, 50% on Day-14 acceptance</div>
+                <div className="text-sm font-semibold text-purple-300 mt-1">Available Upon TCO Audit Completion</div>
                 <div className="text-xs text-slate-500 dark:text-purple-300/60 mt-2 font-mono">🚀 Delivery: 14 Calendar Days Flat</div>
               </div>
 
@@ -143,25 +132,20 @@ export default function SprintPricing() {
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Branded business page + public per-master pages with portfolio & services.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Online booking: catalog, schedule, free slots, confirm/cancel, double-booking protection.</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Three roles: OWNER / OPERATOR / PERFORMER, individual accounts, access revocation.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Client Telegram bot + staff bot + Mini App; online payments: Telegram Stars & crypto (NOWPayments).</li>
                   <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> ru/en out of the box; currency, timezone & branding via configuration.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> ≤500 MB RAM per instance — one cheap VPS, no microservices.</li>
-                  <li className="flex items-start gap-2"><span className="text-brand-green font-bold">✓</span> Day-14 Live Onboarding: 60-min handover; 7-Day Bugfix SLA (P1/P2).</li>
                 </ul>
               </div>
 
-              <div className="p-3 bg-orange-950/20 border border-orange-800/30 rounded-lg text-xs text-orange-300 mb-6">
-                <strong>Scope Knife:</strong> 3 roles, 1 core process (booking), ≤1 external API integration agreed before start. Excludes product sales, inventory, native apps & microservices. Need more? See the Fork & Care line below.
+              <div className="p-3 bg-purple-950/30 border border-purple-800/40 rounded-lg text-xs text-purple-200 mb-6">
+                <strong>Gated SKU:</strong> Book the $490 TCO Audit first to qualify for this 14-day production sprint.
               </div>
             </div>
 
             <a
-              href="https://www.upwork.com/direct-contracts"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full py-3.5 px-6 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg text-center transition-colors shadow-lg shadow-orange-950/40 text-sm"
+              href="#contact"
+              className="w-full py-3.5 px-6 bg-purple-950 hover:bg-purple-900 text-purple-200 font-semibold rounded-lg text-center transition-colors border border-purple-800/50 text-sm"
             >
-              Lock 14-Day MVP Sprint via Escrow (5%) →
+              Request via TCO Audit First →
             </a>
           </div>
         </div>

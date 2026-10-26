@@ -16,11 +16,11 @@ export const underundreConfig: ProjectConfig = {
   slug: "underundre",
   name: "UnderUndre",
   domain: "underundre.com",
-  title: "UnderUndre — Productized Engineering & Turnkey B2B Systems",
+  title: "UnderUndre — Productized Engineering & Workaround TCO Audit",
   description:
-    "Production-Grade B2B MVPs & Workflows Shipped in 3–14 Days. Zero Budget Drag. Next.js 15, Supabase, n8n, AI. Protected by Upwork Direct Contracts Escrow.",
-  iconUrl: "/projects/underundre/icon.svg",
-  heroBadge: "UPWORK ESCROW VERIFIED | 100% FIXED SCOPE | ZERO HOURLY BILLING",
+    "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
+  iconUrl: "/projects/underundre/favicon.ico",
+  heroBadge: "3X SALESFORCE CERTIFIED ARCHITECT | ZERO SAAS TAXES | UPWORK ESCROW VERIFIED",
   theme: {
     primaryColor: "#4e007a",
     secondaryColor: "#b45500",
