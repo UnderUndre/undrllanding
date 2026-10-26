@@ -2,12 +2,18 @@ import Script from "next/script";
 import "./css/style.css";
 import "@underundre/undesign/css";
 
-import { Inter } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { getActiveProjectConfig } from "@/lib/project-config";
 
-const inter = Inter({
-  subsets: ["latin", "cyrillic"],
-  variable: "--font-inter",
+const geistSans = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
@@ -43,7 +49,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth dark" data-theme="undrlla-dark" suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${inter.variable} font-inter tracking-tight bg-slate-50 text-slate-900 dark:bg-[#0b0114] dark:text-purple-50 antialiased selection:bg-orange-500 selection:text-purple-950 transition-colors duration-300`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans tracking-tight bg-[#080808] text-purple-50 antialiased selection:bg-[#b45500] selection:text-white transition-colors duration-300`}
       >
         <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
           {children}

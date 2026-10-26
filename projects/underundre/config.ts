@@ -7,21 +7,23 @@ import VibeCodingWarning from "./components/vibe-coding-warning";
 import FaqSection from "./components/faq-section";
 import CtaUnderundre from "./components/cta-underundre";
 import ForkServiceLine from "./components/fork-service-line";
+import TaglineRevealSection from "./components/tagline-reveal";
 
 export const underundreProject = {
   slug: "underundre",
   name: "UnderUndre",
   domain: "underundre.com",
-  title: "UnderUndre — Sovereign Engineering Bureau & Turnkey B2B Systems",
+  title: "UnderUndre — Productized Engineering & Workaround TCO Audit",
   description:
-    "Production-Grade B2B MVPs & Sovereign Systems Shipped in 3–14 Days. Next.js 15, PostgreSQL, Twenty CRM, Trigger.dev v3, Inngest. Escrow-protected via Upwork Direct Contracts (5%) & DocuSeal.",
+    "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
   Hero: HeroUnderundre,
+  TaglineReveal: TaglineRevealSection,
   LoomDemo: LoomDemoSection,
   Pricing: SprintPricing,
+  ForkServiceLine,
   Opsec: OpsecProtocol,
   Comparison: ComparisonMatrix,
   VibeWarning: VibeCodingWarning,
-  ForkServiceLine,
   FAQ: FaqSection,
   CTA: CtaUnderundre,
 };

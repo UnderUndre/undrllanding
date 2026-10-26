@@ -16,11 +16,12 @@ export function generateMetadata() {
 }
 
 export default function Home() {
-  const { Hero, LoomDemo, Pricing, Opsec, Comparison, VibeWarning, FAQ, ForkServiceLine, CTA } = underundreProject;
+  const { Hero, TaglineReveal, LoomDemo, Pricing, Opsec, Comparison, VibeWarning, FAQ, ForkServiceLine, CTA } = underundreProject;
 
   return (
-    <main className="bg-white dark:bg-[#080808] text-slate-900 dark:text-slate-100 min-h-screen transition-colors">
+    <main className="bg-[#080808] text-purple-50 min-h-screen transition-colors">
       <Hero />
+      <TaglineReveal />
       <LoomDemo />
       <Pricing />
       <ForkServiceLine />
