@@ -134,20 +134,20 @@ export default function ForkServiceLine() {
               $149<span className="text-sm font-normal text-slate-500 dark:text-purple-300/60">{isRu ? "/мес" : "/mo"}</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-purple-200/80">
-              <li>✓ {isRu ? "Хостинг VPS, ежедневные бэкапы Restic S3, мониторинг аптайма" : "VPS hosting, daily Restic S3 backups, uptime monitoring"}</li>
-              <li>✓ {isRu ? "Патчи безопасности · SLA 24ч" : "Security patches · SLA 24h"}</li>
-              <li className="text-slate-500">✗ {isRu ? "Часы доработок через Change Packs" : "Change hours billed via Change Packs"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Хостинг VPS, ежедневные бэкапы Restic S3, мониторинг аптайма" : "VPS hosting, daily Restic S3 backups, uptime monitoring"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Патчи безопасности · SLA 24ч" : "Security patches · SLA 24h"}</li>
+              <li className="flex items-start gap-1.5 text-slate-500"><span className="font-bold text-slate-400">—</span> {isRu ? "Часы доработок через Change Packs" : "Change hours billed via Change Packs"}</li>
             </ul>
           </div>
           <div className="p-6 bg-purple-950/30 dark:bg-[#180a2e]/90 rounded-xl border border-brand-orange">
-            <div className="text-xs font-bold uppercase tracking-wider text-orange-400">Care Standard ★</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-orange-400">{isRu ? "Care Standard (Выбор бюро)" : "Care Standard (Recommended)"}</div>
             <div className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mt-2">
               $349<span className="text-sm font-normal text-slate-500 dark:text-purple-300/60">{isRu ? "/мес" : "/mo"}</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-purple-200/80">
-              <li>✓ {isRu ? "Всё из Essential · SLA 8ч" : "Everything in Essential · SLA 8h"}</li>
-              <li>✓ {isRu ? "2 часа доработок/консультаций ежемесячно (сгораемые)" : "2 change/consultancy hours monthly (use-it-or-lose-it)"}</li>
-              <li>✓ {isRu ? "Бесплатные минорные обновления безопасности ядра" : "Free minor template upgrades (security & core fixes)"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Всё из Essential · SLA 8ч" : "Everything in Essential · SLA 8h"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "2 часа доработок/консультаций ежемесячно (сгораемые)" : "2 change/consultancy hours monthly (use-it-or-lose-it)"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Бесплатные минорные обновления безопасности ядра" : "Free minor template upgrades (security & core fixes)"}</li>
             </ul>
           </div>
           <div className="p-6 bg-slate-50 dark:bg-[#0e051b]/80 rounded-xl border border-purple-900/30 opacity-75">
@@ -156,9 +156,9 @@ export default function ForkServiceLine() {
               $690<span className="text-sm font-normal text-slate-500 dark:text-purple-300/60">{isRu ? "/мес" : "/mo"}</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-purple-200/80">
-              <li>✓ {isRu ? "Всё из Standard · SLA 4ч · приоритетная очередь" : "Everything in Standard · SLA 4h · priority queue"}</li>
-              <li>✓ {isRu ? "5 часов доработок ежемесячно" : "5 change hours monthly"}</li>
-              <li className="text-slate-500">⏳ {isRu ? "Отложено — откроется после набора группы Standard" : "Deferred — opens after the Care Standard batch"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Всё из Standard · SLA 4ч · приоритетная очередь" : "Everything in Standard · SLA 4h · priority queue"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "5 часов доработок ежемесячно" : "5 change hours monthly"}</li>
+              <li className="flex items-start gap-1.5 text-slate-500"><span className="font-bold text-slate-400">—</span> {isRu ? "Отложено — откроется после набора группы Standard" : "Deferred — opens after the Care Standard batch"}</li>
             </ul>
           </div>
         </div>
@@ -175,7 +175,7 @@ export default function ForkServiceLine() {
               what: isRu ? "1–2 поля, логика нотификаций, пиксель аналитики" : "1–2 fields, notification logic, analytics pixel",
             },
             {
-              name: "Feature Pack ★",
+              name: isRu ? "Feature Pack (Популярный)" : "Feature Pack (Popular)",
               price: "$990",
               what: isRu ? "Кастомный отчёт, webhook-шлюз, промокоды" : "Custom report, webhook gateway, promo codes",
             },

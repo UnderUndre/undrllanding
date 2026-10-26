@@ -169,7 +169,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       ctaPrimary: "Заказать TCO-аудит 48ч ($490) через Эскроу →",
       ctaSecondary: "Смотреть FOSS-стек без лицензий",
       microcopy:
-        "⚡ Цифровой инженерный стандарт: расчёт костылей по TDABC, штамп Via Negativa, спецификации OpenAPI 3.0. Защита через Upwork Direct Contracts (5%). Соответствие NACE 62.01.",
+        "Цифровой инженерный стандарт: расчёт костылей по TDABC, штамп Via Negativa, спецификации OpenAPI 3.0. Защита через Upwork Direct Contracts (5%). Соответствие NACE 62.01.",
       badges: {
         escrow: { label: "Защита капитала", value: "Upwork 5% Эскроу" },
         sla: { label: "Срок аудита", value: "48 часов жесткий SLA" },
@@ -234,7 +234,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         price: "$490",
         flatFee: "фикс под ключ",
         creditNote: "100% суммы засчитывается при переходе в Спринт А или Б",
-        turnaround: "⚡ Готовность: 24–48 часов (жесткий SLA)",
+        turnaround: "Готовность: 24–48 часов (жесткий SLA)",
         deliverablesTitle: "Состав поставки (Код NACE 62.01):",
         deliverables: [
           "Оцифровка расходов TDABC: выявление скрытого ФОТ (WhatsApp, сверка счетов, DSO).",
@@ -252,7 +252,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         price: "$3,500",
         flatFee: "разовый сетап под ключ",
         retainer: "+ $500/мес за мониторинг бэкапов Restic S3 и безопасность",
-        delivery: "⚡ Срок развёртывания: 3–5 рабочих дней",
+        delivery: "Срок развёртывания: 3–5 рабочих дней",
         scopeTitle: "Фиксированный состав спринта:",
         scope: [
           "Twenty CRM / EspoCRM: 0$ за пользователя, полные права на данные.",
@@ -271,7 +271,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         price: "$4,900",
         flatFee: "фикс под ключ",
         gatedNote: "Доступен строго после прохождения TCO-аудита",
-        delivery: "🚀 Срок: 14 календарных дней (Timebox)",
+        delivery: "Срок: 14 календарных дней (Timebox)",
         scopeTitle: "Состав системы (Fixed Scope Knife):",
         scope: [
           "Брендированная страница компании + публичные профили мастеров и услуг.",
@@ -398,17 +398,17 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       ],
     },
     vibeWarning: {
-      badge: "⚠️ Ловушка «вайб-кодинга» на $10,000/неделю",
+      badge: "Ловушка вайб-кодинга на $10,000/неделю",
       title: "Сначала архитектура — иначе заплатите спасателям $10k/нед за чистку нейрохрючева.",
       desc: "Бессистемный вайб-кодинг в ИИ-редакторах создаёт опасную иллюзию скорости. Без предварительных спецификаций, нормализации схем БД (DDL) и валидации на входе нейросети генерируют раздутый код с незаметными дырами безопасности.",
-      fateTitle: "❌ Судьба вайб-кода",
+      fateTitle: "Судьба вайб-кода (Риск)",
       fateDesc:
         "100,000 строк неподдерживаемых портянок. В итоге приходится нанимать специалистов за $10k/неделю, чтобы просто удалить 65% мусора и заделать утечки данных.",
-      standardTitle: "✓ Стандарт UnderUndre",
+      standardTitle: "Инженерный стандарт UnderUndre",
       standardDesc:
         "Ноль преждевременного оверинжиниринга. Готовые опенсорсные ядра для типовых задач и строгая типизация DDL + Zod для кастомных процессов.",
       ruleOfThumb:
-        "💡 Правило гаечного ключа: приходите с чётким бизнес-процессом. Мы собираем долговечную инфраструктуру, а не одноразовый макет.",
+        "Правило гаечного ключа: приходите с чётким бизнес-процессом. Мы собираем долговечную инфраструктуру, а не одноразовый макет.",
     },
     faq: {
       badge: "Прозрачность и правила игры",
@@ -456,7 +456,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       title: "Хватит сжигать бюджет. Запустите систему в этом месяце.",
       subtitle:
         "Мы берём не более 3 инженерных спринтов в месяц для соблюдения строгих сроков. Заполните короткий бриф ниже.",
-      successTitle: "✓ Бриф успешно отправлен! Мы подготовим ответ и эскроу-ссылку в течение 2 часов.",
+      successTitle: "Бриф успешно отправлен. Мы подготовим ответ и эскроу-ссылку в течение 2 часов.",
       fallbackNotice: "Активирован аварийный режим: откройте Upwork Direct Contracts для мгновенной сделки.",
       fallbackBtn: "Открыть Upwork Direct Contracts (5%) →",
       labels: {
@@ -494,7 +494,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       ctaPrimary: "Book 48-Hour TCO Audit ($490) via Escrow →",
       ctaSecondary: "Explore Grand Slam FOSS Stack",
       microcopy:
-        "⚡ Forensic engineering protocol: TDABC cost analysis, Via Negativa assessment, and OpenAPI 3.0 specifications. Escrow via Upwork Direct Contracts (5%). NACE 62.01 Compliant.",
+        "Forensic engineering protocol: TDABC cost analysis, Via Negativa assessment, and OpenAPI 3.0 specifications. Escrow via Upwork Direct Contracts (5%). NACE 62.01 Compliant.",
       badges: {
         escrow: { label: "Escrow Protection", value: "Upwork 5% Escrow" },
         sla: { label: "Turnaround SLA", value: "48-Hour Forensics" },
@@ -559,7 +559,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         price: "$490",
         flatFee: "flat fee",
         creditNote: "100% credited toward Sprint A or B implementation",
-        turnaround: "⚡ Turnaround: 24–48 Hours SLA",
+        turnaround: "Turnaround: 24–48 Hours SLA",
         deliverablesTitle: "Included Deliverables (EU NACE 62.01):",
         deliverables: [
           "TDABC Cost Forensics: uncovers WhatsApp copy-paste, billing reconciliation & DSO leaks.",
@@ -577,7 +577,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         price: "$3,500",
         flatFee: "setup flat fee",
         retainer: "+ $500/month monitoring & Restic backup retainer",
-        delivery: "⚡ Delivery: 3 to 5 Business Days",
+        delivery: "Delivery: 3 to 5 Business Days",
         scopeTitle: "Included Scope (Fixed Scope):",
         scope: [
           "Twenty CRM / EspoCRM: 0 seat licenses, full data ownership.",
@@ -596,7 +596,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         price: "$4,900",
         flatFee: "flat fee",
         gatedNote: "Available Upon TCO Audit Completion",
-        delivery: "🚀 Delivery: 14 Calendar Days Flat",
+        delivery: "Delivery: 14 Calendar Days Flat",
         scopeTitle: "Included Scope (Fixed Scope Knife):",
         scope: [
           "Branded business page + public per-master pages with portfolio & services.",
@@ -722,17 +722,17 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       ],
     },
     vibeWarning: {
-      badge: "⚠️ The $10,000/Week Vibe-Coding Trap",
+      badge: "The $10,000/Week Vibe-Coding Trap",
       title: "Plan Architecture First — Or Pay Rescue Teams $10,000/Wk to Delete AI Slop.",
       desc: "Unstructured 'vibe-coding' in AI editors creates a dangerous illusion of speed. Without upfront technical specifications, strict schema modeling (DDL), and security guardrails (Zod + Supabase RLS), LLMs generate bloated, duplicate codebases filled with silent API leaks.",
-      fateTitle: "❌ The Vibe-Coded Fate",
+      fateTitle: "The Vibe-Coded Fate",
       fateDesc:
         "100,000 lines of unmaintainable prompt spaghetti. You end up hiring $10k/week cleanup agencies (like Slopfix) just to delete 65% of the bloat and patch data leaks.",
-      standardTitle: "✓ The UnderUndre Standard",
+      standardTitle: "The UnderUndre Standard",
       standardDesc:
         "Zero premature over-engineering. We deploy Shopify/FOSS cores when standard solutions suffice + custom Next.js 15 landing funnels, or full-stack Supabase DDL architectures when proprietary scale demands it.",
       ruleOfThumb:
-        "💡 Rule of Thumb: Bring a clear business flow and technical boundaries. We engineer durable infrastructure, not disposable prototype slop.",
+        "Rule of Thumb: Bring a clear business flow and technical boundaries. We engineer durable infrastructure, not disposable prototype slop.",
     },
     faq: {
       badge: "Clarity & Ground Rules",
@@ -780,7 +780,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       title: "Stop Burning Runway. Ship Your Product This Month.",
       subtitle:
         "We accept only 3 engineering sprints per month to enforce our strict delivery SLA. Submit your operational brief below to secure your production slot.",
-      successTitle: "✓ Brief submitted successfully! We will prepare your DDL schema & Upwork Escrow link within 2 hours.",
+      successTitle: "Brief submitted successfully. We will prepare your DDL schema & Upwork Escrow link within 2 hours.",
       fallbackNotice: "Network fallback active: connect directly via Upwork Direct Contracts to lock escrow instantly.",
       fallbackBtn: "Open Upwork Direct Contracts (5%) →",
       labels: {
