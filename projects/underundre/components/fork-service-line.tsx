@@ -140,7 +140,7 @@ export default function ForkServiceLine() {
             </ul>
           </div>
           <div className="p-6 bg-purple-950/30 dark:bg-[#180a2e]/90 rounded-xl border border-brand-orange">
-            <div className="text-xs font-bold uppercase tracking-wider text-orange-400">{isRu ? "Care Standard (Выбор бюро)" : "Care Standard (Recommended)"}</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-orange-400">{isRu ? "Care Standard (Рекомендую)" : "Care Standard (Recommended)"}</div>
             <div className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mt-2">
               $349<span className="text-sm font-normal text-slate-500 dark:text-purple-300/60">{isRu ? "/мес" : "/mo"}</span>
             </div>
@@ -214,8 +214,8 @@ export default function ForkServiceLine() {
           <div className="p-4 bg-purple-950/20 border border-purple-800/30 rounded-lg text-purple-300">
             <strong>{isRu ? "Разделение прав (Split IP):" : "Split IP:"}</strong>{" "}
             {isRu
-              ? "ядро шаблона остаётся за бюро (бессрочная лицензия вам); кастомные модули — ваши. Выход в любой момент: дамп PostgreSQL + compose архив."
-              : "the template core stays ours (perpetual license to you); your custom modules are yours. Exit anytime: PostgreSQL dump + compose archive."}
+              ? "ядро шаблона остаётся за мной (бессрочная лицензия вам); кастомные модули — ваши. Выход в любой момент: дамп PostgreSQL + compose архив."
+              : "the template core stays mine (perpetual license to you); your custom modules are yours. Exit anytime: PostgreSQL dump + compose archive."}
           </div>
         </div>
       </div>

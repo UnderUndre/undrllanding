@@ -165,7 +165,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       titleAccent: "SaaS-подписках",
       title2: "и ручных костылях.",
       subtitle:
-        "Проводим 48-часовой Workaround TCO Audit ($490) по методологии TDABC. Оцифровываем скрытые расходы на ручной труд, срезаем лишние подписки и выдаём спецификацию OpenAPI 3.0 со схемой БД и Docker-моком. 100% стоимости засчитывается в разработку.",
+        "Провожу 48-часовой Workaround TCO Audit ($490) по методологии TDABC. Оцифровываю скрытые расходы на ручной труд, срезаю лишние подписки и выдаю спецификацию OpenAPI 3.0 со схемой БД и Docker-моком. 100% стоимости засчитывается в разработку.",
       ctaPrimary: "Заказать TCO-аудит 48ч ($490) через Эскроу →",
       ctaSecondary: "Смотреть FOSS-стек без лицензий",
       microcopy:
@@ -188,9 +188,9 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
     telemetry: {
       badge: "Телеметрия и архитектурный пруф",
-      title: "Мы работаем на собственном коде. Проверьте боевую телеметрию.",
+      title: "Я работаю на собственном коде. Проверьте боевую телеметрию.",
       subtitle:
-        "Каждый лид, аудит и пакет данных в UnderUndre обрабатываются ровно той же архитектурой, которую мы разворачиваем для клиентов. Никаких обещаний на словах — проверяйте вживую.",
+        "Каждый лид, аудит и пакет данных в UnderUndre обрабатываются ровно той же архитектурой, которую я разворачиваю для клиентов. Никаких обещаний на словах — проверяйте вживую.",
       openSandbox: "Открыть демо-стенд (shop.underundre.com)",
       openSwagger: "Спецификация OpenAPI 3.0 (Swagger)",
       cards: [
@@ -317,19 +317,19 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
     opsec: {
       badge: "Протокол нулевого финансового риска",
-      title: "Как мы на 100% исключаем ваш финансовый и технический риск.",
+      title: "Как я на 100% исключаю ваш финансовый и технический риск.",
       subtitle:
         "Вы никогда не переводите деньги на анонимные счета. Все расчёты идут через официальный Upwork Direct Contracts Escrow с независимым арбитражем.",
       steps: [
         {
           num: "1",
           title: "Эскроу и аудит (День 1)",
-          desc: "Вы замораживаете депозит в эскроу. Мы разбираем архитектуру: если подходит готовое FOSS-решение, разворачиваем его без лишних затрат. Если нужна кастомная логика — фиксируем схему DDL.",
+          desc: "Вы замораживаете депозит в эскроу. Я разбираю архитектуру: если подходит готовое FOSS-решение, разворачиваю его без лишних затрат. Если нужна кастомная логика — фиксирую схему DDL.",
         },
         {
           num: "2",
           title: "Сборка на конвейере (Дни 1–13)",
-          desc: "Разработка идёт на изолированном staging-сервере бюро. Вы получаете закрытые превью-ссылки и видеоразборы прогресса без слепых зон.",
+          desc: "Разработка идёт на моём изолированном staging-сервере. Вы получаете закрытые превью-ссылки и видеоразборы прогресса без слепых зон.",
         },
         {
           num: "3",
@@ -339,7 +339,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         {
           num: "4",
           title: "7-дневный гарантийный SLA",
-          desc: "7 календарных дней бесплатной гарантийной поддержки. Любые критические дефекты P1/P2 устраняются в течение 24 часов за наш счёт.",
+          desc: "7 календарных дней бесплатной гарантийной поддержки. Любые критические дефекты P1/P2 устраняются в течение 24 часов за мой счёт.",
         },
       ],
       legalTitle: "ЮРИДИЧЕСКИЙ СТАНДАРТ ПЕРЕДАЧИ КОДА",
@@ -350,14 +350,14 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       commTitle: "ПРОТОКОЛ СВЯЗИ",
       commH4: "Асинхронная скорость: защита от совещательной усталости",
       commDesc:
-        "Мы бережём ваш срок сдачи и не тратим часы на бесконечные созвоны в Zoom. Статусы и видеоразборы передаются асинхронно в Telegram и Loom. Созвоны строго по расписанию: Кикофф (30 мин) и сдача на 14 день (60 мин).",
+        "Я бережу ваш срок сдачи и не трачу часы на бесконечные созвоны в Zoom. Статусы и видеоразборы передаются асинхронно в Telegram и Loom. Созвоны строго по расписанию: Кикофф (30 мин) и сдача на 14 день (60 мин).",
       commBadge: "100% ФОКУС НА КОДЕ",
     },
     comparison: {
       badge: "Сравнение подходов",
       title: "Инженерная скорость против рыночной неэффективности.",
       subtitle:
-        "Посмотрите, как продуктовое бюро ликвидирует раздувание бюджетов и непредсказуемость фрилансеров.",
+        "Посмотрите, как продуктовый инженерный подход ликвидирует раздувание бюджетов и непредсказуемость фрилансеров.",
       headers: {
         metric: "Критерий оценки",
         underundre: "Бюро UnderUndre",
@@ -408,7 +408,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       standardDesc:
         "Ноль преждевременного оверинжиниринга. Готовые опенсорсные ядра для типовых задач и строгая типизация DDL + Zod для кастомных процессов.",
       ruleOfThumb:
-        "Правило гаечного ключа: приходите с чётким бизнес-процессом. Мы собираем долговечную инфраструктуру, а не одноразовый макет.",
+        "Правило гаечного ключа: приходите с чётким бизнес-процессом. Я собираю долговечную инфраструктуру, а не одноразовый макет.",
     },
     faq: {
       badge: "Прозрачность и правила игры",
@@ -418,21 +418,21 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         {
           q: "Что такое Workaround TCO Audit за $490?",
           a: [
-            "Это вводный 24–48-часовой аудит операционных костылей по методологии TDABC (Time-Driven Activity-Based Costing). Мы оцифровываем наблюдаемые потери на ручной труд (переписка в WhatsApp, сведение таблиц) и срезаем лишние подписки.",
+            "Это вводный 24–48-часовой аудит операционных костылей по методологии TDABC (Time-Driven Activity-Based Costing). Я оцифровываю наблюдаемые потери на ручной труд (переписка в WhatsApp, сведение таблиц) и срезаю лишние подписки.",
             "На выходе вы получаете отчёт Via Negativa (запрет невыгодной автоматизации), спецификацию OpenAPI 3.0 и DDL схему PostgreSQL. 100% суммы ($490) засчитывается в оплату Спринта А или Б.",
           ],
         },
         {
           q: "Всегда ли вы пишете кастомный код с нуля?",
           a: [
-            "Нет. На первом шаге мы проводим строгий отбор. Если задачу решает проверенный опенсорсный инструмент (Twenty CRM, Outline, Cal.com), мы не сжигаем ваш бюджет на велосипеды.",
+            "Нет. На первом шаге я провожу строгий отбор. Если задачу решает проверенный опенсорсный инструмент (Twenty CRM, Outline, Cal.com), я не сжигаю ваш бюджет на велосипеды.",
             "Кастомный код пишется только там, где у вашего бизнеса есть уникальный процесс.",
           ],
         },
         {
           q: "Как меня защищает Upwork Direct Contracts Escrow?",
           a: [
-            "Вы вносите оплату на защищённый эскроу-счёт Upwork Direct Contracts (5% комиссия бюро, 0% клиенту). Мы не прикасаемся к капиталу до сдачи работ.",
+            "Вы вносите оплату на защищённый эскроу-счёт Upwork Direct Contracts (5% комиссия, 0% клиенту). Я не прикасаюсь к капиталу до сдачи работ.",
             "Средства переводятся только после проверки работоспособности на живой демонстрации.",
           ],
         },
@@ -446,7 +446,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         {
           q: "Что входит в 7-дневную гарантийную поддержку (SLA)?",
           a: [
-            "В течение 7 дней после релиза мы бесплатно и в приоритетном порядке закрываем любые инциденты P1 (падение сервиса) и P2 (сбой ключевого сценария) за 24 часа.",
+            "В течение 7 дней после релиза я бесплатно и в приоритетном порядке закрываю любые инциденты P1 (падение сервиса) и P2 (сбой ключевого сценария) за 24 часа.",
           ],
         },
       ],
@@ -455,8 +455,8 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       badge: "Ограниченное число спринтов",
       title: "Хватит сжигать бюджет. Запустите систему в этом месяце.",
       subtitle:
-        "Мы берём не более 3 инженерных спринтов в месяц для соблюдения строгих сроков. Заполните короткий бриф ниже.",
-      successTitle: "Бриф успешно отправлен. Мы подготовим ответ и эскроу-ссылку в течение 2 часов.",
+        "Я беру не более 3 инженерных спринтов в месяц для соблюдения строгих сроков. Заполните короткий бриф ниже.",
+      successTitle: "Бриф успешно отправлен. Я подготовлю ответ и эскроу-ссылку в течение 2 часов.",
       fallbackNotice: "Активирован аварийный режим: откройте Upwork Direct Contracts для мгновенной сделки.",
       fallbackBtn: "Открыть Upwork Direct Contracts (5%) →",
       labels: {
@@ -490,7 +490,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       titleAccent: "SaaS Seat Taxes",
       title2: "& Manual Workarounds.",
       subtitle:
-        "We perform a 48-Hour Workaround TCO Audit ($490) using Time-Driven Activity-Based Costing (TDABC). We pinpoint exact manual labor payroll leaks, eliminate redundant subscriptions, and deliver an OpenAPI 3.0 specification with a Docker mock. 100% credited toward implementation.",
+        "I perform a 48-Hour Workaround TCO Audit ($490) using Time-Driven Activity-Based Costing (TDABC). I pinpoint exact manual labor payroll leaks, eliminate redundant subscriptions, and deliver an OpenAPI 3.0 specification with a Docker mock. 100% credited toward implementation.",
       ctaPrimary: "Book 48-Hour TCO Audit ($490) via Escrow →",
       ctaSecondary: "Explore Grand Slam FOSS Stack",
       microcopy:
@@ -513,9 +513,9 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
     telemetry: {
       badge: "Live Telemetry & Architecture Proof",
-      title: "We Run on Our Own Code. Test Our Live Sandbox App.",
+      title: "I Run on My Own Code. Test My Live Sandbox App.",
       subtitle:
-        "Every lead, payload, and audit packet at UnderUndre is processed by the exact same architecture we deploy for you. Don't take our word for it — test our live instance at shop.underundre.com.",
+        "Every lead, payload, and audit packet at UnderUndre is processed by the exact same architecture I deploy for you. Don't take my word for it — test my live instance at shop.underundre.com.",
       openSandbox: "Open Live Sandbox (shop.underundre.com)",
       openSwagger: "Inspect OpenAPI 3.0 Swagger",
       cards: [
@@ -642,14 +642,14 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
     opsec: {
       badge: "Zero Risk & Instant Contract Protocol",
-      title: "How We Eliminate 100% of Your Financial and Technical Risk.",
+      title: "How I Eliminate 100% of Your Financial and Technical Risk.",
       subtitle:
-        "You never transfer money to unverified personal accounts. We utilize standardized escrow mechanisms (Upwork Direct Contracts) or instant e-Signed agreements.",
+        "You never transfer money to unverified personal accounts. I utilize standardized escrow mechanisms (Upwork Direct Contracts) or instant e-Signed agreements.",
       steps: [
         {
           num: "1",
           title: "Escrow & TCO Audit (Day 1)",
-          desc: "You fund escrow safely. We audit your business model using TDABC: if a battle-tested engine fits best, we leverage it. If proprietary architecture is required, we lock custom DDL schemas.",
+          desc: "You fund escrow safely. I audit your business model using TDABC: if a battle-tested engine fits best, I leverage it. If proprietary architecture is required, I lock custom DDL schemas.",
         },
         {
           num: "2",
@@ -659,7 +659,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         {
           num: "3",
           title: "Live Verification & Handover (Day 14)",
-          desc: "A 60-minute live session. We execute a live $1 test transaction to verify the pipeline. Upon confirming functionality, you authorize escrow release and receive 100% Git repo ownership.",
+          desc: "A 60-minute live session. I execute a live $1 test transaction to verify the pipeline. Upon confirming functionality, you authorize escrow release and receive 100% Git repo ownership.",
         },
         {
           num: "4",
@@ -675,7 +675,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       commTitle: "COMMUNICATION PROTOCOL",
       commH4: "Async-First Velocity: Zero Meeting Fatigue",
       commDesc:
-        "We protect your delivery timeline by eliminating daily Zoom overhead. Daily updates and build walkthroughs are delivered asynchronously via Loom and Telegram. Synchronous calls are strictly reserved for Day 1 Kickoff (30 min) and Day 14 Live Verification (60 min).",
+        "I protect your delivery timeline by eliminating daily Zoom overhead. Daily updates and build walkthroughs are delivered asynchronously via Loom and Telegram. Synchronous calls are strictly reserved for Day 1 Kickoff (30 min) and Day 14 Live Verification (60 min).",
       commBadge: "100% BUILD FOCUS",
     },
     comparison: {
@@ -730,33 +730,33 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         "100,000 lines of unmaintainable prompt spaghetti. You end up hiring $10k/week cleanup agencies (like Slopfix) just to delete 65% of the bloat and patch data leaks.",
       standardTitle: "The UnderUndre Standard",
       standardDesc:
-        "Zero premature over-engineering. We deploy Shopify/FOSS cores when standard solutions suffice + custom Next.js 15 landing funnels, or full-stack Supabase DDL architectures when proprietary scale demands it.",
+        "Zero premature over-engineering. I deploy Shopify/FOSS cores when standard solutions suffice + custom Next.js 15 landing funnels, or full-stack Supabase DDL architectures when proprietary scale demands it.",
       ruleOfThumb:
-        "Rule of Thumb: Bring a clear business flow and technical boundaries. We engineer durable infrastructure, not disposable prototype slop.",
+        "Rule of Thumb: Bring a clear business flow and technical boundaries. I engineer durable infrastructure, not disposable prototype slop.",
     },
     faq: {
       badge: "Clarity & Ground Rules",
       title: "Frequently Asked Questions",
-      subtitle: "Everything you need to know about our conveyor, escrow terms, code ownership, and technical deliverables.",
+      subtitle: "Everything you need to know about my process, escrow terms, code ownership, and technical deliverables.",
       items: [
         {
           q: "What is the Workaround TCO Audit ($490)?",
           a: [
-            "Our introductory 24–48h TDABC audit uncovers hidden manual labor payroll leaks (e.g. WhatsApp copy-paste, billing reconciliation) and bloated SaaS subscriptions.",
-            "We deliver an official Via Negativa verdict (stopping wasteful automation when switching costs are too high) along with a complete OpenAPI 3.0 specification and PostgreSQL DDL schema. 100% of the $490 fee is credited toward Sprint A or B.",
+            "My introductory 24–48h TDABC audit uncovers hidden manual labor payroll leaks (e.g. WhatsApp copy-paste, billing reconciliation) and bloated SaaS subscriptions.",
+            "I deliver an official Via Negativa verdict (stopping wasteful automation when switching costs are too high) along with a complete OpenAPI 3.0 specification and PostgreSQL DDL schema. 100% of the $490 fee is credited toward Sprint A or B.",
           ],
         },
         {
           q: "Do you always build custom full-stack code from scratch?",
           a: [
-            "No. We practice pragmatic architecture triage on Day 1. If an existing FOSS tool solves your backend needs without seat taxes, we won't waste your runway reinventing the wheel.",
-            "We only build custom applications when your business model genuinely requires proprietary workflows.",
+            "No. I practice pragmatic architecture triage on Day 1. If an existing FOSS tool solves your backend needs without seat taxes, I won't waste your runway reinventing the wheel.",
+            "I only build custom applications when your business model genuinely requires proprietary workflows.",
           ],
         },
         {
           q: "How does Upwork Direct Contracts Escrow protect my capital?",
           a: [
-            "You deposit the flat fee directly into Upwork Direct Contracts (5% bureau fee, 0% client fee). We never touch your capital upfront.",
+            "You deposit the flat fee directly into Upwork Direct Contracts (5% fee, 0% client fee). I never touch your capital upfront.",
             "Funds are released only upon successful deployment and live verification during Day 14 onboarding.",
           ],
         },
@@ -770,7 +770,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         {
           q: "What is covered under the 7-Day Bugfix SLA?",
           a: [
-            "For 7 calendar days post-deployment, we provide priority incident resolution. Any P1 (system outage) or P2 (broken workflow) defect is resolved within 24 hours at zero charge.",
+            "For 7 calendar days post-deployment, I provide priority incident resolution. Any P1 (system outage) or P2 (broken workflow) defect is resolved within 24 hours at zero charge.",
           ],
         },
       ],
@@ -779,7 +779,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       badge: "Limited Production Slots",
       title: "Stop Burning Runway. Ship Your Product This Month.",
       subtitle:
-        "We accept only 3 engineering sprints per month to enforce our strict delivery SLA. Submit your operational brief below to secure your production slot.",
+        "I accept only 3 engineering sprints per month to enforce my strict delivery SLA. Submit your operational brief below to secure your production slot.",
       successTitle: "Brief submitted successfully. We will prepare your DDL schema & Upwork Escrow link within 2 hours.",
       fallbackNotice: "Network fallback active: connect directly via Upwork Direct Contracts to lock escrow instantly.",
       fallbackBtn: "Open Upwork Direct Contracts (5%) →",
