@@ -17,7 +17,7 @@ import {
 export default function Footer({ border = false }: { border?: boolean }) {
   const { t } = useLang();
   const config = getActiveProjectConfig();
-  const isUndreseller = config.slug === "undreseller";
+  const isUnderundre = config.slug === "underundre" || config.slug === "undreseller";
 
   const socialLinks = [
     { key: "github", url: process.env.NEXT_PUBLIC_SOCIAL_GITHUB, label: "GitHub", icon: IconGitHub },
@@ -36,8 +36,8 @@ export default function Footer({ border = false }: { border?: boolean }) {
           <div className="space-y-3 sm:col-span-12 lg:col-span-4 text-left">
             <Logo />
             <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed max-w-sm">
-              {isUndreseller
-                ? "Productized Engineering Bureau — Production-grade B2B MVPs & self-hosted systems shipped in 3–14 days with zero seat fees."
+              {isUnderundre
+                ? "Productized Engineering Bureau — Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems shipped with zero seat fees."
                 : t("footer_desc")}
             </p>
             <div className="text-[11px] text-slate-400 dark:text-slate-500">
@@ -47,24 +47,24 @@ export default function Footer({ border = false }: { border?: boolean }) {
 
           <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-2 text-left">
             <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-              {t("nav_features")}
+              {isUnderundre ? "Product Ladder" : t("nav_features")}
             </h3>
             <ul className="space-y-2">
-              <li>
-                <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
-                  {t("nav_pricing")}
-                </a>
-              </li>
-              {isUndreseller ? (
+              {isUnderundre ? (
                 <>
                   <li>
-                    <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
-                      SKU 1: FOSS Office ($3.5k)
+                    <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#audit">
+                      Product 0: TCO Audit ($490)
                     </a>
                   </li>
                   <li>
                     <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
-                      SKU 2: SaaS MVP ($4.9k)
+                      Sprint A: FOSS Office ($3.5k)
+                    </a>
+                  </li>
+                  <li>
+                    <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
+                      Sprint B: Custom Systems ($4.9k)
                     </a>
                   </li>
                 </>
@@ -88,16 +88,16 @@ export default function Footer({ border = false }: { border?: boolean }) {
           <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-2 text-left">
             <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Payments & Escrow</h3>
             <ul className="space-y-2">
-              {isUndreseller ? (
+              {isUnderundre ? (
                 <>
                   <li>
-                    <span className="text-slate-700 dark:text-slate-300 font-semibold text-emerald-600 dark:text-emerald-400">Upwork Escrow (0% fee)</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Upwork Escrow (5% fee)</span>
                   </li>
                   <li>
-                    <span className="text-slate-700 dark:text-slate-300">DocuSeal e-Signed MSAs</span>
+                    <span className="text-slate-700 dark:text-slate-300">100% Code & IP Transfer</span>
                   </li>
                   <li>
-                    <span className="text-slate-700 dark:text-slate-300">Stripe / Paddle</span>
+                    <span className="text-slate-700 dark:text-slate-300">EU NACE 62.01 Standard</span>
                   </li>
                 </>
               ) : (
