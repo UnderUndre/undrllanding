@@ -12,6 +12,8 @@ import {
   IconReddit,
   IconDiscord,
   IconLinkedIn,
+  IconUpwork,
+  IconTrailblazer,
 } from "../social-svg-icons";
 
 export default function Footer({ border = false }: { border?: boolean }) {
@@ -23,6 +25,8 @@ export default function Footer({ border = false }: { border?: boolean }) {
     { key: "github", url: process.env.NEXT_PUBLIC_SOCIAL_GITHUB, label: "GitHub", icon: IconGitHub },
     { key: "twitter", url: process.env.NEXT_PUBLIC_SOCIAL_TWITTER, label: "Twitter / X", icon: IconTwitter },
     { key: "telegram", url: process.env.NEXT_PUBLIC_SOCIAL_TELEGRAM, label: "Telegram", icon: IconTelegram },
+    { key: "upwork", url: process.env.NEXT_PUBLIC_SOCIAL_UPWORK, label: "Upwork", icon: IconUpwork },
+    { key: "trailblazer", url: process.env.NEXT_PUBLIC_SOCIAL_TRAILBLAZER, label: "Trailblazer", icon: IconTrailblazer },
     { key: "youtube", url: process.env.NEXT_PUBLIC_SOCIAL_YOUTUBE, label: "YouTube", icon: IconYouTube },
     { key: "reddit", url: process.env.NEXT_PUBLIC_SOCIAL_REDDIT, label: "Reddit", icon: IconReddit },
     { key: "discord", url: process.env.NEXT_PUBLIC_SOCIAL_DISCORD, label: "Discord", icon: IconDiscord },
