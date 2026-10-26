@@ -17,8 +17,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
-ENV NEXT_PUBLIC_PROJECT_NAME=undreseller
-RUN pnpm build:undreseller
+ENV NEXT_PUBLIC_PROJECT_NAME=underundre
+RUN pnpm build:underundre
 
 # Stage 3: Runner
 FROM node:22-alpine AS runner
