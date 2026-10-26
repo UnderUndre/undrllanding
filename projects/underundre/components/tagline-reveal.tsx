@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { useLang } from "@/context/lang-context";
+import { getUnderundreCopy } from "../locales";
 
 export default function TaglineRevealSection() {
+  const { lang } = useLang();
+  const t = getUnderundreCopy(lang).tagline;
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -15,7 +19,7 @@ export default function TaglineRevealSection() {
               setTimeout(() => {
                 word.classList.remove("opacity-25", "blur-xs");
                 word.classList.add("opacity-100", "blur-0");
-              }, index * 45);
+              }, index * 40);
             });
             observer.unobserve(entry.target);
           }
@@ -29,21 +33,18 @@ export default function TaglineRevealSection() {
     }
 
     return () => observer.disconnect();
-  }, []);
-
-  const taglineText = "If your operational workflow relies on manual copy-paste across WhatsApp, fragmented Excel sheets, and expensive SaaS seat taxes, you are paying a permanent invisible tax on human friction.";
-  const words = taglineText.split(" ");
+  }, [lang]);
 
   return (
     <section className="py-24 bg-[#080808] border-b border-purple-900/30 text-center relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <span className="inline-block px-3 py-1 bg-purple-950/60 text-orange-400 text-xs font-mono font-bold rounded-full uppercase tracking-wider mb-6 border border-purple-800/40">
-          VIA NEGATIVA DIRECTIVE
+          {t.directive}
         </span>
         <div ref={containerRef} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight leading-snug sm:leading-snug md:leading-snug text-balance">
-          {words.map((word, idx) => (
+          {t.words.map((word, idx) => (
             <span
-              key={idx}
+              key={`${lang}-${idx}`}
               className="reveal-word inline-block mr-[0.25em] opacity-25 blur-xs transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] text-white"
             >
               {word}
@@ -51,7 +52,7 @@ export default function TaglineRevealSection() {
           ))}
         </div>
         <p className="mt-8 text-xs font-mono text-purple-300/60 uppercase tracking-widest">
-          — UnderUndre Engineering Manifesto §18.7
+          {t.author}
         </p>
       </div>
     </section>

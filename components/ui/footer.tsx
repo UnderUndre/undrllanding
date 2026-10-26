@@ -15,7 +15,7 @@ import {
 } from "../social-svg-icons";
 
 export default function Footer({ border = false }: { border?: boolean }) {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const config = getActiveProjectConfig();
   const isUnderundre = config.slug === "underundre" || config.slug === "undreseller";
 
@@ -37,7 +37,9 @@ export default function Footer({ border = false }: { border?: boolean }) {
             <Logo />
             <p className="text-slate-600 dark:text-slate-400 text-xs leading-relaxed max-w-sm">
               {isUnderundre
-                ? "Productized Engineering Bureau — Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems shipped with zero seat fees."
+                ? (lang === "ru"
+                    ? "Инженерное продуктовое бюро — TCO-аудиты костылей, спецификации OpenAPI и приватные FOSS-системы с нулевыми лицензионными поборами."
+                    : "Productized Engineering Bureau — Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems shipped with zero seat fees.")
                 : t("footer_desc")}
             </p>
             <div className="text-[11px] text-slate-400 dark:text-slate-500">
@@ -47,24 +49,24 @@ export default function Footer({ border = false }: { border?: boolean }) {
 
           <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-2 text-left">
             <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
-              {isUnderundre ? "Product Ladder" : t("nav_features")}
+              {isUnderundre ? (lang === "ru" ? "Продукты" : "Product Ladder") : t("nav_features")}
             </h3>
             <ul className="space-y-2">
               {isUnderundre ? (
                 <>
                   <li>
                     <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#audit">
-                      Product 0: TCO Audit ($490)
+                      {lang === "ru" ? "Продукт 0: TCO-Аудит ($490)" : "Product 0: TCO Audit ($490)"}
                     </a>
                   </li>
                   <li>
                     <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
-                      Sprint A: FOSS Office ($3.5k)
+                      {lang === "ru" ? "Спринт А: FOSS-Офис ($3.5k)" : "Sprint A: FOSS Office ($3.5k)"}
                     </a>
                   </li>
                   <li>
                     <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
-                      Sprint B: Custom Systems ($4.9k)
+                      {lang === "ru" ? "Спринт Б: Системы записи ($4.9k)" : "Sprint B: Custom Systems ($4.9k)"}
                     </a>
                   </li>
                 </>
@@ -86,18 +88,26 @@ export default function Footer({ border = false }: { border?: boolean }) {
           </div>
 
           <div className="space-y-2 sm:col-span-6 md:col-span-3 lg:col-span-2 text-left">
-            <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Payments & Escrow</h3>
+            <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">
+              {lang === "ru" ? "Оплата и Эскроу" : "Payments & Escrow"}
+            </h3>
             <ul className="space-y-2">
               {isUnderundre ? (
                 <>
                   <li>
-                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">Upwork Escrow (5% fee)</span>
+                    <span className="text-emerald-600 dark:text-emerald-400 font-semibold">
+                      {lang === "ru" ? "Upwork Эскроу (5% комиссия)" : "Upwork Escrow (5% fee)"}
+                    </span>
                   </li>
                   <li>
-                    <span className="text-slate-700 dark:text-slate-300">100% Code & IP Transfer</span>
+                    <span className="text-slate-700 dark:text-slate-300">
+                      {lang === "ru" ? "100% отчуждение прав на код" : "100% Code & IP Transfer"}
+                    </span>
                   </li>
                   <li>
-                    <span className="text-slate-700 dark:text-slate-300">EU NACE 62.01 Standard</span>
+                    <span className="text-slate-700 dark:text-slate-300">
+                      {lang === "ru" ? "Стандарт EU NACE 62.01" : "EU NACE 62.01 Standard"}
+                    </span>
                   </li>
                 </>
               ) : (

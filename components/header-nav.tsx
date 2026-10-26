@@ -6,15 +6,6 @@ import Logo from "./ui/logo";
 import { useLang } from "@/context/lang-context";
 import { getActiveProjectConfig } from "@/lib/project-config";
 import { Language } from "@/lib/i18n";
-import {
-  IconGitHub,
-  IconTwitter,
-  IconTelegram,
-  IconYouTube,
-  IconReddit,
-  IconDiscord,
-  IconLinkedIn,
-} from "./social-svg-icons";
 
 export default function HeaderNav() {
   const { lang, setLang, t } = useLang();
@@ -73,19 +64,19 @@ export default function HeaderNav() {
               {isUnderundre ? (
                 <>
                   <a href="#audit" className="hover:text-orange-500 transition-colors">
-                    TCO Audit
+                    {lang === "ru" ? "TCO-Аудит" : "TCO Audit"}
                   </a>
                   <a href="#stack" className="hover:text-orange-500 transition-colors">
-                    FOSS Stack
+                    {lang === "ru" ? "FOSS-Стек" : "FOSS Stack"}
                   </a>
                   <a href="#pricing" className="hover:text-orange-500 transition-colors">
-                    Pricing
+                    {lang === "ru" ? "Тарифы" : "Pricing"}
                   </a>
                   <a href="#comparison" className="hover:text-orange-500 transition-colors">
-                    Comparison
+                    {lang === "ru" ? "Сравнение" : "Comparison"}
                   </a>
                   <a href="#faq" className="hover:text-orange-500 transition-colors">
-                    FAQ
+                    {lang === "ru" ? "Вопросы" : "FAQ"}
                   </a>
                 </>
               ) : (
@@ -158,9 +149,9 @@ export default function HeaderNav() {
 
             <a
               href={isUnderundre ? "#contact" : "#waitlist"}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-orange-500 hover:bg-orange-400 px-3 sm:px-4 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-orange-500/25 active:scale-95 transition-all"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-orange-500 hover:bg-orange-400 active:scale-95 px-3 sm:px-4 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-orange-500/25 transition-all"
             >
-              <span>{isUnderundre ? "Book Audit ($490)" : t("nav_reserve")}</span>
+              <span>{isUnderundre ? (lang === "ru" ? "Заказать аудит ($490)" : "Book Audit ($490)") : t("nav_reserve")}</span>
               <span aria-hidden>→</span>
             </a>
           </div>

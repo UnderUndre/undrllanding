@@ -1,180 +1,47 @@
 "use client";
 
 import React from "react";
+import { useLang } from "@/context/lang-context";
+import { getUnderundreCopy } from "../locales";
 
 export default function FaqSection() {
+  const { lang } = useLang();
+  const t = getUnderundreCopy(lang).faq;
+
   return (
     <section id="faq" className="py-20 bg-[#06020a] border-b border-purple-900/30">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <span className="inline-block px-3 py-1 bg-purple-950/60 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
-            Clarity & Ground Rules
+            {t.badge}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-            Frequently Asked Questions
+            {t.title}
           </h2>
           <p className="mt-4 text-purple-200/70 text-sm max-w-xl mx-auto">
-            Everything you need to know about our conveyor, escrow terms, code ownership, and technical deliverables.
+            {t.subtitle}
           </p>
         </div>
 
         <div className="space-y-4">
-          {/* FAQ 1 */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>What do I need to prepare before our sprint begins?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>You need a clear <strong>business flow description</strong> and your target user journey (endpoints, roles, integrations). We do not accept vague prompts like <em>&quot;Build Uber for Dogs&quot;</em>.</p>
-              <p>During Day 1 kickoff, we formalize your inputs into strict OpenAPI specifications and PostgreSQL schema models. Having an upfront technical plan is what guarantees delivery in 14 days flat without architectural rot.</p>
-            </div>
-          </details>
-
-          {/* FAQ 1.5 - Custom vs Shopify / Platform Triage */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>Do you always build custom full-stack code from scratch?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p><strong>No. We practice pragmatic architecture triage on Day 1.</strong> We analyze your exact business model before writing a single line of code.</p>
-              <p>If an existing platform (like Shopify for standard e-commerce, or Twenty CRM / Stripe Billing for operations) solves 90% of your backend needs without bloated seat taxes, we won&apos;t waste your runway reinventing the wheel. In those cases, we deploy the ready-made engine and focus our sprint on what actually drives revenue: <strong>a high-converting custom Next.js 15 frontend/landing funnel, tailored intake logic, and automated webhook pipelines.</strong></p>
-              <p>We only build a 100% custom Next.js + Supabase application when your core business logic genuinely requires proprietary architecture.</p>
-            </div>
-          </details>
-
-          {/* FAQ 2 */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>Why not just vibe-code our app with Cursor or Claude Code?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>AI coding assistants are brilliant at generating single functions, but disastrous at state management, database schema normalization, and security boundaries. Studies show 45% of unreviewed AI code contains critical security flaws.</p>
-              <p>Without senior architectural oversight, vibe-coded projects quickly accumulate massive technical debt — leading founders to pay rescue teams up to $10k/week just to refactor and trim AI bloat. We provide clean, tested, production-grade foundations that your future in-house engineers can easily scale.</p>
-            </div>
-          </details>
-
-          {/* FAQ 3 */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>How does the Upwork Direct Contracts Escrow protect me?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>You deposit the flat fee directly into Upwork Direct Contracts. Upwork holds 100% of the funds in third-party escrow at 0% client fee. We never touch your capital upfront.</p>
-              <p>On Day 14, we conduct a live 60-minute onboarding session. You verify the fully operational system with a live $1 test charge in your production environment. Once confirmed, <strong>escrow release and complete Git repository ownership transfer are executed simultaneously on the call</strong>.</p>
-            </div>
-          </details>
-
-          {/* FAQ 4 */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>What is the &quot;Fixed Scope Knife&quot; and what if I need changes?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>To enforce a strict 14-day delivery timeline, we lock scope on Day 1. Unplanned feature additions during the sprint are strictly redirected to <strong>Phase 2</strong>.</p>
-              <p>Once Phase 1 is verified and released from escrow, any secondary integrations, custom scrapers, or UI tweaks can be scheduled immediately at our fixed rate of $100/hr.</p>
-            </div>
-          </details>
-
-          {/* FAQ 5 */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>Who owns the code, intellectual property, and hosting?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>You receive <strong>100% exclusive intellectual property and source code ownership</strong> upon sprint completion and escrow release, under EU NACE 62.01 classification and Upwork ToS §6.4.</p>
-              <p>On Day 14, immediately upon live verification and escrow release, we transfer the private GitHub repository, Docker configs, Supabase schemas, and production credentials to your accounts.</p>
-            </div>
-          </details>
-
-          {/* FAQ 6 */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>What is covered under the 7-Day Bugfix SLA Knife?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>For 7 calendar days post-deployment, we provide priority incident resolution. Any P1 (system outage / payment block) or P2 (broken user workflow) defect is resolved within 24 hours at zero charge.</p>
-              <p>For SKU 1 (Operations Stack), we offer an ongoing $500/mo retainer covering proactive monitoring, backup validation, and server patching.</p>
-            </div>
-          </details>
-
-          {/* FAQ 7 */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>Are there any hidden monthly fees or vendor lock-in?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>Zero hidden fees and zero vendor lock-in. You host on your own accounts (Hetzner, Supabase, Vercel, AWS). We never charge per-user seat taxes or obscure licensing fees.</p>
-              <p>Built entirely on standard open-source tools (Next.js 15, PostgreSQL, Docker, n8n) so any senior engineer can step in, maintain, or extend the codebase immediately.</p>
-            </div>
-          </details>
-
-          {/* FAQ 8: Day 1 Alignment & Off-Ramp */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>What if we cannot agree on the technical plan during the Day 1 kickoff?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>We enforce a strict <strong>Day 1 Alignment Lock</strong>. During the kickoff audit, we formalize the exact schema, API contracts, and scope boundaries before writing production code.</p>
-              <p>If either party determines there is an irreconcilable scope mismatch before conveyor coding begins, we execute a mutual contract cancellation and <strong>100% of your escrow funds are immediately refunded</strong>. Zero hostage situations, zero wasted runway.</p>
-            </div>
-          </details>
-
-          {/* FAQ 9: SLA Guarantee vs Stop the Clock */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>What happens if the agreed scope is not finished within 14 calendar days?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p><strong>If the delay is caused on our end:</strong> We continue engineering at zero additional charge until 100% of the locked scope is live, and we credit you with <strong>1 free month of runtime monitoring and SLA maintenance ($500 value)</strong>.</p>
-              <p><strong>Stop-the-Clock Protocol:</strong> The 14-day sprint clock pauses if third-party credentials (API keys, DNS records) or critical feedback from your team are blocked for more than 24 hours, resuming immediately once access is provided.</p>
-            </div>
-          </details>
-
-          {/* FAQ 10: Infrastructure Bills */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>Are hosting, database, and third-party API costs included in the flat fee?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>Our flat fee covers 100% of architecture, implementation, automated testing, and deployment engineering.</p>
-              <p>Direct infrastructure operating expenses — such as your Hetzner VPS (~$6–$15/mo), Supabase tier ($0–$25/mo), or AI consumption tokens — are billed directly by the respective providers to your corporate credit card. <strong>We apply zero markup on third-party infrastructure.</strong></p>
-            </div>
-          </details>
-
-          {/* FAQ 11: UI/UX & Visual Revisions */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>How do you handle UI/UX design, and can I request visual revisions?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>We build on top of <strong>Tailwind CSS and modern Shadcn UI component systems</strong> — engineered for high-converting B2B clarity, accessibility, and responsiveness out of the box.</p>
-              <p>To preserve our 14-day SLA, we do not engage in open-ended, subjective design iterations. If you have an existing Figma UI kit or brand guidelines, we implement them accurately during the sprint. Otherwise, we apply our battle-tested design tokens so your MVP looks clean, professional, and ready to sell on Day 14.</p>
-            </div>
-          </details>
-
-          {/* FAQ 12: Third-Party API Requirements */}
-          <details className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors">
-            <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
-              <span>What are the requirements for third-party API integrations?</span>
-              <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">▼</span>
-            </summary>
-            <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
-              <p>Integrations included in our fixed-price scope must provide <strong>standard, documented REST or GraphQL APIs with active credentials</strong> (e.g., Stripe, SendGrid, OpenAI, Telegram, HubSpot).</p>
-              <p>Custom reverse-engineering of undocumented endpoints, legacy SOAP services, or dirty database scrubbing from corrupt legacy exports are handled as dedicated Phase 2 hourly engagements ($100/hr).</p>
-            </div>
-          </details>
+          {t.items.map((item, idx) => (
+            <details
+              key={idx}
+              className="group p-6 bg-[#110721]/70 rounded-xl border border-purple-900/40 open:border-orange-500/50 transition-colors"
+            >
+              <summary className="flex items-center justify-between cursor-pointer font-semibold text-white text-sm sm:text-base list-none">
+                <span>{item.q}</span>
+                <span className="text-orange-400 group-open:rotate-180 transition-transform duration-200 ml-4 font-mono">
+                  ▼
+                </span>
+              </summary>
+              <div className="mt-4 text-xs sm:text-sm text-purple-200/70 leading-relaxed border-t border-purple-900/30 pt-4 space-y-2">
+                {item.a.map((paragraph, pIdx) => (
+                  <p key={pIdx}>{paragraph}</p>
+                ))}
+              </div>
+            </details>
+          ))}
         </div>
       </div>
     </section>

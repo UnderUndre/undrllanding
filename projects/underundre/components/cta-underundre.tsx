@@ -1,8 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import { useLang } from "@/context/lang-context";
+import { getUnderundreCopy } from "../locales";
 
 export default function CtaUnderundre() {
+  const { lang } = useLang();
+  const t = getUnderundreCopy(lang).cta;
+
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [fallbackMode, setFallbackMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -38,7 +43,7 @@ export default function CtaUnderundre() {
         }
       } else {
         setStatus("error");
-        setErrorMessage(data.message || "Submission failed. Please try direct Upwork Escrow.");
+        setErrorMessage(data.message || (lang === "ru" ? "Ошибка отправки. Попробуйте через Upwork Escrow." : "Submission failed. Please try direct Upwork Escrow."));
       }
     } catch (err) {
       console.error("Lead submit error:", err);
@@ -51,28 +56,28 @@ export default function CtaUnderundre() {
     <section id="contact" className="py-20 bg-[#08030f] text-white border-b border-purple-900/30">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
-          Limited Production Slots
+          {t.badge}
         </span>
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
-          Stop Burning Runway. Ship Your Product This Month.
+          {t.title}
         </h2>
         <p className="text-purple-200/70 max-w-xl mx-auto mb-10 text-sm">
-          We accept only 3 engineering sprints per month to enforce our strict delivery SLA. Submit your operational brief below to secure your production slot.
+          {t.subtitle}
         </p>
 
         {status === "success" ? (
           <div className="p-8 bg-brand-green/10 border border-brand-green/30 rounded-2xl text-brand-green font-semibold mb-8 space-y-4">
-            <p>✓ Brief submitted successfully! We will prepare your DDL schema & Upwork Escrow link within 2 hours.</p>
+            <p>{t.successTitle}</p>
             {fallbackMode && (
               <div className="p-4 bg-purple-950/50 border border-purple-800/50 rounded-xl text-xs text-purple-200">
-                <p className="mb-2">Network fallback active: connect directly via Upwork Direct Contracts to lock escrow instantly.</p>
+                <p className="mb-2">{t.fallbackNotice}</p>
                 <a
                   href="https://www.upwork.com/direct-contracts"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 bg-brand-orange hover:bg-orange-600 text-white font-bold rounded-lg transition-colors"
+                  className="inline-block px-4 py-2 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-lg transition-all"
                 >
-                  Open Upwork Direct Contracts (5%) →
+                  {t.fallbackBtn}
                 </a>
               </div>
             )}
@@ -89,18 +94,18 @@ export default function CtaUnderundre() {
             )}
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">Your Full Name *</label>
+              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.name}</label>
               <input
                 type="text"
                 name="name"
                 required
-                placeholder="Alex Smith"
+                placeholder={lang === "ru" ? "Алексей Смирнов" : "Alex Smith"}
                 className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">Work Email Address *</label>
+              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.email}</label>
               <input
                 type="email"
                 name="email"
@@ -112,16 +117,16 @@ export default function CtaUnderundre() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-purple-200 mb-1">Company / Project Name</label>
+                <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.company}</label>
                 <input
                   type="text"
                   name="company"
-                  placeholder="Smith Clinic LLC"
+                  placeholder={lang === "ru" ? "Клиника / Студия" : "Smith Logistics LLC"}
                   className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-purple-200 mb-1">Est. Monthly SaaS / Labor Waste</label>
+                <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.waste}</label>
                 <input
                   type="text"
                   name="estimatedMonthlySaaSCost"
@@ -132,22 +137,22 @@ export default function CtaUnderundre() {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">Select Product / Service *</label>
+              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.sprint}</label>
               <select name="sprint" className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange">
-                <option value="tco-audit">Workaround TCO Audit & Architecture Spec ($490 flat, 24-48h)</option>
-                <option value="foss-office">Grand Slam FOSS Office Stack ($3,500 setup + $500/mo)</option>
-                <option value="custom-sprint">Sovereign Booking & Custom Systems ($4,900 flat)</option>
-                <option value="other">Other Engineering Request</option>
+                <option value="tco-audit">{t.options.tcoAudit}</option>
+                <option value="foss-office">{t.options.fossOffice}</option>
+                <option value="custom-sprint">{t.options.customSprint}</option>
+                <option value="other">{t.options.other}</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">Describe your operational bottleneck or manual tasks *</label>
+              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.details}</label>
               <textarea
                 name="bottleneck"
                 required
                 rows={3}
-                placeholder="e.g. Dispatchers waste 15 hours a week copying WhatsApp bookings into Excel..."
+                placeholder={lang === "ru" ? "Например: 2 администратора вручную перебивают брони из чатов в Excel..." : "e.g. Dispatchers waste 15 hours a week copying WhatsApp bookings into Excel..."}
                 className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
               ></textarea>
             </div>
@@ -155,15 +160,15 @@ export default function CtaUnderundre() {
             <button
               type="submit"
               disabled={status === "loading"}
-              className="w-full py-4 bg-brand-orange hover:bg-orange-600 disabled:opacity-50 text-white font-bold rounded-lg shadow-lg shadow-orange-950/40 transition-colors text-sm cursor-pointer"
+              className="w-full py-4 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] disabled:opacity-50 text-white font-bold rounded-lg shadow-lg shadow-orange-950/40 transition-all text-sm cursor-pointer"
             >
-              {status === "loading" ? "Submitting Brief..." : "Initialize Sprint Proposal via Escrow →"}
+              {status === "loading" ? t.labels.submitting : t.labels.submitBtn}
             </button>
           </form>
         )}
 
         <div className="pt-6 border-t border-purple-900/30 text-xs text-purple-300/60">
-          <p className="mb-2">Prefer instant booking or direct contracting?</p>
+          <p className="mb-2">{t.directLinks.title}</p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
               href="https://shop.underundre.com/book?itemId=sovereign-architecture-audit"
@@ -171,7 +176,7 @@ export default function CtaUnderundre() {
               rel="noopener noreferrer"
               className="inline-block px-4 py-2 bg-emerald-950/60 hover:bg-emerald-900/70 text-emerald-300 rounded-lg font-semibold transition-colors border border-emerald-800/40"
             >
-              Book 1-on-1 Audit Slot ($490) →
+              {t.directLinks.bookAudit}
             </a>
             <a
               href="https://www.upwork.com/direct-contracts"
@@ -179,10 +184,10 @@ export default function CtaUnderundre() {
               rel="noopener noreferrer"
               className="inline-block px-4 py-2 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 rounded-lg font-semibold transition-colors border border-purple-800/40"
             >
-              Open Direct Upwork Escrow (5%) →
+              {t.directLinks.openUpwork}
             </a>
           </div>
-          <p className="mt-2 text-purple-300/40">Standard Upwork Direct Contract (5% fee) with 100% IP code transfer.</p>
+          <p className="mt-2 text-purple-300/40">{t.directLinks.note}</p>
         </div>
       </div>
     </section>
