@@ -6,9 +6,10 @@ import ComparisonMatrix from "./components/comparison-matrix";
 import VibeCodingWarning from "./components/vibe-coding-warning";
 import FaqSection from "./components/faq-section";
 import CtaUnderundre from "./components/cta-underundre";
-import ForkServiceLine from "./components/fork-service-line";
 import TaglineRevealSection from "./components/tagline-reveal";
 
+// ForkServiceLine stays available for v2 re-enable once the undreseller
+// engine passes release verification; it is intentionally not exported here.
 export const underundreProject = {
   slug: "underundre",
   name: "UnderUndre",
@@ -20,7 +21,6 @@ export const underundreProject = {
   TaglineReveal: TaglineRevealSection,
   LoomDemo: LoomDemoSection,
   Pricing: SprintPricing,
-  ForkServiceLine,
   Opsec: OpsecProtocol,
   Comparison: ComparisonMatrix,
   VibeWarning: VibeCodingWarning,

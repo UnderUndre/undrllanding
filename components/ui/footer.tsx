@@ -4,34 +4,13 @@ import Link from "next/link";
 import Logo from "./logo";
 import { useLang } from "@/context/lang-context";
 import { getActiveProjectConfig } from "@/lib/project-config";
-import {
-  IconGitHub,
-  IconTwitter,
-  IconTelegram,
-  IconYouTube,
-  IconReddit,
-  IconDiscord,
-  IconLinkedIn,
-  IconUpwork,
-  IconTrailblazer,
-} from "../social-svg-icons";
+import { getSocialLinks } from "@/lib/social-links";
 
 export default function Footer({ border = false }: { border?: boolean }) {
   const { lang, t } = useLang();
   const config = getActiveProjectConfig();
   const isUnderundre = config.slug === "underundre" || config.slug === "undreseller";
-
-  const socialLinks = [
-    { key: "github", url: process.env.NEXT_PUBLIC_SOCIAL_GITHUB, label: "GitHub", icon: IconGitHub },
-    { key: "twitter", url: process.env.NEXT_PUBLIC_SOCIAL_TWITTER, label: "Twitter / X", icon: IconTwitter },
-    { key: "telegram", url: process.env.NEXT_PUBLIC_SOCIAL_TELEGRAM, label: "Telegram", icon: IconTelegram },
-    { key: "upwork", url: process.env.NEXT_PUBLIC_SOCIAL_UPWORK, label: "Upwork", icon: IconUpwork },
-    { key: "trailblazer", url: process.env.NEXT_PUBLIC_SOCIAL_TRAILBLAZER, label: "Trailblazer", icon: IconTrailblazer },
-    { key: "youtube", url: process.env.NEXT_PUBLIC_SOCIAL_YOUTUBE, label: "YouTube", icon: IconYouTube },
-    { key: "reddit", url: process.env.NEXT_PUBLIC_SOCIAL_REDDIT, label: "Reddit", icon: IconReddit },
-    { key: "discord", url: process.env.NEXT_PUBLIC_SOCIAL_DISCORD, label: "Discord", icon: IconDiscord },
-    { key: "linkedin", url: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN, label: "LinkedIn", icon: IconLinkedIn },
-  ].filter((item) => Boolean(item.url && item.url.trim().length > 0));
+  const socialLinks = getSocialLinks();
 
   return (
     <footer className="bg-slate-50 dark:bg-[#080808] border-t border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs py-12 relative overflow-hidden transition-colors">
@@ -69,8 +48,8 @@ export default function Footer({ border = false }: { border?: boolean }) {
                     </a>
                   </li>
                   <li>
-                    <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#pricing">
-                      {lang === "ru" ? "Спринт Б: Системы записи ($4.9k)" : "Sprint B: Custom Systems ($4.9k)"}
+                    <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#contact">
+                      {lang === "ru" ? "Кастомная разработка — через бриф" : "Custom Dev — via brief"}
                     </a>
                   </li>
                 </>
@@ -136,7 +115,7 @@ export default function Footer({ border = false }: { border?: boolean }) {
               <h3 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider">Socials</h3>
               <div className="flex flex-wrap gap-2.5 pt-1">
                 {socialLinks.map((social) => {
-                  const Icon = social.icon;
+                  const Icon = social.Icon;
                   return (
                     <a
                       key={social.key}

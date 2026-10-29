@@ -16,7 +16,7 @@ export function generateMetadata() {
 }
 
 export default function Home() {
-  const { Hero, TaglineReveal, LoomDemo, Pricing, Opsec, Comparison, VibeWarning, FAQ, ForkServiceLine, CTA } = underundreProject;
+  const { Hero, TaglineReveal, LoomDemo, Pricing, Opsec, Comparison, VibeWarning, FAQ, CTA } = underundreProject;
 
   return (
     <main className="bg-[#080808] text-purple-50 min-h-screen transition-colors">
@@ -24,7 +24,8 @@ export default function Home() {
       <TaglineReveal />
       <LoomDemo />
       <Pricing />
-      <ForkServiceLine />
+      {/* ForkServiceLine & Sprint B SKU hidden in v1: undreseller engine not release-ready yet.
+          Re-enable in v2 by restoring <ForkServiceLine /> and the third pricing card. */}
       <Opsec />
       <Comparison />
       <VibeWarning />

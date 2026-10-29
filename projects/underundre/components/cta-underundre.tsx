@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
+import { getSocialLinks } from "@/lib/social-links";
 
 export default function CtaUnderundre() {
   const { lang } = useLang();
@@ -13,9 +14,7 @@ export default function CtaUnderundre() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const triageUrl = process.env.NEXT_PUBLIC_CAL_TRIAGE_URL;
-  const telegramUrl = process.env.NEXT_PUBLIC_SOCIAL_TELEGRAM;
-  const linkedinUrl = process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN;
-  const upworkUrl = process.env.NEXT_PUBLIC_SOCIAL_UPWORK;
+  const socialLinks = getSocialLinks();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -60,12 +59,6 @@ export default function CtaUnderundre() {
     }
   };
 
-  const socialLinks = [
-    { url: telegramUrl, label: lang === "ru" ? "Telegram" : "Telegram" },
-    { url: linkedinUrl, label: lang === "ru" ? "LinkedIn" : "LinkedIn" },
-    { url: upworkUrl, label: lang === "ru" ? "Профиль Upwork" : "Upwork Profile" },
-  ].filter((s) => Boolean(s.url && s.url.trim().length > 0));
-
   return (
     <section id="contact" className="py-20 bg-[#08030f] text-white border-b border-purple-900/30">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
@@ -101,15 +94,16 @@ export default function CtaUnderundre() {
               <div className="pt-4 border-t border-purple-900/40">
                 <p className="text-xs text-orange-300 mb-2">{t.fallbackNotice}</p>
                 <div className="flex flex-wrap gap-2">
-                  {socialLinks.map((s) => (
+                  {socialLinks.map(({ key, label, url, Icon }) => (
                     <a
-                      key={s.label}
-                      href={s.url}
+                      key={key}
+                      href={url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3 py-1.5 rounded-lg bg-purple-950/60 border border-purple-800/50 text-purple-200 text-xs font-semibold hover:border-orange-500/50 transition-colors"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-purple-950/60 border border-purple-800/50 text-purple-200 text-xs font-semibold hover:border-orange-500/50 transition-colors"
                     >
-                      {s.label}
+                      <Icon className="w-3.5 h-3.5" />
+                      {label}
                     </a>
                   ))}
                 </div>
@@ -184,25 +178,26 @@ export default function CtaUnderundre() {
           </form>
         )}
 
-        <div className="pt-6 border-t border-purple-900/30 text-xs text-purple-300/60">
-          <p className="mb-3">{t.directLinks.title}</p>
-          {socialLinks.length > 0 && (
+        {socialLinks.length > 0 && (
+          <div className="pt-6 border-t border-purple-900/30 text-xs text-purple-300/60">
+            <p className="mb-3">{t.directLinks.title}</p>
             <div className="flex flex-wrap items-center justify-center gap-3 mb-3">
-              {socialLinks.map((s) => (
+              {socialLinks.map(({ key, label, url, Icon }) => (
                 <a
-                  key={s.label}
-                  href={s.url}
+                  key={key}
+                  href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 rounded-lg font-semibold transition-colors border border-purple-800/40"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 rounded-lg font-semibold transition-colors border border-purple-800/40"
                 >
-                  {s.label} →
+                  <Icon className="w-3.5 h-3.5" />
+                  {label} →
                 </a>
               ))}
             </div>
-          )}
-          <p className="text-purple-300/40">{t.directLinks.note}</p>
-        </div>
+            <p className="text-purple-300/40">{t.directLinks.note}</p>
+          </div>
+        )}
       </div>
     </section>
   );

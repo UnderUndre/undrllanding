@@ -229,7 +229,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       badge: "Продуктовая лестница — Фиксированная цена и SLA",
       title: "Фиксированные чеки. Ноль почасовой оплаты.",
       subtitle:
-        "Выберите формат входа: 48-часовой аудит костылей, опенсорсный офис под ключ или 14-дневный спринт записи. Средства замораживаются в Upwork Direct Contracts (5% эскроу).",
+        "Выберите формат входа: 48-часовой аудит костылей за $350 или опенсорсный офис под ключ без лицензий. Средства замораживаются в Upwork Direct Contracts (5% эскроу).",
       card0: {
         heroTag: "ПИЛОТ — ПЕРВЫЕ 10 АУДИТОВ (100% В СЧЁТ РАЗРАБОТКИ)",
         tier: "ПРОДУКТ 0 — 48H АУДИТ КОСТЫЛЕЙ",
@@ -558,7 +558,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       badge: "Sovereign Product Ladder — Fixed Price & SLA",
       title: "Fixed-Price Product Ladder. Zero Hourly Billing.",
       subtitle:
-        "Pick your entry point: a 48-hour Workaround TCO Audit, a turnkey FOSS office stack, or a 14-day sovereign booking sprint. Funds stay protected in Upwork Direct Contracts Escrow (5% fee).",
+        "Pick your entry point: a 48-hour Workaround TCO Audit at $350 or a turnkey license-free FOSS office stack. Funds stay protected in Upwork Direct Contracts Escrow (5% fee).",
       card0: {
         heroTag: "PILOT — FIRST 10 AUDITS (100% CREDITED)",
         tier: "PRODUCT 0 — 48H WORKAROUND AUDIT",
