@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
-import { getSocialLinks } from "@/lib/social-links";
+import { getContactChannels } from "@/lib/social-links";
 
 export default function CtaUnderundre() {
   const { lang } = useLang();
@@ -14,7 +14,7 @@ export default function CtaUnderundre() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const triageUrl = process.env.NEXT_PUBLIC_CAL_TRIAGE_URL;
-  const socialLinks = getSocialLinks();
+  const socialLinks = getContactChannels();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
