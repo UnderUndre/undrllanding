@@ -10,7 +10,8 @@
     "build:underundre": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=underundre next build",
     "build:undrlla": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=undrlla next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "validate": "tsc --noEmit"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",

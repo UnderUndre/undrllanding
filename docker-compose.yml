@@ -1,0 +1,41 @@
+# UnderUndre landing — production stack (Caddy edge ingress).
+# The `caddy` external network is created by undevops scripts/server/install-caddy.sh.
+# Build args (NEXT_PUBLIC_*) are interpolated by docker compose from the .env
+# file in this directory; runtime secrets (TELEGRAM_*) flow via env_file.
+
+services:
+  landing:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_PROJECT_NAME: ${NEXT_PUBLIC_PROJECT_NAME:-underundre}
+        NEXT_PUBLIC_UMAMI_WEBSITE_ID: ${NEXT_PUBLIC_UMAMI_WEBSITE_ID:-}
+        NEXT_PUBLIC_UMAMI_SRC: ${NEXT_PUBLIC_UMAMI_SRC:-}
+        NEXT_PUBLIC_CAL_TRIAGE_URL: ${NEXT_PUBLIC_CAL_TRIAGE_URL:-}
+        NEXT_PUBLIC_CONTACT_CHANNELS: ${NEXT_PUBLIC_CONTACT_CHANNELS:-}
+        NEXT_PUBLIC_SOCIAL_GITHUB: ${NEXT_PUBLIC_SOCIAL_GITHUB:-}
+        NEXT_PUBLIC_SOCIAL_TWITTER: ${NEXT_PUBLIC_SOCIAL_TWITTER:-}
+        NEXT_PUBLIC_SOCIAL_TELEGRAM: ${NEXT_PUBLIC_SOCIAL_TELEGRAM:-}
+        NEXT_PUBLIC_SOCIAL_YOUTUBE: ${NEXT_PUBLIC_SOCIAL_YOUTUBE:-}
+        NEXT_PUBLIC_SOCIAL_REDDIT: ${NEXT_PUBLIC_SOCIAL_REDDIT:-}
+        NEXT_PUBLIC_SOCIAL_DISCORD: ${NEXT_PUBLIC_SOCIAL_DISCORD:-}
+        NEXT_PUBLIC_SOCIAL_LINKEDIN: ${NEXT_PUBLIC_SOCIAL_LINKEDIN:-}
+        NEXT_PUBLIC_SOCIAL_UPWORK: ${NEXT_PUBLIC_SOCIAL_UPWORK:-}
+        NEXT_PUBLIC_SOCIAL_TRAILBLAZER: ${NEXT_PUBLIC_SOCIAL_TRAILBLAZER:-}
+        NEXT_PUBLIC_SOCIAL_SLACK: ${NEXT_PUBLIC_SOCIAL_SLACK:-}
+    image: underundre-landing:latest
+    container_name: underundre-landing
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=production
+    # No host ports — Caddy fronts this container via the `caddy` network.
+    expose:
+      - "3000"
+    networks:
+      - caddy
+
+networks:
+  caddy:
+    external: true
