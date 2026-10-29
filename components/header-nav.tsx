@@ -170,7 +170,7 @@ export default function HeaderNav() {
               href={isUnderundre ? "#contact" : "#waitlist"}
               className="inline-flex items-center gap-1.5 rounded-xl bg-orange-500 hover:bg-orange-400 active:scale-95 px-3 sm:px-4 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-orange-500/25 transition-all"
             >
-              <span>{isUnderundre ? (lang === "ru" ? "Заказать аудит ($490)" : "Book Audit ($490)") : t("nav_reserve")}</span>
+              <span>{isUnderundre ? (lang === "ru" ? "Аудит за $350" : "Audit for $350") : t("nav_reserve")}</span>
               <span aria-hidden>→</span>
             </a>
           </div>

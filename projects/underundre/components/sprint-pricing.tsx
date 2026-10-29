@@ -37,10 +37,12 @@ export default function SprintPricing() {
               <p className="mt-2 text-sm text-purple-200/70">{t.card0.desc}</p>
 
               <div className="my-6">
-                <div className="text-4xl font-extrabold text-white">
-                  {t.card0.price} <span className="text-base font-normal text-purple-300/60">{t.card0.flatFee}</span>
+                <div className="flex items-baseline gap-3">
+                  <div className="text-4xl font-extrabold text-white">{t.card0.price}</div>
+                  <div className="text-base font-normal text-purple-300/50 line-through">$490</div>
                 </div>
-                <div className="text-sm font-semibold text-emerald-400 mt-1">{t.card0.creditNote}</div>
+                <div className="text-xs text-purple-300/60 mt-1">{t.card0.priceAnchor}</div>
+                <div className="text-sm font-semibold text-emerald-400 mt-2">{t.card0.creditNote}</div>
                 <div className="text-xs text-purple-300/60 mt-2 font-mono">{t.card0.turnaround}</div>
               </div>
 
@@ -63,9 +65,7 @@ export default function SprintPricing() {
             </div>
 
             <a
-              href="https://www.upwork.com/direct-contracts"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="w-full block py-3.5 px-4 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-lg text-center transition-all shadow-lg shadow-orange-950/40 text-sm"
             >
               {t.card0.cta}
@@ -108,9 +108,7 @@ export default function SprintPricing() {
             </div>
 
             <a
-              href="https://www.upwork.com/direct-contracts"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="w-full py-3.5 px-6 bg-purple-900 hover:bg-purple-800 active:scale-[0.98] text-white font-semibold rounded-lg text-center transition-all border border-purple-700/40 text-sm"
             >
               {t.card1.cta}

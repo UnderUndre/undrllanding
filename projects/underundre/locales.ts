@@ -25,8 +25,8 @@ export interface UnderundreCopy {
     badge: string;
     title: string;
     subtitle: string;
-    openSandbox: string;
-    openSwagger: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
     cards: Array<{ step: string; title: string; desc: string }>;
   };
   pricing: {
@@ -39,6 +39,7 @@ export interface UnderundreCopy {
       title: string;
       desc: string;
       price: string;
+      priceAnchor: string;
       flatFee: string;
       creditNote: string;
       turnaround: string;
@@ -129,29 +130,32 @@ export interface UnderundreCopy {
     badge: string;
     title: string;
     subtitle: string;
-    successTitle: string;
+    thankYouTitle: string;
+    thankYouLoom: string;
+    thankYouEscrow: string;
+    thankYouTriage: string;
+    triageBtn: string;
     fallbackNotice: string;
     fallbackBtn: string;
     labels: {
-      name: string;
       email: string;
-      company: string;
-      waste: string;
-      sprint: string;
-      details: string;
+      messenger: string;
+      messengerPlaceholder: string;
+      bottleneck: string;
+      stack: string;
+      stackPlaceholder: string;
       submitBtn: string;
       submitting: string;
     };
-    options: {
-      tcoAudit: string;
-      fossOffice: string;
-      customSprint: string;
+    bottlenecks: {
+      whatsapp: string;
+      excel: string;
+      saasTax: string;
+      custom: string;
       other: string;
     };
     directLinks: {
       title: string;
-      bookAudit: string;
-      openUpwork: string;
       note: string;
     };
   };
@@ -165,11 +169,11 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       titleAccent: "SaaS-подписках",
       title2: "и ручных костылях.",
       subtitle:
-        "Провожу 48-часовой Workaround TCO Audit ($490) по методологии TDABC. Оцифровываю скрытые расходы на ручной труд, срезаю лишние подписки и выдаю спецификацию OpenAPI 3.0 со схемой БД и Docker-моком. 100% стоимости засчитывается в разработку.",
-      ctaPrimary: "Заказать TCO-аудит 48ч ($490) через Эскроу →",
+        "Провожу 48-часовой Workaround TCO Audit по методологии TDABC: оцифровываю скрытые расходы на ручной труд, срезаю лишние подписки и выдаю спецификацию OpenAPI 3.0 со схемой БД и Docker-моком. Пилотная цена $350 (далее $490). 100% стоимости засчитывается в разработку.",
+      ctaPrimary: "Запросить аудит за $350 →",
       ctaSecondary: "Смотреть FOSS-стек без лицензий",
       microcopy:
-        "Цифровой инженерный стандарт: расчёт костылей по TDABC, штамп Via Negativa, спецификации OpenAPI 3.0. Защита через Upwork Direct Contracts (5%). Соответствие NACE 62.01.",
+        "Пилотная квота: первые 10 аудитов по $350 вместо $490 (Demand Gate). Ответ — персональный 90-секундный Loom-разбор в течение 4 рабочих часов. Оплата — защищённый эскроу Upwork Direct Contracts (5% комиссия, 0% для вас). NACE 62.01.",
       badges: {
         escrow: { label: "Защита капитала", value: "Upwork 5% Эскроу" },
         sla: { label: "Срок аудита", value: "48 часов жесткий SLA" },
@@ -187,12 +191,12 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       author: "— Инженерный манифест UnderUndre §18.9",
     },
     telemetry: {
-      badge: "Телеметрия и архитектурный пруф",
-      title: "Я работаю на собственном коде. Проверьте боевую телеметрию.",
+      badge: "Инженерный стандарт поставки",
+      title: "Каждый аудит собирается тем же конвейером, что и боевые системы клиентов.",
       subtitle:
-        "Каждый лид, аудит и пакет данных в UnderUndre обрабатываются ровно той же архитектурой, которую я разворачиваю для клиентов. Никаких обещаний на словах — проверяйте вживую.",
-      openSandbox: "Открыть демо-стенд (shop.underundre.com)",
-      openSwagger: "Спецификация OpenAPI 3.0 (Swagger)",
+        "Каждый бриф, валидация и артефакт проходят через строгий типизированный пайплайн: никакого «на глаз», только схемы, контракты и алерты о сбоях.",
+      ctaPrimary: "Запросить свой аудит ($350) →",
+      ctaSecondary: "Код и артефакты — на GitHub",
       cards: [
         {
           step: "01 / INGEST",
@@ -227,11 +231,12 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       subtitle:
         "Выберите формат входа: 48-часовой аудит костылей, опенсорсный офис под ключ или 14-дневный спринт записи. Средства замораживаются в Upwork Direct Contracts (5% эскроу).",
       card0: {
-        heroTag: "ГЛАВНЫЙ ВХОД (100% В СЧЁТ РАЗРАБОТКИ)",
+        heroTag: "ПИЛОТ — ПЕРВЫЕ 10 АУДИТОВ (100% В СЧЁТ РАЗРАБОТКИ)",
         tier: "ПРОДУКТ 0 — 48H АУДИТ КОСТЫЛЕЙ",
         title: "Workaround TCO Audit & Architecture Spec",
         desc: "Безопасный вход под лимитом корпоративных карт ($500). Одометр скрытых расходов на ручной труд и SaaS-поборы по TDABC.",
-        price: "$490",
+        price: "$350",
+        priceAnchor: "вместо $490 после пилотной десятки",
         flatFee: "фикс под ключ",
         creditNote: "100% суммы засчитывается при переходе в Спринт А или Б",
         turnaround: "Готовность: 24–48 часов (жесткий SLA)",
@@ -243,7 +248,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           "Схема PostgreSQL DDL и Docker Compose mock-контейнер.",
         ],
         demandGate: "Обязательный Demand Gate: начальный аудит перед крупными кастомными спринтами.",
-        cta: "Заказать 48ч TCO-аудит ($490) через Эскроу →",
+        cta: "Запросить аудит за $350 →",
       },
       card1: {
         tier: "СПРИНТ А — FOSS ОФИСНЫЙ СТЕК",
@@ -262,7 +267,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           "Traefik v3 reverse proxy с автоматическими сертификатами Let's Encrypt SSL.",
         ],
         deployment: "Развёртывание на одном Hetzner CPX42 (€82.69/мес). Запасной клапан ликвидности.",
-        cta: "Развернуть FOSS-офис через Эскроу (5%) →",
+        cta: "Обсудить FOSS-офис ($3,500) →",
       },
       card2: {
         tier: "СПРИНТ Б — СИСТЕМЫ ПОСЛЕ АУДИТА",
@@ -279,7 +284,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           "3 фиксированные роли: OWNER / OPERATOR / PERFORMER, отзыв доступов.",
           "Локализация ru/en из коробки; валюта, таймзона и брендинг через конфиг.",
         ],
-        gatedNotice: "Защищённый гейт: запишитесь на TCO-аудит за $490 для верификации требований.",
+        gatedNotice: "Защищённый гейт: сначала TCO-аудит за $350 для верификации требований.",
         cta: "Запросить через TCO-аудит →",
       },
     },
@@ -373,7 +378,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         },
         {
           metric: "Модель оплаты",
-          underundre: "Фиксированный чек $490 / $3,500 – $4,900",
+          underundre: "Фиксированный чек $350–$490 аудит / $3,500 – $4,900 спринт",
           agencies: "$30,000 – $60,000+ (почасовая оплата T&M)",
           freelancers: "$30–$80/час (раздувание часов)",
         },
@@ -416,10 +421,10 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       subtitle: "Всё об условиях работы, эскроу, правах на код и составе поставок.",
       items: [
         {
-          q: "Что такое Workaround TCO Audit за $490?",
+          q: "Что такое Workaround TCO Audit и почему $350?",
           a: [
             "Это вводный 24–48-часовой аудит операционных костылей по методологии TDABC (Time-Driven Activity-Based Costing). Я оцифровываю наблюдаемые потери на ручной труд (переписка в WhatsApp, сведение таблиц) и срезаю лишние подписки.",
-            "На выходе вы получаете отчёт Via Negativa (запрет невыгодной автоматизации), спецификацию OpenAPI 3.0 и DDL схему PostgreSQL. 100% суммы ($490) засчитывается в оплату Спринта А или Б.",
+            "На выходе вы получаете отчёт Via Negativa (запрет невыгодной автоматизации), спецификацию OpenAPI 3.0 и DDL схему PostgreSQL. $350 — пилотная цена для первых 10 аудитов (далее $490). 100% суммы засчитывается в оплату Спринта А или Б.",
           ],
         },
         {
@@ -452,34 +457,37 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       ],
     },
     cta: {
-      badge: "Ограниченное число спринтов",
+      badge: "Пилотная квота — первые 10 аудитов",
       title: "Хватит сжигать бюджет. Запустите систему в этом месяце.",
       subtitle:
-        "Я беру не более 3 инженерных спринтов в месяц для соблюдения строгих сроков. Заполните короткий бриф ниже.",
-      successTitle: "Бриф успешно отправлен. Я подготовлю ответ и эскроу-ссылку в течение 2 часов.",
-      fallbackNotice: "Активирован аварийный режим: откройте Upwork Direct Contracts для мгновенной сделки.",
-      fallbackBtn: "Открыть Upwork Direct Contracts (5%) →",
+        "Я беру не более 3 инженерных спринтов в месяц для соблюдения строгих сроков. Оставьте короткий бриф — пришлю персональный 90-секундный Loom-разбор и эскроу-ссылку.",
+      thankYouTitle: "Бриф получен.",
+      thankYouLoom: "В течение 4 рабочих часов пришлю приватный 90-секундный Loom-разбор вашего узкого места на Email",
+      thankYouEscrow: "В этот же Loom войдёт точный объём аудита и защищённая ссылка на эскроу Upwork Direct Contracts ($350, 0% комиссии для вас).",
+      thankYouTriage: "Нужно живое обсуждение до аудита?",
+      triageBtn: "Взять 15-минутный слот триажа →",
+      fallbackNotice: "Форма не прошла: напишите напрямую — отвечу так же быстро.",
+      fallbackBtn: "Написать в Telegram / LinkedIn →",
       labels: {
-        name: "Ваше имя *",
         email: "Рабочий Email *",
-        company: "Название компании / проекта",
-        waste: "Примерные траты на ручной труд / SaaS ($/мес)",
-        sprint: "Выберите продукт / спринт *",
-        details: "Опишите ваш процесс или засор в 2–3 предложениях *",
-        submitBtn: "Отправить бриф через Эскроу →",
-        submitting: "Отправка брифа...",
+        messenger: "Telegram / WhatsApp / LinkedIn (опционально — для быстрой отправки Loom)",
+        messengerPlaceholder: "@username или ссылка на профиль",
+        bottleneck: "Главный засор в операционке *",
+        stack: "Команда и текущий стек (кратко) *",
+        stackPlaceholder: "Например: 8 сотрудников, запись вручную в WhatsApp + таблицы Excel, Remonline за $200/мес...",
+        submitBtn: "Запросить аудит за $350 →",
+        submitting: "Отправляю бриф...",
       },
-      options: {
-        tcoAudit: "Workaround TCO Audit & Architecture Spec ($490 фикс, 24–48ч)",
-        fossOffice: "Grand Slam FOSS Office Stack ($3,500 сетап + $500/мес)",
-        customSprint: "Sovereign Booking & Custom Systems ($4,900 фикс)",
-        other: "Другая инженерная задача",
+      bottlenecks: {
+        whatsapp: "Ручная запись в WhatsApp/Telegram, no-show и пустые окна",
+        excel: "Хаос в таблицах: двойные брони, сверка счетов вручную",
+        saasTax: "Переплачиваю за SaaS-лицензии — хочу FOSS-офис ($3,500)",
+        custom: "Нужна система записи на команду / кастомный спринт",
+        other: "Другая операционная боль",
       },
       directLinks: {
-        title: "Предпочитаете прямой заказ без заполнения форм?",
-        bookAudit: "Забронировать 1-on-1 слот аудита ($490) →",
-        openUpwork: "Открыть Upwork Escrow напрямую (5%) →",
-        note: "Официальный контракт Upwork Direct Contracts (5% комиссия) со 100% отчуждением прав на код.",
+        title: "Не готовы к аудиту? Задайте вопрос по архитектуре напрямую:",
+        note: "Оплата — только через защищённый эскроу Upwork Direct Contracts (5% комиссия) со 100% отчуждением прав на код.",
       },
     },
   },
@@ -490,11 +498,11 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       titleAccent: "SaaS Seat Taxes",
       title2: "& Manual Workarounds.",
       subtitle:
-        "I perform a 48-Hour Workaround TCO Audit ($490) using Time-Driven Activity-Based Costing (TDABC). I pinpoint exact manual labor payroll leaks, eliminate redundant subscriptions, and deliver an OpenAPI 3.0 specification with a Docker mock. 100% credited toward implementation.",
-      ctaPrimary: "Book 48-Hour TCO Audit ($490) via Escrow →",
+        "I perform a 48-Hour Workaround TCO Audit using Time-Driven Activity-Based Costing (TDABC): I pinpoint exact manual labor payroll leaks, eliminate redundant subscriptions, and deliver an OpenAPI 3.0 specification with a Docker mock. Pilot price $350 (then $490). 100% credited toward implementation.",
+      ctaPrimary: "Request the Audit for $350 →",
       ctaSecondary: "Explore Grand Slam FOSS Stack",
       microcopy:
-        "Forensic engineering protocol: TDABC cost analysis, Via Negativa assessment, and OpenAPI 3.0 specifications. Escrow via Upwork Direct Contracts (5%). NACE 62.01 Compliant.",
+        "Pilot quota: first 10 audits at $350 instead of $490 (Demand Gate). You get a personal 90-second Loom teardown within 4 business hours. Payment via Upwork Direct Contracts escrow (5% fee, 0% for you). NACE 62.01.",
       badges: {
         escrow: { label: "Escrow Protection", value: "Upwork 5% Escrow" },
         sla: { label: "Turnaround SLA", value: "48-Hour Forensics" },
@@ -512,12 +520,12 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       author: "— UnderUndre Engineering Manifesto §18.9",
     },
     telemetry: {
-      badge: "Live Telemetry & Architecture Proof",
-      title: "I Run on My Own Code. Test My Live Sandbox App.",
+      badge: "Engineering Delivery Standard",
+      title: "Every audit runs through the same typed pipeline I ship for client systems.",
       subtitle:
-        "Every lead, payload, and audit packet at UnderUndre is processed by the exact same architecture I deploy for you. Don't take my word for it — test my live instance at shop.underundre.com.",
-      openSandbox: "Open Live Sandbox (shop.underundre.com)",
-      openSwagger: "Inspect OpenAPI 3.0 Swagger",
+        "Every brief, validation, and artifact goes through a strict typed pipeline: no eyeballing, only schemas, contracts, and failure alerts.",
+      ctaPrimary: "Request your audit ($350) →",
+      ctaSecondary: "Code & artifacts on GitHub",
       cards: [
         {
           step: "01 / INGEST",
@@ -552,11 +560,12 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       subtitle:
         "Pick your entry point: a 48-hour Workaround TCO Audit, a turnkey FOSS office stack, or a 14-day sovereign booking sprint. Funds stay protected in Upwork Direct Contracts Escrow (5% fee).",
       card0: {
-        heroTag: "HERO ENTRY (100% CREDITED)",
+        heroTag: "PILOT — FIRST 10 AUDITS (100% CREDITED)",
         tier: "PRODUCT 0 — 48H WORKAROUND AUDIT",
         title: "Workaround TCO Audit & Architecture Spec",
         desc: "Low-risk entry under corporate card limits ($500). Odometer for manual labor payroll leaks & SaaS waste using TDABC.",
-        price: "$490",
+        price: "$350",
+        priceAnchor: "instead of $490 after the pilot ten",
         flatFee: "flat fee",
         creditNote: "100% credited toward Sprint A or B implementation",
         turnaround: "Turnaround: 24–48 Hours SLA",
@@ -568,7 +577,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           "PostgreSQL DDL schema & Docker Compose mock container.",
         ],
         demandGate: "Demand Gate: Required first step before executing large custom engineering sprints.",
-        cta: "Book 48-Hour TCO Audit ($490) via Escrow →",
+        cta: "Request the Audit for $350 →",
       },
       card1: {
         tier: "SPRINT A — FOSS OFFICE STACK",
@@ -587,7 +596,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           "Traefik v3 reverse proxy with automated Let's Encrypt SSL.",
         ],
         deployment: "Deployment: Single Hetzner CPX42 (€82.69/mo). Emergency cash-flow valve.",
-        cta: "Deploy FOSS Office via Escrow (5%) →",
+        cta: "Discuss FOSS Office ($3,500) →",
       },
       card2: {
         tier: "SPRINT B — POST-AUDIT SPRINT",
@@ -604,7 +613,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           "Three roles: OWNER / OPERATOR / PERFORMER, individual accounts, access revocation.",
           "ru/en out of the box; currency, timezone & branding via configuration.",
         ],
-        gatedNotice: "Gated SKU: Book the $490 TCO Audit first to qualify for this 14-day production sprint.",
+        gatedNotice: "Gated SKU: start with the $350 TCO Audit to qualify for this 14-day production sprint.",
         cta: "Request via TCO Audit First →",
       },
     },
@@ -697,7 +706,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         },
         {
           metric: "Pricing Structure",
-          underundre: "$490 Audit / $3,500 – $4,900 Flat Fee",
+          underundre: "$350–$490 Audit / $3,500 – $4,900 Sprint",
           agencies: "$30,000 – $60,000+ (T&M)",
           freelancers: "$30–$80/hr (Scope bloat)",
         },
@@ -740,10 +749,10 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       subtitle: "Everything you need to know about my process, escrow terms, code ownership, and technical deliverables.",
       items: [
         {
-          q: "What is the Workaround TCO Audit ($490)?",
+          q: "What is the Workaround TCO Audit, and why $350?",
           a: [
             "My introductory 24–48h TDABC audit uncovers hidden manual labor payroll leaks (e.g. WhatsApp copy-paste, billing reconciliation) and bloated SaaS subscriptions.",
-            "I deliver an official Via Negativa verdict (stopping wasteful automation when switching costs are too high) along with a complete OpenAPI 3.0 specification and PostgreSQL DDL schema. 100% of the $490 fee is credited toward Sprint A or B.",
+            "I deliver an official Via Negativa verdict (stopping wasteful automation when switching costs are too high) along with a complete OpenAPI 3.0 specification and PostgreSQL DDL schema. $350 is the pilot price for the first 10 audits (then $490). 100% of the fee is credited toward Sprint A or B.",
           ],
         },
         {
@@ -776,34 +785,37 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       ],
     },
     cta: {
-      badge: "Limited Production Slots",
+      badge: "Pilot Quota — First 10 Audits",
       title: "Stop Burning Runway. Ship Your Product This Month.",
       subtitle:
-        "I accept only 3 engineering sprints per month to enforce my strict delivery SLA. Submit your operational brief below to secure your production slot.",
-      successTitle: "Brief submitted successfully. We will prepare your DDL schema & Upwork Escrow link within 2 hours.",
-      fallbackNotice: "Network fallback active: connect directly via Upwork Direct Contracts to lock escrow instantly.",
-      fallbackBtn: "Open Upwork Direct Contracts (5%) →",
+        "I accept only 3 engineering sprints per month to enforce my strict delivery SLA. Leave a short brief — you get a personal 90-second Loom teardown and the escrow link.",
+      thankYouTitle: "Brief received.",
+      thankYouLoom: "Within 4 business hours I will send a private 90-second Loom teardown of your bottleneck to your Email",
+      thankYouEscrow: "The teardown includes the exact audit scope and a secure Upwork Direct Contracts escrow link ($350, 0% client fees).",
+      thankYouTriage: "Need a live discussion before the audit?",
+      triageBtn: "Book a 15-min Triage Slot →",
+      fallbackNotice: "The form did not go through: message me directly — same fast response.",
+      fallbackBtn: "Message me on Telegram / LinkedIn →",
       labels: {
-        name: "Your Full Name *",
-        email: "Work Email Address *",
-        company: "Company / Project Name",
-        waste: "Est. Monthly SaaS / Labor Waste",
-        sprint: "Select Product / Service *",
-        details: "Describe your operational bottleneck or manual tasks *",
-        submitBtn: "Initialize Sprint Proposal via Escrow →",
-        submitting: "Submitting Brief...",
+        email: "Work Email *",
+        messenger: "Telegram / WhatsApp / LinkedIn (optional — for fast Loom delivery)",
+        messengerPlaceholder: "@handle or profile link",
+        bottleneck: "Primary operational bottleneck *",
+        stack: "Team & current stack (briefly) *",
+        stackPlaceholder: "e.g. 8 staff, bookings handled manually in WhatsApp + Excel sheets, Remonline at $200/mo...",
+        submitBtn: "Request the Audit for $350 →",
+        submitting: "Sending brief...",
       },
-      options: {
-        tcoAudit: "Workaround TCO Audit & Architecture Spec ($490 flat, 24-48h)",
-        fossOffice: "Grand Slam FOSS Office Stack ($3,500 setup + $500/mo)",
-        customSprint: "Sovereign Booking & Custom Systems ($4,900 flat)",
-        other: "Other Engineering Request",
+      bottlenecks: {
+        whatsapp: "Manual WhatsApp/TG booking, no-shows and empty slots",
+        excel: "Spreadsheet chaos: double bookings, manual billing reconciliation",
+        saasTax: "Overpaying for SaaS licenses — want a FOSS office ($3,500)",
+        custom: "Need a multi-staff booking system / custom sprint",
+        other: "Other operational friction",
       },
       directLinks: {
-        title: "Prefer instant booking or direct contracting?",
-        bookAudit: "Book 1-on-1 Audit Slot ($490) →",
-        openUpwork: "Open Direct Upwork Escrow (5%) →",
-        note: "Standard Upwork Direct Contract (5% fee) with 100% IP code transfer.",
+        title: "Not ready for the audit? Ask an architecture question directly:",
+        note: "Payment only via secure Upwork Direct Contracts escrow (5% fee) with 100% IP code transfer.",
       },
     },
   },

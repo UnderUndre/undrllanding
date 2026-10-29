@@ -60,7 +60,7 @@ export default function Footer({ border = false }: { border?: boolean }) {
                 <>
                   <li>
                     <a className="hover:text-slate-900 dark:hover:text-white transition-colors" href="#audit">
-                      {lang === "ru" ? "Продукт 0: TCO-Аудит ($490)" : "Product 0: TCO Audit ($490)"}
+                      {lang === "ru" ? "Продукт 0: TCO-Аудит ($350 пилот)" : "Product 0: TCO Audit ($350 pilot)"}
                     </a>
                   </li>
                   <li>

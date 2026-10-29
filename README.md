@@ -3,7 +3,7 @@
 **UnderUndre** & **Undrlla** Multi-Project Isolated Landing Engine.  
 Next.js 15 · React 19 · Tailwind CSS v4 · Geist Typography · `@underundre/undesign` tokens.
 
-Ecosystem role: serves isolated product and marketing landing pages for **UnderUndre** (`underundre.com` — Productized Engineering Bureau & Workaround TCO Audit) and **Undrlla** (`undrlla.com` — Medusa Storefront Marketplace).  
+Ecosystem role: serves isolated product and marketing landing pages for **UnderUndre** (`underundre.com` — Productized Engineering Bureau & Workaround TCO Audit).  
 Commercial SoT: [`specs/002-underundre-landing-v1/spec.md`](./specs/002-underundre-landing-v1/spec.md) · Business Plan: `undreplans/docs/projects/undreseller/undreseller-business-plan.md` (v18.9).
 
 ---

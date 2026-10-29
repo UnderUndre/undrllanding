@@ -24,21 +24,19 @@ export default function LoomDemoSection() {
 
           <div className="flex flex-wrap items-center justify-center gap-4 mt-6">
             <a
-              href="https://shop.underundre.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="px-6 py-3 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-lg transition-all text-sm shadow-md flex items-center gap-2"
             >
-              <span>{t.openSandbox}</span>
-              <span>↗</span>
+              <span>{t.ctaPrimary}</span>
+              <span>→</span>
             </a>
             <a
-              href="https://shop.underundre.com/api/docs"
+              href={process.env.NEXT_PUBLIC_SOCIAL_GITHUB || "https://github.com/UnderUndre"}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-purple-950/60 hover:bg-purple-900/70 active:scale-[0.98] text-purple-200 font-semibold rounded-lg transition-all text-sm border border-purple-800/40 flex items-center gap-2"
             >
-              <span>{t.openSwagger}</span>
+              <span>{t.ctaSecondary}</span>
               <span>↗</span>
             </a>
           </div>

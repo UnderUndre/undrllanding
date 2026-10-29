@@ -12,6 +12,11 @@ export default function CtaUnderundre() {
   const [fallbackMode, setFallbackMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const triageUrl = process.env.NEXT_PUBLIC_CAL_TRIAGE_URL;
+  const telegramUrl = process.env.NEXT_PUBLIC_SOCIAL_TELEGRAM;
+  const linkedinUrl = process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN;
+  const upworkUrl = process.env.NEXT_PUBLIC_SOCIAL_UPWORK;
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
@@ -19,12 +24,10 @@ export default function CtaUnderundre() {
 
     const formData = new FormData(e.currentTarget);
     const payload = {
-      name: (formData.get("name") as string) || "Anonymous Founder",
-      email: formData.get("email") as string,
-      company: (formData.get("company") as string) || "",
-      estimatedMonthlySaaSCost: (formData.get("estimatedMonthlySaaSCost") as string) || "",
-      productInterest: (formData.get("sprint") as string) || "tco-audit",
-      details: (formData.get("bottleneck") as string) || "",
+      email: (formData.get("email") as string) || "",
+      messenger: (formData.get("messenger") as string) || "",
+      bottleneckType: (formData.get("bottleneckType") as string) || "whatsapp-manual",
+      stackAndTeam: (formData.get("stackAndTeam") as string) || "",
     };
 
     try {
@@ -38,19 +41,30 @@ export default function CtaUnderundre() {
 
       if (res.ok && data.success) {
         setStatus("success");
-        if (data.fallback === "upwork") {
+        if (data.fallback === "direct") {
           setFallbackMode(true);
         }
       } else {
         setStatus("error");
-        setErrorMessage(data.message || (lang === "ru" ? "Ошибка отправки. Попробуйте через Upwork Escrow." : "Submission failed. Please try direct Upwork Escrow."));
+        setErrorMessage(
+          data.message ||
+            (lang === "ru"
+              ? "Не удалось отправить бриф. Напишите напрямую в мессенджер ниже."
+              : "Submission failed. Reach out directly via messenger below.")
+        );
       }
     } catch (err) {
       console.error("Lead submit error:", err);
-      setStatus("success");
-      setFallbackMode(true); // Graceful fallback
+      setStatus("error");
+      setFallbackMode(true);
     }
   };
+
+  const socialLinks = [
+    { url: telegramUrl, label: lang === "ru" ? "Telegram" : "Telegram" },
+    { url: linkedinUrl, label: lang === "ru" ? "LinkedIn" : "LinkedIn" },
+    { url: upworkUrl, label: lang === "ru" ? "Профиль Upwork" : "Upwork Profile" },
+  ].filter((s) => Boolean(s.url && s.url.trim().length > 0));
 
   return (
     <section id="contact" className="py-20 bg-[#08030f] text-white border-b border-purple-900/30">
@@ -66,19 +80,39 @@ export default function CtaUnderundre() {
         </p>
 
         {status === "success" ? (
-          <div className="p-8 bg-brand-green/10 border border-brand-green/30 rounded-2xl text-brand-green font-semibold mb-8 space-y-4">
-            <p>{t.successTitle}</p>
-            {fallbackMode && (
-              <div className="p-4 bg-purple-950/50 border border-purple-800/50 rounded-xl text-xs text-purple-200">
-                <p className="mb-2">{t.fallbackNotice}</p>
+          <div className="p-8 bg-brand-green/10 border border-brand-green/30 rounded-2xl text-left max-w-xl mx-auto mb-10 space-y-4">
+            <p className="text-brand-green font-bold text-lg">{t.thankYouTitle}</p>
+            <p className="text-sm text-purple-100 leading-relaxed">{t.thankYouLoom}</p>
+            <p className="text-sm text-purple-100 leading-relaxed">{t.thankYouEscrow}</p>
+            {triageUrl && triageUrl.trim().length > 0 && (
+              <div className="pt-4 border-t border-purple-900/40">
+                <p className="text-xs text-purple-200/70 mb-2">{t.thankYouTriage}</p>
                 <a
-                  href="https://www.upwork.com/direct-contracts"
+                  href={triageUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-lg transition-all"
+                  className="inline-block px-4 py-2 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-lg transition-all text-sm"
                 >
-                  {t.fallbackBtn}
+                  {t.triageBtn}
                 </a>
+              </div>
+            )}
+            {fallbackMode && socialLinks.length > 0 && (
+              <div className="pt-4 border-t border-purple-900/40">
+                <p className="text-xs text-orange-300 mb-2">{t.fallbackNotice}</p>
+                <div className="flex flex-wrap gap-2">
+                  {socialLinks.map((s) => (
+                    <a
+                      key={s.label}
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="px-3 py-1.5 rounded-lg bg-purple-950/60 border border-purple-800/50 text-purple-200 text-xs font-semibold hover:border-orange-500/50 transition-colors"
+                    >
+                      {s.label}
+                    </a>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -94,17 +128,6 @@ export default function CtaUnderundre() {
             )}
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.name}</label>
-              <input
-                type="text"
-                name="name"
-                required
-                placeholder={lang === "ru" ? "Алексей Смирнов" : "Alex Smith"}
-                className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
-              />
-            </div>
-
-            <div>
               <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.email}</label>
               <input
                 type="email"
@@ -115,44 +138,38 @@ export default function CtaUnderundre() {
               />
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.company}</label>
-                <input
-                  type="text"
-                  name="company"
-                  placeholder={lang === "ru" ? "Клиника / Студия" : "Smith Logistics LLC"}
-                  className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
-                />
-              </div>
-              <div>
-                <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.waste}</label>
-                <input
-                  type="text"
-                  name="estimatedMonthlySaaSCost"
-                  placeholder="e.g. $2,500/mo"
-                  className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
-                />
-              </div>
+            <div>
+              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.messenger}</label>
+              <input
+                type="text"
+                name="messenger"
+                placeholder={t.labels.messengerPlaceholder}
+                className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
+              />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.sprint}</label>
-              <select name="sprint" className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange">
-                <option value="tco-audit">{t.options.tcoAudit}</option>
-                <option value="foss-office">{t.options.fossOffice}</option>
-                <option value="custom-sprint">{t.options.customSprint}</option>
-                <option value="other">{t.options.other}</option>
+              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.bottleneck}</label>
+              <select
+                name="bottleneckType"
+                defaultValue="whatsapp-manual"
+                className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
+              >
+                <option value="whatsapp-manual">{t.bottlenecks.whatsapp}</option>
+                <option value="excel-chaos">{t.bottlenecks.excel}</option>
+                <option value="saas-tax-foss">{t.bottlenecks.saasTax}</option>
+                <option value="custom-sprint">{t.bottlenecks.custom}</option>
+                <option value="other">{t.bottlenecks.other}</option>
               </select>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.details}</label>
+              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.stack}</label>
               <textarea
-                name="bottleneck"
+                name="stackAndTeam"
                 required
                 rows={3}
-                placeholder={lang === "ru" ? "Например: 2 администратора вручную перебивают брони из чатов в Excel..." : "e.g. Dispatchers waste 15 hours a week copying WhatsApp bookings into Excel..."}
+                placeholder={t.labels.stackPlaceholder}
                 className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
               ></textarea>
             </div>
@@ -168,26 +185,23 @@ export default function CtaUnderundre() {
         )}
 
         <div className="pt-6 border-t border-purple-900/30 text-xs text-purple-300/60">
-          <p className="mb-2">{t.directLinks.title}</p>
-          <div className="flex flex-wrap items-center justify-center gap-3">
-            <a
-              href="https://shop.underundre.com/book?itemId=sovereign-architecture-audit"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-4 py-2 bg-emerald-950/60 hover:bg-emerald-900/70 text-emerald-300 rounded-lg font-semibold transition-colors border border-emerald-800/40"
-            >
-              {t.directLinks.bookAudit}
-            </a>
-            <a
-              href="https://www.upwork.com/direct-contracts"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-4 py-2 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 rounded-lg font-semibold transition-colors border border-purple-800/40"
-            >
-              {t.directLinks.openUpwork}
-            </a>
-          </div>
-          <p className="mt-2 text-purple-300/40">{t.directLinks.note}</p>
+          <p className="mb-3">{t.directLinks.title}</p>
+          {socialLinks.length > 0 && (
+            <div className="flex flex-wrap items-center justify-center gap-3 mb-3">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-4 py-2 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 rounded-lg font-semibold transition-colors border border-purple-800/40"
+                >
+                  {s.label} →
+                </a>
+              ))}
+            </div>
+          )}
+          <p className="text-purple-300/40">{t.directLinks.note}</p>
         </div>
       </div>
     </section>

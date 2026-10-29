@@ -1,6 +1,14 @@
 import { NextResponse } from "next/server";
 import { LeadSubmissionSchema } from "@/specs/002-underundre-landing-v1/contracts/lead-api";
 
+const BOTTLENECK_LABELS: Record<string, string> = {
+  "whatsapp-manual": "Manual WhatsApp/TG booking & no-shows (TCO Audit $350)",
+  "excel-chaos": "Spreadsheet / double-booking & billing chaos (TCO Audit $350)",
+  "saas-tax-foss": "SaaS seat tax bleed -> FOSS Office Stack ($3,500)",
+  "custom-sprint": "Multi-staff booking / custom system (via TCO Audit)",
+  other: "Other workflow bottleneck",
+};
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -10,7 +18,7 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           success: false,
-          message: "Validation failed",
+          message: "Validation failed. Check email and stack description.",
           errors: parsed.error.format(),
         },
         { status: 400 }
@@ -19,22 +27,21 @@ export async function POST(request: Request) {
 
     const lead = parsed.data;
     const botToken = process.env.TELEGRAM_BOT_TOKEN;
-    const chatId = process.env.TELEGRAM_ALERT_CHAT_ID;
+    const chatId = process.env.TELEGRAM_ALERT_CHAT_ID || process.env.TELEGRAM_CHAT_ID;
 
     let telegramSent = false;
 
     if (botToken && chatId) {
       try {
-        const text = `
-🚨 <b>New Inbound Lead — UnderUndre Landing v1</b>
-<b>Name:</b> ${escapeHtml(lead.name)}
-<b>Email:</b> ${escapeHtml(lead.email)}
-<b>Company:</b> ${escapeHtml(lead.company || "N/A")}
-<b>Monthly SaaS Waste:</b> ${escapeHtml(lead.estimatedMonthlySaaSCost || "N/A")}
-<b>Product Interest:</b> ${escapeHtml(lead.productInterest)}
-<b>Details:</b>
-${escapeHtml(lead.details || "N/A")}
-        `.trim();
+        const bottleneckLabel = BOTTLENECK_LABELS[lead.bottleneckType] || lead.bottleneckType;
+        const text = [
+          "<b>[NEW LEAD — UnderUndre v1]</b>",
+          `<b>Email:</b> ${escapeHtml(lead.email)}`,
+          `<b>Messenger / Social:</b> ${escapeHtml(lead.messenger || "Not provided (email only)")}`,
+          `<b>Bottleneck:</b> ${escapeHtml(bottleneckLabel)}`,
+          "<b>Team & Stack:</b>",
+          escapeHtml(lead.stackAndTeam),
+        ].join("\n");
 
         const res = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
           method: "POST",
@@ -58,10 +65,9 @@ ${escapeHtml(lead.details || "N/A")}
     return NextResponse.json({
       success: true,
       message: telegramSent
-        ? "Lead captured and dispatched to telegram successfully."
-        : "Lead captured successfully (fallback mode).",
-      fallback: telegramSent ? "none" : "upwork",
-      upworkUrl: "https://www.upwork.com/direct-contracts",
+        ? "Audit request received."
+        : "Audit request received (fallback mode).",
+      fallback: telegramSent ? "none" : "direct",
     });
   } catch (error) {
     console.error("Error processing lead submission:", error);
@@ -69,8 +75,7 @@ ${escapeHtml(lead.details || "N/A")}
       {
         success: false,
         message: "Internal server error",
-        fallback: "upwork",
-        upworkUrl: "https://www.upwork.com/direct-contracts",
+        fallback: "direct",
       },
       { status: 500 }
     );

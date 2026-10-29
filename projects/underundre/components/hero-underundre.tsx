@@ -34,9 +34,7 @@ export default function HeroUnderundre() {
         {/* CTA Buttons with active state physical feedback & focus rings */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
           <a
-            href="https://www.upwork.com/direct-contracts"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             className="w-full sm:w-auto px-6 py-3 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-lg shadow-lg shadow-orange-950/30 transition-all text-sm text-center focus-visible:outline-2 focus-visible:outline-orange-400"
           >
             {t.ctaPrimary}
