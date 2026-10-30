@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=underundre next dev --turbopack",
     "dev:underundre": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=underundre next dev --turbopack",
-    "build": "next build",
-    "build:underundre": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=underundre next build",
+    "build": "next build && node scripts/generate-preview.mjs",
+    "build:underundre": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=underundre next build && node scripts/generate-preview.mjs --slug=underundre",
     "start": "next start",
     "lint": "next lint",
     "validate": "tsc --noEmit",

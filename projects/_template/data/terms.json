@@ -1,0 +1,28 @@
+{
+  "title": {
+    "ru": "Условия обслуживания",
+    "en": "Terms of Service"
+  },
+  "updatedAt": {
+    "ru": "Дата последнего обновления: [PLACEHOLDER ДАТА]",
+    "en": "Last updated: [PLACEHOLDER DATE]"
+  },
+  "intro": {
+    "ru": "Условия оказания услуг {{entityName}}. [PLACEHOLDER] Замените эскроу- и гарантийные клаузулы на свои.",
+    "en": "Service terms of {{entityName}}. [PLACEHOLDER] Replace escrow/warranty clauses with your own."
+  },
+  "sections": [
+    {
+      "heading": {
+        "ru": "1. Фиксированный скоуп",
+        "en": "1. Fixed scope"
+      },
+      "paragraphs": [
+        {
+          "ru": "[PLACEHOLDER] Опишите модель фиксированного скоупа, эскроу ({{escrowProvider}}), передачу прав, гарантийный период ({{warrantyDays}} дней) и ограничение ответственности.",
+          "en": "[PLACEHOLDER] Describe the fixed-scope model, escrow ({{escrowProvider}}), IP transfer, warranty period ({{warrantyDays}} days) and liability cap."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,64 @@
+{
+  "title": { "ru": "Условия обслуживания", "en": "Terms of Service" },
+  "updatedAt": { "ru": "Дата последнего обновления: 30.10.2026", "en": "Last updated: 2026-10-30" },
+  "intro": {
+    "ru": "Настоящие условия регулируют оказание продуктовых инженерных услуг {{entityName}} (классификация: {{jurisdiction}}).",
+    "en": "These terms govern productized engineering services provided by {{entityName}} (classification: {{jurisdiction}})."
+  },
+  "sections": [
+    {
+      "heading": { "ru": "1. Фиксированный скоуп", "en": "1. Fixed scope" },
+      "paragraphs": [
+        {
+          "ru": "Каждое оказание услуги имеет строго фиксированный объём (scope), согласованный письменно до старта. Работы за пределами согласованного объёма оцениваются отдельно и не включаются в фиксированную цену.",
+          "en": "Every engagement has a strictly fixed scope agreed in writing before kickoff. Work beyond the agreed scope is estimated separately and is not included in the fixed price."
+        }
+      ]
+    },
+    {
+      "heading": { "ru": "2. Эскроу-защита платежей", "en": "2. Escrow-protected payments" },
+      "paragraphs": [
+        {
+          "ru": "Платежи проводятся через стороннее эскроу-решение: {{escrowProvider}}. Средства замораживаются эскроу до приёмки этапа; оплата releasing после вашего подтверждения результата.",
+          "en": "Payments run through a third-party escrow arrangement: {{escrowProvider}}. Funds are held in escrow until milestone acceptance; release happens after your confirmation of the deliverable."
+        }
+      ]
+    },
+    {
+      "heading": { "ru": "3. 100% отчуждение прав", "en": "3. 100% IP transfer" },
+      "paragraphs": [
+        {
+          "ru": "После релиза этапа (milestone release) заказчик получает 100% исключительных имущественных прав на код и артефакты этапа, включая полный Git-репозиторий. Подрядчик не удерживает лицензий, бэкдоров или отложенных прав.",
+          "en": "Upon milestone release the client receives 100% exclusive intellectual property rights to the stage's code and artifacts, including the complete Git repository. The contractor retains no licenses, backdoors, or deferred rights."
+        }
+      ]
+    },
+    {
+      "heading": { "ru": "4. Гарантийный период", "en": "4. Warranty period" },
+      "paragraphs": [
+        {
+          "ru": "На переданные артефакты действует {{warrantyDays}}-дневная гарантия на исправление дефектов (SLA P1/P2: критические — в течение 24 часов, значимые — в течение 72 часов). Гарантия не покрывает изменение требований.",
+          "en": "Delivered artifacts carry a {{warrantyDays}}-day bugfix warranty (P1/P2 SLA: critical — within 24 hours, significant — within 72 hours). The warranty does not cover changed requirements."
+        }
+      ]
+    },
+    {
+      "heading": { "ru": "5. Ограничение ответственности", "en": "5. Limitation of liability" },
+      "paragraphs": [
+        {
+          "ru": "Ответственность подрядчика ограничена суммой фактически полученных гонораров за предшествующие 30 дней. Упущенная выгода возмещению не подлежит.",
+          "en": "The contractor's liability is capped at the fees actually received in the preceding 30 days. Lost profits are not recoverable."
+        }
+      ]
+    },
+    {
+      "heading": { "ru": "6. Статус сторон", "en": "6. Independent parties" },
+      "paragraphs": [
+        {
+          "ru": "Стороны действуют как независимые подрядчики. Подрядчик самостоятельно определяет способ выполнения работ в рамках согласованного скоупа.",
+          "en": "The parties act as independent contractors. The contractor determines the method of performance within the agreed scope."
+        }
+      ]
+    }
+  ]
+}

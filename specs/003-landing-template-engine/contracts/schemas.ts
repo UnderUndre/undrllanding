@@ -84,6 +84,25 @@ export const ManifestDataSchema = z.object({
 export type ManifestoPrinciple = z.infer<typeof ManifestoPrincipleSchema>;
 export type ManifestData = z.infer<typeof ManifestDataSchema>;
 
+// 5. Statutory legal documents (privacy / terms) — spec 003 FR-006/FR-007 rev. 2.
+// Body strings may reference interpolation tokens resolved from ProjectConfig.legal:
+// {{name}}, {{domain}}, {{entityName}}, {{jurisdiction}}, {{contactEmail}},
+// {{retentionMonths}}, {{escrowProvider}}, {{warrantyDays}}
+export const LegalSectionSchema = z.object({
+  heading: LocalizedTextSchema,
+  paragraphs: z.array(LocalizedTextSchema).min(1),
+});
+
+export const LegalDocumentSchema = z.object({
+  title: LocalizedTextSchema,
+  updatedAt: LocalizedTextSchema,
+  intro: LocalizedTextSchema.optional(),
+  sections: z.array(LegalSectionSchema).min(1),
+});
+
+export type LegalSection = z.infer<typeof LegalSectionSchema>;
+export type LegalDocument = z.infer<typeof LegalDocumentSchema>;
+
 // 4. Pluggable Inbound Lead Schema
 export const LeadMetadataValueSchema = z.union([
   z.string().max(500, "Metadata string value exceeds maximum length (500 chars)"),

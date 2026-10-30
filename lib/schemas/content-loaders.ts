@@ -4,9 +4,11 @@ import {
   PricingDataSchema,
   FaqDataSchema,
   ManifestDataSchema,
+  LegalDocumentSchema,
   type PricingData,
   type FaqData,
   type ManifestData,
+  type LegalDocument,
 } from "@/lib/schemas/content-schema";
 import type { ZodType } from "zod";
 
@@ -62,4 +64,21 @@ export function loadManifestData(slug: string): ManifestData | null {
     return null;
   }
   return loadValidated(slug, "manifest.json", ManifestDataSchema);
+}
+
+/** Returns null when the project ships no privacy.json / terms.json. */
+export function loadPrivacyData(slug: string): LegalDocument | null {
+  return loadOptional(slug, "privacy.json", LegalDocumentSchema);
+}
+
+export function loadTermsData(slug: string): LegalDocument | null {
+  return loadOptional(slug, "terms.json", LegalDocumentSchema);
+}
+
+function loadOptional<T>(slug: string, file: string, schema: ZodType<T>): T | null {
+  const filePath = projectDataFile(slug, file);
+  if (!fs.existsSync(filePath)) {
+    return null;
+  }
+  return loadValidated(slug, file, schema);
 }
