@@ -1,5 +1,7 @@
 export type Language = "ru" | "en";
 
+export type TranslationKey = keyof typeof translations["ru"];
+
 export const translations = {
   ru: {
     // Header
@@ -10,6 +12,26 @@ export const translations = {
     nav_manifest: "Манифест",
     breadcrumb_home: "Главная",
     breadcrumb_econ: "Экономика и Манифест",
+
+    // UnderUndre brand nav/footer (spec 003 T-004 — ported from hardcoded branches)
+    nav_audit: "TCO-Аудит",
+    nav_stack: "FOSS-Стек",
+    nav_comparison: "Сравнение",
+    nav_faq: "Вопросы",
+    nav_cta_audit: "Аудит за $350",
+    footer_uu_tagline:
+      "Инженерное продуктовое бюро — TCO-аудиты костылей, спецификации OpenAPI и приватные FOSS-системы с нулевыми лицензионными поборами.",
+    footer_uu_products: "Продукты",
+    footer_uu_product0: "Продукт 0: TCO-Аудит ($350 пилот)",
+    footer_uu_product_a: "Спринт А: FOSS-Офис ($3.5k)",
+    footer_uu_custom: "Кастомная разработка — через бриф",
+    footer_uu_escrow: "Оплата и Эскроу",
+    footer_uu_escrow_upwork: "Upwork Эскроу (5% комиссия)",
+    footer_uu_ip: "100% отчуждение прав на код",
+    footer_uu_nace: "Стандарт EU NACE 62.01",
+    footer_privacy: "Политика конфиденциальности",
+    footer_terms: "Условия обслуживания",
+    footer_manifest: "Инженерный манифест",
 
     // Hero
     hero_badge_alpha: "Закрытый Альфа-Набор",
@@ -227,6 +249,26 @@ export const translations = {
     nav_manifest: "Manifest",
     breadcrumb_home: "Home",
     breadcrumb_econ: "Economics & Manifest",
+
+    // UnderUndre brand nav/footer (spec 003 T-004 — ported from hardcoded branches)
+    nav_audit: "TCO Audit",
+    nav_stack: "FOSS Stack",
+    nav_comparison: "Comparison",
+    nav_faq: "FAQ",
+    nav_cta_audit: "Audit for $350",
+    footer_uu_tagline:
+      "Productized Engineering Bureau — Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems shipped with zero seat fees.",
+    footer_uu_products: "Product Ladder",
+    footer_uu_product0: "Product 0: TCO Audit ($350 pilot)",
+    footer_uu_product_a: "Sprint A: FOSS Office ($3.5k)",
+    footer_uu_custom: "Custom Dev — via brief",
+    footer_uu_escrow: "Payments & Escrow",
+    footer_uu_escrow_upwork: "Upwork Escrow (5% fee)",
+    footer_uu_ip: "100% Code & IP Transfer",
+    footer_uu_nace: "EU NACE 62.01 Standard",
+    footer_privacy: "Privacy Policy",
+    footer_terms: "Terms of Service",
+    footer_manifest: "Engineering Manifesto",
 
     // Hero
     hero_badge_alpha: "Closed Alpha Cohort",

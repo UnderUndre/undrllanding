@@ -1,50 +1,54 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import Logo from "./ui/logo";
 import { useLang } from "@/context/lang-context";
 import { getActiveProjectConfig } from "@/lib/project-config";
-import { Language } from "@/lib/i18n";
+import { Language, TranslationKey } from "@/lib/i18n";
 
 export default function HeaderNav() {
   const { lang, setLang, t } = useLang();
   const config = getActiveProjectConfig();
-  const isUnderundre = config.slug === "underundre" || config.slug === "undreseller";
   const [theme, setTheme] = useState<ThemeMode>("dark");
 
   type ThemeMode = "system" | "dark" | "light";
 
+  // Theme-mode persistence keys derive from the active brand (spec 003 FR-001) —
+  // no brand-name literals in shared components.
+  const themeStorageKey = `${config.slug}_theme`;
+  const themeAttr = (mode: "dark" | "light") => (mode === "dark" ? `${config.slug}-dark` : config.slug);
+
   useEffect(() => {
-    const savedTheme = localStorage.getItem("undrlla_theme") as ThemeMode | null;
+    const savedTheme = localStorage.getItem(themeStorageKey) as ThemeMode | null;
     const modeToApply = savedTheme || "dark";
     setTheme(modeToApply);
     applyTheme(modeToApply);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const applyTheme = (mode: ThemeMode) => {
     const root = document.documentElement;
     if (mode === "dark") {
       root.classList.add("dark");
-      root.setAttribute("data-theme", "undrlla-dark");
+      root.setAttribute("data-theme", themeAttr("dark"));
     } else if (mode === "light") {
       root.classList.remove("dark");
-      root.setAttribute("data-theme", "undrlla");
+      root.setAttribute("data-theme", themeAttr("light"));
     } else {
       const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
       if (systemDark) {
         root.classList.add("dark");
-        root.setAttribute("data-theme", "undrlla-dark");
+        root.setAttribute("data-theme", themeAttr("dark"));
       } else {
         root.classList.remove("dark");
-        root.setAttribute("data-theme", "undrlla");
+        root.setAttribute("data-theme", themeAttr("light"));
       }
     }
   };
 
   const handleThemeChange = (newMode: ThemeMode) => {
     setTheme(newMode);
-    localStorage.setItem("undrlla_theme", newMode);
+    localStorage.setItem(themeStorageKey, newMode);
     applyTheme(newMode);
   };
 
@@ -53,48 +57,21 @@ export default function HeaderNav() {
     setLang(nextLang);
   };
 
+  const navLabel = (item: { labelKey?: string; labelFallback: string }) =>
+    item.labelKey ? t(item.labelKey as TranslationKey) : item.labelFallback;
+
   return (
     <header className="fixed top-2 z-50 w-full px-4 sm:px-6 md:top-4">
       <div className="mx-auto max-w-6xl">
         <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/80 px-4 shadow-xl backdrop-blur-xl transition-colors">
           <div className="flex items-center gap-5 min-w-0">
             <Logo />
-            {/* Nav items dependent on active project config */}
             <nav className="hidden lg:flex items-center gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
-              {isUnderundre ? (
-                <>
-                  <a href="#audit" className="hover:text-orange-500 transition-colors">
-                    {lang === "ru" ? "TCO-Аудит" : "TCO Audit"}
-                  </a>
-                  <a href="#stack" className="hover:text-orange-500 transition-colors">
-                    {lang === "ru" ? "FOSS-Стек" : "FOSS Stack"}
-                  </a>
-                  <a href="#pricing" className="hover:text-orange-500 transition-colors">
-                    {lang === "ru" ? "Тарифы" : "Pricing"}
-                  </a>
-                  <a href="#comparison" className="hover:text-orange-500 transition-colors">
-                    {lang === "ru" ? "Сравнение" : "Comparison"}
-                  </a>
-                  <a href="#faq" className="hover:text-orange-500 transition-colors">
-                    {lang === "ru" ? "Вопросы" : "FAQ"}
-                  </a>
-                </>
-              ) : (
-                <>
-                  <a href="#how" className="hover:text-orange-500 transition-colors">
-                    {t("nav_how")}
-                  </a>
-                  <a href="#pricing" className="hover:text-orange-500 transition-colors">
-                    {t("nav_pricing")}
-                  </a>
-                  <Link
-                    href="/economics"
-                    className="hover:text-orange-500 transition-colors opacity-80"
-                  >
-                    {t("nav_manifest")}
-                  </Link>
-                </>
-              )}
+              {config.navigation.items.map((item) => (
+                <a key={item.href} href={item.href} className="hover:text-orange-500 transition-colors">
+                  {navLabel(item)}
+                </a>
+              ))}
             </nav>
           </div>
 
@@ -157,7 +134,7 @@ export default function HeaderNav() {
                   <line x1="12" y1="1" x2="12" y2="3" />
                   <line x1="12" y1="21" x2="12" y2="23" />
                   <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="4.22" />
                   <line x1="1" y1="12" x2="3" y2="12" />
                   <line x1="21" y1="12" x2="23" y2="12" />
                   <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
@@ -166,13 +143,15 @@ export default function HeaderNav() {
               </button>
             </div>
 
-            <a
-              href={isUnderundre ? "#contact" : "#waitlist"}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-orange-500 hover:bg-orange-400 active:scale-95 px-3 sm:px-4 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-orange-500/25 transition-all"
-            >
-              <span>{isUnderundre ? (lang === "ru" ? "Аудит за $350" : "Audit for $350") : t("nav_reserve")}</span>
-              <span aria-hidden>→</span>
-            </a>
+            {config.navigation.ctaButton && (
+              <a
+                href={config.navigation.ctaButton.href}
+                className="inline-flex items-center gap-1.5 rounded-xl bg-orange-500 hover:bg-orange-400 active:scale-95 px-3 sm:px-4 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-orange-500/25 transition-all"
+              >
+                <span>{navLabel(config.navigation.ctaButton)}</span>
+                <span aria-hidden>→</span>
+              </a>
+            )}
           </div>
         </div>
       </div>
