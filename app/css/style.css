@@ -1,3 +1,7 @@
+/* BEGIN GENERATED BRAND THEME (managed by scripts/create-project.mjs) */
+@import "../../projects/underundre/theme.css";
+/* END GENERATED BRAND THEME */
+
 @import 'tailwindcss';
 
 /* Tailwind v4 class-based dark mode variant override */
@@ -195,3 +199,16 @@
   }
 }
 
+
+/* Dynamic brand tokens (spec 003 FR-003): utilities reference the CSS vars so
+   a palette swap in projects/<slug>/theme.css re-themes without touching TSX. */
+@theme inline {
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-surface: var(--brand-surface);
+  --color-brand-surface-subtle: var(--brand-surface-subtle);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-hover: var(--brand-primary-hover);
+  --color-brand-secondary: var(--brand-secondary);
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-border: var(--brand-border);
+}

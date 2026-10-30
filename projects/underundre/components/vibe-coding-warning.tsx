@@ -9,7 +9,7 @@ export default function VibeCodingWarning() {
   const t = getUnderundreCopy(lang).vibeWarning;
 
   return (
-    <section className="py-20 bg-[#0a0414] border-b border-purple-900/30">
+    <section className="py-20 bg-[#0a0414] border-b border-brand-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="p-8 md:p-12 bg-gradient-to-br from-[#160829] to-[#0d031a] rounded-2xl border border-orange-500/30 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />

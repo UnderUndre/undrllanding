@@ -9,7 +9,7 @@ export default function OpsecProtocol() {
   const t = getUnderundreCopy(lang).opsec;
 
   return (
-    <section id="opsec" className="py-20 bg-slate-50 dark:bg-[#08030f] border-b border-purple-900/30">
+    <section id="opsec" className="py-20 bg-slate-50 dark:bg-[#08030f] border-b border-brand-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <span className="inline-block px-3 py-1 bg-brand-green/10 text-brand-green text-xs font-semibold rounded-full uppercase tracking-wider mb-3">
@@ -25,7 +25,7 @@ export default function OpsecProtocol() {
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-16">
           {t.steps.map((s, i) => (
-            <div key={i} className="p-6 bg-white dark:bg-[#12081f] rounded-xl border border-purple-900/30 shadow-sm relative">
+            <div key={i} className="p-6 bg-white dark:bg-brand-surface rounded-xl border border-brand-border shadow-sm relative">
               <div className="w-8 h-8 bg-brand-orange text-white rounded-full flex items-center justify-center font-bold text-sm mb-4">
                 {s.num}
               </div>
@@ -52,7 +52,7 @@ export default function OpsecProtocol() {
         </div>
 
         {/* ASYNC-FIRST COMM PROTOCOL */}
-        <div className="p-6 bg-white dark:bg-[#12081f] text-slate-900 dark:text-white rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-purple-900/30 text-left">
+        <div className="p-6 bg-white dark:bg-brand-surface text-slate-900 dark:text-white rounded-xl flex flex-col md:flex-row items-center justify-between gap-6 border border-brand-border text-left">
           <div>
             <span className="text-xs font-mono font-bold text-orange-400 uppercase">{t.commTitle}</span>
             <h4 className="text-base font-bold text-slate-900 dark:text-white mt-1">{t.commH4}</h4>

@@ -37,7 +37,7 @@ export default function TaglineRevealSection() {
   }, [lang]);
 
   return (
-    <section className="py-24 bg-[#080808] border-b border-purple-900/30 text-center relative overflow-hidden">
+    <section className="py-24 bg-brand-bg border-b border-brand-border text-center relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6">
         <span className="inline-block px-3 py-1 bg-purple-950/60 text-orange-400 text-xs font-mono font-bold rounded-full uppercase tracking-wider mb-6 border border-purple-800/40">
           {t.directive}

@@ -60,7 +60,7 @@ export default function CtaUnderundre() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#08030f] text-white border-b border-purple-900/30">
+    <section id="contact" className="py-20 bg-[#08030f] text-white border-b border-brand-border">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
         <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
           {t.badge}
@@ -179,7 +179,7 @@ export default function CtaUnderundre() {
         )}
 
         {socialLinks.length > 0 && (
-          <div className="pt-6 border-t border-purple-900/30 text-xs text-purple-300/60">
+          <div className="pt-6 border-t border-brand-border text-xs text-purple-300/60">
             <p className="mb-3">{t.directLinks.title}</p>
             <div className="flex flex-wrap items-center justify-center gap-3 mb-3">
               {socialLinks.map(({ key, label, url, Icon }) => (

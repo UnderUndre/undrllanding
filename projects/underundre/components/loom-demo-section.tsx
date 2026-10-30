@@ -9,7 +9,7 @@ export default function LoomDemoSection() {
   const t = getUnderundreCopy(lang).telemetry;
 
   return (
-    <section id="stack" className="py-20 bg-[#08030f] border-b border-purple-900/30">
+    <section id="stack" className="py-20 bg-[#08030f] border-b border-brand-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
           <span className="inline-block px-3 py-1 bg-brand-green/10 text-brand-green text-xs font-semibold rounded-full uppercase tracking-wider mb-3">
@@ -45,7 +45,7 @@ export default function LoomDemoSection() {
         {/* 5-Step Pipeline Card Grid */}
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           {t.cards.map((c, i) => (
-            <div key={i} className="p-5 bg-[#12081f] rounded-xl border border-purple-900/30 shadow-sm">
+            <div key={i} className="p-5 bg-brand-surface rounded-xl border border-brand-border shadow-sm">
               <span className="text-xs font-mono font-bold text-orange-400">{c.step}</span>
               <h4 className="font-semibold mt-1 mb-2 text-white text-sm">{c.title}</h4>
               <p className="text-xs text-purple-200/60">{c.desc}</p>

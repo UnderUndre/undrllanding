@@ -19,7 +19,7 @@ export default function Home() {
   const { Hero, TaglineReveal, LoomDemo, Pricing, Opsec, Comparison, VibeWarning, FAQ, CTA } = underundreProject;
 
   return (
-    <main className="bg-[#080808] text-purple-50 min-h-screen transition-colors">
+    <main className="bg-brand-bg text-purple-50 min-h-screen transition-colors">
       <Hero />
       <TaglineReveal />
       <LoomDemo />

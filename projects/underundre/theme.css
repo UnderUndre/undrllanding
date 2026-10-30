@@ -1,0 +1,13 @@
+/* UnderUndre brand palette — canonical 8-token set (spec 003 FR-003).
+   Rebranding = edit this one file; components consume semantic utilities
+   (bg-brand-bg, text-brand-accent, border-brand-border, ...). */
+:root {
+  --brand-bg: #080808;
+  --brand-surface: #12081f;
+  --brand-surface-subtle: #180a2e;
+  --brand-primary: #b45500;
+  --brand-primary-hover: #c85e00;
+  --brand-secondary: #4e007a;
+  --brand-accent: #69a700;
+  --brand-border: rgba(147, 51, 234, 0.3);
+}

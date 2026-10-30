@@ -9,7 +9,7 @@ export default function HeroUnderundre() {
   const t = getUnderundreCopy(lang).hero;
 
   return (
-    <section id="audit" className="relative pt-28 pb-20 bg-[#080808] text-purple-50 transition-colors border-b border-purple-900/30 overflow-hidden">
+    <section id="audit" className="relative pt-28 pb-20 bg-brand-bg text-purple-50 transition-colors border-b border-brand-border overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
         {/* Top Trust Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-950/60 border border-purple-800/40 text-orange-400 text-xs font-semibold tracking-wide uppercase mb-8 shadow-sm">
@@ -54,7 +54,7 @@ export default function HeroUnderundre() {
         </p>
 
         {/* 5 Trust Badges Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto text-left pt-6 border-t border-purple-900/30">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto text-left pt-6 border-t border-brand-border">
           <div className="p-3 bg-purple-950/30 rounded-lg border border-purple-900/40">
             <div className="text-xs text-purple-300/70 uppercase font-semibold">{t.badges.escrow.label}</div>
             <div className="text-sm font-bold text-purple-100">{t.badges.escrow.value}</div>

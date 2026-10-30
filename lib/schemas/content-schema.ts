@@ -23,6 +23,7 @@ export type LocalizedText = z.infer<typeof LocalizedTextSchema>;
 export const PricingPlanItemSchema = z.object({
   id: z.string().min(1),
   tierName: LocalizedTextSchema,
+  heroTag: LocalizedTextSchema.optional(),
   title: LocalizedTextSchema,
   description: LocalizedTextSchema,
   price: z.string().min(1), // display string, e.g. "$350" — language-neutral

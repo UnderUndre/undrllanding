@@ -1,0 +1,92 @@
+{
+  "sectionBadge": {
+    "ru": "Прозрачность и правила игры",
+    "en": "Clarity & Ground Rules"
+  },
+  "sectionTitle": {
+    "ru": "Часто задаваемые вопросы",
+    "en": "Frequently Asked Questions"
+  },
+  "sectionSubtitle": {
+    "ru": "Всё об условиях работы, эскроу, правах на код и составе поставок.",
+    "en": "Everything you need to know about my process, escrow terms, code ownership, and technical deliverables."
+  },
+  "items": [
+    {
+      "question": {
+        "ru": "Что такое Workaround TCO Audit и почему $350?",
+        "en": "What is the Workaround TCO Audit, and why $350?"
+      },
+      "answers": [
+        {
+          "ru": "Это вводный 24–48-часовой аудит операционных костылей по методологии TDABC (Time-Driven Activity-Based Costing). Я оцифровываю наблюдаемые потери на ручной труд (переписка в WhatsApp, сведение таблиц) и срезаю лишние подписки.",
+          "en": "My introductory 24–48h TDABC audit uncovers hidden manual labor payroll leaks (e.g. WhatsApp copy-paste, billing reconciliation) and bloated SaaS subscriptions."
+        },
+        {
+          "ru": "На выходе вы получаете отчёт Via Negativa (запрет невыгодной автоматизации), спецификацию OpenAPI 3.0 и DDL схему PostgreSQL. $350 — пилотная цена для первых 10 аудитов (далее $490). 100% суммы засчитывается в оплату Спринта А или Б.",
+          "en": "I deliver an official Via Negativa verdict (stopping wasteful automation when switching costs are too high) along with a complete OpenAPI 3.0 specification and PostgreSQL DDL schema. $350 is the pilot price for the first 10 audits (then $490). 100% of the fee is credited toward Sprint A or B."
+        }
+      ]
+    },
+    {
+      "question": {
+        "ru": "Всегда ли вы пишете кастомный код с нуля?",
+        "en": "Do you always build custom full-stack code from scratch?"
+      },
+      "answers": [
+        {
+          "ru": "Нет. На первом шаге я провожу строгий отбор. Если задачу решает проверенный опенсорсный инструмент (Twenty CRM, Outline, Cal.com), я не сжигаю ваш бюджет на велосипеды.",
+          "en": "No. I practice pragmatic architecture triage on Day 1. If an existing FOSS tool solves your backend needs without seat taxes, I won't waste your runway reinventing the wheel."
+        },
+        {
+          "ru": "Кастомный код пишется только там, где у вашего бизнеса есть уникальный процесс.",
+          "en": "I only build custom applications when your business model genuinely requires proprietary workflows."
+        }
+      ]
+    },
+    {
+      "question": {
+        "ru": "Как меня защищает Upwork Direct Contracts Escrow?",
+        "en": "How does Upwork Direct Contracts Escrow protect my capital?"
+      },
+      "answers": [
+        {
+          "ru": "Вы вносите оплату на защищённый эскроу-счёт Upwork Direct Contracts (5% комиссия, 0% клиенту). Я не прикасаюсь к капиталу до сдачи работ.",
+          "en": "You deposit the flat fee directly into Upwork Direct Contracts (5% fee, 0% client fee). I never touch your capital upfront."
+        },
+        {
+          "ru": "Средства переводятся только после проверки работоспособности на живой демонстрации.",
+          "en": "Funds are released only upon successful deployment and live verification during Day 14 onboarding."
+        }
+      ]
+    },
+    {
+      "question": {
+        "ru": "Кому принадлежат права на созданный код и инфраструктуру?",
+        "en": "Who owns the code, intellectual property, and hosting?"
+      },
+      "answers": [
+        {
+          "ru": "Вы получаете 100% исключительные права на исходный код и архитектуру по классификатору EU NACE 62.01 сразу после закрытия вехи в эскроу.",
+          "en": "You receive 100% exclusive intellectual property and source code ownership upon sprint completion and escrow release, under EU NACE 62.01 classification."
+        },
+        {
+          "ru": "Репозиторий передаётся в ваш GitHub, доступы к серверам остаются только у вас.",
+          "en": "The repository is transferred directly to your GitHub, and servers remain entirely under your control."
+        }
+      ]
+    },
+    {
+      "question": {
+        "ru": "Что входит в 7-дневную гарантийную поддержку (SLA)?",
+        "en": "What is covered under the 7-Day Bugfix SLA?"
+      },
+      "answers": [
+        {
+          "ru": "В течение 7 дней после релиза я бесплатно и в приоритетном порядке закрываю любые инциденты P1 (падение сервиса) и P2 (сбой ключевого сценария) за 24 часа.",
+          "en": "For 7 calendar days post-deployment, I provide priority incident resolution. Any P1 (system outage) or P2 (broken workflow) defect is resolved within 24 hours at zero charge."
+        }
+      ]
+    }
+  ]
+}

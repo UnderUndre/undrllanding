@@ -13,7 +13,7 @@ export default function ForkServiceLine() {
   const isRu = lang === "ru";
 
   return (
-    <section id="fork-care" className="py-20 bg-[#08030f] border-b border-purple-900/30">
+    <section id="fork-care" className="py-20 bg-[#08030f] border-b border-brand-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-14">
           <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
@@ -60,7 +60,7 @@ export default function ForkServiceLine() {
             </a>
           </div>
 
-          <div className="p-8 bg-purple-950/30 dark:bg-[#180a2e]/90 rounded-2xl border-2 border-brand-orange flex flex-col justify-between relative shadow-2xl">
+          <div className="p-8 bg-purple-950/30 dark:bg-brand-surface-subtle/90 rounded-2xl border-2 border-brand-orange flex flex-col justify-between relative shadow-2xl">
             <div className="absolute -top-3 right-6 px-3 py-1 bg-brand-orange text-white text-xs font-extrabold rounded-full uppercase tracking-wider shadow-md">
               {isRu ? "ХИТ — ЛОНЧ МЕНЮ" : "HERO — LAUNCH MENU"}
             </div>
@@ -134,30 +134,30 @@ export default function ForkServiceLine() {
               $149<span className="text-sm font-normal text-slate-500 dark:text-purple-300/60">{isRu ? "/мес" : "/mo"}</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-purple-200/80">
-              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Хостинг VPS, ежедневные бэкапы Restic S3, мониторинг аптайма" : "VPS hosting, daily Restic S3 backups, uptime monitoring"}</li>
-              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Патчи безопасности · SLA 24ч" : "Security patches · SLA 24h"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-brand-green font-bold">✓</span> {isRu ? "Хостинг VPS, ежедневные бэкапы Restic S3, мониторинг аптайма" : "VPS hosting, daily Restic S3 backups, uptime monitoring"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-brand-green font-bold">✓</span> {isRu ? "Патчи безопасности · SLA 24ч" : "Security patches · SLA 24h"}</li>
               <li className="flex items-start gap-1.5 text-slate-500"><span className="font-bold text-slate-400">—</span> {isRu ? "Часы доработок через Change Packs" : "Change hours billed via Change Packs"}</li>
             </ul>
           </div>
-          <div className="p-6 bg-purple-950/30 dark:bg-[#180a2e]/90 rounded-xl border border-brand-orange">
+          <div className="p-6 bg-purple-950/30 dark:bg-brand-surface-subtle/90 rounded-xl border border-brand-orange">
             <div className="text-xs font-bold uppercase tracking-wider text-orange-400">{isRu ? "Care Standard (Рекомендую)" : "Care Standard (Recommended)"}</div>
             <div className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mt-2">
               $349<span className="text-sm font-normal text-slate-500 dark:text-purple-300/60">{isRu ? "/мес" : "/mo"}</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-purple-200/80">
-              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Всё из Essential · SLA 8ч" : "Everything in Essential · SLA 8h"}</li>
-              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "2 часа доработок/консультаций ежемесячно (сгораемые)" : "2 change/consultancy hours monthly (use-it-or-lose-it)"}</li>
-              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Бесплатные минорные обновления безопасности ядра" : "Free minor template upgrades (security & core fixes)"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-brand-green font-bold">✓</span> {isRu ? "Всё из Essential · SLA 8ч" : "Everything in Essential · SLA 8h"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-brand-green font-bold">✓</span> {isRu ? "2 часа доработок/консультаций ежемесячно (сгораемые)" : "2 change/consultancy hours monthly (use-it-or-lose-it)"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-brand-green font-bold">✓</span> {isRu ? "Бесплатные минорные обновления безопасности ядра" : "Free minor template upgrades (security & core fixes)"}</li>
             </ul>
           </div>
-          <div className="p-6 bg-slate-50 dark:bg-[#0e051b]/80 rounded-xl border border-purple-900/30 opacity-75">
+          <div className="p-6 bg-slate-50 dark:bg-[#0e051b]/80 rounded-xl border border-brand-border opacity-75">
             <div className="text-xs font-bold uppercase tracking-wider text-purple-300">Care Priority</div>
             <div className="text-2xl font-extrabold text-slate-900 dark:text-slate-100 mt-2">
               $690<span className="text-sm font-normal text-slate-500 dark:text-purple-300/60">{isRu ? "/мес" : "/mo"}</span>
             </div>
             <ul className="mt-4 space-y-2 text-xs text-slate-600 dark:text-purple-200/80">
-              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "Всё из Standard · SLA 4ч · приоритетная очередь" : "Everything in Standard · SLA 4h · priority queue"}</li>
-              <li className="flex items-start gap-1.5"><span className="text-[#69a700] font-bold">✓</span> {isRu ? "5 часов доработок ежемесячно" : "5 change hours monthly"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-brand-green font-bold">✓</span> {isRu ? "Всё из Standard · SLA 4ч · приоритетная очередь" : "Everything in Standard · SLA 4h · priority queue"}</li>
+              <li className="flex items-start gap-1.5"><span className="text-brand-green font-bold">✓</span> {isRu ? "5 часов доработок ежемесячно" : "5 change hours monthly"}</li>
               <li className="flex items-start gap-1.5 text-slate-500"><span className="font-bold text-slate-400">—</span> {isRu ? "Отложено — откроется после набора группы Standard" : "Deferred — opens after the Care Standard batch"}</li>
             </ul>
           </div>

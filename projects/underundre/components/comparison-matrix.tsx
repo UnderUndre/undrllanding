@@ -9,7 +9,7 @@ export default function ComparisonMatrix() {
   const t = getUnderundreCopy(lang).comparison;
 
   return (
-    <section id="comparison" className="py-20 bg-white dark:bg-[#06020a] border-b border-purple-900/30">
+    <section id="comparison" className="py-20 bg-white dark:bg-[#06020a] border-b border-brand-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
@@ -26,7 +26,7 @@ export default function ComparisonMatrix() {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm border-collapse">
             <thead>
-              <tr className="border-b border-purple-900/30 bg-slate-50 dark:bg-[#110721]/60">
+              <tr className="border-b border-brand-border bg-slate-50 dark:bg-[#110721]/60">
                 <th className="p-4 font-bold text-slate-900 dark:text-slate-100">{t.headers.metric}</th>
                 <th className="p-4 font-bold text-orange-400">{t.headers.underundre}</th>
                 <th className="p-4 font-bold text-slate-400 dark:text-purple-200/80">{t.headers.agencies}</th>

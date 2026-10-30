@@ -1,0 +1,141 @@
+{
+  "sectionBadge": {
+    "ru": "Продуктовая лестница — Фиксированная цена и SLA",
+    "en": "Sovereign Product Ladder — Fixed Price & SLA"
+  },
+  "sectionTitle": {
+    "ru": "Фиксированные чеки. Ноль почасовой оплаты.",
+    "en": "Fixed-Price Product Ladder. Zero Hourly Billing."
+  },
+  "sectionSubtitle": {
+    "ru": "Выберите формат входа: 48-часовой аудит костылей за $350 или опенсорсный офис под ключ без лицензий. Средства замораживаются в Upwork Direct Contracts (5% эскроу).",
+    "en": "Pick your entry point: a 48-hour Workaround TCO Audit at $350 or a turnkey license-free FOSS office stack. Funds stay protected in Upwork Direct Contracts Escrow (5% fee)."
+  },
+  "plans": [
+    {
+      "id": "tco-audit",
+      "tierName": {
+        "ru": "ПРОДУКТ 0 — 48H АУДИТ КОСТЫЛЕЙ",
+        "en": "PRODUCT 0 — 48H WORKAROUND AUDIT"
+      },
+      "title": {
+        "ru": "Workaround TCO Audit & Architecture Spec",
+        "en": "Workaround TCO Audit & Architecture Spec"
+      },
+      "description": {
+        "ru": "Безопасный вход под лимитом корпоративных карт ($500). Одометр скрытых расходов на ручной труд и SaaS-поборы по TDABC.",
+        "en": "Low-risk entry under corporate card limits ($500). Odometer for manual labor payroll leaks & SaaS waste using TDABC."
+      },
+      "price": "$350",
+      "originalPrice": "$490",
+      "priceNote": {
+        "ru": "вместо $490 после пилотной десятки",
+        "en": "instead of $490 after the pilot ten"
+      },
+      "turnaround": {
+        "ru": "Готовность: 24–48 часов (жесткий SLA)",
+        "en": "Turnaround: 24–48 Hours SLA"
+      },
+      "creditNote": {
+        "ru": "100% суммы засчитывается при переходе в Спринт А или Б",
+        "en": "100% credited toward Sprint A or B implementation"
+      },
+      "deliverablesTitle": {
+        "ru": "Состав поставки (Код NACE 62.01):",
+        "en": "Included Deliverables (EU NACE 62.01):"
+      },
+      "deliverables": [
+        {
+          "ru": "Оцифровка расходов TDABC: выявление скрытого ФОТ (WhatsApp, сверка счетов, DSO).",
+          "en": "TDABC Cost Forensics: uncovers WhatsApp copy-paste, billing reconciliation & DSO leaks."
+        },
+        {
+          "ru": "Штамп Via Negativa: запрет автоматизации, если затраты на переход выше экономии.",
+          "en": "Official Via Negativa Verdict: stops wasteful automation when switching costs exceed savings."
+        },
+        {
+          "ru": "Спецификация OpenAPI 3.0 для сквозной интеграции.",
+          "en": "OpenAPI 3.0 specification for automated bypass."
+        },
+        {
+          "ru": "Схема PostgreSQL DDL и Docker Compose mock-контейнер.",
+          "en": "PostgreSQL DDL schema & Docker Compose mock container."
+        }
+      ],
+      "demandGateNote": {
+        "ru": "Обязательный Demand Gate: начальный аудит перед крупными кастомными спринтами.",
+        "en": "Demand Gate: Required first step before executing large custom engineering sprints."
+      },
+      "ctaText": {
+        "ru": "Запросить аудит за $350 →",
+        "en": "Request the Audit for $350 →"
+      },
+      "ctaHref": "#contact",
+      "isHero": true,
+      "heroTag": {
+        "ru": "ПИЛОТ — ПЕРВЫЕ 10 АУДИТОВ (100% В СЧЁТ РАЗРАБОТКИ)",
+        "en": "PILOT — FIRST 10 AUDITS (100% CREDITED)"
+      }
+    },
+    {
+      "id": "foss-office-sprint-a",
+      "tierName": {
+        "ru": "СПРИНТ А — FOSS ОФИСНЫЙ СТЕК",
+        "en": "SPRINT A — FOSS OFFICE STACK"
+      },
+      "title": {
+        "ru": "B2B Operations & FOSS Office Stack",
+        "en": "B2B Operations & Office Stack"
+      },
+      "description": {
+        "ru": "Ликвидация $15k–$40k/год поборов за лицензии (Salesforce, Notion, Linear, Intercom) на приватном сервере Hetzner.",
+        "en": "Erase $15k–$40k/yr in SaaS seat taxes (Salesforce, Notion, Linear, Intercom) with private cloud FOSS on Hetzner."
+      },
+      "price": "$3,500",
+      "turnaround": {
+        "ru": "Срок развёртывания: 3–5 рабочих дней",
+        "en": "Delivery: 3 to 5 Business Days"
+      },
+      "deliverablesTitle": {
+        "ru": "Фиксированный состав спринта:",
+        "en": "Included Scope (Fixed Scope):"
+      },
+      "deliverables": [
+        {
+          "ru": "Twenty CRM / EspoCRM: 0$ за пользователя, полные права на данные.",
+          "en": "Twenty CRM / EspoCRM: 0 seat licenses, full data ownership."
+        },
+        {
+          "ru": "FOSS Suite: Outline (Docs), Plane (Tasks), Chatwoot (Inbox), Cal.com.",
+          "en": "FOSS Suite: Outline (Docs), Plane (Tasks), Chatwoot (Inbox), Cal.com."
+        },
+        {
+          "ru": "Docker Memory Fencing: изоляция RAM и 16GB NVMe Swap против падений.",
+          "en": "Docker Compose Memory Fencing: 16GB NVMe Swap against OOM."
+        },
+        {
+          "ru": "Выделенный инстанс n8n или воркеры Trigger.dev v3 в коде.",
+          "en": "Dedicated n8n workflow instance or Trigger.dev v3 tasks."
+        },
+        {
+          "ru": "Traefik v3 reverse proxy с автоматическими сертификатами Let's Encrypt SSL.",
+          "en": "Traefik v3 reverse proxy with automated Let's Encrypt SSL."
+        }
+      ],
+      "demandGateNote": {
+        "ru": "Развёртывание на одном Hetzner CPX42 (€82.69/мес). Запасной клапан ликвидности.",
+        "en": "Deployment: Single Hetzner CPX42 (€82.69/mo). Emergency cash-flow valve."
+      },
+      "ctaText": {
+        "ru": "Обсудить FOSS-офис ($3,500) →",
+        "en": "Discuss FOSS Office ($3,500) →"
+      },
+      "ctaHref": "#contact",
+      "isHero": false,
+      "priceNote": {
+        "ru": "+ $500/мес за мониторинг бэкапов Restic S3 и безопасность",
+        "en": "+ $500/month monitoring & Restic backup retainer"
+      }
+    }
+  ]
+}
