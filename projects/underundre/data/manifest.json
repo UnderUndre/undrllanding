@@ -1,0 +1,122 @@
+{
+  "title": { "ru": "Инженерный манифест", "en": "The Engineering Manifesto" },
+  "subtitle": {
+    "ru": "7 непреложных операционных принципов суверенных программных систем",
+    "en": "7 Non-Negotiable Operational Principles for Sovereign Software Systems"
+  },
+  "version": "v18.9 / v20.0",
+  "principles": [
+    {
+      "number": 1,
+      "title": { "ru": "Via Negativa (директива анти-расточительства)", "en": "Via Negativa (Anti-Waste Directive)" },
+      "quote": {
+        "ru": "Никогда не автоматизируй то, что следует удалить.",
+        "en": "Never automate what should be deleted."
+      },
+      "summary": {
+        "ru": "Если издержки переключения превышают экономию — автоматизация запрещена.",
+        "en": "If switching costs exceed savings, automation is forbidden."
+      },
+      "body": {
+        "ru": "Прежде чем писать строку кода или заводить таблицу в базе — реши, можно ли проблему удалить целиком. Удалённый процесс не требует поддержки, мониторинга и миграций. Автоматизация плохого процесса увековечивает плохой процесс.",
+        "en": "Before writing a line of code or deploying a database table — decide whether the problem can be deleted entirely. A deleted process requires no support, no monitoring, no migrations. Automating a broken process immortalizes it."
+      }
+    },
+    {
+      "number": 2,
+      "title": { "ru": "Zero SaaS Taxes (ноль лицензионных поборов)", "en": "Zero SaaS Taxes" },
+      "quote": {
+        "ru": "Self-hosted open-source вместо посидельных лицензий.",
+        "en": "Self-hosted open-source over recurring seat licenses."
+      },
+      "summary": {
+        "ru": "Каждое рабочее место в SaaS — это налог, который растёт быстрее вашего бизнеса.",
+        "en": "Every SaaS seat is a tax that outgrows your business."
+      },
+      "body": {
+        "ru": "Мы строим на self-hosted open-source стеке: PostgreSQL, Next.js, Medusa, n8n. Вы платите за инфраструктуру (десятки долларов), а не за лицензии (сотни и тысячи). Никакого vendor lock-in: полный Git-репозиторий и приватная инфраструктура остаются у вас.",
+        "en": "We build on a self-hosted open-source stack: PostgreSQL, Next.js, Medusa, n8n. You pay for infrastructure (tens of dollars), not licenses (hundreds and thousands). No vendor lock-in: the complete Git repository and private infrastructure remain yours."
+      }
+    },
+    {
+      "number": 3,
+      "title": { "ru": "Schema-First (DDL + Zod)", "en": "Strict Schema-First (DDL + Zod)" },
+      "quote": {
+        "ru": "Детерминированная валидация вместо vibe-coding-койки.",
+        "en": "Deterministic validation over vibe-coding slop."
+      },
+      "summary": {
+        "ru": "Сначала контракт: DDL-схема и Zod-схемы. Потом код.",
+        "en": "Contract first: DDL schema and Zod schemas. Code comes second."
+      },
+      "body": {
+        "ru": "Каждая сущность начинается со схемы: SQL DDL для данных, Zod для контрактов API и контента. Валидация на границах (build-time и runtime) делает класс ошибок «неправильные данные» невозможным, а не вероятным.",
+        "en": "Every entity starts as a schema: SQL DDL for data, Zod for API and content contracts. Validation at the boundaries (build-time and runtime) makes the 'wrong data' error class impossible rather than probable."
+      }
+    },
+    {
+      "number": 4,
+      "title": { "ru": "Async-First Velocity", "en": "Async-First Velocity" },
+      "quote": {
+        "ru": "Асинхронные Loom-разборы вместо статус-звонков.",
+        "en": "Asynchronous Loom walkthroughs over daily status calls."
+      },
+      "summary": {
+        "ru": "Ноль meeting fatigue: коммуникация письменно и видео, синхронно — только решения.",
+        "en": "Zero meeting fatigue: communication in writing and video; synchronous only for decisions."
+      },
+      "body": {
+        "ru": "Статус-звонки сжигают самые дорогие ресурсы — фокус и контекст. Мы работаем письменными апдейтами, Loom-видео и трекером задач. Синхронные встречи — только для решений, которые нельзя принять асинхронно.",
+        "en": "Status calls burn the most expensive resources — focus and context. We run on written updates, Loom videos, and a task tracker. Synchronous meetings are reserved for decisions that cannot be made asynchronously."
+      }
+    },
+    {
+      "number": 5,
+      "title": { "ru": "100% Code & Data Sovereignty", "en": "100% Code & Data Sovereignty" },
+      "quote": {
+        "ru": "Полный Git-репозиторий и приватная инфраструктура — ваши.",
+        "en": "Complete Git repo transfer and private infrastructure ownership."
+      },
+      "summary": {
+        "ru": "Никаких арендованных данных: вы владеете кодом, схемами и данными на 100%.",
+        "en": "No rented data: you own 100% of the code, schemas, and data."
+      },
+      "body": {
+        "ru": "По завершении этапа вы получаете полный Git-репозиторий, DDL-миграции и инструкции по инфраструктуре. Ваши клиенты, заказы и аналитика живут в вашей базе данных — платформа не может отозвать доступ к вашему бизнесу.",
+        "en": "Upon milestone completion you receive the complete Git repository, DDL migrations, and infrastructure runbooks. Your customers, orders, and analytics live in your own database — no platform can revoke access to your business."
+      }
+    },
+    {
+      "number": 6,
+      "title": { "ru": "Single Production Leases & Memory Fencing", "en": "Single Production Leases & Memory Fencing" },
+      "quote": {
+        "ru": "Docker resource fencing против каскадных OOM-падений.",
+        "en": "Docker resource fencing against out-of-memory cascading failures."
+      },
+      "summary": {
+        "ru": "Один прод-инстанс на сервис, жёсткие лимиты памяти на контейнер.",
+        "en": "One production lease per service; hard memory limits per container."
+      },
+      "body": {
+        "ru": "Каждый сервис живёт в собственном Docker-контейнере с memory fence: OOM в одном сервисе не роняет соседние. Один прод-арендатор на сервис упрощает откат, миграции и точечный рестарт без простоя всей системы.",
+        "en": "Each service lives in its own Docker container with a memory fence: an OOM in one service never takes down its neighbors. One production lease per service makes rollback, migrations, and targeted restarts possible without full-system downtime."
+      }
+    },
+    {
+      "number": 7,
+      "title": { "ru": "Fixed-Scope Knife & Escrow Protection", "en": "Fixed-Scope Knife & Escrow Protection" },
+      "quote": {
+        "ru": "Взаимная защита через сторонний эскроу и фиксированные таймбоксы.",
+        "en": "Mutual protection via third-party escrow and fixed timeboxes."
+      },
+      "summary": {
+        "ru": "Фиксированный чек, фиксированный скоуп, деньги в эскроу до приёмки.",
+        "en": "Fixed fee, fixed scope, funds in escrow until acceptance."
+      },
+      "body": {
+        "ru": "Никаких почасовых счётчиков и размытых оценок. Каждый этап — фиксированный скоуп и фиксированная цена; средства заморожены в эскроу и релизятся после вашей приёмки. Это защищает обе стороны: вы не платите за процесс, мы не работаем в неограниченном редлайне.",
+        "en": "No hourly meters and fuzzy estimates. Every milestone has a fixed scope and fixed price; funds are frozen in escrow and released after your acceptance. This protects both sides: you never pay for process, we never work in an unbounded deadline."
+      }
+    }
+  ]
+}

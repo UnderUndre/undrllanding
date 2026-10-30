@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import Link from "next/link";
 import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
 
@@ -52,7 +53,9 @@ export default function TaglineRevealSection() {
           ))}
         </div>
         <p className="mt-8 text-xs font-mono text-purple-300/60 uppercase tracking-widest">
-          {t.author}
+          <Link href="/manifest" className="hover:text-orange-400 transition-colors">
+            {t.author}
+          </Link>
         </p>
       </div>
     </section>
