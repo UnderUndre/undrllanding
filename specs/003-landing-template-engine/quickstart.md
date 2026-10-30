@@ -14,8 +14,7 @@ pnpm install
 # Start development for UnderUndre (default)
 pnpm dev:underundre
 
-# Start development for Undrlla
-pnpm dev:undrlla
+# (The legacy undrlla dev target is removed — see FR-011.)
 ```
 
 ---
@@ -28,20 +27,21 @@ To generate a new brand lander for a client or secondary project:
 # Interactive mode:
 pnpm project:create
 
-# Flagged mode:
-pnpm project:create --slug="acme" --name="Acme Systems" --domain="acme.org" --primary="#2563eb" --accent="#059669"
+# Flagged mode (canonical flag names):
+pnpm project:create --slug="acme" --name="Acme Systems" --domain="acme.org" --primary-color="#2563eb" --accent-color="#059669"
 ```
 
 This creates:
-- `projects/acme/config.ts` (brand identity, navigation, footer)
+- `projects/acme/config.ts` (brand identity, navigation, footer, legal block)
 - `projects/acme/theme.css` (Tailwind v4 CSS variable palette)
 - `projects/acme/data/pricing.json` (commercial package ladder)
 - `projects/acme/data/faq.json` (objection matrix)
 - `projects/acme/public/favicon.ico`
+…and appends a delimited registry entry to `lib/project-config.ts`, immediately verified with `pnpm validate`.
 
-To test the new brand locally:
+To test the new brand locally (cross-env for Windows compatibility):
 ```bash
-NEXT_PUBLIC_PROJECT_NAME=acme pnpm dev
+npx cross-env NEXT_PUBLIC_PROJECT_NAME=acme pnpm dev
 ```
 
 ---

@@ -23,19 +23,19 @@
 - **Expected Result**: Nav links exactly match configured array. Action button links to `#contact`. Zero hardcoded checks for `"underundre"` in component source code.
 - **Post-conditions**: None.
 
-### TC-LTE-002: Undrlla Brand Navigation Parity Under IoC
-- **Traceability**: FR-001, Task T-004, T-005
+### TC-LTE-002: Scaffolded Brand Navigation Parity Under IoC
+- **Traceability**: FR-001, Task T-004, T-005, T-019
 - **Tier**: [Sanity]
 - **Priority**: P1
 - **Type**: Functional / Regression
 - **Technique**: Equivalence Partitioning
-- **Pre-conditions**: Project config `undrllaConfig` defines `navigation.items` (`#how`, `#pricing`, `/economics`) and `navigation.ctaButton` (`href: "#waitlist"`).
-- **Test Data**: `NEXT_PUBLIC_PROJECT_NAME=undrlla`
+- **Pre-conditions**: `projects/testbrand/` generated via `pnpm project:create --slug=testbrand --name="Test Brand"` with its own `navigation.items` and `ctaButton`.
+- **Test Data**: `npx cross-env NEXT_PUBLIC_PROJECT_NAME=testbrand`
 - **Execution Steps**:
-  1. Set environment variable `NEXT_PUBLIC_PROJECT_NAME=undrlla`.
+  1. Set environment variable `NEXT_PUBLIC_PROJECT_NAME=testbrand` (via cross-env).
   2. Render `HeaderNav`.
-  3. Assert links rendered in header.
-- **Expected Result**: Header displays `#how`, `#pricing`, `/economics` and action button `#waitlist`. Zero underundre links present.
+  3. Assert links rendered in header and theme-mode switcher keys.
+- **Expected Result**: Header displays exactly `testbrand`'s configured links and CTA. Theme localStorage key / `data-theme` namespace derive from `testbrand` — zero `undrlla` literals anywhere in shared components (grep `undrlla` over `components/` returns 0).
 - **Post-conditions**: Restore environment variable to `underundre`.
 
 ### TC-LTE-003: Footer Columns Render from FooterConfig without Slug Hardcoding
@@ -165,15 +165,15 @@
     "message": "We have 15 staff manually processing KYC documents.",
     "metadata": {
       "teamSize": 15,
-      "currentSaaS": ["Zendesk", "Salesforce"],
-      "monthlyBudget": "$4,000"
+      "monthlyBudget": "$4,000",
+      "currentSaas": "Zendesk + Salesforce"
     }
   }
   ```
 - **Execution Steps**:
   1. `curl -X POST http://localhost:3000/api/lead -H "Content-Type: application/json" -d '<Test Data>'`
   2. Inspect HTTP status and response JSON.
-- **Expected Result**: HTTP 200 OK. Response: `{"success": true, "message": "Audit request received."}`.
+- **Expected Result**: HTTP 200 OK. Response: `{"success": true, "fallback": "none", "message": "..."}`. Flat scalar metadata only (arrays/objects are rejected by schema).
 - **Post-conditions**: None.
 
 ### TC-LTE-011: Invalid Email Rejection (BVA / Boundary)
@@ -353,4 +353,57 @@
 - **Execution Steps**:
   1. Run `NEXT_PUBLIC_PROJECT_NAME=_template pnpm validate`.
 - **Expected Result**: `tsc --noEmit` exits with 0 errors.
+- **Post-conditions**: None.
+
+---
+
+## 7. Security & Consumer-Contract Regression (review follow-ups, 2026-10-30)
+
+### TC-LTE-023: Real Form → API Contract Integrity (review F1)
+- **Traceability**: FR-005, Task T-016, T-024
+- **Tier**: [Smoke]
+- **Priority**: P0
+- **Type**: Integration / E2E
+- **Technique**: Browser Automation (Playwright or equivalent)
+- **Pre-conditions**: Dev server running; `TELEGRAM_*` unset (fail-open mode).
+- **Execution Steps**:
+  1. Open `/` as `underundre`, scroll to `#contact`.
+  2. Fill the real form fields (email, messenger, bottleneck select, brief) and submit.
+  3. Inspect the network request payload and the response.
+- **Expected Result**: Payload is `{email, contact, message, metadata:{bottleneckType,...}}`; HTTP 200; UI shows the success state with fallback notice. **This case exists because curl-only tests cannot catch a form/API contract mismatch.**
+- **Post-conditions**: None.
+
+### TC-LTE-024: Bounded Metadata Rejection (review F7)
+- **Traceability**: FR-005, Task T-016
+- **Tier**: [Sanity]
+- **Priority**: P1
+- **Type**: Negative / Fault Injection
+- **Technique**: BVA + Error Guessing
+- **Test Data**:
+  - 24a: `metadata` with 21 keys → rejected.
+  - 24b: `metadata: { "x": "<501-char string>" }` → rejected.
+  - 24c: `metadata: { "x": { "nested": true } }` (object value) → rejected.
+  - 24d: 20 keys with scalar values ≤ 500 chars → accepted.
+- **Expected Result**: 24a–24c return HTTP 400 with a Zod diagnostic on `metadata`; 24d returns 200. No hang, no 500.
+- **Post-conditions**: None.
+
+### TC-LTE-025: Per-IP Rate Limit (review F7)
+- **Traceability**: FR-005, Task T-016
+- **Tier**: [Sanity]
+- **Priority**: P1
+- **Type**: Negative / Abuse
+- **Execution Steps**: Fire 7 POSTs in quick succession from one IP.
+- **Expected Result**: First 5 → 200; subsequent → HTTP 429. No Telegram/webhook dispatch for rejected requests.
+- **Post-conditions**: None.
+
+### TC-LTE-026: Manifest Absence Semantics (review F3)
+- **Traceability**: FR-008, FR-002, Task T-011
+- **Tier**: [Sanity]
+- **Priority**: P1
+- **Type**: Negative / Build
+- **Pre-conditions**: Active project without `data/manifest.json` and `showManifestLink` unset (e.g. `_template`-based test brand).
+- **Execution Steps**:
+  1. `npx cross-env NEXT_PUBLIC_PROJECT_NAME=testbrand pnpm build`.
+  2. Request `/manifest`.
+- **Expected Result**: Build succeeds (no missing-file crash at SSG); `/manifest` returns 404; footer omits the `/manifest` link.
 - **Post-conditions**: None.

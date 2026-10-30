@@ -3,31 +3,45 @@ import { z } from "zod";
 /**
  * Zod schema definitions for Schema-Driven Content Layer (Option C).
  * Enforces build-time data integrity for pricing tiers, FAQs, and manifesto principles.
+ *
+ * Canonical contract (rev. 2, post-review 2026-10-30):
+ * - All user-visible content fields are bilingual via LocalizedText { ru, en }
+ *   — matches the site's lang-context (lib/i18n.ts) and the bilingual copy
+ *   currently living in projects/underundre/locales.ts.
+ * - metadata on the lead schema is a bounded flat scalar map (review F7).
  */
+
+// 0. Bilingual text primitive
+export const LocalizedTextSchema = z.object({
+  ru: z.string().min(1),
+  en: z.string().min(1),
+});
+
+export type LocalizedText = z.infer<typeof LocalizedTextSchema>;
 
 // 1. Pricing Plan Schema
 export const PricingPlanItemSchema = z.object({
   id: z.string().min(1),
-  tierName: z.string().min(1),
-  title: z.string().min(1),
-  description: z.string().min(1),
-  price: z.string().min(1),
+  tierName: LocalizedTextSchema,
+  title: LocalizedTextSchema,
+  description: LocalizedTextSchema,
+  price: z.string().min(1), // display string, e.g. "$350" — language-neutral
   originalPrice: z.string().optional(),
-  priceNote: z.string().optional(),
-  turnaround: z.string().min(1),
-  creditNote: z.string().optional(),
-  deliverablesTitle: z.string().min(1),
-  deliverables: z.array(z.string()).min(1),
-  demandGateNote: z.string().optional(),
-  ctaText: z.string().min(1),
+  priceNote: LocalizedTextSchema.optional(),
+  turnaround: LocalizedTextSchema,
+  creditNote: LocalizedTextSchema.optional(),
+  deliverablesTitle: LocalizedTextSchema,
+  deliverables: z.array(LocalizedTextSchema).min(1),
+  demandGateNote: LocalizedTextSchema.optional(),
+  ctaText: LocalizedTextSchema,
   ctaHref: z.string().min(1),
   isHero: z.boolean().default(false),
 });
 
 export const PricingDataSchema = z.object({
-  sectionBadge: z.string().min(1),
-  sectionTitle: z.string().min(1),
-  sectionSubtitle: z.string().min(1),
+  sectionBadge: LocalizedTextSchema,
+  sectionTitle: LocalizedTextSchema,
+  sectionSubtitle: LocalizedTextSchema,
   plans: z.array(PricingPlanItemSchema).min(1),
 });
 
@@ -36,14 +50,14 @@ export type PricingData = z.infer<typeof PricingDataSchema>;
 
 // 2. FAQ Item Schema
 export const FaqItemSchema = z.object({
-  question: z.string().min(1),
-  answers: z.array(z.string()).min(1),
+  question: LocalizedTextSchema,
+  answers: z.array(LocalizedTextSchema).min(1),
 });
 
 export const FaqDataSchema = z.object({
-  sectionBadge: z.string().min(1),
-  sectionTitle: z.string().min(1),
-  sectionSubtitle: z.string().min(1),
+  sectionBadge: LocalizedTextSchema,
+  sectionTitle: LocalizedTextSchema,
+  sectionSubtitle: LocalizedTextSchema,
   items: z.array(FaqItemSchema).min(1),
 });
 
@@ -53,15 +67,15 @@ export type FaqData = z.infer<typeof FaqDataSchema>;
 // 3. Manifesto Principle Schema
 export const ManifestoPrincipleSchema = z.object({
   number: z.number().int().positive(),
-  title: z.string().min(1),
-  quote: z.string().optional(),
-  summary: z.string().min(1),
-  body: z.string().min(1),
+  title: LocalizedTextSchema,
+  quote: LocalizedTextSchema.optional(),
+  summary: LocalizedTextSchema,
+  body: LocalizedTextSchema,
 });
 
 export const ManifestDataSchema = z.object({
-  title: z.string().min(1),
-  subtitle: z.string().min(1),
+  title: LocalizedTextSchema,
+  subtitle: LocalizedTextSchema,
   version: z.string().min(1),
   principles: z.array(ManifestoPrincipleSchema).length(7),
 });
@@ -70,6 +84,12 @@ export type ManifestoPrinciple = z.infer<typeof ManifestoPrincipleSchema>;
 export type ManifestData = z.infer<typeof ManifestDataSchema>;
 
 // 4. Pluggable Inbound Lead Schema
+export const LeadMetadataValueSchema = z.union([
+  z.string().max(500, "Metadata string value exceeds maximum length (500 chars)"),
+  z.number(),
+  z.boolean(),
+]);
+
 export const GenericLeadSubmissionSchema = z.object({
   email: z
     .string()
@@ -93,7 +113,9 @@ export const GenericLeadSubmissionSchema = z.object({
     .trim()
     .min(3, "Brief must be at least 3 characters")
     .max(2000, "Brief exceeds maximum length (2000 chars)"),
-  metadata: z.record(z.unknown()).optional().default({}),
+  // Bounded flat scalar map (review F7): max 20 keys, scalar values only —
+  // no nested objects/arrays, kills payload-depth/CPU amplification.
+  metadata: z.record(z.string(), LeadMetadataValueSchema).max(20).optional().default({}),
 });
 
 export type GenericLeadSubmission = z.infer<typeof GenericLeadSubmissionSchema>;

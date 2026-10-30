@@ -15,7 +15,7 @@
   3. Running `pnpm build` produces a production-ready standalone build in minutes.
 - **Validation Steps**:
   1. Clone repository on clean machine.
-  2. Run `pnpm project:create --slug="dr-smile" --name="Dr. Smile Dental" --domain="drsmile.dental" --primary="#0284c7" --accent="#10b981"`.
+  2. Run `pnpm project:create --slug="dr-smile" --name="Dr. Smile Dental" --domain="drsmile.dental" --primary-color="#0284c7" --accent-color="#10b981"`.
   3. Replace `projects/dr-smile/public/favicon.ico` with client logo.
   4. Edit `projects/dr-smile/data/pricing.json`: set pricing to $200 / $1,500.
   5. Run `NEXT_PUBLIC_PROJECT_NAME=dr-smile pnpm dev`.
