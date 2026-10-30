@@ -1,4 +1,4 @@
-import { loadFaqData } from "@/lib/schemas/content-schema";
+import { loadFaqData } from "@/lib/schemas/content-loaders";
 import FaqView from "./faq-view";
 
 // Server component (spec 003 T-014): validates faq.json at build/SSG time,

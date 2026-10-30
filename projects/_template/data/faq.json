@@ -1,0 +1,28 @@
+{
+  "sectionBadge": {
+    "ru": "Вопросы",
+    "en": "FAQ"
+  },
+  "sectionTitle": {
+    "ru": "Частые вопросы",
+    "en": "Frequently Asked Questions"
+  },
+  "sectionSubtitle": {
+    "ru": "[PLACEHOLDER] Подзаголовок FAQ.",
+    "en": "[PLACEHOLDER] FAQ subtitle."
+  },
+  "items": [
+    {
+      "question": {
+        "ru": "[PLACEHOLDER] Вопрос?",
+        "en": "[PLACEHOLDER] Question?"
+      },
+      "answers": [
+        {
+          "ru": "[PLACEHOLDER] Ответ.",
+          "en": "[PLACEHOLDER] Answer."
+        }
+      ]
+    }
+  ]
+}

@@ -27,3 +27,25 @@ export const underundreProject = {
   FAQ: FaqSection,
   CTA: CtaUnderundre,
 };
+
+// Server home composition (spec 003 FR-011/T-018 page-registry pattern).
+export function UnderundreHome() {
+  const { Hero, TaglineReveal, LoomDemo, Pricing, Opsec, Comparison, VibeWarning, FAQ, CTA } =
+    underundreProject;
+
+  return (
+    <main className="bg-brand-bg text-purple-50 min-h-screen transition-colors">
+      <Hero />
+      <TaglineReveal />
+      <LoomDemo />
+      <Pricing />
+      {/* ForkServiceLine & Sprint B SKU hidden in v1: undreseller engine not release-ready yet.
+          Re-enable in v2 by restoring <ForkServiceLine /> and the third pricing card. */}
+      <Opsec />
+      <Comparison />
+      <VibeWarning />
+      <FAQ />
+      <CTA />
+    </main>
+  );
+}

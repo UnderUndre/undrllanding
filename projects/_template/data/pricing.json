@@ -1,0 +1,56 @@
+{
+  "sectionBadge": {
+    "ru": "Тарифы",
+    "en": "Pricing"
+  },
+  "sectionTitle": {
+    "ru": "[PLACEHOLDER] Фиксированные тарифы",
+    "en": "[PLACEHOLDER] Fixed-Price Packages"
+  },
+  "sectionSubtitle": {
+    "ru": "[PLACEHOLDER] Подзаголовок секции тарифов.",
+    "en": "[PLACEHOLDER] Pricing section subtitle."
+  },
+  "plans": [
+    {
+      "id": "starter",
+      "tierName": {
+        "ru": "СТАРТЕР",
+        "en": "STARTER"
+      },
+      "title": {
+        "ru": "[PLACEHOLDER] Название пакета",
+        "en": "[PLACEHOLDER] Package Name"
+      },
+      "description": {
+        "ru": "[PLACEHOLDER] Описание пакета.",
+        "en": "[PLACEHOLDER] Package description."
+      },
+      "price": "$X",
+      "turnaround": {
+        "ru": "Срок: N дней",
+        "en": "Turnaround: N days"
+      },
+      "deliverablesTitle": {
+        "ru": "Что входит:",
+        "en": "Included:"
+      },
+      "deliverables": [
+        {
+          "ru": "[PLACEHOLDER] Артефакт 1",
+          "en": "[PLACEHOLDER] Deliverable 1"
+        },
+        {
+          "ru": "[PLACEHOLDER] Артефакт 2",
+          "en": "[PLACEHOLDER] Deliverable 2"
+        }
+      ],
+      "ctaText": {
+        "ru": "Оставить заявку →",
+        "en": "Get started →"
+      },
+      "ctaHref": "#contact",
+      "isHero": false
+    }
+  ]
+}

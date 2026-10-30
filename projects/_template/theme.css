@@ -1,0 +1,12 @@
+/* Neutral starter palette (spec 003 FR-010): dark slate + blue primary.
+   Rebranding = edit this one file; components consume semantic utilities. */
+:root {
+  --brand-bg: #030712;
+  --brand-surface: #0b1220;
+  --brand-surface-subtle: #101a2e;
+  --brand-primary: #2563eb;
+  --brand-primary-hover: #1d4ed8;
+  --brand-secondary: #0f172a;
+  --brand-accent: #059669;
+  --brand-border: rgba(148, 163, 184, 0.25);
+}

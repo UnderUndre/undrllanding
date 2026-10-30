@@ -1,4 +1,4 @@
-import { loadPricingData } from "@/lib/schemas/content-schema";
+import { loadPricingData } from "@/lib/schemas/content-loaders";
 import SprintPricingView from "./sprint-pricing-view";
 
 // Server component (spec 003 T-013): validates pricing.json at build/SSG time

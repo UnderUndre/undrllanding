@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getActiveProjectConfig } from "@/lib/project-config";
-import { loadManifestData } from "@/lib/schemas/content-schema";
+import { loadManifestData } from "@/lib/schemas/content-loaders";
 import ManifestContent from "./manifest-content";
 
 // Statutory Engineering Manifesto page (spec 003 FR-008).
