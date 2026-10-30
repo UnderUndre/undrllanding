@@ -1,0 +1,40 @@
+UnderUndre Landing Engine
+Copyright (C) 2026 UnderUndre
+
+This repository is free software: you can redistribute it and/or modify it
+under the terms of the GNU General Public License as published by the Free
+Software Foundation, either version 3 of the License, or (at your option)
+any later version. See the LICENSE file for the full license text.
+
+==========================================================================
+PROVENANCE & ATTRIBUTION
+==========================================================================
+
+This project's layout scaffolding, CSS foundation and select UI patterns
+are historically derived from "Simple Light" by Cruip (https://cruip.com),
+used as the starting template for this codebase. Substantial custom
+architecture has been built on top of that foundation, including:
+
+  - The multi-brand project engine (projects/<slug>/ configuration,
+    navigation/footer/legal inversion of control, theme token layer);
+  - The Zod-validated bilingual content layer (pricing, FAQ, manifesto);
+  - The pluggable inbound Lead API and statutory compliance pages;
+  - All brand-specific copy, components and commercial logic.
+
+Per the terms of the upstream license heritage, the combined work is
+distributed under GNU GPL-3.0. Cruip retains copyright on the original
+"Simple Light" components; UnderUndre claims copyright on the custom
+architecture and content layered above them.
+
+==========================================================================
+GPL BOUNDARY FOR WHITE-LABEL CONSUMERS
+==========================================================================
+
+The template engine in this repository is GPL-3.0. Commercial service
+offerings built on it (done-for-you setup, private modules and
+integrations, Care retainers) are separate proprietary works and are NOT
+part of this repository. Client-owned private modules delivered outside
+this repo are not covered by this license.
+
+Third-party trademarks (Upwork, Paddle, Stripe, Shopify, Telegram) are
+referenced descriptively and remain property of their owners.
