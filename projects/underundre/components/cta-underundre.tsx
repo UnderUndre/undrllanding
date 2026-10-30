@@ -22,11 +22,15 @@ export default function CtaUnderundre() {
     setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
+    // Generic contract (spec 003 FR-005, T-024): legacy fields map as
+    // messenger → contact, stackAndTeam → message, bottleneckType → metadata.
     const payload = {
       email: (formData.get("email") as string) || "",
-      messenger: (formData.get("messenger") as string) || "",
-      bottleneckType: (formData.get("bottleneckType") as string) || "whatsapp-manual",
-      stackAndTeam: (formData.get("stackAndTeam") as string) || "",
+      contact: (formData.get("messenger") as string) || "",
+      message: (formData.get("stackAndTeam") as string) || "",
+      metadata: {
+        bottleneckType: (formData.get("bottleneckType") as string) || "other",
+      },
     };
 
     try {
@@ -40,7 +44,7 @@ export default function CtaUnderundre() {
 
       if (res.ok && data.success) {
         setStatus("success");
-        if (data.fallback === "direct") {
+        if (data.fallback === "direct" || data.fallback === "partial") {
           setFallbackMode(true);
         }
       } else {
