@@ -5,10 +5,8 @@
   "scripts": {
     "dev": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=underundre next dev --turbopack",
     "dev:underundre": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=underundre next dev --turbopack",
-    "dev:undrlla": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=undrlla next dev --turbopack",
     "build": "next build",
     "build:underundre": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=underundre next build",
-    "build:undrlla": "npx cross-env NEXT_PUBLIC_PROJECT_NAME=undrlla next build",
     "start": "next start",
     "lint": "next lint",
     "validate": "tsc --noEmit"

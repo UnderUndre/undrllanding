@@ -27,29 +27,14 @@ export const underundreConfig: ProjectConfig = {
   },
 };
 
-export const undrllaConfig: ProjectConfig = {
-  slug: "undrlla",
-  name: "Undrlla",
-  domain: "undrlla.com",
-  title: "Undrlla — Your branded store, live in one deploy",
-  description:
-    "Autonomous Medusa 2.0 marketplaces with custom branding, Next.js storefront, custom domains, Paddle/Stripe cards and SHKeeper crypto. 0% GMV fee.",
-  iconUrl: "/projects/undrlla/icon.png",
-  heroBadge: "MEDUSA 2.0 MARKETPLACE STOREFRONT",
-  theme: {
-    primaryColor: "#000000",
-    secondaryColor: "#18181b",
-  },
-};
+// Legacy undrlla brand decommissioned per spec 003 FR-011 (T-023).
+// Its replacement landing will be re-created later as a regular template consumer
+// via `pnpm project:create`.
 
 export function getActiveProjectConfig(): ProjectConfig {
   const raw = (process.env.NEXT_PUBLIC_PROJECT_NAME || "underundre").toLowerCase();
   // Spec 001 §6.2.3: transition alias — "undreseller" (legacy template name) resolves to "underundre".
   const projectName = raw === "undreseller" ? "underundre" : raw;
-
-  if (projectName === "undrlla") {
-    return undrllaConfig;
-  }
 
   return underundreConfig;
 }

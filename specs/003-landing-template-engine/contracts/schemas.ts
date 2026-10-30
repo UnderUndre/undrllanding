@@ -115,7 +115,11 @@ export const GenericLeadSubmissionSchema = z.object({
     .max(2000, "Brief exceeds maximum length (2000 chars)"),
   // Bounded flat scalar map (review F7): max 20 keys, scalar values only —
   // no nested objects/arrays, kills payload-depth/CPU amplification.
-  metadata: z.record(z.string(), LeadMetadataValueSchema).max(20).optional().default({}),
+  metadata: z
+    .record(z.string(), LeadMetadataValueSchema)
+    .refine((v) => Object.keys(v).length <= 20, "Metadata exceeds maximum of 20 keys")
+    .optional()
+    .default({}),
 });
 
 export type GenericLeadSubmission = z.infer<typeof GenericLeadSubmissionSchema>;
