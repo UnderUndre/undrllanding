@@ -348,10 +348,10 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         },
       ],
       legalTitle: "ЮРИДИЧЕСКИЙ СТАНДАРТ ПЕРЕДАЧИ КОДА",
-      legalH4: "100% отчуждение прав на код по коду NACE 62.01",
+      legalH4: "Split-IP: 100% прав на кастомные доработки (Директива 2009/24/EC)",
       legalDesc:
-        "Исходный код, SQL-миграции DDL и спецификации OpenAPI передаются в вашу исключительную собственность в приватный GitHub. Работа по стандарту EU NACE 62.01.",
-      legalBadge: "100% ПЕРЕДАЧА ПРАВ",
+        "Кастомные модули, DDL-миграции и спецификации OpenAPI передаются в вашу исключительную собственность в приватный GitHub; ядро платформы — по бессрочной неисключительной лицензии. Классификация деятельности: EU NACE Rev. 2, 62.01.",
+      legalBadge: "SPLIT-IP · 100% ПРАВ НА КАСТОМ",
       commTitle: "ПРОТОКОЛ СВЯЗИ",
       commH4: "Асинхронная скорость: защита от совещательной усталости",
       commDesc:
@@ -487,7 +487,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       },
       directLinks: {
         title: "Не готовы к аудиту? Задайте вопрос по архитектуре напрямую:",
-        note: "Оплата — только через защищённый эскроу Upwork Direct Contracts (5% комиссия) со 100% отчуждением прав на код.",
+        note: "Оплата — только через защищённый эскроу Upwork Direct Contracts (5% комиссия исполнителя). Split-IP: 100% прав на кастомные доработки.",
       },
     },
   },
@@ -815,7 +815,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       },
       directLinks: {
         title: "Not ready for the audit? Ask an architecture question directly:",
-        note: "Payment only via secure Upwork Direct Contracts escrow (5% fee) with 100% IP code transfer.",
+        note: "Payment only via secure Upwork Direct Contracts escrow (5% contractor fee). Split-IP: 100% rights on custom work.",
       },
     },
   },

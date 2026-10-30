@@ -46,7 +46,7 @@ export default function RootLayout({
   const umamiSrc = process.env.NEXT_PUBLIC_UMAMI_SRC || "https://analytics.underundre.com/script.js";
 
   return (
-    <html lang="en" className="scroll-smooth dark" data-theme="undrlla-dark" suppressHydrationWarning>
+    <html lang="en" className="scroll-smooth dark" data-theme={`${getActiveProjectConfig().slug}-dark`} suppressHydrationWarning>
       <body
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} font-sans tracking-tight bg-[#080808] text-purple-50 antialiased selection:bg-[#b45500] selection:text-white transition-colors duration-300`}

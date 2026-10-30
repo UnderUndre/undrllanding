@@ -13,7 +13,7 @@ export const underundreBrand: ProjectConfig = {
     "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
   iconUrl: "/projects/underundre/favicon.ico",
   heroBadge:
-    "3X SALESFORCE CERTIFIED ARCHITECT | ZERO SAAS TAXES | UPWORK ESCROW VERIFIED",
+    "3X SALESFORCE CERTIFIED ENGINEER (ADMIN I & II · PLATFORM DEV) | ZERO SAAS TAXES | UPWORK ESCROW VERIFIED",
   theme: {
     primaryColor: "#b45500",
     secondaryColor: "#4e007a",
@@ -73,7 +73,7 @@ export const underundreBrand: ProjectConfig = {
           },
           {
             labelKey: "footer_uu_ip",
-            labelFallback: "100% Code & IP Transfer",
+            labelFallback: "Split-IP: 100% rights on custom work",
           },
           { labelKey: "footer_uu_nace", labelFallback: "EU NACE 62.01 Standard" },
         ],
@@ -88,7 +88,7 @@ export const underundreBrand: ProjectConfig = {
     entityName: "UnderUndre",
     jurisdiction: "EU NACE 62.01",
     retentionMonths: 12,
-    escrowProvider: "Upwork Direct Contracts (5% fee, 0% client fee)",
+    escrowProvider: "Upwork Direct Contracts (5% escrow fee paid by contractor; client: 0% via US ACH or standard card acquiring 3–5%)",
     warrantyDays: 7,
   },
 };

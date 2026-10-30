@@ -1,13 +1,22 @@
 {
-  "title": { "ru": "Условия обслуживания", "en": "Terms of Service" },
-  "updatedAt": { "ru": "Дата последнего обновления: 30.10.2026", "en": "Last updated: 2026-10-30" },
+  "title": {
+    "ru": "Условия обслуживания",
+    "en": "Terms of Service"
+  },
+  "updatedAt": {
+    "ru": "Дата последнего обновления: 30.10.2026",
+    "en": "Last updated: 2026-10-30"
+  },
   "intro": {
     "ru": "Настоящие условия регулируют оказание продуктовых инженерных услуг {{entityName}} (классификация: {{jurisdiction}}).",
     "en": "These terms govern productized engineering services provided by {{entityName}} (classification: {{jurisdiction}})."
   },
   "sections": [
     {
-      "heading": { "ru": "1. Фиксированный скоуп", "en": "1. Fixed scope" },
+      "heading": {
+        "ru": "1. Фиксированный скоуп",
+        "en": "1. Fixed scope"
+      },
       "paragraphs": [
         {
           "ru": "Каждое оказание услуги имеет строго фиксированный объём (scope), согласованный письменно до старта. Работы за пределами согласованного объёма оцениваются отдельно и не включаются в фиксированную цену.",
@@ -16,7 +25,10 @@
       ]
     },
     {
-      "heading": { "ru": "2. Эскроу-защита платежей", "en": "2. Escrow-protected payments" },
+      "heading": {
+        "ru": "2. Эскроу-защита платежей",
+        "en": "2. Escrow-protected payments"
+      },
       "paragraphs": [
         {
           "ru": "Платежи проводятся через стороннее эскроу-решение: {{escrowProvider}}. Средства замораживаются эскроу до приёмки этапа; оплата releasing после вашего подтверждения результата.",
@@ -25,16 +37,22 @@
       ]
     },
     {
-      "heading": { "ru": "3. 100% отчуждение прав", "en": "3. 100% IP transfer" },
+      "heading": {
+        "ru": "3. Интеллектуальная собственность (Split-IP Model)",
+        "en": "3. Intellectual Property (Split-IP Model)"
+      },
       "paragraphs": [
         {
-          "ru": "После релиза этапа (milestone release) заказчик получает 100% исключительных имущественных прав на код и артефакты этапа, включая полный Git-репозиторий. Подрядчик не удерживает лицензий, бэкдоров или отложенных прав.",
-          "en": "Upon milestone release the client receives 100% exclusive intellectual property rights to the stage's code and artifacts, including the complete Git repository. The contractor retains no licenses, backdoors, or deferred rights."
+          "ru": "Базовая платформа и архитектурные модули (UnderUndre Core Engine) остаются исключительной собственностью Подрядчика. Заказчику предоставляется бессрочная, безотзывная, неисключительная лицензия на эксплуатацию ядра в рамках развёрнутой системы. 100% исключительных имущественных прав на специфичные кастомные доработки, DDL-схемы данных, фирменный стиль, контент и бизнес-логику переходят Заказчику после полной оплаты соответствующего этапа — в соответствии с применимым законодательством об интеллектуальной собственности (в ЕС — Директива 2009/24/EC). Классификация деятельности Подрядчика: EU NACE Rev. 2, код 62.01 (компьютерное программирование); классификатор носит описательный характер и не является основанием передачи прав.",
+          "en": "The foundational platform and architectural modules (UnderUndre Core Engine) remain the exclusive intellectual property of the Contractor. The Client is granted a perpetual, irrevocable, non-exclusive license to operate the Core Engine within the deployed system. 100% exclusive intellectual property rights to bespoke customizations, proprietary DDL schemas, branding, content, and business logic are assigned to the Client upon full payment of the corresponding milestone, in accordance with applicable intellectual-property law (in the EU — Directive 2009/24/EC). Contractor activity classification: EU NACE Rev. 2, code 62.01 (computer programming); the classification is descriptive and is not a basis for rights assignment."
         }
       ]
     },
     {
-      "heading": { "ru": "4. Гарантийный период", "en": "4. Warranty period" },
+      "heading": {
+        "ru": "4. Гарантийный период",
+        "en": "4. Warranty period"
+      },
       "paragraphs": [
         {
           "ru": "На переданные артефакты действует {{warrantyDays}}-дневная гарантия на исправление дефектов (SLA P1/P2: критические — в течение 24 часов, значимые — в течение 72 часов). Гарантия не покрывает изменение требований.",
@@ -43,7 +61,10 @@
       ]
     },
     {
-      "heading": { "ru": "5. Ограничение ответственности", "en": "5. Limitation of liability" },
+      "heading": {
+        "ru": "5. Ограничение ответственности",
+        "en": "5. Limitation of liability"
+      },
       "paragraphs": [
         {
           "ru": "Ответственность подрядчика ограничена суммой фактически полученных гонораров за предшествующие 30 дней. Упущенная выгода возмещению не подлежит.",
@@ -52,7 +73,10 @@
       ]
     },
     {
-      "heading": { "ru": "6. Статус сторон", "en": "6. Independent parties" },
+      "heading": {
+        "ru": "6. Статус сторон",
+        "en": "6. Independent parties"
+      },
       "paragraphs": [
         {
           "ru": "Стороны действуют как независимые подрядчики. Подрядчик самостоятельно определяет способ выполнения работ в рамках согласованного скоупа.",

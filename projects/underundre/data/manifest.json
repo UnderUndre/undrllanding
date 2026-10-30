@@ -1,5 +1,8 @@
 {
-  "title": { "ru": "Инженерный манифест", "en": "The Engineering Manifesto" },
+  "title": {
+    "ru": "Инженерный манифест",
+    "en": "The Engineering Manifesto"
+  },
   "subtitle": {
     "ru": "7 непреложных операционных принципов суверенных программных систем",
     "en": "7 Non-Negotiable Operational Principles for Sovereign Software Systems"
@@ -8,7 +11,10 @@
   "principles": [
     {
       "number": 1,
-      "title": { "ru": "Via Negativa (директива анти-расточительства)", "en": "Via Negativa (Anti-Waste Directive)" },
+      "title": {
+        "ru": "Via Negativa (директива анти-расточительства)",
+        "en": "Via Negativa (Anti-Waste Directive)"
+      },
       "quote": {
         "ru": "Никогда не автоматизируй то, что следует удалить.",
         "en": "Never automate what should be deleted."
@@ -24,7 +30,10 @@
     },
     {
       "number": 2,
-      "title": { "ru": "Zero SaaS Taxes (ноль лицензионных поборов)", "en": "Zero SaaS Taxes" },
+      "title": {
+        "ru": "Zero SaaS Taxes (ноль лицензионных поборов)",
+        "en": "Zero SaaS Taxes"
+      },
       "quote": {
         "ru": "Self-hosted open-source вместо посидельных лицензий.",
         "en": "Self-hosted open-source over recurring seat licenses."
@@ -34,13 +43,16 @@
         "en": "Every SaaS seat is a tax that outgrows your business."
       },
       "body": {
-        "ru": "Мы строим на self-hosted open-source стеке: PostgreSQL, Next.js, Medusa, n8n. Вы платите за инфраструктуру (десятки долларов), а не за лицензии (сотни и тысячи). Никакого vendor lock-in: полный Git-репозиторий и приватная инфраструктура остаются у вас.",
-        "en": "We build on a self-hosted open-source stack: PostgreSQL, Next.js, Medusa, n8n. You pay for infrastructure (tens of dollars), not licenses (hundreds and thousands). No vendor lock-in: the complete Git repository and private infrastructure remain yours."
+        "ru": "Мы строим на self-hosted open-source стеке: PostgreSQL, Next.js, Twenty CRM, Trigger.dev v3. Вы платите за инфраструктуру (десятки долларов), а не за лицензии (сотни и тысячи). Никакого vendor lock-in: полный Git-репозиторий и приватная инфраструктура остаются у вас.",
+        "en": "We build on a self-hosted open-source stack: PostgreSQL, Next.js, Twenty CRM, Trigger.dev v3. You pay for infrastructure (tens of dollars), not licenses (hundreds and thousands). No vendor lock-in: the complete Git repository and private infrastructure remain yours."
       }
     },
     {
       "number": 3,
-      "title": { "ru": "Schema-First (DDL + Zod)", "en": "Strict Schema-First (DDL + Zod)" },
+      "title": {
+        "ru": "Schema-First (DDL + Zod)",
+        "en": "Strict Schema-First (DDL + Zod)"
+      },
       "quote": {
         "ru": "Детерминированная валидация вместо vibe-coding-койки.",
         "en": "Deterministic validation over vibe-coding slop."
@@ -56,7 +68,10 @@
     },
     {
       "number": 4,
-      "title": { "ru": "Async-First Velocity", "en": "Async-First Velocity" },
+      "title": {
+        "ru": "Async-First Velocity",
+        "en": "Async-First Velocity"
+      },
       "quote": {
         "ru": "Асинхронные Loom-разборы вместо статус-звонков.",
         "en": "Asynchronous Loom walkthroughs over daily status calls."
@@ -72,7 +87,10 @@
     },
     {
       "number": 5,
-      "title": { "ru": "100% Code & Data Sovereignty", "en": "100% Code & Data Sovereignty" },
+      "title": {
+        "ru": "100% Code & Data Sovereignty",
+        "en": "100% Code & Data Sovereignty"
+      },
       "quote": {
         "ru": "Полный Git-репозиторий и приватная инфраструктура — ваши.",
         "en": "Complete Git repo transfer and private infrastructure ownership."
@@ -88,7 +106,10 @@
     },
     {
       "number": 6,
-      "title": { "ru": "Single Production Leases & Memory Fencing", "en": "Single Production Leases & Memory Fencing" },
+      "title": {
+        "ru": "Single Production Leases & Memory Fencing",
+        "en": "Single Production Leases & Memory Fencing"
+      },
       "quote": {
         "ru": "Docker resource fencing против каскадных OOM-падений.",
         "en": "Docker resource fencing against out-of-memory cascading failures."
@@ -104,7 +125,10 @@
     },
     {
       "number": 7,
-      "title": { "ru": "Fixed-Scope Knife & Escrow Protection", "en": "Fixed-Scope Knife & Escrow Protection" },
+      "title": {
+        "ru": "Fixed-Scope Knife & Escrow Protection",
+        "en": "Fixed-Scope Knife & Escrow Protection"
+      },
       "quote": {
         "ru": "Взаимная защита через сторонний эскроу и фиксированные таймбоксы.",
         "en": "Mutual protection via third-party escrow and fixed timeboxes."

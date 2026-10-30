@@ -51,8 +51,8 @@
       },
       "answers": [
         {
-          "ru": "Вы вносите оплату на защищённый эскроу-счёт Upwork Direct Contracts (5% комиссия, 0% клиенту). Я не прикасаюсь к капиталу до сдачи работ.",
-          "en": "You deposit the flat fee directly into Upwork Direct Contracts (5% fee, 0% client fee). I never touch your capital upfront."
+          "ru": "Вы вносите оплату на защищённый эскроу-счёт Upwork Direct Contracts. Комиссия исполнителя — 5%. Для клиента оплата через US ACH проходит без сервисного сбора Upwork; при оплате картой применяется стандартная комиссия эквайринга (3–5%). Я не прикасаюсь к капиталу до сдачи работ.",
+          "en": "You deposit the flat fee into Upwork Direct Contracts escrow. The freelancer-side fee is 5%. For clients, US ACH payments carry no Upwork service fee; card payments incur the standard acquirer fee (3–5%). I never touch your capital upfront."
         },
         {
           "ru": "Средства переводятся только после проверки работоспособности на живой демонстрации.",
@@ -67,12 +67,12 @@
       },
       "answers": [
         {
-          "ru": "Вы получаете 100% исключительные права на исходный код и архитектуру по классификатору EU NACE 62.01 сразу после закрытия вехи в эскроу.",
-          "en": "You receive 100% exclusive intellectual property and source code ownership upon sprint completion and escrow release, under EU NACE 62.01 classification."
+          "ru": "Модель Split-IP: ядро платформы (UnderUndre Core Engine) остаётся исключительной собственностью бюро — вам предоставляется бессрочная, безотзывная, неисключительная лицензия на его эксплуатацию. 100% исключительных прав на созданные в рамках спринта кастомные модули, DDL-схемы, брендинг и контент переходят вам сразу после закрытия вехи в эскроу — по нормам законодательства об интеллектуальной собственности (в ЕС — Директива 2009/24/EC).",
+          "en": "Split-IP model: the platform core (UnderUndre Core Engine) remains the exclusive property of the bureau — you receive a perpetual, irrevocable, non-exclusive license to operate it. 100% exclusive rights to the custom modules, DDL schemas, branding, and content created during your sprint transfer to you immediately upon escrow release, under applicable intellectual-property law (in the EU — Directive 2009/24/EC)."
         },
         {
-          "ru": "Репозиторий передаётся в ваш GitHub, доступы к серверам остаются только у вас.",
-          "en": "The repository is transferred directly to your GitHub, and servers remain entirely under your control."
+          "ru": "Кастомный репозиторий передаётся в ваш GitHub, доступы к серверам остаются только у вас. Классификация деятельности: EU NACE Rev. 2, код 62.01.",
+          "en": "The custom repository is transferred directly to your GitHub, and servers remain entirely under your control. Activity classification: EU NACE Rev. 2, code 62.01."
         }
       ]
     },
@@ -83,8 +83,8 @@
       },
       "answers": [
         {
-          "ru": "В течение 7 дней после релиза я бесплатно и в приоритетном порядке закрываю любые инциденты P1 (падение сервиса) и P2 (сбой ключевого сценария) за 24 часа.",
-          "en": "For 7 calendar days post-deployment, I provide priority incident resolution. Any P1 (system outage) or P2 (broken workflow) defect is resolved within 24 hours at zero charge."
+          "ru": "В течение 7 дней после релиза я бесплатно закрываю инциденты по SLA: P1 (падение сервиса) — в течение 24 часов, P2 (сбой ключевого сценария) — в течение 72 часов.",
+          "en": "For 7 calendar days post-deployment I resolve incidents per SLA at zero charge: P1 (system outage) — within 24 hours, P2 (broken key workflow) — within 72 hours."
         }
       ]
     }
