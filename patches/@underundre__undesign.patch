@@ -1,0 +1,22 @@
+diff --git a/dist/tokens.css b/dist/tokens.css
+index 26de01c54e3c6b7ce4549523bf26157b1c118f35..4048b2765e3f271498ed7b2028c20a611398a981 100644
+--- a/dist/tokens.css
++++ b/dist/tokens.css
+@@ -57,16 +57,4 @@
+   --color-base-content: #1f2937;
+ }
+ 
+-.dark, [data-theme="undrlla-dark"] {
+-  /* Semantic (dark) */
+-  --color-info: #66c7f4;
+-  --color-success: #87d039;
+-  --color-warning: #e2d562;
+-  --color-error: #ff6f6f;
+-
+-  /* Surfaces (dark) */
+-  --color-base-100: #000000;
+-  --color-base-200: #1f2937;
+-  --color-base-300: #374151;
+-  --color-base-content: #ffffff;
+-}
++.dark {

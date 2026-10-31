@@ -1,0 +1,2 @@
+patchedDependencies:
+  '@underundre/undesign': patches/@underundre__undesign.patch
