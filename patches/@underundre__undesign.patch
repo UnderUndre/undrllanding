@@ -1,8 +1,8 @@
 diff --git a/dist/tokens.css b/dist/tokens.css
-index 26de01c54e3c6b7ce4549523bf26157b1c118f35..4048b2765e3f271498ed7b2028c20a611398a981 100644
+index 26de01c54e3c6b7ce4549523bf26157b1c118f35..35e1e54b4a497512f50585df1848b986695b35e9 100644
 --- a/dist/tokens.css
 +++ b/dist/tokens.css
-@@ -57,16 +57,4 @@
+@@ -57,16 +57,5 @@
    --color-base-content: #1f2937;
  }
  
@@ -18,5 +18,5 @@ index 26de01c54e3c6b7ce4549523bf26157b1c118f35..4048b2765e3f271498ed7b2028c20a61
 -  --color-base-200: #1f2937;
 -  --color-base-300: #374151;
 -  --color-base-content: #ffffff;
--}
 +.dark {
+ }

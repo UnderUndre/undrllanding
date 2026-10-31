@@ -6,7 +6,7 @@ settings:
 
 patchedDependencies:
   '@underundre/undesign':
-    hash: acf595a20af61a58145737e943a4b15fe4f4d6e50553016a5deed5d92f764d7c
+    hash: 8f03982c867f8ee3d8c6e0fd4df4f0a069b264c475cb2600d95adb7e98e98751
     path: patches/@underundre__undesign.patch
 
 importers:
@@ -27,7 +27,7 @@ importers:
         version: 19.0.3(@types/react@19.0.8)
       '@underundre/undesign':
         specifier: ^0.1.0
-        version: 0.1.0(patch_hash=acf595a20af61a58145737e943a4b15fe4f4d6e50553016a5deed5d92f764d7c)
+        version: 0.1.0(patch_hash=8f03982c867f8ee3d8c6e0fd4df4f0a069b264c475cb2600d95adb7e98e98751)
       aos:
         specifier: 3.0.0-beta.6
         version: 3.0.0-beta.6
@@ -1020,7 +1020,7 @@ snapshots:
     dependencies:
       csstype: 3.1.3
 
-  '@underundre/undesign@0.1.0(patch_hash=acf595a20af61a58145737e943a4b15fe4f4d6e50553016a5deed5d92f764d7c)': {}
+  '@underundre/undesign@0.1.0(patch_hash=8f03982c867f8ee3d8c6e0fd4df4f0a069b264c475cb2600d95adb7e98e98751)': {}
 
   aos@3.0.0-beta.6:
     dependencies:
