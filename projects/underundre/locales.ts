@@ -141,6 +141,8 @@ export interface UnderundreCopy {
       email: string;
       messenger: string;
       messengerPlaceholder: string;
+      website: string;
+      websitePlaceholder: string;
       bottleneck: string;
       stack: string;
       stackPlaceholder: string;
@@ -472,6 +474,8 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         email: "Рабочий Email *",
         messenger: "Telegram / WhatsApp / LinkedIn (опционально — для быстрой отправки Loom)",
         messengerPlaceholder: "@username или ссылка на профиль",
+        website: "Сайт компании (опционально — для ресерча перед Loom-разбором)",
+        websitePlaceholder: "https://yourcompany.com",
         bottleneck: "Главный засор в операционке *",
         stack: "Команда и текущий стек (кратко) *",
         stackPlaceholder: "Например: 8 сотрудников, запись вручную в WhatsApp + таблицы Excel, Remonline за $200/мес...",
@@ -800,6 +804,8 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         email: "Work Email *",
         messenger: "Telegram / WhatsApp / LinkedIn (optional — for fast Loom delivery)",
         messengerPlaceholder: "@handle or profile link",
+        website: "Company website (optional — helps me research before the Loom teardown)",
+        websitePlaceholder: "https://yourcompany.com",
         bottleneck: "Primary operational bottleneck *",
         stack: "Team & current stack (briefly) *",
         stackPlaceholder: "e.g. 8 staff, bookings handled manually in WhatsApp + Excel sheets, Remonline at $200/mo...",

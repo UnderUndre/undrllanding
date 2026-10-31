@@ -67,7 +67,8 @@ curl -X POST http://localhost:3000/api/lead \
     "message": "We have 8 staff spending 15 hours a week in WhatsApp.",
     "metadata": {
       "teamSize": 8,
-      "estimatedWaste": "$2,000/mo"
+      "estimatedWaste": "$2,000/mo",
+      "website": "https://client-company.com"
     }
   }'
 ```

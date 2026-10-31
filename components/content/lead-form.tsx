@@ -21,6 +21,7 @@ export default function LeadForm() {
       message: (formData.get("message") as string) || "",
       metadata: {
         source: "generic-brand-form",
+        website: ((formData.get("website") as string) || "").trim(),
       },
     };
 
@@ -87,6 +88,18 @@ export default function LeadForm() {
           type="text"
           name="contact"
           placeholder="@handle or phone"
+          className="w-full px-4 py-3 bg-slate-900 border border-brand-border rounded-lg text-sm text-white focus:outline-none focus:border-brand-primary"
+        />
+      </div>
+      <div>
+        <label className="block text-xs font-medium text-slate-300 mb-1" htmlFor="lead-website">
+          Website (optional)
+        </label>
+        <input
+          id="lead-website"
+          type="url"
+          name="website"
+          placeholder="https://yourcompany.com"
           className="w-full px-4 py-3 bg-slate-900 border border-brand-border rounded-lg text-sm text-white focus:outline-none focus:border-brand-primary"
         />
       </div>

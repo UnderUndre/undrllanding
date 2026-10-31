@@ -30,6 +30,7 @@ export default function CtaUnderundre() {
       message: (formData.get("stackAndTeam") as string) || "",
       metadata: {
         bottleneckType: (formData.get("bottleneckType") as string) || "other",
+        website: ((formData.get("website") as string) || "").trim(),
       },
     };
 
@@ -159,6 +160,16 @@ export default function CtaUnderundre() {
                 <option value="custom-sprint">{t.bottlenecks.custom}</option>
                 <option value="other">{t.bottlenecks.other}</option>
               </select>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.website}</label>
+              <input
+                type="url"
+                name="website"
+                placeholder={t.labels.websitePlaceholder}
+                className="w-full px-4 py-3 bg-brand-surface border border-brand-border rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
+              />
             </div>
 
             <div>
