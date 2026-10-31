@@ -1,5 +1,5 @@
 import { getActiveProjectConfig } from "@/lib/project-config";
-import { loadTermsData } from "@/lib/schemas/content-loaders";
+import { loadTermsData, loadLegalConfig } from "@/lib/schemas/content-loaders";
 import LegalDocumentView, { type LegalTokens } from "@/components/content/legal-document-view";
 
 // Statutory Terms of Service (spec 003 FR-007). Content lives in
@@ -9,7 +9,7 @@ import LegalDocumentView, { type LegalTokens } from "@/components/content/legal-
 export default function TermsPage() {
   const config = getActiveProjectConfig();
   const doc = loadTermsData(config.slug);
-  const legal = config.legal;
+  const legal = loadLegalConfig(config.slug) ?? config.legal;
 
   const tokens: LegalTokens = {
     name: config.name,

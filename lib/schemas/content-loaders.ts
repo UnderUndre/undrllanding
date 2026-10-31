@@ -5,10 +5,12 @@ import {
   FaqDataSchema,
   ManifestDataSchema,
   LegalDocumentSchema,
+  LegalConfigSchema,
   type PricingData,
   type FaqData,
   type ManifestData,
   type LegalDocument,
+  type LegalConfig,
 } from "@/lib/schemas/content-schema";
 import type { ZodType } from "zod";
 
@@ -81,4 +83,9 @@ function loadOptional<T>(slug: string, file: string, schema: ZodType<T>): T | nu
     return null;
   }
   return loadValidated(slug, file, schema);
+}
+
+/** Legal requisites: projects/<slug>/data/legal.json (null → caller falls back to config). */
+export function loadLegalConfig(slug: string): LegalConfig | null {
+  return loadOptional(slug, "legal.json", LegalConfigSchema);
 }

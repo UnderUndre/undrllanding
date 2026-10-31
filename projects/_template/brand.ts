@@ -41,13 +41,5 @@ export const templateBrand: ProjectConfig = {
     showLegalLinks: true,
     showManifestLink: false, // set true only after adding data/manifest.json
   },
-  legal: {
-    contactEmail: "[PLACEHOLDER] privacy@example.com",
-    entityName: "[PLACEHOLDER] Legal Entity Name",
-    jurisdiction: "[PLACEHOLDER] e.g. EU NACE 62.01",
-    retentionMonths: 12,
-    // Replace escrow/warranty with YOUR commercial terms before production:
-    escrowProvider: "[PLACEHOLDER] escrow arrangement",
-    warrantyDays: 7,
-  },
+
 };

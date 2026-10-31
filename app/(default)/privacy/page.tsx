@@ -1,5 +1,5 @@
 import { getActiveProjectConfig } from "@/lib/project-config";
-import { loadPrivacyData } from "@/lib/schemas/content-loaders";
+import { loadPrivacyData, loadLegalConfig } from "@/lib/schemas/content-loaders";
 import LegalDocumentView, { type LegalTokens } from "@/components/content/legal-document-view";
 
 // Statutory Privacy Policy (spec 003 FR-006). Content lives in
@@ -9,7 +9,7 @@ import LegalDocumentView, { type LegalTokens } from "@/components/content/legal-
 export default function PrivacyPage() {
   const config = getActiveProjectConfig();
   const doc = loadPrivacyData(config.slug);
-  const legal = config.legal;
+  const legal = loadLegalConfig(config.slug) ?? config.legal;
 
   const tokens: LegalTokens = {
     name: config.name,

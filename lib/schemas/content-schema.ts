@@ -101,6 +101,19 @@ export const LegalDocumentSchema = z.object({
 export type LegalSection = z.infer<typeof LegalSectionSchema>;
 export type LegalDocument = z.infer<typeof LegalDocumentSchema>;
 
+// 6. Legal requisites config (spec 003 FR-006/FR-007 rev. 3): data-driven via
+// projects/<slug>/data/legal.json — the {{token}} source for privacy/terms docs.
+export const LegalConfigSchema = z.object({
+  contactEmail: z.string().email(),
+  entityName: z.string().min(1),
+  jurisdiction: z.string().min(1),
+  retentionMonths: z.number().int().positive().default(12),
+  escrowProvider: z.string().min(1),
+  warrantyDays: z.number().int().positive().default(7),
+});
+
+export type LegalConfig = z.infer<typeof LegalConfigSchema>;
+
 // 4. Pluggable Inbound Lead Schema
 export const LeadMetadataValueSchema = z.union([
   z.string().max(500, "Metadata string value exceeds maximum length (500 chars)"),

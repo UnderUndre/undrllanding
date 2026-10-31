@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { loadPricingData, loadFaqData } from "@/lib/schemas/content-loaders";
+import { loadPricingData, loadFaqData, loadLegalConfig } from "@/lib/schemas/content-loaders";
 import { getActiveProjectConfig } from "@/lib/project-config";
 import GenericPricingView from "./generic-pricing-view";
 import GenericFaqView from "./generic-faq-view";
@@ -48,6 +48,7 @@ export function BrandFaq({ slug }: { slug: string }) {
 
 export function BrandContact() {
   const config = getActiveProjectConfig();
+  const legal = loadLegalConfig(config.slug) ?? config.legal;
   return (
     <section id="contact" className="py-20 bg-brand-bg text-slate-100 border-b border-brand-border">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center space-y-6">
@@ -56,11 +57,11 @@ export function BrandContact() {
           Leave your email and a short brief — we will get back to you.
         </p>
         <LeadForm />
-        {config.legal?.contactEmail && (
+        {legal?.contactEmail && (
           <p className="text-xs text-slate-500">
             Or email us directly:{" "}
-            <a className="text-brand-accent hover:underline" href={`mailto:${config.legal.contactEmail}`}>
-              {config.legal.contactEmail}
+            <a className="text-brand-accent hover:underline" href={`mailto:${legal.contactEmail}`}>
+              {legal.contactEmail}
             </a>
           </p>
         )}

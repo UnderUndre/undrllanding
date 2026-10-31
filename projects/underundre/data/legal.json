@@ -1,0 +1,8 @@
+{
+  "contactEmail": "contact@underundre.com",
+  "entityName": "UnderUndre",
+  "jurisdiction": "EU NACE Rev. 2, code 62.01",
+  "retentionMonths": 12,
+  "escrowProvider": "Upwork Direct Contracts (5% escrow fee paid by contractor; client: 0% via US ACH or standard card acquiring 3–5%)",
+  "warrantyDays": 7
+}

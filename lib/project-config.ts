@@ -61,7 +61,8 @@ export interface ProjectConfig {
   };
   navigation: NavigationConfig;
   footer: FooterConfig;
-  legal: LegalConfig;
+  /** Optional fallback — preferred source is projects/<slug>/data/legal.json */
+  legal?: LegalConfig;
 }
 
 // BEGIN GENERATED PROJECT REGISTRY (managed by scripts/create-project.mjs — do not edit outside this block)

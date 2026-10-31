@@ -1,0 +1,8 @@
+{
+  "contactEmail": "PLACEHOLDER@example.com",
+  "entityName": "PLACEHOLDER Legal Entity Name",
+  "jurisdiction": "PLACEHOLDER e.g. EU NACE Rev. 2, code 62.01",
+  "retentionMonths": 12,
+  "escrowProvider": "PLACEHOLDER escrow arrangement",
+  "warrantyDays": 7
+}

@@ -15,6 +15,7 @@
 
 ### The Core Problem:
 <!-- Drift note: 2026-10-30 — scope recalibrated after external review (reviews/zcode.md): legacy `undrlla` brand implementation is DECOMMISSIONED in this feature (F3). Undrlla's replacement landing will be re-created later as a regular template consumer via `pnpm project:create`. Configs currently live in `lib/project-config.ts`, not `projects/<slug>/config.ts` — migration task added (F5). -->
+<!-- Drift note: 2026-10-31 — legal requisites moved from ProjectConfig.legal (brand.ts) to projects/<slug>/data/legal.json (owner DX feedback: template users edit JSON, not TS). ProjectConfig.legal remains an optional fallback layer; {{token}} resolution: legal.json ?? config.legal. -->
 <!-- Drift note: 2026-10-30 — commercial follow-up (review F11): publishing this repo as a free public GPL-3.0 template repositions the business-plan v18.6 "Foundation $4,900" fork SKU (artifact becomes freely cloneable; paid value = done-for-you setup + private modules + Care retainers). Business plan changelog entry (v20.1+) to be added by the plan owner; no Demand Gate violation — no paid-fork outreach is involved. -->
 
 Currently, `undrllanding` functions as a specialized internal landing repo for the `underundre` brand (the legacy `undrlla` brand is decommissioned by this feature — see FR-011). Although `underundre`'s brand config currently lives in `lib/project-config.ts` rather than an isolated `projects/<slug>/` folder, several architectural couplings prevent clean reuse by third-party engineers or White-Label agency partners:

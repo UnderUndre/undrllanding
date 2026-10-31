@@ -82,13 +82,5 @@ export const underundreBrand: ProjectConfig = {
     showLegalLinks: true,
     showManifestLink: true,
   },
-  legal: {
-    // NOTE: verify the real mailbox before production (spec 003 T-008).
-    contactEmail: "contact@underundre.com",
-    entityName: "UnderUndre",
-    jurisdiction: "EU NACE 62.01",
-    retentionMonths: 12,
-    escrowProvider: "Upwork Direct Contracts (5% escrow fee paid by contractor; client: 0% via US ACH or standard card acquiring 3–5%)",
-    warrantyDays: 7,
-  },
+
 };
