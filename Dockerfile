@@ -1,8 +1,9 @@
 # syntax=docker/dockerfile:1
 FROM node:22-alpine AS base
-ENV PNPM_HOME="/pnpm"
-ENV PATH="$PNPM_HOME:$PATH"
-RUN corepack enable && corepack prepare pnpm@10.15.1 --activate
+# Pin pnpm via npm -g, NOT corepack: corepack's shim resolved to pnpm 12.x on
+# this image, and pnpm 12 misreads the v9 lockfile's patchedDependencies
+# (ERR_PNPM_LOCKFILE_CONFIG_MISMATCH). Local dev uses pnpm 10.15.1.
+RUN npm i -g pnpm@10.15.1
 
 # Stage 1: Dependencies
 FROM base AS deps
