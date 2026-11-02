@@ -42,6 +42,23 @@ curl -s http://127.0.0.1:2019/config/ | head -c 200
 # UFW: allow 22, 80, 443. NEVER open 2019 (loopback invariant FR-028).
 ```
 
+### 1.4 Git deploy key on the VPS (required for git@ remotes)
+
+The server pulls with ITS OWN key — a read-only Deploy key, never your personal one.
+`server-deploy.sh` runs a preflight (`ensure_git_auth`) that auto-fixes key
+permissions (0644 → 600) and probes `ssh -T git@github.com` before any build.
+To point it at a specific key, set on the server before deploy:
+`export DEPLOY_SSH_KEY=~/.ssh/undrllanding_deploy`.
+
+```bash
+ssh $PROD_SSH_HOST
+ssh-keygen -t ed25519 -C "vps-deploy-undrllanding" -f ~/.ssh/undrllanding_deploy -N ""
+cat ~/.ssh/undrllanding_deploy.pub
+# → GitHub: UnderUndre/undrllanding → Settings → Deploy keys → Add
+#   (read-only; do NOT tick "Allow write access")
+ssh -T git@github.com   # → "Hi UnderUndre/undrllanding!" = OK
+```
+
 ---
 
 ## 2. Local repo config (undrllanding checkout)
