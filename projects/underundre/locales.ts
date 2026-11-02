@@ -192,7 +192,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         "Если ваш бизнес держится на ручном переносе заказов из WhatsApp, сведении разрозненных таблиц Excel и дорогих подписках за пользователя — вы платите пожизненный невидимый налог на операционное трение.".split(
           " "
         ),
-      author: "— Инженерный манифест UnderUndre § 1 (Via Negativa)",
+      author: "— Инженерный манифест Undre § 1 (Via Negativa)",
     },
     telemetry: {
       badge: "Инженерный стандарт поставки",
@@ -413,11 +413,11 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       fateTitle: "Судьба вайб-кода (Риск)",
       fateDesc:
         "100,000 строк неподдерживаемых портянок. В итоге приходится нанимать специалистов за $10k/неделю, чтобы просто удалить 65% мусора и заделать утечки данных.",
-      standardTitle: "Инженерный стандарт UnderUndre",
+      standardTitle: "Инженерный стандарт Undre",
       standardDesc:
         "Ноль преждевременного оверинжиниринга. Готовые опенсорсные ядра для типовых задач и строгая типизация DDL + Zod для кастомных процессов.",
       ruleOfThumb:
-        "Правило гаечного ключа: приходите с чётким бизнес-процессом. Я собираю долговечную инфраструктуру, а не одноразовый макет.",
+        "Правило гаечного ключа: приходите с чётким бизнес-процессом. Undre собирает долговечную инфраструктуру, а не одноразовый макет.",
     },
     faq: {
       badge: "Прозрачность и правила игры",
@@ -530,7 +530,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         "If your operational workflow relies on manual copy-paste across WhatsApp, fragmented Excel sheets, and expensive SaaS seat taxes, you are paying a permanent invisible tax on human friction.".split(
           " "
         ),
-      author: "— The Engineering Manifesto § 1 (Via Negativa)",
+      author: "— Undre's Engineering Manifesto § 1 (Via Negativa)",
     },
     telemetry: {
       badge: "Engineering Delivery Standard",
@@ -750,11 +750,11 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       fateTitle: "The Vibe-Coded Fate",
       fateDesc:
         "100,000 lines of unmaintainable prompt spaghetti. You end up hiring $10k/week cleanup agencies (like Slopfix) just to delete 65% of the bloat and patch data leaks.",
-      standardTitle: "The UnderUndre Standard",
+      standardTitle: "Undre's Standard",
       standardDesc:
-        "Zero premature over-engineering. I deploy Shopify/FOSS cores when standard solutions suffice + custom Next.js 15 landing funnels, or full-stack Supabase DDL architectures when proprietary scale demands it.",
+        "Zero premature over-engineering. Undre deploys battle-tested FOSS cores when standard solutions suffice + custom Next.js landing funnels, or full-stack Supabase DDL architectures when proprietary scale demands it.",
       ruleOfThumb:
-        "Rule of Thumb: Bring a clear business flow and technical boundaries. I engineer durable infrastructure, not disposable prototype slop.",
+        "Rule of Thumb: Bring a clear business flow and technical boundaries. Undre engineers durable infrastructure, not disposable prototype slop.",
     },
     faq: {
       badge: "Clarity & Ground Rules",
