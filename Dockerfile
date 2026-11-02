@@ -7,7 +7,10 @@ RUN corepack enable && corepack prepare pnpm@10.15.1 --activate
 # Stage 1: Dependencies
 FROM base AS deps
 WORKDIR /app
+# patches/ must ship with the lockfile: pnpm verifies patchedDependencies
+# hashes during --frozen-lockfile install and aborts without the patch files.
 COPY package.json pnpm-lock.yaml ./
+COPY patches ./patches
 RUN pnpm install --frozen-lockfile
 
 # Stage 2: Builder
