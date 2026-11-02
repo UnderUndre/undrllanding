@@ -58,6 +58,6 @@ curl -s -o /dev/null -w "%{http_code}" localhost:3000/api/hello                 
 
 ## 7. Rollback strategy (Operational Readiness)
 
-В случае регрессий на проде:
-- Изменения заголовков/CSP и логики: `git revert <commit-sha> && ./deploy-vps.sh` (RTO < 3 минут).
-- Токены: ротация через @BotFather переопределяется прямо в `.env`/`.env.production` на сервере без пересборки контейнера (`docker compose up -d`).
+В случае регрессий на проде (см. docs/deploy-vps.md §7):
+- Изменения заголовков/CSP и логики: `git revert <commit-sha>` → push → `bash ../undevops/scripts/deploy/deploy.sh --fast`, либо мгновенно: `bash ../undevops/scripts/deploy/rollback.sh` (RTO < 3 минут).
+- Токены: ротация через @BotFather переопределяется прямо в `.env` на сервере без пересборки контейнера (`docker compose up -d` — секреты идут через `env_file`, не через image).
