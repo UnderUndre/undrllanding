@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
 import { getContactChannels } from "@/lib/social-links";
@@ -12,6 +12,9 @@ export default function CtaUnderundre() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [fallbackMode, setFallbackMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  // Spec 005 FR-017: no setState after unmount — abort the in-flight fetch.
+  const abortRef = useRef<AbortController | null>(null);
+  useEffect(() => () => abortRef.current?.abort(), []);
 
   const triageUrl = process.env.NEXT_PUBLIC_CAL_TRIAGE_URL;
   const socialLinks = getContactChannels();
@@ -35,10 +38,13 @@ export default function CtaUnderundre() {
     };
 
     try {
+      abortRef.current?.abort();
+      abortRef.current = new AbortController();
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
+        signal: abortRef.current.signal,
       });
 
       const data = await res.json();
@@ -58,6 +64,7 @@ export default function CtaUnderundre() {
         );
       }
     } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
       console.error("Lead submit error:", err);
       setStatus("error");
       setFallbackMode(true);

@@ -86,5 +86,15 @@ export function getActiveProjectConfig(): ProjectConfig {
   // Spec 001 §6.2.3: transition alias — "undreseller" (legacy template name) resolves to "underundre".
   const projectName = raw === "undreseller" ? "underundre" : raw;
 
-  return projectRegistry[projectName] ?? underundreBrand;
+  const config = projectRegistry[projectName];
+  // Spec 005 FR-010: fail fast on registry miss — silently rendering the real
+  // underundre brand (legal entity, contacts) under a mistyped name is worse
+  // than a failed build.
+  if (!config) {
+    throw new Error(
+      `[project-config] Unknown NEXT_PUBLIC_PROJECT_NAME "${projectName}" — no entry in projectRegistry. ` +
+        `Scaffold it via \`pnpm project:create\` or fix the env value.`
+    );
+  }
+  return config;
 }

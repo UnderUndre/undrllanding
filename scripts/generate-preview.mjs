@@ -21,6 +21,11 @@ const args = Object.fromEntries(
   })
 );
 const slug = (args.slug || process.env.NEXT_PUBLIC_PROJECT_NAME || "underundre").toLowerCase();
+// Spec 005 FR-016: reject traversal-looking slugs before they hit path.join.
+if (!/^[a-z][a-z0-9-]*$/.test(slug)) {
+  console.error(`✖ Invalid slug "${slug}" — must match ^[a-z][a-z0-9-]*$`);
+  process.exit(1);
+}
 
 const prerendered = path.join(repoRoot, ".next", "server", "app", "index.html");
 const outFile = path.join(repoRoot, "projects", slug, "preview.html");

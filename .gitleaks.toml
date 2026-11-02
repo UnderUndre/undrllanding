@@ -1,0 +1,14 @@
+# Gitleaks configuration (spec 005 FR-013, contracts/hardening.md §3).
+# Default ruleset covers the Telegram token shape ([0-9]{8,10}:[A-Za-z0-9_-]{30,}).
+# Pre-commit: gitleaks protect --staged --redact -c .gitleaks.toml
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Placeholder tokens in example env files and runbook docs (audit hand-off #1)"
+paths = [
+  '''\.env\.example$''',
+  '''\.env\.production\.example$''',
+  '''(^|/)docs/''',
+]

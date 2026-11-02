@@ -122,12 +122,6 @@ export interface UnderundreCopy {
     standardDesc: string;
     ruleOfThumb: string;
   };
-  faq: {
-    badge: string;
-    title: string;
-    subtitle: string;
-    items: Array<{ q: string; a: string[] }>;
-  };
   cta: {
     badge: string;
     title: string;
@@ -419,54 +413,6 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       ruleOfThumb:
         "Правило гаечного ключа: приходите с чётким бизнес-процессом. Undre собирает долговечную инфраструктуру, а не одноразовый макет.",
     },
-    faq: {
-      badge: "Прозрачность и правила игры",
-      title: "Часто задаваемые вопросы",
-      subtitle: "Всё об условиях работы, эскроу, правах на код и составе поставок.",
-      items: [
-        {
-          q: "Что такое Workaround TCO Audit и почему $350?",
-          a: [
-            "Это вводный 24–48-часовой аудит операционных костылей по методологии TDABC (Time-Driven Activity-Based Costing). Я оцифровываю наблюдаемые потери на ручной труд (переписка в WhatsApp, сведение таблиц) и срезаю лишние подписки.",
-            "На выходе вы получаете отчёт Via Negativa (запрет невыгодной автоматизации), спецификацию OpenAPI 3.0 и DDL схему PostgreSQL. $350 — пилотная цена для первых 10 аудитов (далее $490). 100% суммы засчитывается в оплату Спринта А или Б.",
-          ],
-        },
-        {
-          q: "Всегда ли вы пишете кастомный код с нуля?",
-          a: [
-            "Нет. На первом шаге я провожу строгий отбор. Если задачу решает проверенный опенсорсный инструмент (Twenty CRM, Outline, Cal.com), я не сжигаю ваш бюджет на велосипеды.",
-            "Кастомный код пишется только там, где у вашего бизнеса есть уникальный процесс.",
-          ],
-        },
-        {
-          q: "Почему UnderUndre называется «бюро», если проекты ведёт один ведущий инженер?",
-          a: [
-            "Бюро — это институционализированный метод и формат работы, а не раздутый штат. Практика строится по принципу классических европейских инженерных бюро (Ingenieurbüro и Bureau d'études): стандартизированные DDL-контракты, жесткие таймбоксы (Fixed Scope Knife) и суверенная инфраструктура без посредников.",
-            "Вы платите за архитектурную точность ведущего инженера (NACE 62.01) и прямой контакт с тем, чьи руки крутят гайки, а не за оплату офиса, аккаунт-менеджеров и испорченный телефон.",
-          ],
-        },
-        {
-          q: "Как меня защищает Upwork Direct Contracts Escrow?",
-          a: [
-            "Вы вносите оплату на защищённый эскроу-счёт Upwork Direct Contracts (5% комиссия, 0% клиенту). Я не прикасаюсь к капиталу до сдачи работ.",
-            "Средства переводятся только после проверки работоспособности на живой демонстрации.",
-          ],
-        },
-        {
-          q: "Кому принадлежат права на созданный код и инфраструктуру?",
-          a: [
-            "Вы получаете 100% исключительные права на исходный код и архитектуру по классификатору EU NACE 62.01 сразу после закрытия вехи в эскроу.",
-            "Репозиторий передаётся в ваш GitHub, доступы к серверам остаются только у вас.",
-          ],
-        },
-        {
-          q: "Что входит в 7-дневную гарантийную поддержку (SLA)?",
-          a: [
-            "В течение 7 дней после релиза я бесплатно и в приоритетном порядке закрываю любые инциденты P1 (падение сервиса) и P2 (сбой ключевого сценария) за 24 часа.",
-          ],
-        },
-      ],
-    },
     cta: {
       badge: "Пилотная квота — первые 10 аудитов",
       title: "Хватит сжигать бюджет. Запустите систему в этом месяце.",
@@ -755,54 +701,6 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         "Zero premature over-engineering. Undre deploys battle-tested FOSS cores when standard solutions suffice + custom Next.js landing funnels, or full-stack Supabase DDL architectures when proprietary scale demands it.",
       ruleOfThumb:
         "Rule of Thumb: Bring a clear business flow and technical boundaries. Undre engineers durable infrastructure, not disposable prototype slop.",
-    },
-    faq: {
-      badge: "Clarity & Ground Rules",
-      title: "Frequently Asked Questions",
-      subtitle: "Everything you need to know about my process, escrow terms, code ownership, and technical deliverables.",
-      items: [
-        {
-          q: "What is the Workaround TCO Audit, and why $350?",
-          a: [
-            "My introductory 24–48h TDABC audit uncovers hidden manual labor payroll leaks (e.g. WhatsApp copy-paste, billing reconciliation) and bloated SaaS subscriptions.",
-            "I deliver an official Via Negativa verdict (stopping wasteful automation when switching costs are too high) along with a complete OpenAPI 3.0 specification and PostgreSQL DDL schema. $350 is the pilot price for the first 10 audits (then $490). 100% of the fee is credited toward Sprint A or B.",
-          ],
-        },
-        {
-          q: "Do you always build custom full-stack code from scratch?",
-          a: [
-            "No. I practice pragmatic architecture triage on Day 1. If an existing FOSS tool solves your backend needs without seat taxes, I won't waste your runway reinventing the wheel.",
-            "I only build custom applications when your business model genuinely requires proprietary workflows.",
-          ],
-        },
-        {
-          q: "Why is UnderUndre called a \"bureau\" if projects are run by a single lead engineer?",
-          a: [
-            "A bureau is an institutionalized operating method and standard, not an inflated headcount. The bureau operates on the model of classical European engineering practices (Ingenieurbüro and Bureau d'études): standardized DDL contracts, rigid timeboxes (Fixed Scope Knife), and sovereign infrastructure delivered turn-key without intermediaries.",
-            "You pay for the architectural precision of the lead engineer (NACE 62.01) and direct accountability with the craftsman building the system — not for agency overhead, account managers, and bureaucratic telephone games.",
-          ],
-        },
-        {
-          q: "How does Upwork Direct Contracts Escrow protect my capital?",
-          a: [
-            "You deposit the flat fee directly into Upwork Direct Contracts (5% fee, 0% client fee). I never touch your capital upfront.",
-            "Funds are released only upon successful deployment and live verification during Day 14 onboarding.",
-          ],
-        },
-        {
-          q: "Who owns the code, intellectual property, and hosting?",
-          a: [
-            "You receive 100% exclusive intellectual property and source code ownership upon sprint completion and escrow release, under EU NACE 62.01 classification.",
-            "The repository is transferred directly to your GitHub, and servers remain entirely under your control.",
-          ],
-        },
-        {
-          q: "What is covered under the 7-Day Bugfix SLA?",
-          a: [
-            "For 7 calendar days post-deployment, I provide priority incident resolution. Any P1 (system outage) or P2 (broken workflow) defect is resolved within 24 hours at zero charge.",
-          ],
-        },
-      ],
     },
     cta: {
       badge: "Pilot Quota — First 10 Audits",

@@ -1,54 +1,31 @@
 import { NextResponse } from "next/server";
 import { GenericLeadSubmissionSchema } from "@/lib/schemas/content-schema";
+import { RateLimiter } from "@/lib/lead/rate-limit";
+import { escapeHtml, maskEmail } from "@/lib/lead/sanitize";
 
-// General-purpose pluggable lead intake (spec 003 FR-005, T-016/T-017).
+// General-purpose pluggable lead intake (spec 003 FR-005, T-016/T-017; hardened spec 005).
 // Dispatchers: Telegram (TELEGRAM_BOT_TOKEN + TELEGRAM_ALERT_CHAT_ID) and
 // Webhook (LEAD_WEBHOOK_URL). Response semantics:
 //   fallback: "direct"  — no sinks configured (lead logged redacted)
 //   fallback: "none"    — all configured sinks delivered
 //   fallback: "partial" — some sink failed/timed out (still HTTP 200, never a 500)
 
-// Abuse resistance: lightweight in-memory per-IP rate limit
-// (adequate for the single-instance VPS deployment; resets on restart).
-const RATE_LIMIT_MAX = 5;
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const rateLimitMap = new Map<string, { count: number; windowStart: number }>();
+const rateLimiter = new RateLimiter();
 
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const entry = rateLimitMap.get(ip);
-  if (!entry || now - entry.windowStart > RATE_LIMIT_WINDOW_MS) {
-    rateLimitMap.set(ip, { count: 1, windowStart: now });
-    return false;
-  }
-  entry.count += 1;
-  return entry.count > RATE_LIMIT_MAX;
-}
+// Oversized-body guard (spec 005 FR-008): Content-Length checked BEFORE
+// buffering; also a hard post-read cap for chunked requests without the header.
+class PayloadTooLargeError extends Error {}
 
-// Oversized-body guard: App Router route handlers have no default cap.
 async function readJsonWithLimit(request: Request, maxBytes = 64 * 1024): Promise<unknown> {
+  const declared = Number(request.headers.get("content-length") || "0");
+  if (declared > maxBytes) {
+    throw new PayloadTooLargeError();
+  }
   const text = await request.text();
   if (text.length > maxBytes) {
     throw new PayloadTooLargeError();
   }
   return JSON.parse(text);
-}
-
-class PayloadTooLargeError extends Error {}
-
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-function maskEmail(email: string): string {
-  const [user, domain] = email.split("@");
-  if (!domain) return "***";
-  return `${user.slice(0, 2)}***@${domain}`;
 }
 
 function redactedLeadLog(lead: {
@@ -137,15 +114,12 @@ async function dispatchWebhook(payload: {
 
 export async function POST(request: Request) {
   try {
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-      request.headers.get("x-real-ip") ||
-      "unknown";
-
-    if (isRateLimited(ip)) {
+    const ip = rateLimiter.resolveClientIp(request);
+    const { allowed, retryAfterSec } = rateLimiter.check(ip);
+    if (!allowed) {
       return NextResponse.json(
         { success: false, message: "Too many requests. Try again in a minute." },
-        { status: 429 }
+        { status: 429, headers: { "Retry-After": String(retryAfterSec) } }
       );
     }
 
@@ -164,11 +138,20 @@ export async function POST(request: Request) {
 
     const parsed = GenericLeadSubmissionSchema.safeParse(body);
     if (!parsed.success) {
+      // Error disclosure (spec 005 FR-014): field paths only in production;
+      // full Zod error map only outside production.
+      const errors =
+        process.env.NODE_ENV === "production"
+          ? parsed.error.issues.map((issue) => ({
+              path: issue.path.join("."),
+              message: issue.message,
+            }))
+          : parsed.error.format();
       return NextResponse.json(
         {
           success: false,
           message: "Validation failed. Check email and brief.",
-          errors: parsed.error.format(),
+          errors,
         },
         { status: 400 }
       );

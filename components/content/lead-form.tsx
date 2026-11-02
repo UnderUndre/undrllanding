@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { GenericLeadSubmissionSchema } from "@/lib/schemas/content-schema";
 
 // Generic lead form for scaffolded brands (spec 003 FR-005 consumer contract):
@@ -8,6 +8,9 @@ import { GenericLeadSubmissionSchema } from "@/lib/schemas/content-schema";
 export default function LeadForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
+  // Spec 005 FR-017: no setState after unmount — abort the in-flight fetch.
+  const abortRef = useRef<AbortController | null>(null);
+  useEffect(() => () => abortRef.current?.abort(), []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,10 +36,13 @@ export default function LeadForm() {
     }
 
     try {
+      abortRef.current?.abort();
+      abortRef.current = new AbortController();
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
+        signal: abortRef.current.signal,
       });
       const data = await res.json();
       if (res.ok && data.success) {
@@ -45,7 +51,8 @@ export default function LeadForm() {
         setStatus("error");
         setErrorMessage(data.message || "Submission failed. Please reach out directly.");
       }
-    } catch {
+    } catch (err) {
+      if (err instanceof DOMException && err.name === "AbortError") return;
       setStatus("error");
       setErrorMessage("Network error. Please reach out directly.");
     }

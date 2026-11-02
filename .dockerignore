@@ -9,6 +9,6 @@ npm-debug.log*
 *.tsbuildinfo
 specs
 docs
-preview.html
+projects/*/preview.html
 README.md
 .vscode

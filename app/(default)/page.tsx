@@ -1,15 +1,8 @@
 import { getActiveProjectHome } from "@/lib/project-pages";
-import { getActiveProjectConfig } from "@/lib/project-config";
 
-export function generateMetadata() {
-  const config = getActiveProjectConfig();
-
-  return {
-    title: config.title,
-    description: config.description,
-  };
-}
-
+// Spec 005 FR-018: page-level generateMetadata removed — the root layout
+// (app/layout.tsx) is the single metadata source; this page previously
+// duplicated title/description metadata tags.
 export default function Home() {
   const ProjectHome = getActiveProjectHome();
   return <ProjectHome />;

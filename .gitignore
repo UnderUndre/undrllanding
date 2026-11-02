@@ -41,3 +41,5 @@ next-env.d.ts
 .contentlayer
 
 .history/
+# generated previews (spec 005 FR-016)
+projects/*/preview.html

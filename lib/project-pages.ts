@@ -16,5 +16,14 @@ const projectPages: Record<string, ComponentType> = {
 
 export function getActiveProjectHome(): ComponentType {
   const config = getActiveProjectConfig();
-  return projectPages[config.slug] ?? projectPages[config.name.toLowerCase()] ?? UnderundreHome;
+  const home = projectPages[config.slug] ?? projectPages[config.name.toLowerCase()];
+  // Spec 005 FR-010: no silent cross-brand fallback — a registered brand
+  // without a registered home page is a scaffold bug, not a template case.
+  if (!home) {
+    throw new Error(
+      `[project-pages] No home page registered for project "${config.slug}" — ` +
+        `add it to the GENERATED PROJECT PAGES block in lib/project-pages.ts.`
+    );
+  }
+  return home;
 }

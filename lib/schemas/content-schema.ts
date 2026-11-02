@@ -34,7 +34,13 @@ export const PricingPlanItemSchema = z.object({
   deliverables: z.array(LocalizedTextSchema).min(1),
   demandGateNote: LocalizedTextSchema.optional(),
   ctaText: LocalizedTextSchema,
-  ctaHref: z.string().min(1),
+  // href scheme allowlist (spec 005 FR-014, audit S-09): only http(s) targets.
+  ctaHref: z
+    .string()
+    .min(1)
+    .refine((v) => /^https?:\/\//.test(v) || v.startsWith("/") || v.startsWith("#"), {
+      message: "ctaHref must be an http(s) URL or a local anchor/path",
+    }),
   isHero: z.boolean().default(false),
 });
 
@@ -118,7 +124,7 @@ export type LegalConfig = z.infer<typeof LegalConfigSchema>;
 // 4. Pluggable Inbound Lead Schema
 export const LeadMetadataValueSchema = z.union([
   z.string().max(500, "Metadata string value exceeds maximum length (500 chars)"),
-  z.number(),
+  z.number().finite("Metadata numbers must be finite"),
   z.boolean(),
 ]);
 
@@ -145,11 +151,15 @@ export const GenericLeadSubmissionSchema = z.object({
     .trim()
     .min(3, "Brief must be at least 3 characters")
     .max(2000, "Brief exceeds maximum length (2000 chars)"),
-  // Bounded flat scalar map (review F7): max 20 keys, scalar values only —
-  // no nested objects/arrays, kills payload-depth/CPU amplification.
+  // Bounded flat scalar map (review F7, spec 005 S-07): max 20 keys, key length
+  // ≤ 50 chars, scalar values only — no nested objects/arrays, finite numbers.
   metadata: z
     .record(z.string(), LeadMetadataValueSchema)
     .refine((v) => Object.keys(v).length <= 20, "Metadata exceeds maximum of 20 keys")
+    .refine(
+      (v) => Object.keys(v).every((k) => k.length <= 50),
+      "Metadata keys must not exceed 50 characters"
+    )
     .optional()
     .default({}),
 });

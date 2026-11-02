@@ -52,11 +52,27 @@ function contrastRatio(fg, bg) {
 }
 
 function substitute(content, vars) {
+  // Spec 005 FR-001: function form — a "$&" in value would otherwise be
+  // interpreted as a replacement pattern by String.prototype.replaceAll.
   let out = content;
   for (const [key, value] of Object.entries(vars)) {
-    out = out.replaceAll(`[${key}]`, value);
+    out = out.replaceAll(`[${key}]`, () => value);
   }
   return out;
+}
+
+// Spec 005 FR-001: validate free-text inputs BEFORE any file write.
+function validateInputs(name, domain) {
+  if (!name || name.length > 80) {
+    fail("Name is required and must be ≤ 80 characters.");
+  }
+  // printable ASCII, no double-quote (breaks TS string literals / HTML attrs)
+  if (!/^[\x20-\x7E]+$/.test(name) || name.includes('"')) {
+    fail('Name must be printable ASCII without double quotes (").');
+  }
+  if (!domain || domain.length > 253 || !/^[a-z0-9.-]+$/i.test(domain)) {
+    fail("Domain must match /^[a-z0-9.-]+$/i and be ≤ 253 characters.");
+  }
 }
 
 async function main() {
@@ -86,6 +102,24 @@ async function main() {
   if (!/^#[0-9a-f]{6}$/.test(primaryColor) || !/^#[0-9a-f]{6}$/.test(accentColor)) {
     fail("Colors must be in #rrggbb format.");
   }
+  validateInputs(name, domain);
+
+  // Spec 005 FR-002: snapshot the registry files in memory so ANY failure
+  // (including a failing pnpm validate) can restore a compiling repository.
+  const brandRegistryPath = path.join(repoRoot, "lib", "project-config.ts");
+  const pagesRegistryPath = path.join(repoRoot, "lib", "project-pages.ts");
+  const registrySnapshot = {
+    [brandRegistryPath]: fs.readFileSync(brandRegistryPath, "utf-8"),
+    [pagesRegistryPath]: fs.readFileSync(pagesRegistryPath, "utf-8"),
+  };
+
+  function rollback(reason) {
+    for (const [filePath, content] of Object.entries(registrySnapshot)) {
+      fs.writeFileSync(filePath, content);
+    }
+    fs.rmSync(targetDir, { recursive: true, force: true });
+    fail(reason);
+  }
 
   // NFR-003 guard: warn when the palette cannot reach AA contrast on the dark bg.
   const bg = "#030712";
@@ -97,9 +131,10 @@ async function main() {
   }
 
   console.log(`\n→ Scaffolding projects/${slug} ...`);
-  fs.cpSync(templateDir, targetDir, { recursive: true });
-
-  const vars = {
+  // Spec 005 FR-002: any failure from here to the successful validate
+  // triggers a full rollback to the pre-run repository state.
+  try {
+  fs.cpSync(templateDir, targetDir, { recursive: true });  const vars = {
     SLUG: slug,
     NAME: name,
     DOMAIN: domain,
@@ -147,29 +182,30 @@ async function main() {
   fs.writeFileSync(brandPath, brandSrc);
 
   // Append registry entries inside the delimited generated blocks.
-  const brandRegistryPath = path.join(repoRoot, "lib", "project-config.ts");
-  let brandRegistry = fs.readFileSync(brandRegistryPath, "utf-8");
+  // Imports are inserted after the last import line (spec 005 FR-002).
+  let brandRegistry = registrySnapshot[brandRegistryPath];
+  const brandImportAnchor = brandRegistry.lastIndexOf("import ");
+  const brandImportEnd = brandRegistry.indexOf("\n", brandImportAnchor) + 1;
+  brandRegistry =
+    brandRegistry.slice(0, brandImportEnd) +
+    `import { ${camelSlug}Brand } from "@/projects/${slug}/brand";\n` +
+    brandRegistry.slice(brandImportEnd);
   brandRegistry = brandRegistry.replace(
     "// END GENERATED PROJECT REGISTRY",
-    [
-      `import { ${camelSlug}Brand } from "@/projects/${slug}/brand";`,
-      "",
-      "projectRegistry" + `[${JSON.stringify(slug)}] = ${camelSlug}Brand;`,
-      "// END GENERATED PROJECT REGISTRY",
-    ].join("\n")
+    [`projectRegistry[${JSON.stringify(slug)}] = ${camelSlug}Brand;`, "// END GENERATED PROJECT REGISTRY"].join("\n")
   );
   fs.writeFileSync(brandRegistryPath, brandRegistry);
 
-  const pagesRegistryPath = path.join(repoRoot, "lib", "project-pages.ts");
-  let pagesRegistry = fs.readFileSync(pagesRegistryPath, "utf-8");
+  let pagesRegistry = registrySnapshot[pagesRegistryPath];
+  const pagesImportAnchor = pagesRegistry.lastIndexOf("import ");
+  const pagesImportEnd = pagesRegistry.indexOf("\n", pagesImportAnchor) + 1;
+  pagesRegistry =
+    pagesRegistry.slice(0, pagesImportEnd) +
+    `import { ${camelSlug}Home } from "@/projects/${slug}/config";\n` +
+    pagesRegistry.slice(pagesImportEnd);
   pagesRegistry = pagesRegistry.replace(
     "// END GENERATED PROJECT PAGES",
-    [
-      `import { ${camelSlug}Home } from "@/projects/${slug}/config";`,
-      "",
-      "projectPages" + `[${JSON.stringify(slug)}] = ${camelSlug}Home;`,
-      "// END GENERATED PROJECT PAGES",
-    ].join("\n")
+    [`projectPages[${JSON.stringify(slug)}] = ${camelSlug}Home;`, "// END GENERATED PROJECT PAGES"].join("\n")
   );
   fs.writeFileSync(pagesRegistryPath, pagesRegistry);
 
@@ -178,7 +214,10 @@ async function main() {
   try {
     execSync("pnpm validate", { cwd: repoRoot, stdio: "inherit" });
   } catch {
-    fail("pnpm validate failed — the appended registry entry broke compilation. Revert manually.");
+    rollback("pnpm validate failed — registry snapshot restored, projects/<slug>/ removed.");
+  }
+  } catch (err) {
+    rollback(`Scaffold failed: ${err instanceof Error ? err.message : String(err)}`);
   }
 
   console.log(`

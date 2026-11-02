@@ -15,11 +15,22 @@ import {
 import type { ZodType } from "zod";
 
 // Server-only runtime file-loaders (build-time enforcement).
-// Malformed data halts the build with an explicit file + Zod field-path diagnostic.
+// Malformed data throws a typed error with an explicit file + Zod field-path
+// diagnostic (spec 005 FR-009: never process.exit — the Next.js error boundary
+// renders a 500 page instead of killing the server process).
 // Kept separate from the pure schema module so client components can import
 // schemas without dragging node:fs into the browser bundle.
 
-// Malformed data halts the build with an explicit file + Zod field-path diagnostic.
+export class ContentValidationError extends Error {
+  constructor(
+    message: string,
+    public readonly filePath: string
+  ) {
+    super(message);
+    this.name = "ContentValidationError";
+  }
+}
+
 function projectDataFile(slug: string, file: string): string {
   return path.join(process.cwd(), "projects", slug, "data", file);
 }
@@ -34,19 +45,17 @@ function loadValidated<T>(
   try {
     raw = JSON.parse(fs.readFileSync(filePath, "utf-8"));
   } catch (err) {
-    console.error(
-      `[content-schema] Failed to parse ${filePath}:`,
-      err instanceof Error ? err.message : err
+    throw new ContentValidationError(
+      `Failed to parse ${filePath}: ${err instanceof Error ? err.message : String(err)}`,
+      filePath
     );
-    process.exit(1);
   }
   const parsed = schema.safeParse(raw);
   if (!parsed.success) {
-    console.error(
-      `[content-schema] Schema validation failed for ${filePath}:`,
-      JSON.stringify(parsed.error.format(), null, 2)
+    throw new ContentValidationError(
+      `Schema validation failed for ${filePath}: ${JSON.stringify(parsed.error.format(), null, 2)}`,
+      filePath
     );
-    process.exit(1);
   }
   return parsed.data as T;
 }

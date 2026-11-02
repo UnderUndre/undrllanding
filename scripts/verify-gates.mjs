@@ -1,0 +1,131 @@
+#!/usr/bin/env node
+// verify-gates.mjs — CI verification gates (spec 005 FR-007).
+// Implements the 004 contract (specs/004-landing-template-updates/contracts/verify-gates.md):
+//   V1  citation integrity, V2 asset integrity, V2a logo chrome-free,
+//   V3  locale fallback + baseline byte-identity.
+// Amendments (audit hand-offs #1/#2, spec 005):
+//   - V3 compares the response BODY only (security headers excluded)
+//   - V3 normalizes the DOM before diffing: <script> tags and RSC hydration
+//     payloads (self.__next_f) are stripped, because component chunk hashes
+//     change on any client-component edit.
+// Exit 0 = all gates pass; exit 1 with per-gate report otherwise.
+
+import fs from "node:fs";
+import path from "node:path";
+
+const repoRoot = path.resolve(new URL("..", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1"));
+const args = Object.fromEntries(
+  process.argv.slice(2).map((a) => {
+    const m = a.match(/^--([a-z-]+)=(.*)$/);
+    return m ? [m[1], m[2]] : [];
+  })
+);
+const brand = (args.brand || process.env.NEXT_PUBLIC_PROJECT_NAME || "underundre").toLowerCase();
+
+const results = [];
+function gate(id, ok, detail) {
+  results.push({ id, ok, detail });
+  console.log(`${ok ? "PASS" : "FAIL"} [${id}] ${detail}`);
+}
+
+// --- Inputs ---------------------------------------------------------------
+const prerendered = path.join(repoRoot, ".next", "server", "app", "index.html");
+const baseline = path.join(repoRoot, "specs", "004-landing-template-updates", "qa", "baseline", "index.html");
+
+if (!fs.existsSync(prerendered)) {
+  console.error(`✖ ${prerendered} not found — run \`pnpm build\` first.`);
+  process.exit(1);
+}
+const html = fs.readFileSync(prerendered, "utf-8");
+
+// --- Gate V1: citation integrity ------------------------------------------
+{
+  const citationPatterns = [/§\s*(?:1[89]|[2-9]\d)\./g, /v18\.9/g, /\b18\.9\b/g];
+  const hits = citationPatterns.reduce((n, re) => n + (html.match(re) || []).length, 0);
+  gate("V1-citations", hits === 0, `citation-pattern hits in rendered HTML: ${hits} (expect 0)`);
+
+  // Manifest anchors live on the /manifest route — scan the whole prerendered
+  // build, not just index.html (004 contract: "in the same build").
+  const appDir = path.dirname(prerendered);
+  const buildHtml = [];
+  const collect = (dir) => {
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) collect(full);
+      else if (entry.name.endsWith(".html")) buildHtml.push(fs.readFileSync(full, "utf-8"));
+    }
+  };
+  collect(appDir);
+  const buildAll = buildHtml.join("\n");
+
+  const manifestLinks = [...new Set([...html.matchAll(/\/manifest#p-(\d)/g)].map((m) => m[1]))];
+  const missingTargets = manifestLinks.filter((n) => !buildAll.includes(`id="p-${n}"`));
+  gate("V1-manifest-anchors", missingTargets.length === 0,
+    `manifest anchors: ${manifestLinks.length} links, missing targets in build: [${missingTargets.join(", ") || "none"}]`);
+}
+
+// --- Gate V2: asset integrity ---------------------------------------------
+{
+  const brandPublic = path.join(repoRoot, "public", "projects", brand);
+  const icon48 = path.join(brandPublic, "icon-48.png");
+  const apple180 = path.join(brandPublic, "apple-icon-180.png");
+  const iconSvg = path.join(brandPublic, "icon.svg");
+
+  const icon48ok = fs.existsSync(icon48) && fs.statSync(icon48).size <= 10_240;
+  const apple180ok = fs.existsSync(apple180) && fs.statSync(apple180).size <= 61_440;
+  const iconSvgok = fs.existsSync(iconSvg);
+  gate("V2-assets", icon48ok && apple180ok && iconSvgok,
+    `icon-48.png(≤10KB): ${icon48ok}, apple-icon-180.png(≤60KB): ${apple180ok}, icon.svg: ${iconSvgok}`);
+
+  const faviconLinkOk = /<link rel="icon"[^>]+icon-48\.png/.test(html) || /href="[^"]*icon-48\.png/.test(html);
+  gate("V2-favicon-link", faviconLinkOk, `rendered head references icon-48.png: ${faviconLinkOk}`);
+
+  const dupDir = path.join(brandPublic, "public");
+  gate("V2-no-dup-assets", !fs.existsSync(dupDir), `projects/${brand}/public/ must not exist: ${!fs.existsSync(dupDir)}`);
+
+  const otherBrandRefs = [...html.matchAll(/\/projects\/([a-z0-9_-]+)\//g)]
+    .map((m) => m[1])
+    .filter((s) => s !== brand && s !== "_template");
+  gate("V2-brand-isolation", otherBrandRefs.length === 0,
+    `other-brand asset refs in HTML: ${otherBrandRefs.length}`);
+}
+
+// --- Gate V2a: logo chrome-free -------------------------------------------
+{
+  const logoPath = path.join(repoRoot, "components", "ui", "logo.tsx");
+  const logoSrc = fs.existsSync(logoPath) ? fs.readFileSync(logoPath, "utf-8") : "";
+  const inlineThemeStyles = (logoSrc.match(/style=\{\{[^}]*(backgroundColor|borderColor|padding)/g) || []).length;
+  gate("V2a-logo-chrome", inlineThemeStyles === 0, `theme-derived inline styles in logo.tsx: ${inlineThemeStyles} (expect 0)`);
+}
+
+// --- Gate V3: baseline byte-identity (normalized DOM, body only) -----------
+{
+  if (!fs.existsSync(baseline)) {
+    gate("V3-baseline", false, `baseline missing: ${baseline}`);
+  } else {
+    const normalize = (src) =>
+      src
+        // strip hydration/RSC payloads and script tags (chunk hashes change on edit)
+        .replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "")
+        .replace(/<script\b[^>]*\/>/g, "")
+        .replace(/self\.__next_f\.push\([\s\S]*?\)\);?/g, "")
+        // strip preload/modulepreload links (chunk-hash bearing)
+        .replace(/<link[^>]+rel="(preload|modulepreload)"[^>]*>/g, "")
+        // canonicalize hashed asset URLs (css/js chunk hashes change on edit;
+        // the css bundle *set* is content-addressed by the build itself)
+        .replace(/(\/_next\/static\/(?:css|chunks)\/)[^"']+/g, "$1<HASH>")
+        .trim();
+
+    const a = normalize(fs.readFileSync(baseline, "utf-8"));
+    const b = normalize(html);
+    gate("V3-baseline-identity", a === b,
+      a === b
+        ? `normalized DOM identical to 004 baseline (${a.length} bytes)`
+        : `normalized DOM differs from baseline (baseline ${a.length}B vs current ${b.length}B) — if this change is intentional, regenerate the baseline per the 004 contract Maintenance section`);
+  }
+}
+
+// --- Report ----------------------------------------------------------------
+const failed = results.filter((r) => !r.ok);
+console.log(`\nverify-gates: ${results.length - failed.length}/${results.length} gates passed (brand: ${brand})`);
+process.exit(failed.length ? 1 : 0);

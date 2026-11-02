@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main, feature/*, "00*"]
+    branches: [main, feature/*, "00*", "specs/*"]
   pull_request:
     branches: [main]
 
@@ -21,7 +21,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -29,9 +29,11 @@ jobs:
       - name: Typecheck
         run: pnpm validate
 
+      - name: Unit tests (vitest)
+        run: pnpm test
+
       - name: Build UnderUndre
         run: pnpm build:underundre
 
       - name: Run verification gates
         run: pnpm verify --brand underundre
-        continue-on-error: true

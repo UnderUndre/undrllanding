@@ -57,7 +57,9 @@ ENV NEXT_PUBLIC_SOCIAL_TRAILBLAZER=$NEXT_PUBLIC_SOCIAL_TRAILBLAZER
 ENV NEXT_PUBLIC_SOCIAL_SLACK=$NEXT_PUBLIC_SOCIAL_SLACK
 ENV NEXT_PUBLIC_SOCIAL_INSTAGRAM=$NEXT_PUBLIC_SOCIAL_INSTAGRAM
 
-RUN pnpm build:underundre
+# Spec 005 FR-012: respect the build-arg instead of hardcoding a brand —
+# `pnpm build` reads NEXT_PUBLIC_PROJECT_NAME from the ENV above.
+RUN pnpm build
 
 # Stage 3: Runner
 FROM node:22-alpine AS runner
@@ -66,6 +68,10 @@ ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+# Spec 005 FR-012: runner stage receives the brand name too (runtime
+# getActiveProjectConfig / icon route read it outside the client bundle).
+ARG NEXT_PUBLIC_PROJECT_NAME=underundre
+ENV NEXT_PUBLIC_PROJECT_NAME=$NEXT_PUBLIC_PROJECT_NAME
 
 RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 nextjs
