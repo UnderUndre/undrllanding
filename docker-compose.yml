@@ -23,6 +23,7 @@ services:
         NEXT_PUBLIC_SOCIAL_UPWORK: ${NEXT_PUBLIC_SOCIAL_UPWORK:-}
         NEXT_PUBLIC_SOCIAL_TRAILBLAZER: ${NEXT_PUBLIC_SOCIAL_TRAILBLAZER:-}
         NEXT_PUBLIC_SOCIAL_SLACK: ${NEXT_PUBLIC_SOCIAL_SLACK:-}
+        NEXT_PUBLIC_SOCIAL_INSTAGRAM: ${NEXT_PUBLIC_SOCIAL_INSTAGRAM:-}
     image: underundre-landing:latest
     container_name: underundre-landing
     restart: unless-stopped

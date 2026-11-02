@@ -9,6 +9,7 @@ import {
   IconUpwork,
   IconTrailblazer,
   IconSlack,
+  IconInstagram,
 } from "@/components/social-svg-icons";
 
 export interface SocialLink {
@@ -45,6 +46,7 @@ export function getSocialLinks(): SocialLink[] {
 
   return [
     { key: "twitter", url: process.env.NEXT_PUBLIC_SOCIAL_TWITTER || "", label: "Twitter / X", Icon: IconTwitter },
+    { key: "instagram", url: process.env.NEXT_PUBLIC_SOCIAL_INSTAGRAM || "", label: "Instagram", Icon: IconInstagram },
     { key: "linkedin", url: process.env.NEXT_PUBLIC_SOCIAL_LINKEDIN || "", label: "LinkedIn", Icon: IconLinkedIn },
     { key: "slack", url: process.env.NEXT_PUBLIC_SOCIAL_SLACK || "", label: "Slack", Icon: IconSlack },
     { key: "telegram", url: process.env.NEXT_PUBLIC_SOCIAL_TELEGRAM || "", label: "Telegram", Icon: IconTelegram },
