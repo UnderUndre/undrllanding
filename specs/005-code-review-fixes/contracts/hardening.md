@@ -20,7 +20,9 @@ Global (`next.config.js headers()`), all routes, enforcing:
 - `X-Frame-Options: DENY`
 - `X-Content-Type-Options: nosniff`
 - `Referrer-Policy: strict-origin-when-cross-origin`
-- `Content-Security-Policy: default-src 'self'; script-src 'self' https://analytics.underundre.com; connect-src 'self' https://analytics.underundre.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'`
+- `Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' <umami-origin>; connect-src 'self' <umami-origin>; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'`
+- `<umami-origin>` is derived at build time from `NEXT_PUBLIC_UMAMI_SRC` (analytics host is env-configurable).
+- *Drift note 2026-11-03*: research R-04 assumed "no inline scripts exist" — wrong for the Next.js App Router, which emits inline bootstrap/hydration scripts. Nonce-based CSP was rejected (middleware forces dynamic rendering on a 1 GB VPS); `script-src 'unsafe-inline'` accepted as the static-landing trade-off (React escapes all content; base-uri/form-action/frame-ancestors remain enforcing).
 
 Icon route SVG responses additionally carry `Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'` (per-response override) and `X-Content-Type-Options: nosniff`.
 *Dual-CSP Note (analyze L1)*: On `/icon.svg`, the global CSP and per-route CSP merge via browser conjunction (intersection); `default-src 'none'` strictly blocks any script execution in direct SVG view.

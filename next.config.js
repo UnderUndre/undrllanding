@@ -19,7 +19,12 @@ const UMAMI_ORIGIN = umamiOrigin(
 
 const CSP = [
   "default-src 'self'",
-  `script-src 'self' ${UMAMI_ORIGIN}`,
+  // 'unsafe-inline' for scripts: the App Router emits inline bootstrap/hydration
+  // scripts that a hash-less script-src blocks (breaking hydration for ALL
+  // visitors). Nonce-based CSP requires middleware + dynamic rendering —
+  // overkill for a static landing; React escapes all rendered content, and
+  // base-uri/form-action/frame-ancestors remain locked.
+  `script-src 'self' 'unsafe-inline' ${UMAMI_ORIGIN}`,
   `connect-src 'self' ${UMAMI_ORIGIN}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
@@ -37,6 +42,13 @@ const securityHeaders = [
 ];
 
 const nextConfig = {
+  async redirects() {
+    return [
+      // Browsers request /favicon.ico by default — serve the brand icon route
+      // instead of a 404 (hardened path re-anchoring applies).
+      { source: "/favicon.ico", destination: "/icon.svg", permanent: true },
+    ];
+  },
   async headers() {
     return [{ source: "/:path*", headers: securityHeaders }];
   },
