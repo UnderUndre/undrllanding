@@ -8,9 +8,10 @@ RUN npm i -g pnpm@10.15.1
 # Stage 1: Dependencies
 FROM base AS deps
 WORKDIR /app
-# patches/ must ship with the lockfile: pnpm verifies patchedDependencies
-# hashes during --frozen-lockfile install and aborts without the patch files.
-COPY package.json pnpm-lock.yaml ./
+# patches/ + pnpm-workspace.yaml must ship with the lockfile: pnpm reads
+# patchedDependencies from pnpm-workspace.yaml and verifies patch hashes
+# during --frozen-lockfile install — missing either aborts the install.
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY patches ./patches
 RUN pnpm install --frozen-lockfile
 
