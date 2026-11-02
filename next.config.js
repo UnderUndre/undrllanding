@@ -9,13 +9,13 @@ function umamiOrigin(src) {
   try {
     return new URL(src).origin;
   } catch {
-    return "https://analytics.underundre.com";
+    return null; // relative path (first-party tracker) — no extra origin needed
   }
 }
 
-const UMAMI_ORIGIN = umamiOrigin(
-  process.env.NEXT_PUBLIC_UMAMI_SRC || "https://analytics.underundre.com/script.js"
-);
+const UMAMI_SRC =
+  process.env.NEXT_PUBLIC_UMAMI_SRC || "/umami-tracker.js";
+const UMAMI_ORIGIN = umamiOrigin(UMAMI_SRC);
 
 const CSP = [
   "default-src 'self'",
@@ -24,8 +24,8 @@ const CSP = [
   // visitors). Nonce-based CSP requires middleware + dynamic rendering —
   // overkill for a static landing; React escapes all rendered content, and
   // base-uri/form-action/frame-ancestors remain locked.
-  `script-src 'self' 'unsafe-inline' ${UMAMI_ORIGIN}`,
-  `connect-src 'self' ${UMAMI_ORIGIN}`,
+  `script-src 'self' 'unsafe-inline'${UMAMI_ORIGIN ? ` ${UMAMI_ORIGIN}` : ""}`,
+  `connect-src 'self'${UMAMI_ORIGIN ? ` ${UMAMI_ORIGIN}` : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "frame-ancestors 'none'",
@@ -47,6 +47,21 @@ const nextConfig = {
       // Browsers request /favicon.ico by default — serve the brand icon route
       // instead of a 404 (hardened path re-anchoring applies).
       { source: "/favicon.ico", destination: "/icon.svg", permanent: true },
+    ];
+  },
+  async rewrites() {
+    // First-party analytics (Umami bypass-ad-blockers pattern, docs.umami.is):
+    // the tracker is served same-origin from /umami-tracker.js and beacons POST
+    // to /api/collect, which the server proxies to the real Umami host. The
+    // browser never sees a third-party origin — CSP stays 'self'.
+    // Production (VPS): http://umami:3000 via the docker network.
+    const umamiUpstream =
+      process.env.UMAMI_UPSTREAM_URL || "https://umami.undrexplorer-4g.netcraze.pro";
+    return [
+      {
+        source: "/api/collect",
+        destination: `${umamiUpstream}/api/collect`,
+      },
     ];
   },
   async headers() {

@@ -43,3 +43,6 @@ next-env.d.ts
 .history/
 # generated previews (spec 005 FR-016)
 projects/*/preview.html
+
+# umami compose with real secrets — local-only, never commit
+docker-compose.umami.yml

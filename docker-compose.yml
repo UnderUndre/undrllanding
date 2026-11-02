@@ -36,7 +36,62 @@ services:
       - "3000"
     networks:
       - caddy
+      - internal
+
+  # ── Self-hosted analytics (moved from the home-server netcraze tunnel —
+  # the tunnel blocks POST, killing beacon collection). First-party:
+  # the landing serves /umami-tracker.js itself and rewrites /api/collect
+  # to this container over the docker network. Dashboard is NOT public —
+  # access via SSH tunnel: ssh -L 3001:127.0.0.1:3001 <vps> → localhost:3001.
+  umami:
+    image: ghcr.io/umami-software/umami:latest
+    container_name: underundre-umami
+    restart: unless-stopped
+    init: true
+    environment:
+      DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:?set UMAMI_DB_PASSWORD in .env}@umami-db:5432/umami
+      APP_SECRET: ${UMAMI_APP_SECRET:?set UMAMI_APP_SECRET in .env}
+      COLLECT_API_ENDPOINT: /api/collect
+    depends_on:
+      umami-db:
+        condition: service_healthy
+    expose:
+      - "3000"
+    ports:
+      # Dashboard loopback-only: reachable from the operator's machine via SSH
+      # port-forward, never exposed publicly.
+      - "127.0.0.1:3001:3000"
+    networks:
+      - caddy
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/api/heartbeat || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+
+  umami-db:
+    image: postgres:15-alpine
+    container_name: underundre-umami-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: umami
+      POSTGRES_USER: umami
+      POSTGRES_PASSWORD: ${UMAMI_DB_PASSWORD:?set UMAMI_DB_PASSWORD in .env}
+    volumes:
+      - umami-db-data:/var/lib/postgresql/data
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 networks:
   caddy:
     external: true
+  internal:
+
+volumes:
+  umami-db-data:
