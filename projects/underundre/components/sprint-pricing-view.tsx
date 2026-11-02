@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useLang } from "@/context/lang-context";
-import { Language } from "@/lib/i18n";
+import { pick } from "@/lib/i18n";
 import type { PricingData, PricingPlanItem } from "@/lib/schemas/content-schema";
 
 // Client view for the schema-driven pricing section (spec 003 FR-004, T-013).
@@ -11,29 +11,29 @@ import type { PricingData, PricingPlanItem } from "@/lib/schemas/content-schema"
 
 export default function SprintPricingView({ data }: { data: PricingData }) {
   const { lang } = useLang();
-  const pick = (field: { ru: string; en: string }) => field[lang as Language] ?? field.en;
+  const pickText = (field: any) => pick(field, lang);
 
   return (
     <section id="pricing" className="py-20 bg-white dark:bg-[#06020a] border-b border-brand-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
           <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
-            {pick(data.sectionBadge)}
+            {pickText(data.sectionBadge)}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
-            {pick(data.sectionTitle)}
+            {pickText(data.sectionTitle)}
           </h2>
           <p className="mt-4 text-slate-600 dark:text-purple-200/70 max-w-3xl mx-auto">
-            {pick(data.sectionSubtitle)}
+            {pickText(data.sectionSubtitle)}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
           {data.plans.map((plan) =>
             plan.isHero ? (
-              <HeroPlan key={plan.id} plan={plan} pick={pick} />
+              <HeroPlan key={plan.id} plan={plan} pick={pickText} />
             ) : (
-              <StandardPlan key={plan.id} plan={plan} pick={pick} />
+              <StandardPlan key={plan.id} plan={plan} pick={pickText} />
             )
           )}
 
@@ -45,7 +45,7 @@ export default function SprintPricingView({ data }: { data: PricingData }) {
   );
 }
 
-type PickFn = (field: { ru: string; en: string }) => string;
+type PickFn = (field: any) => string;
 
 function HeroPlan({ plan, pick }: { plan: PricingPlanItem; pick: PickFn }) {
   return (

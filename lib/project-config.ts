@@ -2,6 +2,8 @@
 // Brand configs live in projects/<slug>/brand.ts and are registered in the
 // GENERATED PROJECT REGISTRY block below (managed by scripts/create-project.mjs).
 
+import type { Language } from "./i18n";
+
 export interface NavItem {
   labelKey?: string; // key into lib/i18n.ts translations (bilingual)
   labelFallback: string; // English fallback when the key is absent
@@ -65,6 +67,8 @@ export interface ProjectConfig {
   };
   navigation: NavigationConfig;
   footer: FooterConfig;
+  /** Locales supported by this brand (default: ["ru", "en"]) */
+  supportedLocales?: Language[];
   /** Optional fallback — preferred source is projects/<slug>/data/legal.json */
   legal?: LegalConfig;
 }

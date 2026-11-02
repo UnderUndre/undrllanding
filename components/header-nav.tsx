@@ -52,9 +52,12 @@ export default function HeaderNav() {
     applyTheme(newMode);
   };
 
+  const availableLanguages = config.supportedLocales ?? ["ru", "en"];
+
   const toggleLang = () => {
-    const nextLang: Language = lang === "ru" ? "en" : "ru";
-    setLang(nextLang);
+    const currentIndex = availableLanguages.indexOf(lang);
+    const nextIndex = currentIndex === -1 ? 0 : (currentIndex + 1) % availableLanguages.length;
+    setLang(availableLanguages[nextIndex]);
   };
 
   const navLabel = (item: { labelKey?: string; labelFallback: string }) =>

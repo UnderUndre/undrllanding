@@ -12,6 +12,8 @@ export const underundreBrand: ProjectConfig = {
   description:
     "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
   iconUrl: "/projects/underundre/icon.svg",
+  faviconUrl: "/projects/underundre/icon-48.png",
+  appleIconUrl: "/projects/underundre/apple-icon-180.png",
   heroBadge:
     "3X SALESFORCE CERTIFIED ENGINEER (ADMIN I & II · PLATFORM DEV) | ZERO SAAS TAXES | UPWORK ESCROW VERIFIED",
   theme: {
@@ -82,5 +84,5 @@ export const underundreBrand: ProjectConfig = {
     showLegalLinks: true,
     showManifestLink: true,
   },
-
+  supportedLocales: ["ru", "en"],
 };

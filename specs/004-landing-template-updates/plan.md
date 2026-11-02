@@ -70,30 +70,31 @@ projects/undreading/                        # NEW: pilot brand (FR-011)
   ├── components/ (only if brand-specific)
   └── locales.ts → replaced by data/copy.*.json per FR-011 + 003 FR-004
 public/projects/undreading/                  # NEW: icon set (icon.svg, icon-48.png, apple-icon-180.png)
-app/layout.tsx                              # MODIFY: icons metadata (done), uk locale wiring
-app/icon.svg/route.ts                       # MODIFY: MIME map (done), rename → app/icon/route.ts (cosmetic, optional)
-components/ui/logo.tsx                      # MODIFY: chrome-free (done, locked by test)
-lib/i18n.ts                                 # MODIFY: uk fallback → en
-components/... (shared sections)            # MODIFY: accept LocalizedText uk
-scripts/create-project.mjs                  # MODIFY: template emits icon set per FR-003/FR-004 into public/projects/<slug>/
-projects/_template/                          # MODIFY: assets location per FR-008 (audit requirement)
-scripts/verify-gates.mjs                    # NEW: CI verify (contracts/verify-gates.md)
-```
-
-## Phase 0 → research.md
-
-No open NEEDS CLARIFICATION remain (Q1–Q6 resolved). research.md records decisions + rationale only.
-
-## Phase 1 Design Decisions
-
-1. **Locale model (FR-010)**: `LocalizedText = { ru: string; en: string; uk?: string }`. Fallback `uk → en` applied in one helper (`pick()` / i18n resolver), not per-component. Rationale: single choke point, testable, byte-identical when `uk` absent.
-2. **Icon route rename**: `app/icon.svg/route.ts` → `app/icon/route.ts` (route no longer extension-specific). Serving behavior unchanged; catches the FR-002 MIME map.
-3. **Verify gates (FR-006/007/008/010, NFR-003)**: single `scripts/verify-gates.mjs` — grep scans (public build output: internal revisions = 0; asset duplicates = 0), size budgets (favicon ≤ 10 KB, apple ≤ 60 KB), byte-diff of ru/en `underundre` HTML against a stored baseline snapshot. Wired as `npm run verify` and run in CI before deploy.
-4. **Undreading scaffold (FR-011)**: `pnpm project:create --slug=undreading --name=Undreading`, then fill copy/pricing/faq/legal from business plan v2.5; `uk` locale included as the pilot of FR-010. Pricing grid = PWYW (Paddle), Amazon KDP EN/UK, Lulu DTC RU — external links, no new API surface.
-5. **Template fix**: `projects/_template/` emits `public/projects/<slug>/` assets (audit §2 requirement); `create-project.mjs` updated accordingly.
-6. **Dual content layer is intentional (F2)**: `underundre` remains on `locales.ts` (TS); `undreading` starts on JSON per 003 FR-004. Migrating `underundre` to JSON is 003-scope work, explicitly out of 004.
-
-## Deployment Readiness
-
-- `npm run validate && npm run build && npm run verify` must all pass.
+73	app/layout.tsx                              # MODIFY: icons metadata (done), uk locale wiring
+74	app/icon.svg/route.ts                       # MAINTAIN: MIME map and 404 logic (done in fcd5ef9); preserved at canonical path
+75	components/ui/logo.tsx                      # MODIFY: chrome-free (done, locked by test)
+76	lib/i18n.ts                                 # MODIFY: uk fallback → en, central pick() helper
+77	components/... (shared sections)            # MODIFY: accept LocalizedText uk
+78	scripts/create-project.mjs                  # MODIFY: template emits icon set per FR-003/FR-004 into public/projects/<slug>/
+79	projects/_template/                          # MODIFY: assets location per FR-008 (audit requirement)
+80	scripts/verify-gates.mjs                    # NEW: CI verify (contracts/verify-gates.md)
+81	.github/workflows/ci.yml                    # NEW: automated PR/push verification pipeline
+82	```
+83	
+84	## Phase 0 → research.md
+85	
+86	No open NEEDS CLARIFICATION remain (Q1–Q6 resolved). research.md records decisions + rationale only.
+87	
+88	## Phase 1 Design Decisions
+89	
+90	1. **Locale model (FR-010)**: `LocalizedText = { ru: string; en: string; uk?: string }`. Fallback `uk → en` applied in one central helper (`pick(field, lang)` from `lib/i18n.ts`), not per-component. Rationale: single choke point, testable, byte-identical when `uk` absent.
+91	2. **Icon route stability**: retain `app/icon.svg/route.ts` as the canonical route (MIME map handles `.svg`, `.png`, `.ico` dynamically; 404 on missing file). Avoids breaking external links or root layout references.
+92	3. **Verify gates (FR-006/007/008/010, NFR-003)**: single `scripts/verify-gates.mjs` — grep scans (public build output: internal revisions = 0; asset duplicates = 0), size budgets (favicon ≤ 10 KB, apple ≤ 60 KB), contract tests for `pick()`, and HTML baseline comparison. Wired as `pnpm verify` and run in GitHub Actions CI (`.github/workflows/ci.yml`).
+93	4. **Undreading scaffold (FR-011)**: `pnpm project:create --slug=undreading --name=Undreading`, then fill copy/pricing/faq/legal from business plan v2.5; `uk` locale included as the pilot of FR-010. Pricing grid = PWYW (Paddle), Amazon KDP EN/UK, Lulu DTC RU — external links, no new API surface.
+94	5. **Template fix**: `projects/_template/` emits `public/projects/<slug>/` assets (audit §2 requirement); `create-project.mjs` updated accordingly.
+95	6. **Dual content layer is intentional (F2)**: `underundre` remains on `locales.ts` (TS); `undreading` starts on JSON per 003 FR-004. Migrating `underundre` to JSON is 003-scope work, explicitly out of 004.
+96	
+97	## Deployment Readiness
+98	
+99	- `pnpm validate && pnpm build && pnpm verify` must all pass.
 - Baseline snapshot: commit `underundre` ru/en HTML output before FR-010 changes (task T1).

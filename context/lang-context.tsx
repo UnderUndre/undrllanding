@@ -15,8 +15,8 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Language>("ru");
 
   useEffect(() => {
-    const saved = localStorage.getItem("undrlla_lang") as Language | null;
-    if (saved === "ru" || saved === "en") {
+    const saved = (localStorage.getItem("app_lang") || localStorage.getItem("undrlla_lang")) as Language | null;
+    if (saved === "ru" || saved === "en" || saved === "uk") {
       setLangState(saved);
     }
 
@@ -34,6 +34,7 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
 
   const setLang = (newLang: Language) => {
     setLangState(newLang);
+    localStorage.setItem("app_lang", newLang);
     localStorage.setItem("undrlla_lang", newLang);
   };
 

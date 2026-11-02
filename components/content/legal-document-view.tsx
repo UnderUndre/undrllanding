@@ -1,7 +1,7 @@
 "use client";
 
 import { useLang } from "@/context/lang-context";
-import { Language } from "@/lib/i18n";
+import { pick } from "@/lib/i18n";
 import type { LegalDocument } from "@/lib/schemas/content-schema";
 
 export type LegalTokens = Record<string, string | number>;
@@ -19,7 +19,7 @@ export default function LegalDocumentView({
 }) {
   const { lang } = useLang();
 
-  const pick = (field: { ru: string; en: string }) => field[lang as Language] ?? field.en;
+  const pickText = (field: any) => pick(field, lang);
   const interpolate = (text: string) =>
     text.replace(/\{\{(\w+)\}\}/g, (_, key: string) =>
       tokens[key] !== undefined ? String(tokens[key]) : `{{${key}}}`
@@ -29,8 +29,8 @@ export default function LegalDocumentView({
     <main className="bg-brand-bg text-purple-50 min-h-screen">
       <article className="max-w-3xl mx-auto px-4 sm:px-6 py-20 text-sm leading-relaxed space-y-6">
         <header className="space-y-1">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">{pick(doc.title)}</h1>
-          <p className="text-purple-200/60 text-xs">{pick(doc.updatedAt)}</p>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">{pickText(doc.title)}</h1>
+          <p className="text-purple-200/60 text-xs">{pickText(doc.updatedAt)}</p>
         </header>
 
         {warning && (
@@ -39,14 +39,14 @@ export default function LegalDocumentView({
           </p>
         )}
 
-        {doc.intro && <p className="text-purple-100/80">{interpolate(pick(doc.intro))}</p>}
+        {doc.intro && <p className="text-purple-100/80">{interpolate(pickText(doc.intro))}</p>}
 
         {doc.sections.map((section) => (
-          <section key={pick(section.heading)}>
-            <h2 className="text-lg font-bold text-white mb-2">{pick(section.heading)}</h2>
+          <section key={pickText(section.heading)}>
+            <h2 className="text-lg font-bold text-white mb-2">{pickText(section.heading)}</h2>
             {section.paragraphs.map((paragraph, idx) => (
               <p key={idx} className="text-purple-100/80">
-                {interpolate(pick(paragraph))}
+                {interpolate(pickText(paragraph))}
               </p>
             ))}
           </section>

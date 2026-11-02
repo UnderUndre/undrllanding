@@ -19,6 +19,7 @@ interface ProjectConfig {
   theme: { primaryColor: string; secondaryColor: string };
   navigation: NavigationConfig;
   footer: FooterConfig;
+  supportedLocales?: ("ru" | "en" | "uk")[]; // NEW (FR-010): default ["ru", "en"]
   legal?: LegalConfig;
 }
 ```
@@ -54,7 +55,7 @@ One source artwork → three renditions. Regeneration tooling: Python/PIL (dev-o
 
 ## Entity: Icon route
 
-`app/icon/route.ts` (renamed from `app/icon.svg/route.ts`):
+`app/icon.svg/route.ts` (canonical route handler):
 
 - Path resolution: `public/<config.iconUrl>` (config-derived; no user input).
 - MIME map: `.svg → image/svg+xml`, `.png → image/png`, `.ico → image/x-icon`, other → `application/octet-stream`.

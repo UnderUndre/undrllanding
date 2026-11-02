@@ -117,7 +117,9 @@ so that template claims are validated by an actual consumer with real copy, pric
 - **FR-006**: All user-visible citations of the Engineering Manifesto MUST reference public section numbers (§1–§7) and link to `/manifest#p-<N>`; principle cards on `/manifest` MUST carry stable DOM ids `p-1`…`p-7` with scroll margin compensating the fixed header.
 - **FR-007**: The public `manifest.json` `version` field MUST contain a single public version token; internal business-plan revision numbers MUST NOT appear in any publicly served copy, config, or metadata.
 - **FR-008**: Brand icon assets MUST have a single source-of-truth location per project (`public/projects/<slug>/`); duplicate asset copies in `projects/<slug>/public/` MUST NOT exist. The source-of-truth is the served `public/` tree (owner decision 2026-11-02: single location, no build-time copy step).
-- **FR-009**: *(pilot brand — pending scope clarification)* Scaffolding MUST produce icon assets conforming to FR-003/FR-004.
+- **FR-009**: Scaffolding CLI (`pnpm project:create`) MUST emit icon assets conforming to FR-003 and FR-004 (`icon.svg`, `icon-48.png`, `apple-icon-180.png`) into `public/projects/<slug>/`.
+- **FR-010**: `LocalizedText` primitive MUST support an optional third locale `uk?: string` with single-choke-point fallback `uk → en → ru → ""`. Brands omitting `uk` MUST render byte-identical ru/en output to the pre-change baseline (NFR-003 / SC-005).
+- **FR-011**: The template engine MUST host the real pilot brand `undreading` scaffolded via `pnpm project:create`, with copy, pricing grid, and trilingual support sourced from `undreading-business-plan.md` v2.5, compiling with zero references to the `underundre` brand.
 
 ### Non-Functional Requirements
 

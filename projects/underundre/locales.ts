@@ -1,3 +1,5 @@
+import type { Language } from "@/lib/i18n";
+
 export interface UnderundreCopy {
   hero: {
     badge: string;
@@ -827,6 +829,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
   },
 };
 
-export function getUnderundreCopy(lang: "ru" | "en"): UnderundreCopy {
+export function getUnderundreCopy(lang: Language | "ru" | "en"): UnderundreCopy {
+  if (lang === "uk") return underundreCopy.en;
   return underundreCopy[lang] || underundreCopy.en;
 }

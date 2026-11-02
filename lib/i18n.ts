@@ -1,9 +1,22 @@
-export type Language = "ru" | "en";
+export type Language = "ru" | "en" | "uk";
 
 export type TranslationKey = keyof typeof translations["ru"];
 
-export const translations = {
-  ru: {
+/**
+ * Single-choke-point resolver for LocalizedText primitives (spec 004 FR-010).
+ * Fallback precedence: lang -> en -> ru -> "".
+ */
+export function pick(
+  text?: { ru: string; en: string; uk?: string } | null,
+  lang: Language = "ru"
+): string {
+  if (!text) return "";
+  if (lang === "uk") return text.uk || text.en || text.ru || "";
+  if (lang === "en") return text.en || text.ru || "";
+  return text.ru || text.en || "";
+}
+
+const ru = {
     // Header
     nav_reserve: "Забронировать место",
     nav_pricing: "Тарифы",
@@ -238,9 +251,9 @@ export const translations = {
     // Footer
     footer_desc: "Платформа создания автономных маркетплейсов с уникальным брендингом и 0% комиссией на базе Medusa 2.0.",
     footer_rights: "Все права защищены.",
-  },
+  };
 
-  en: {
+const en = {
     // Header
     nav_reserve: "Reserve Spot",
     nav_pricing: "Pricing",
@@ -475,5 +488,116 @@ export const translations = {
     // Footer
     footer_desc: "Platform for creating autonomous marketplaces with custom branding and 0% transaction fee on Medusa 2.0.",
     footer_rights: "All rights reserved.",
-  },
+  };
+
+const uk = {
+  // Inherit full English dictionary as baseline
+  ...en,
+
+  // Header
+    nav_reserve: "Забронювати місце",
+    nav_pricing: "Тарифи",
+    nav_features: "Можливості",
+    nav_how: "Як працює",
+    nav_manifest: "Маніфест",
+    breadcrumb_home: "Головна",
+    breadcrumb_econ: "Економіка та Маніфест",
+
+    // UnderUndre brand nav/footer fallback
+    nav_audit: "TCO-Аудит",
+    nav_stack: "FOSS-Стек",
+    nav_comparison: "Порівняння",
+    nav_faq: "Питання",
+    nav_cta_audit: "Аудит за $350",
+    footer_uu_tagline:
+      "Інженерне продуктове бюро — TCO-аудити милиць, специфікації OpenAPI та приватні FOSS-системи з нульовими ліцензійними поборами.",
+    footer_uu_products: "Продукти",
+    footer_uu_product0: "Продукт 0: TCO-Аудит ($350 пілот)",
+    footer_uu_product_a: "Спринт А: FOSS-Офіс ($3.5k)",
+    footer_uu_custom: "Кастомна розробка — через бриф",
+    footer_uu_escrow: "Оплата та Ескроу",
+    footer_uu_escrow_upwork: "Upwork Ескроу (5% комісія)",
+    footer_uu_ip: "100% прав на кастомні доробки",
+    footer_uu_nace: "Стандарт EU NACE 62.01",
+    footer_privacy: "Політика конфіденційності",
+    footer_terms: "Умови обслуговування",
+    footer_manifest: "Інженерний маніфест",
+
+    // Common Fallbacks (inheriting English copy)
+    hero_badge_alpha: "Closed Alpha Cohort",
+    hero_badge_offer: "First 50 — $0 / 6 mo",
+    hero_title_1: "Your branded store —",
+    hero_title_accent: "live",
+    hero_title_2: "in one deploy",
+    hero_subtitle:
+      "Medusa 2.0 + your brand + Paddle/crypto. 0% tax on direct sales.",
+    hero_b_title_1: "0% platform tax on sales.",
+    hero_b_title_accent: "Turnkey store",
+    hero_b_title_2: "at $0 in alpha",
+    hero_b_subtitle:
+      "No GMV cut on direct sales. Alpha: 50 seats free for 6 months — Paddle, crypto, your brand.",
+    hero_stat_alpha: "claimed in alpha",
+    hero_stat_cost: "0% GMV fee",
+    hero_stat_engine: "Paddle · crypto · SSL",
+    hero_btn_manifest: "0% fee manifesto",
+    hero_trust_1: "0% fee on direct sales",
+    hero_trust_2: "No card for waitlist",
+    hero_trust_3: "1-click PaaS · SSL · own domain",
+    counter_label: "Alpha seats",
+    counter_remaining: "{n} of 50 left",
+    counter_full: "Alpha full — waitlist still open",
+    counter_full_short: "Alpha full",
+    sticky_cta: "Join waitlist — 1 email",
+    sticky_sub: "Alpha $0 · live counter",
+    story_tag: "What your customers will feel",
+    story_title: "From claim to storefront — three frames",
+    story_sub: "The same wow you can sell on your own landing later.",
+    story_1_title: "1 · Claim",
+    story_1_desc: "Email → seat reserved. No card, no 12-field form.",
+    story_2_title: "2 · Deploy",
+    story_2_desc: "Medusa + Postgres + Redis + TLS. Manifest hits undevops.",
+    story_3_title: "3 · Storefront",
+    story_3_desc: "Your brand, catalog, checkout. You own the data.",
+    stats_guarantee_note: "🔒 Economic rules are locked. Target benchmarks tested in Alpha.",
+    econ_tag: "Manifest of Honest Commerce",
+    econ_title: "Full Breakdown of Undrlla Economics",
+    econ_sub: "Platform should not tax your business revenue.",
+    econ_guarantee_title: "🔒 Economic Guarantee vs Engineering Benchmarks",
+    card_alpha_btn: "🔥 Claim 1 of 50 Spots",
+    card_starter_tag: "Public Launch",
+    card_starter_title: "Starter Lite",
+    card_starter_desc: "Ideal for launching your first online store.",
+    card_starter_price: "$29",
+    card_starter_period: " / mo",
+    card_starter_btn: "Join Waitlist",
+    card_rebate_tag: "Rebate Offer",
+    card_rebate_title: "Turnkey Customization",
+    card_rebate_desc: "Human 1-on-1 Telegram dialogue with a designer. 100% subscription cashback.",
+    card_rebate_price: "$150",
+    card_rebate_period: " one-time (100% cashback)",
+    card_rebate_btn: "Order Customization",
+    revshare_tag: "💸 Affiliate Program & RevShare",
+    revshare_title: "Refer marketplaces — earn 20% RevShare in USDT",
+    revshare_sub: "Earn lifetime recurring commissions!",
+    revshare_client_title: "🎁 For Store Owners",
+    revshare_client_desc: "Refer 2 friends = Free hosting forever.",
+    revshare_affiliate_title: "🪙 For Affiliates & Publishers",
+    revshare_affiliate_desc: "20% Lifetime Recurring RevShare on all renewals.",
+    revshare_calc_title: "Passive Income Calculator",
+    revshare_calc_label: "Marketplaces referred:",
+    revshare_calc_result: "Your monthly crypto RevShare:",
+    revshare_calc_btn: "Become an Affiliate Partner",
+    revshare_free_badge: "🎉 Your own marketplace is hosted for FREE!",
+    cta_tag: "First wave launch spots are limited",
+    cta_title: "Ready to launch your autonomous marketplace?",
+    cta_sub: "Join the creator waitlist.",
+    cta_btn: "🚀 Join Waitlist Right Now",
+    footer_desc: "Platform for creating autonomous marketplaces with custom branding and 0% transaction fee on Medusa 2.0.",
+    footer_rights: "Всі права захищені.",
+  };
+
+export const translations = {
+  ru,
+  en,
+  uk,
 };

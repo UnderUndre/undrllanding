@@ -9,10 +9,11 @@ import { z } from "zod";
  * - Lead metadata is a bounded flat scalar map (review F7)
  */
 
-// 0. Bilingual text primitive
+// 0. Bilingual / Trilingual text primitive (spec 004 FR-010)
 export const LocalizedTextSchema = z.object({
   ru: z.string().min(1),
   en: z.string().min(1),
+  uk: z.string().min(1).optional(),
 });
 
 export type LocalizedText = z.infer<typeof LocalizedTextSchema>;

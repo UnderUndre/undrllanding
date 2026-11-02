@@ -7,11 +7,6 @@ export function generateMetadata() {
   return {
     title: config.title,
     description: config.description,
-    icons: {
-      icon: config.iconUrl,
-      shortcut: config.iconUrl,
-      apple: config.iconUrl,
-    },
   };
 }
 
