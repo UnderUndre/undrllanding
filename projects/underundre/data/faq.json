@@ -46,6 +46,22 @@
     },
     {
       "question": {
+        "ru": "Почему UnderUndre называется «бюро», если проекты ведёт один ведущий инженер?",
+        "en": "Why is UnderUndre called a \"bureau\" if projects are run by a single lead engineer?"
+      },
+      "answers": [
+        {
+          "ru": "Бюро — это институционализированный метод и формат работы, а не раздутый штат. Практика строится по принципу классических европейских инженерных бюро (Ingenieurbüro и Bureau d'études): стандартизированные DDL-контракты, жесткие таймбоксы (Fixed Scope Knife) и суверенная инфраструктура без посредников.",
+          "en": "A bureau is an institutionalized operating method and standard, not an inflated headcount. The bureau operates on the model of classical European engineering practices (Ingenieurbüro and Bureau d'études): standardized DDL contracts, rigid timeboxes (Fixed Scope Knife), and sovereign infrastructure delivered turn-key without intermediaries."
+        },
+        {
+          "ru": "Вы платите за архитектурную точность ведущего инженера (NACE 62.01) и прямой контакт с тем, чьи руки крутят гайки, а не за оплату офиса, аккаунт-менеджеров и испорченный телефон.",
+          "en": "You pay for the architectural precision of the lead engineer (NACE 62.01) and direct accountability with the craftsman building the system — not for agency overhead, account managers, and corporate telephone games."
+        }
+      ]
+    },
+    {
+      "question": {
         "ru": "Как меня защищает Upwork Direct Contracts Escrow?",
         "en": "How does Upwork Direct Contracts Escrow protect my capital?"
       },

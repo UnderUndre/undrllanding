@@ -326,19 +326,19 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
     opsec: {
       badge: "Протокол нулевого финансового риска",
-      title: "Как я на 100% исключаю ваш финансовый и технический риск.",
+      title: "Как бюро на 100% исключает ваш финансовый и технический риск.",
       subtitle:
         "Вы никогда не переводите деньги на анонимные счета. Все расчёты идут через официальный Upwork Direct Contracts Escrow с независимым арбитражем.",
       steps: [
         {
           num: "1",
           title: "Эскроу и аудит (День 1)",
-          desc: "Вы замораживаете депозит в эскроу. Я разбираю архитектуру: если подходит готовое FOSS-решение, разворачиваю его без лишних затрат. Если нужна кастомная логика — фиксирую схему DDL.",
+          desc: "Вы замораживаете депозит в эскроу. Бюро разбирает архитектуру: если подходит готовое FOSS-решение, разворачиваем без лишних затрат. Если нужна кастомная логика — фиксируем схему DDL.",
         },
         {
           num: "2",
           title: "Сборка на конвейере (Дни 1–13)",
-          desc: "Разработка идёт на моём изолированном staging-сервере. Вы получаете закрытые превью-ссылки и видеоразборы прогресса без слепых зон.",
+          desc: "Разработка идёт на изолированном staging-сервере бюро. Вы получаете закрытые превью-ссылки и видеоразборы прогресса без слепых зон.",
         },
         {
           num: "3",
@@ -348,7 +348,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         {
           num: "4",
           title: "7-дневный гарантийный SLA",
-          desc: "7 календарных дней бесплатной гарантийной поддержки. Любые критические дефекты P1/P2 устраняются в течение 24 часов за мой счёт.",
+          desc: "7 календарных дней бесплатной гарантийной поддержки. Любые критические дефекты P1/P2 устраняются в течение 24 часов за счёт бюро.",
         },
       ],
       legalTitle: "ЮРИДИЧЕСКИЙ СТАНДАРТ ПЕРЕДАЧИ КОДА",
@@ -359,7 +359,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       commTitle: "ПРОТОКОЛ СВЯЗИ",
       commH4: "Асинхронная скорость: защита от совещательной усталости",
       commDesc:
-        "Я бережу ваш срок сдачи и не трачу часы на бесконечные созвоны в Zoom. Статусы и видеоразборы передаются асинхронно в Telegram и Loom. Созвоны строго по расписанию: Кикофф (30 мин) и сдача на 14 день (60 мин).",
+        "Бюро бережёт ваш срок сдачи и не тратит часы на бесконечные созвоны в Zoom. Статусы и видеоразборы передаются асинхронно в Telegram и Loom. Созвоны строго по расписанию: Кикофф (30 мин) и сдача на 14 день (60 мин).",
       commBadge: "100% ФОКУС НА КОДЕ",
     },
     comparison: {
@@ -436,6 +436,13 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           a: [
             "Нет. На первом шаге я провожу строгий отбор. Если задачу решает проверенный опенсорсный инструмент (Twenty CRM, Outline, Cal.com), я не сжигаю ваш бюджет на велосипеды.",
             "Кастомный код пишется только там, где у вашего бизнеса есть уникальный процесс.",
+          ],
+        },
+        {
+          q: "Почему UnderUndre называется «бюро», если проекты ведёт один ведущий инженер?",
+          a: [
+            "Бюро — это институционализированный метод и формат работы, а не раздутый штат. Практика строится по принципу классических европейских инженерных бюро (Ingenieurbüro и Bureau d'études): стандартизированные DDL-контракты, жесткие таймбоксы (Fixed Scope Knife) и суверенная инфраструктура без посредников.",
+            "Вы платите за архитектурную точность ведущего инженера (NACE 62.01) и прямой контакт с тем, чьи руки крутят гайки, а не за оплату офиса, аккаунт-менеджеров и испорченный телефон.",
           ],
         },
         {
@@ -527,7 +534,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
     telemetry: {
       badge: "Engineering Delivery Standard",
-      title: "Every audit runs through the same typed pipeline I ship for client systems.",
+      title: "Every audit runs through the same typed pipeline the bureau ships for client systems.",
       subtitle:
         "Every brief, validation, and artifact goes through a strict typed pipeline: no eyeballing, only schemas, contracts, and failure alerts.",
       ctaPrimary: "Request your audit ($350) →",
@@ -657,14 +664,14 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
     opsec: {
       badge: "Zero Risk & Instant Contract Protocol",
-      title: "How I Eliminate 100% of Your Financial and Technical Risk.",
+      title: "How the Bureau Eliminates 100% of Your Financial and Technical Risk.",
       subtitle:
-        "You never transfer money to unverified personal accounts. I utilize standardized escrow mechanisms (Upwork Direct Contracts) or instant e-Signed agreements.",
+        "You never transfer money to unverified personal accounts. The bureau utilizes standardized escrow mechanisms (Upwork Direct Contracts) or instant e-Signed agreements.",
       steps: [
         {
           num: "1",
           title: "Escrow & TCO Audit (Day 1)",
-          desc: "You fund escrow safely. I audit your business model using TDABC: if a battle-tested engine fits best, I leverage it. If proprietary architecture is required, I lock custom DDL schemas.",
+          desc: "You fund escrow safely. The lead architect audits your business model using TDABC: if a battle-tested engine fits best, it is leveraged directly. If proprietary architecture is required, strict DDL schemas are locked.",
         },
         {
           num: "2",
@@ -674,7 +681,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         {
           num: "3",
           title: "Live Verification & Handover (Day 14)",
-          desc: "A 60-minute live session. I execute a live $1 test transaction to verify the pipeline. Upon confirming functionality, you authorize escrow release and receive 100% Git repo ownership.",
+          desc: "A 60-minute live session. The lead architect executes a live $1 test transaction to verify the pipeline. Upon confirming functionality, you authorize escrow release and receive 100% Git repo ownership.",
         },
         {
           num: "4",
@@ -690,7 +697,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       commTitle: "COMMUNICATION PROTOCOL",
       commH4: "Async-First Velocity: Zero Meeting Fatigue",
       commDesc:
-        "I protect your delivery timeline by eliminating daily Zoom overhead. Daily updates and build walkthroughs are delivered asynchronously via Loom and Telegram. Synchronous calls are strictly reserved for Day 1 Kickoff (30 min) and Day 14 Live Verification (60 min).",
+        "The bureau protects your delivery timeline by eliminating daily Zoom overhead. Daily updates and build walkthroughs are delivered asynchronously via Loom and Telegram. Synchronous calls are strictly reserved for Day 1 Kickoff (30 min) and Day 14 Live Verification (60 min).",
       commBadge: "100% BUILD FOCUS",
     },
     comparison: {
@@ -766,6 +773,13 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           a: [
             "No. I practice pragmatic architecture triage on Day 1. If an existing FOSS tool solves your backend needs without seat taxes, I won't waste your runway reinventing the wheel.",
             "I only build custom applications when your business model genuinely requires proprietary workflows.",
+          ],
+        },
+        {
+          q: "Why is UnderUndre called a \"bureau\" if projects are run by a single lead engineer?",
+          a: [
+            "A bureau is an institutionalized operating method and standard, not an inflated headcount. The bureau operates on the model of classical European engineering practices (Ingenieurbüro and Bureau d'études): standardized DDL contracts, rigid timeboxes (Fixed Scope Knife), and sovereign infrastructure delivered turn-key without intermediaries.",
+            "You pay for the architectural precision of the lead engineer (NACE 62.01) and direct accountability with the craftsman building the system — not for agency overhead, account managers, and bureaucratic telephone games.",
           ],
         },
         {
