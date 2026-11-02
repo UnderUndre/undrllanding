@@ -49,48 +49,48 @@ type PickFn = (field: any) => string;
 
 function HeroPlan({ plan, pick }: { plan: PricingPlanItem; pick: PickFn }) {
   return (
-    <div className="p-8 bg-[#180a2e] rounded-2xl border-2 border-brand-orange flex flex-col justify-between relative shadow-xl">
+    <div className="p-8 bg-white dark:bg-[#180a2e] rounded-2xl border-2 border-brand-orange flex flex-col justify-between relative shadow-xl">
       {plan.heroTag && (
         <div className="absolute -top-3 right-6 px-3 py-1 bg-brand-orange text-white text-xs font-extrabold rounded-full uppercase tracking-wider shadow-md">
           {pick(plan.heroTag)}
         </div>
       )}
       <div>
-        <span className="inline-block px-3 py-1 bg-emerald-950/40 text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-emerald-800/40">
+        <span className="inline-block px-3 py-1 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-emerald-200 dark:border-emerald-800/40">
           {pick(plan.tierName)}
         </span>
-        <h3 className="text-2xl font-bold text-white">{pick(plan.title)}</h3>
-        <p className="mt-2 text-sm text-purple-200/70">{pick(plan.description)}</p>
+        <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{pick(plan.title)}</h3>
+        <p className="mt-2 text-sm text-slate-600 dark:text-purple-200/70">{pick(plan.description)}</p>
 
         <div className="my-6">
           <div className="flex items-baseline gap-3">
-            <div className="text-4xl font-extrabold text-white">{plan.price}</div>
+            <div className="text-4xl font-extrabold text-slate-900 dark:text-white">{plan.price}</div>
             {plan.originalPrice && (
-              <div className="text-base font-normal text-purple-300/50 line-through">{plan.originalPrice}</div>
+              <div className="text-base font-normal text-slate-400 dark:text-purple-300/50 line-through">{plan.originalPrice}</div>
             )}
           </div>
-          {plan.priceNote && <div className="text-xs text-purple-300/60 mt-1">{pick(plan.priceNote)}</div>}
+          {plan.priceNote && <div className="text-xs text-slate-500 dark:text-purple-300/60 mt-1">{pick(plan.priceNote)}</div>}
           {plan.creditNote && (
-            <div className="text-sm font-semibold text-emerald-400 mt-2">{pick(plan.creditNote)}</div>
+            <div className="text-sm font-semibold text-emerald-700 dark:text-emerald-400 mt-2">{pick(plan.creditNote)}</div>
           )}
-          <div className="text-xs text-purple-300/60 mt-2 font-mono">{pick(plan.turnaround)}</div>
+          <div className="text-xs text-slate-500 dark:text-purple-300/60 mt-2 font-mono">{pick(plan.turnaround)}</div>
         </div>
 
         <div className="space-y-3 mb-6">
-          <div className="text-xs font-bold uppercase tracking-wider text-purple-200">
+          <div className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-purple-200">
             {pick(plan.deliverablesTitle)}
           </div>
-          <ul className="space-y-2 text-sm text-purple-200/80">
+          <ul className="space-y-2 text-sm text-slate-600 dark:text-purple-200/80">
             {plan.deliverables.map((item, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="text-brand-green font-bold">✓</span> {pick(item)}
+                <span className="text-green-700 dark:text-brand-green font-bold">✓</span> {pick(item)}
               </li>
             ))}
           </ul>
         </div>
 
         {plan.demandGateNote && (
-          <div className="p-3 bg-emerald-950/20 border border-emerald-800/30 rounded-lg text-xs text-emerald-300 mb-6">
+          <div className="p-3 bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800/30 rounded-lg text-xs text-emerald-800 dark:text-emerald-300 mb-6">
             <strong>{pick(plan.demandGateNote)}</strong>
           </div>
         )}
@@ -108,37 +108,37 @@ function HeroPlan({ plan, pick }: { plan: PricingPlanItem; pick: PickFn }) {
 
 function StandardPlan({ plan, pick }: { plan: PricingPlanItem; pick: PickFn }) {
   return (
-    <div className="p-8 bg-[#110721]/80 rounded-2xl border border-brand-border flex flex-col justify-between hover:border-purple-600/50 transition-colors">
+    <div className="p-8 bg-white dark:bg-[#110721]/80 rounded-2xl border border-slate-200 dark:border-brand-border flex flex-col justify-between hover:border-purple-400 dark:hover:border-purple-600/50 transition-colors shadow-sm">
       <div>
-        <span className="inline-block px-3 py-1 bg-purple-950/60 text-purple-300 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-purple-800/40">
+        <span className="inline-block px-3 py-1 bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 text-xs font-bold rounded-full uppercase tracking-wider mb-4 border border-purple-200 dark:border-purple-800/40">
           {pick(plan.tierName)}
         </span>
-        <h3 className="text-2xl font-bold text-white">{pick(plan.title)}</h3>
-        <p className="mt-2 text-sm text-purple-200/70">{pick(plan.description)}</p>
+        <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{pick(plan.title)}</h3>
+        <p className="mt-2 text-sm text-slate-600 dark:text-purple-200/70">{pick(plan.description)}</p>
 
         <div className="my-6">
-          <div className="text-4xl font-extrabold text-white">{plan.price}</div>
+          <div className="text-4xl font-extrabold text-slate-900 dark:text-white">{plan.price}</div>
           {plan.priceNote && (
-            <div className="text-sm font-semibold text-orange-400 mt-1">{pick(plan.priceNote)}</div>
+            <div className="text-sm font-semibold text-orange-600 dark:text-orange-400 mt-1">{pick(plan.priceNote)}</div>
           )}
-          <div className="text-xs text-purple-300/60 mt-2 font-mono">{pick(plan.turnaround)}</div>
+          <div className="text-xs text-slate-500 dark:text-purple-300/60 mt-2 font-mono">{pick(plan.turnaround)}</div>
         </div>
 
         <div className="space-y-3 mb-6">
-          <div className="text-xs font-bold uppercase tracking-wider text-purple-200">
+          <div className="text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-purple-200">
             {pick(plan.deliverablesTitle)}
           </div>
-          <ul className="space-y-2 text-sm text-purple-200/80">
+          <ul className="space-y-2 text-sm text-slate-600 dark:text-purple-200/80">
             {plan.deliverables.map((item, idx) => (
               <li key={idx} className="flex items-start gap-2">
-                <span className="text-brand-green font-bold">✓</span> {pick(item)}
+                <span className="text-green-700 dark:text-brand-green font-bold">✓</span> {pick(item)}
               </li>
             ))}
           </ul>
         </div>
 
         {plan.demandGateNote && (
-          <div className="p-3 bg-purple-950/20 border border-purple-800/30 rounded-lg text-xs text-purple-300 mb-6">
+          <div className="p-3 bg-purple-50 dark:bg-purple-950/20 border border-purple-200 dark:border-purple-800/30 rounded-lg text-xs text-purple-800 dark:text-purple-300 mb-6">
             {pick(plan.demandGateNote)}
           </div>
         )}
@@ -146,7 +146,7 @@ function StandardPlan({ plan, pick }: { plan: PricingPlanItem; pick: PickFn }) {
 
       <a
         href={plan.ctaHref}
-        className="w-full py-3.5 px-6 bg-purple-900 hover:bg-purple-800 active:scale-[0.98] text-white font-semibold rounded-lg text-center transition-all border border-purple-700/40 text-sm"
+        className="w-full py-3.5 px-6 bg-slate-900 hover:bg-slate-800 dark:bg-purple-900 dark:hover:bg-purple-800 active:scale-[0.98] text-white font-semibold rounded-lg text-center transition-all border border-slate-900 dark:border-purple-700/40 text-sm"
       >
         {pick(plan.ctaText)}
       </a>
