@@ -11,3 +11,14 @@
   --brand-accent: #69a700;
   --brand-border: rgba(147, 51, 234, 0.3);
 }
+
+/* Light theme: same tokens, paper values. Components consume the same
+   semantic utilities (bg-brand-bg, border-brand-border, ...) — no per-section
+   hardcodes needed for the base surfaces. */
+html:not(.dark) {
+  --brand-bg: #f8fafc;
+  --brand-surface: #ffffff;
+  --brand-surface-subtle: #eef2f7;
+  --brand-accent: #4d7c0f;
+  --brand-border: rgba(15, 23, 42, 0.12);
+}

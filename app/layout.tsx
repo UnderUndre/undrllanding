@@ -49,7 +49,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth dark" data-theme={`${getActiveProjectConfig().slug}-dark`} suppressHydrationWarning>
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} font-sans tracking-tight bg-[#080808] text-purple-50 antialiased selection:bg-[#b45500] selection:text-white transition-colors duration-300`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans tracking-tight bg-brand-bg text-slate-900 dark:text-purple-50 antialiased selection:bg-[#b45500] selection:text-white transition-colors duration-300`}
       >
         <div className="flex min-h-screen flex-col overflow-hidden supports-[overflow:clip]:overflow-clip">
           {children}

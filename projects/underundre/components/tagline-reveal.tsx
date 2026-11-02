@@ -46,13 +46,13 @@ export default function TaglineRevealSection() {
           {t.words.map((word, idx) => (
             <span
               key={`${lang}-${idx}`}
-              className="reveal-word inline-block mr-[0.25em] opacity-25 blur-xs transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] text-white"
+              className="reveal-word inline-block mr-[0.25em] opacity-25 blur-xs transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] text-slate-900 dark:text-white"
             >
               {word}
             </span>
           ))}
         </div>
-        <p className="mt-8 text-xs font-mono text-purple-300/60 uppercase tracking-widest">
+        <p className="mt-8 text-xs font-mono text-slate-500 dark:text-purple-300/60 uppercase tracking-widest">
           <Link href="/manifest#p-1" className="hover:text-orange-400 transition-colors">
             {t.author}
           </Link>

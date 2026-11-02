@@ -12,7 +12,7 @@ export default function OpsecProtocol() {
     <section id="opsec" className="py-20 bg-slate-50 dark:bg-[#08030f] border-b border-brand-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <span className="inline-block px-3 py-1 bg-brand-green/10 text-brand-green text-xs font-semibold rounded-full uppercase tracking-wider mb-3">
+          <span className="inline-block px-3 py-1 bg-brand-green/10 text-green-700 dark:text-brand-green text-xs font-semibold rounded-full uppercase tracking-wider mb-3">
             {t.badge}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">

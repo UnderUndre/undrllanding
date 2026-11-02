@@ -9,16 +9,16 @@ export default function HeroUnderundre() {
   const t = getUnderundreCopy(lang).hero;
 
   return (
-    <section id="audit" className="relative pt-28 pb-20 bg-brand-bg text-purple-50 transition-colors border-b border-brand-border overflow-hidden">
+    <section id="audit" className="relative pt-28 pb-20 bg-brand-bg text-slate-900 dark:text-purple-50 transition-colors border-b border-brand-border overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center relative z-10">
         {/* Top Trust Badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-950/60 border border-purple-800/40 text-orange-400 text-xs font-semibold tracking-wide uppercase mb-8 shadow-sm">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-100 dark:bg-purple-950/60 border border-purple-300 dark:border-purple-800/40 text-orange-600 dark:text-orange-400 text-xs font-semibold tracking-wide uppercase mb-8 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse inline-block mr-1" />
           {t.badge}
         </div>
 
         {/* H1 Main Headline with text-balance */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-[680px] mx-auto leading-tight text-white text-balance">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-[680px] mx-auto leading-tight text-slate-900 dark:text-white text-balance">
           {t.title1}{" "}
           <span className="text-brand-orange bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-500 to-orange-600">
             {t.titleAccent}
@@ -27,7 +27,7 @@ export default function HeroUnderundre() {
         </h1>
 
         {/* Subtitle */}
-        <p className="text-base sm:text-lg text-purple-200/80 max-w-[680px] mx-auto mb-10 leading-relaxed text-pretty">
+        <p className="text-base sm:text-lg text-slate-600 dark:text-purple-200/80 max-w-[680px] mx-auto mb-10 leading-relaxed text-pretty">
           {t.subtitle}
         </p>
 
@@ -39,43 +39,43 @@ export default function HeroUnderundre() {
           >
             {t.ctaPrimary}
           </a>
-          <a
-            href="#stack"
-            className="w-full sm:w-auto px-6 py-3 bg-purple-950/60 hover:bg-purple-900/70 active:scale-[0.98] text-purple-200 font-semibold rounded-lg transition-all text-sm border border-purple-800/40 text-center flex items-center justify-center gap-2 group focus-visible:outline-2 focus-visible:outline-purple-400"
-          >
-            <span>{t.ctaSecondary}</span>
-            <span className="text-orange-400 group-hover:translate-y-0.5 transition-transform">↓</span>
-          </a>
-        </div>
+        <a
+          href="#stack"
+          className="w-full sm:w-auto px-6 py-3 bg-purple-100 hover:bg-purple-200 dark:bg-purple-950/60 dark:hover:bg-purple-900/70 active:scale-[0.98] text-slate-900 dark:text-purple-200 font-semibold rounded-lg transition-all text-sm border border-purple-300 dark:border-purple-800/40 text-center flex items-center justify-center gap-2 group focus-visible:outline-2 focus-visible:outline-purple-400"
+        >
+          <span>{t.ctaSecondary}</span>
+          <span className="text-orange-600 dark:text-orange-400 group-hover:translate-y-0.5 transition-transform">↓</span>
+        </a>
+      </div>
 
-        {/* Microcopy Under Buttons */}
-        <p className="text-xs text-purple-300/60 mb-12">
-          {t.microcopy}
-        </p>
+      {/* Microcopy Under Buttons */}
+      <p className="text-xs text-slate-500 dark:text-purple-300/60 mb-12">
+        {t.microcopy}
+      </p>
 
-        {/* 5 Trust Badges Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto text-left pt-6 border-t border-brand-border">
-          <div className="p-3 bg-purple-950/30 rounded-lg border border-purple-900/40">
-            <div className="text-xs text-purple-300/70 uppercase font-semibold">{t.badges.escrow.label}</div>
-            <div className="text-sm font-bold text-purple-100">{t.badges.escrow.value}</div>
-          </div>
-          <div className="p-3 bg-purple-950/30 rounded-lg border border-purple-900/40">
-            <div className="text-xs text-purple-300/70 uppercase font-semibold">{t.badges.sla.label}</div>
-            <div className="text-sm font-bold text-purple-100">{t.badges.sla.value}</div>
-          </div>
-          <div className="p-3 bg-purple-950/30 rounded-lg border border-purple-900/40">
-            <div className="text-xs text-purple-300/70 uppercase font-semibold">{t.badges.viaNegativa.label}</div>
-            <div className="text-sm font-bold text-purple-100">{t.badges.viaNegativa.value}</div>
-          </div>
-          <div className="p-3 bg-purple-950/30 rounded-lg border border-purple-900/40">
-            <div className="text-xs text-purple-300/70 uppercase font-semibold">{t.badges.ip.label}</div>
-            <div className="text-sm font-bold text-purple-100">{t.badges.ip.value}</div>
-          </div>
-          <div className="p-3 bg-purple-950/30 rounded-lg border border-purple-900/40 col-span-2 md:col-span-1">
-            <div className="text-xs text-purple-300/70 uppercase font-semibold">{t.badges.tax.label}</div>
-            <div className="text-sm font-bold text-brand-green">{t.badges.tax.value}</div>
-          </div>
+      {/* 5 Trust Badges Grid */}
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 max-w-4xl mx-auto text-left pt-6 border-t border-brand-border">
+        <div className="p-3 bg-white dark:bg-purple-950/30 rounded-lg border border-brand-border">
+          <div className="text-xs text-slate-500 dark:text-purple-300/70 uppercase font-semibold">{t.badges.escrow.label}</div>
+          <div className="text-sm font-bold text-slate-900 dark:text-purple-100">{t.badges.escrow.value}</div>
         </div>
+        <div className="p-3 bg-white dark:bg-purple-950/30 rounded-lg border border-brand-border">
+          <div className="text-xs text-slate-500 dark:text-purple-300/70 uppercase font-semibold">{t.badges.sla.label}</div>
+          <div className="text-sm font-bold text-slate-900 dark:text-purple-100">{t.badges.sla.value}</div>
+        </div>
+        <div className="p-3 bg-white dark:bg-purple-950/30 rounded-lg border border-brand-border">
+          <div className="text-xs text-slate-500 dark:text-purple-300/70 uppercase font-semibold">{t.badges.viaNegativa.label}</div>
+          <div className="text-sm font-bold text-slate-900 dark:text-purple-100">{t.badges.viaNegativa.value}</div>
+        </div>
+        <div className="p-3 bg-white dark:bg-purple-950/30 rounded-lg border border-brand-border">
+          <div className="text-xs text-slate-500 dark:text-purple-300/70 uppercase font-semibold">{t.badges.ip.label}</div>
+          <div className="text-sm font-bold text-slate-900 dark:text-purple-100">{t.badges.ip.value}</div>
+        </div>
+        <div className="p-3 bg-white dark:bg-purple-950/30 rounded-lg border border-brand-border col-span-2 md:col-span-1">
+          <div className="text-xs text-slate-500 dark:text-purple-300/70 uppercase font-semibold">{t.badges.tax.label}</div>
+          <div className="text-sm font-bold text-green-700 dark:text-brand-green">{t.badges.tax.value}</div>
+        </div>
+      </div>
       </div>
     </section>
   );

@@ -17,7 +17,7 @@ export default function SprintPricingView({ data }: { data: PricingData }) {
     <section id="pricing" className="py-20 bg-white dark:bg-[#06020a] border-b border-brand-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
+          <span className="inline-block px-3 py-1 bg-purple-100 dark:bg-purple-950/40 text-orange-600 dark:text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-300 dark:border-purple-800/40">
             {pickText(data.sectionBadge)}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
@@ -49,7 +49,7 @@ type PickFn = (field: any) => string;
 
 function HeroPlan({ plan, pick }: { plan: PricingPlanItem; pick: PickFn }) {
   return (
-    <div className="p-8 bg-brand-surface-subtle/90 rounded-2xl border-2 border-brand-orange flex flex-col justify-between relative shadow-xl">
+    <div className="p-8 bg-[#180a2e] rounded-2xl border-2 border-brand-orange flex flex-col justify-between relative shadow-xl">
       {plan.heroTag && (
         <div className="absolute -top-3 right-6 px-3 py-1 bg-brand-orange text-white text-xs font-extrabold rounded-full uppercase tracking-wider shadow-md">
           {pick(plan.heroTag)}

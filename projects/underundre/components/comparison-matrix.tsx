@@ -12,7 +12,7 @@ export default function ComparisonMatrix() {
     <section id="comparison" className="py-20 bg-white dark:bg-[#06020a] border-b border-brand-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-16">
-          <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
+          <span className="inline-block px-3 py-1 bg-purple-100 dark:bg-purple-950/40 text-orange-600 dark:text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-300 dark:border-purple-800/40">
             {t.badge}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
@@ -28,9 +28,9 @@ export default function ComparisonMatrix() {
             <thead>
               <tr className="border-b border-brand-border bg-slate-50 dark:bg-[#110721]/60">
                 <th className="p-4 font-bold text-slate-900 dark:text-slate-100">{t.headers.metric}</th>
-                <th className="p-4 font-bold text-orange-400">{t.headers.underundre}</th>
-                <th className="p-4 font-bold text-slate-400 dark:text-purple-200/80">{t.headers.agencies}</th>
-                <th className="p-4 font-bold text-slate-400 dark:text-purple-200/80">{t.headers.freelancers}</th>
+                <th className="p-4 font-bold text-orange-600 dark:text-orange-400">{t.headers.underundre}</th>
+                <th className="p-4 font-bold text-slate-500 dark:text-purple-200/80">{t.headers.agencies}</th>
+                <th className="p-4 font-bold text-slate-500 dark:text-purple-200/80">{t.headers.freelancers}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-200 dark:divide-purple-900/30">

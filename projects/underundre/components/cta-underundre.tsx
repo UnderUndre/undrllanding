@@ -65,15 +65,15 @@ export default function CtaUnderundre() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-[#08030f] text-white border-b border-brand-border">
+    <section id="contact" className="py-20 bg-brand-bg text-slate-900 dark:text-white border-b border-brand-border">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
+        <span className="inline-block px-3 py-1 bg-purple-100 dark:bg-purple-950/40 text-orange-600 dark:text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-300 dark:border-purple-800/40">
           {t.badge}
         </span>
         <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-4">
           {t.title}
         </h2>
-        <p className="text-purple-200/70 max-w-xl mx-auto mb-10 text-sm">
+        <p className="text-slate-600 dark:text-purple-200/70 max-w-xl mx-auto mb-10 text-sm">
           {t.subtitle}
         </p>
 
@@ -118,41 +118,41 @@ export default function CtaUnderundre() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="p-8 bg-[#120524] rounded-2xl border border-purple-800/40 text-left max-w-xl mx-auto mb-10 space-y-4 shadow-2xl"
+            className="p-8 bg-brand-surface dark:bg-[#120524] rounded-2xl border border-brand-border dark:border-purple-800/40 text-left max-w-xl mx-auto mb-10 space-y-4 shadow-2xl"
           >
             {status === "error" && (
-              <div className="p-3 bg-red-950/50 border border-red-800/50 rounded-lg text-xs text-red-300">
+              <div className="p-3 bg-red-50 dark:bg-red-950/50 border border-red-300 dark:border-red-800/50 rounded-lg text-xs text-red-700 dark:text-red-300">
                 {errorMessage}
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.email}</label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.email}</label>
               <input
                 type="email"
                 name="email"
                 required
                 placeholder="name@company.com"
-                className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
+                className="w-full px-4 py-3 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.messenger}</label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.messenger}</label>
               <input
                 type="text"
                 name="messenger"
                 placeholder={t.labels.messengerPlaceholder}
-                className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
+                className="w-full px-4 py-3 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.bottleneck}</label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.bottleneck}</label>
               <select
                 name="bottleneckType"
                 defaultValue="whatsapp-manual"
-                className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
+                className="w-full px-4 py-3 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
               >
                 <option value="whatsapp-manual">{t.bottlenecks.whatsapp}</option>
                 <option value="excel-chaos">{t.bottlenecks.excel}</option>
@@ -163,23 +163,23 @@ export default function CtaUnderundre() {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.website}</label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.website}</label>
               <input
                 type="url"
                 name="website"
                 placeholder={t.labels.websitePlaceholder}
-                className="w-full px-4 py-3 bg-brand-surface border border-brand-border rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
+                className="w-full px-4 py-3 bg-brand-surface border border-brand-border rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-purple-200 mb-1">{t.labels.stack}</label>
+              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.stack}</label>
               <textarea
                 name="stackAndTeam"
                 required
                 rows={3}
                 placeholder={t.labels.stackPlaceholder}
-                className="w-full px-4 py-3 bg-[#090212] border border-purple-900/50 rounded-lg text-sm text-white focus:outline-none focus:border-brand-orange"
+                className="w-full px-4 py-3 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
               ></textarea>
             </div>
 
@@ -194,7 +194,7 @@ export default function CtaUnderundre() {
         )}
 
         {socialLinks.length > 0 && (
-          <div className="pt-6 border-t border-brand-border text-xs text-purple-300/60">
+          <div className="pt-6 border-t border-brand-border text-xs text-slate-500 dark:text-purple-300/60">
             <p className="mb-3">{t.directLinks.title}</p>
             <div className="flex flex-wrap items-center justify-center gap-3 mb-3">
               {socialLinks.map(({ key, label, url, Icon }) => (
@@ -203,14 +203,14 @@ export default function CtaUnderundre() {
                   href={url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-purple-950/60 hover:bg-purple-900/70 text-purple-200 rounded-lg font-semibold transition-colors border border-purple-800/40"
+                  className="inline-flex items-center gap-1.5 px-4 py-2 bg-purple-100 hover:bg-purple-200 dark:bg-purple-950/60 dark:hover:bg-purple-900/70 text-slate-900 dark:text-purple-200 rounded-lg font-semibold transition-colors border border-purple-300 dark:border-purple-800/40"
                 >
                   <Icon className="w-3.5 h-3.5" />
                   {label} →
                 </a>
               ))}
             </div>
-            <p className="text-purple-300/40">{t.directLinks.note}</p>
+            <p className="text-slate-400 dark:text-purple-300/40">{t.directLinks.note}</p>
           </div>
         )}
       </div>

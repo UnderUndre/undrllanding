@@ -26,26 +26,26 @@ export default function LegalDocumentView({
     );
 
   return (
-    <main className="bg-brand-bg text-purple-50 min-h-screen">
+    <main className="bg-brand-bg text-slate-700 dark:text-purple-100/80 min-h-screen">
       <article className="max-w-3xl mx-auto px-4 sm:px-6 py-20 text-sm leading-relaxed space-y-6">
         <header className="space-y-1">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">{pickText(doc.title)}</h1>
-          <p className="text-purple-200/60 text-xs">{pickText(doc.updatedAt)}</p>
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">{pickText(doc.title)}</h1>
+          <p className="text-slate-500 dark:text-purple-200/60 text-xs">{pickText(doc.updatedAt)}</p>
         </header>
 
         {warning && (
-          <p className="p-3 bg-yellow-950/50 border border-yellow-800/50 rounded-lg text-xs text-yellow-300">
+          <p className="p-3 bg-yellow-50 dark:bg-yellow-950/50 border border-yellow-300 dark:border-yellow-800/50 rounded-lg text-xs text-yellow-700 dark:text-yellow-300">
             {warning}
           </p>
         )}
 
-        {doc.intro && <p className="text-purple-100/80">{interpolate(pickText(doc.intro))}</p>}
+        {doc.intro && <p className="text-slate-700 dark:text-purple-100/80">{interpolate(pickText(doc.intro))}</p>}
 
         {doc.sections.map((section) => (
           <section key={pickText(section.heading)}>
-            <h2 className="text-lg font-bold text-white mb-2">{pickText(section.heading)}</h2>
+            <h2 className="text-lg font-bold text-slate-900 dark:text-white mb-2">{pickText(section.heading)}</h2>
             {section.paragraphs.map((paragraph, idx) => (
-              <p key={idx} className="text-purple-100/80">
+              <p key={idx} className="text-slate-700 dark:text-purple-100/80">
                 {interpolate(pickText(paragraph))}
               </p>
             ))}

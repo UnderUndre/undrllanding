@@ -9,33 +9,33 @@ export default function ManifestContent({ manifest }: { manifest: ManifestData }
   const pickText = (field: any) => pick(field, lang);
 
   return (
-    <main className="bg-[#080808] text-purple-50 min-h-screen">
+    <main className="bg-brand-bg text-slate-200 dark:text-purple-50 min-h-screen">
       <article className="max-w-3xl mx-auto px-4 sm:px-6 py-20 text-sm leading-relaxed space-y-10">
         <header className="space-y-2">
-          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+          <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
             {pickText(manifest.title)}
           </h1>
-          <p className="text-purple-200/70">{pickText(manifest.subtitle)}</p>
-          <p className="text-purple-300/50 text-xs">{manifest.version}</p>
+          <p className="text-slate-600 dark:text-purple-200/70">{pickText(manifest.subtitle)}</p>
+          <p className="text-slate-500 dark:text-purple-300/50 text-xs">{manifest.version}</p>
         </header>
 
         {manifest.principles.map((principle) => (
           <section
             key={principle.number}
             id={`p-${principle.number}`}
-            className="space-y-2 border-t border-purple-900/30 pt-6 scroll-mt-24"
+            className="space-y-2 border-t border-brand-border dark:border-purple-900/30 pt-6 scroll-mt-24"
           >
-            <p className="text-orange-400 font-bold text-xs tracking-widest">
+            <p className="text-orange-600 dark:text-orange-400 font-bold text-xs tracking-widest">
               §{principle.number}
             </p>
-            <h2 className="text-xl font-bold text-white">{pickText(principle.title)}</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">{pickText(principle.title)}</h2>
             {principle.quote && (
-              <blockquote className="border-l-2 border-orange-500/60 pl-4 italic text-purple-100/90">
+              <blockquote className="border-l-2 border-brand-primary/60 dark:border-orange-500/60 pl-4 italic text-slate-700 dark:text-purple-100/90">
                 «{pickText(principle.quote)}»
               </blockquote>
             )}
-            <p className="text-purple-200/80 font-medium">{pickText(principle.summary)}</p>
-            <p className="text-purple-100/70">{pickText(principle.body)}</p>
+            <p className="text-slate-700 dark:text-purple-200/80 font-medium">{pickText(principle.summary)}</p>
+            <p className="text-slate-600 dark:text-purple-100/70">{pickText(principle.body)}</p>
           </section>
         ))}
       </article>
