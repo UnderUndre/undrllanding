@@ -24,9 +24,9 @@ export function generateMetadata() {
     title: config.title,
     description: config.description,
     icons: {
-      icon: config.iconUrl,
-      shortcut: config.iconUrl,
-      apple: config.iconUrl,
+      icon: config.faviconUrl ?? config.iconUrl,
+      shortcut: config.faviconUrl ?? config.iconUrl,
+      apple: config.appleIconUrl ?? config.faviconUrl ?? config.iconUrl,
     },
     openGraph: {
       title: config.title,

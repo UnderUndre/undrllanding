@@ -190,7 +190,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         "Если ваш бизнес держится на ручном переносе заказов из WhatsApp, сведении разрозненных таблиц Excel и дорогих подписках за пользователя — вы платите пожизненный невидимый налог на операционное трение.".split(
           " "
         ),
-      author: "— Инженерный манифест UnderUndre §18.9",
+      author: "— Инженерный манифест UnderUndre § 1 (Via Negativa)",
     },
     telemetry: {
       badge: "Инженерный стандарт поставки",
@@ -521,7 +521,7 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         "If your operational workflow relies on manual copy-paste across WhatsApp, fragmented Excel sheets, and expensive SaaS seat taxes, you are paying a permanent invisible tax on human friction.".split(
           " "
         ),
-      author: "— UnderUndre Engineering Manifesto §18.9",
+      author: "— The Engineering Manifesto § 1 (Via Negativa)",
     },
     telemetry: {
       badge: "Engineering Delivery Standard",

@@ -54,6 +54,10 @@ export interface ProjectConfig {
   title: string;
   description: string;
   iconUrl: string;
+  /** Small raster favicon (16–48px PNG/ICO); falls back to iconUrl when omitted */
+  faviconUrl?: string;
+  /** 180×180 PNG for iOS apple-touch-icon; falls back to faviconUrl/iconUrl */
+  appleIconUrl?: string;
   heroBadge?: string;
   theme: {
     primaryColor: string;

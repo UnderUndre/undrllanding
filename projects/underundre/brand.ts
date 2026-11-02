@@ -11,7 +11,7 @@ export const underundreBrand: ProjectConfig = {
   title: "UnderUndre — Productized Engineering & Workaround TCO Audit",
   description:
     "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
-  iconUrl: "/projects/underundre/favicon.ico",
+  iconUrl: "/projects/underundre/icon.svg",
   heroBadge:
     "3X SALESFORCE CERTIFIED ENGINEER (ADMIN I & II · PLATFORM DEV) | ZERO SAAS TAXES | UPWORK ESCROW VERIFIED",
   theme: {

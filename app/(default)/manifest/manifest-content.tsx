@@ -21,7 +21,11 @@ export default function ManifestContent({ manifest }: { manifest: ManifestData }
         </header>
 
         {manifest.principles.map((principle) => (
-          <section key={principle.number} className="space-y-2 border-t border-purple-900/30 pt-6">
+          <section
+            key={principle.number}
+            id={`p-${principle.number}`}
+            className="space-y-2 border-t border-purple-900/30 pt-6 scroll-mt-24"
+          >
             <p className="text-orange-400 font-bold text-xs tracking-widest">
               §{principle.number}
             </p>
