@@ -37,7 +37,8 @@ Homepage tagline footer: «§ 1 (Via Negativa)», click → `/manifest#p-1`, pri
 
 ```bash
 npm run validate && npm run verify
-# → V1 citations: PASS, V2 assets: PASS, V3 locale fallback: PASS
+# → V1 citations: PASS, V2 assets: PASS, V2a logo: PASS, V3 locale fallback: PASS
+# (verify без --brand использует NEXT_PUBLIC_PROJECT_NAME как default)
 ```
 
 ## 5. Pilot brand (US4)

@@ -25,19 +25,19 @@
 
 ## Phase 2: Verify Gates (contracts/verify-gates.md)
 
-- [ ] **T005 [E2E] US1–US3 Implement `scripts/verify-gates.mjs`**: gates V1 (citation grep + anchor resolution), V2 (asset existence/size/dimensions via PNG header parse, duplicate + cross-brand scans), V3 (uk fallback + byte-diff vs T002 baseline), CLI `--brand`. Add `"verify": "node scripts/verify-gates.mjs"` to package.json. Depends: T002.
+- [ ] **T005 [E2E] US1–US3 Implement `scripts/verify-gates.mjs`**: gates V1 (citation grep + anchor resolution), V2 (asset existence/size/dimensions via PNG header parse, duplicate + cross-brand scans), V2a (logo chrome-free: no inline theme-derived backgroundColor/borderColor/padding in logo wrapper — grep JSX + rendered HTML = 0), V3 (uk fallback + byte-diff vs T002 baseline), CLI `--brand`. Add `"verify": "node scripts/verify-gates.mjs"` to package.json. Depends: T002.
 - [ ] **T006 [OPS] US1 Wire `npm run verify` into CI before deploy**: extend existing workflow; verify runs after `validate` + `build`. Depends: T005.
 
 ## Phase 3: Pilot Brand undreading (FR-011)
 
 - [ ] **T007 [SETUP] US4 Fix template + scaffold emission (audit §2)**: `projects/_template/` icon assets move to `public/projects/<slug>/`; `scripts/create-project.mjs` emits `icon.svg` + `icon-48.png` + `apple-icon-180.png` per FR-003/FR-004 (48/180 px PNG templates from neutral placeholder art). Depends: T005 (gates validate emission).
-- [ ] **T008 [SETUP] US4 Scaffold `projects/undreading/`**: `pnpm project:create --slug=undreading --name=Undreading`; brand.ts (domain undreading.com), theme from brand book (neutral placeholder until brand kit lands), copy/pricing/faq/manifest from `undreplans/docs/projects/undreading/undreading-business-plan.md` v2.5 (§1 positioning, §2 pricing grid: PWYW $5/$12.99, KDP $24.99 EN/UK, Lulu DTC RU, GitHub Sponsors), legal.json (Paddle MoR, NACE 62.01, retention 12mo). Includes `uk` locale — pilot of FR-010. Depends: T003, T004, T007.
+- [ ] **T008 [SETUP] US4 Scaffold `projects/undreading/`**: `pnpm project:create --slug=undreading --name=Undreading`; brand.ts (domain undreading.com), theme.css = `_template` palette (`#030712` / `#2563eb`) until a dedicated brand kit lands (token swap = separate task outside 004), copy/pricing/faq/manifest from `undreplans/docs/projects/undreading/undreading-business-plan.md` v2.5 (§1 positioning, §2 pricing grid: PWYW $5/$12.99, KDP $24.99 EN/UK, Lulu DTC RU, GitHub Sponsors), legal.json (Paddle MoR, NACE 62.01, retention 12mo). Includes `uk` locale — pilot of FR-010. Depends: T003, T004, T007.
 - [ ] **T009 [FE] US4 Generate undreading icon set**: source artwork from undreading assets (repos/undreading cover-art or placeholder until brand kit); produce `public/projects/undreading/{icon.svg,icon-48.png,apple-icon-180.png}` meeting size budgets. Depends: T007.
-- [ ] **T010 [E2E] US4 Full-gate pass for undreading**: `NEXT_PUBLIC_PROJECT_NAME=undreading npm run build && npm run verify -- --brand undreading`; grep output for `underundre` = 0. Depends: T005, T008, T009.
+- [ ] **T010 [E2E] US4 Full-gate pass for undreading**: `NEXT_PUBLIC_PROJECT_NAME=undreading npm run build && npm run verify -- --brand undreading`; grep output for `underundre` = 0; gate V2a pass for both brands. Depends: T005, T008, T009.
 
 ## Phase 4: Acceptance & Gates
 
-- [ ] **T011 [QA] US1–US4 Manual acceptance**: quickstart.md walkthrough (icons MIME probes, logo hover, citation scroll under fixed header, iOS emulator apple icon, uk locale spot-check). Records results in `specs/004-landing-template-updates/qa/`.
+- [ ] **T011 [QA] US1–US4 Manual acceptance**: quickstart.md walkthrough (icons MIME probes, logo hover, citation scroll under fixed header, iOS emulator apple icon, uk locale spot-check, LCP spot-check both brands via Lighthouse — NFR-002, target ≤ 1.5 s, no regression vs pre-004 build). Records results in `specs/004-landing-template-updates/qa/`.
 - [ ] **T012 [OPS] US1 Final pipeline**: `npm run validate && npm run build && npm run verify` green on both brands; PR prep. Depends: T006, T010, T011.
 
 ---

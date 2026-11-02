@@ -91,6 +91,7 @@ No open NEEDS CLARIFICATION remain (Q1–Q6 resolved). research.md records decis
 3. **Verify gates (FR-006/007/008/010, NFR-003)**: single `scripts/verify-gates.mjs` — grep scans (public build output: internal revisions = 0; asset duplicates = 0), size budgets (favicon ≤ 10 KB, apple ≤ 60 KB), byte-diff of ru/en `underundre` HTML against a stored baseline snapshot. Wired as `npm run verify` and run in CI before deploy.
 4. **Undreading scaffold (FR-011)**: `pnpm project:create --slug=undreading --name=Undreading`, then fill copy/pricing/faq/legal from business plan v2.5; `uk` locale included as the pilot of FR-010. Pricing grid = PWYW (Paddle), Amazon KDP EN/UK, Lulu DTC RU — external links, no new API surface.
 5. **Template fix**: `projects/_template/` emits `public/projects/<slug>/` assets (audit §2 requirement); `create-project.mjs` updated accordingly.
+6. **Dual content layer is intentional (F2)**: `underundre` remains on `locales.ts` (TS); `undreading` starts on JSON per 003 FR-004. Migrating `underundre` to JSON is 003-scope work, explicitly out of 004.
 
 ## Deployment Readiness
 

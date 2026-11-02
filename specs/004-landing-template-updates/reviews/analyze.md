@@ -75,3 +75,14 @@ low_count: 3
 ```
 
 **Примечание**: PASS с 3 MEDIUM. C1/C2/F1 рекомендуется закрыть точечными правками tasks.md/quickstart.md до `/speckit.implement` (правки разрешены — analyze read-only, фиксят обычные команды).
+
+## Remediation Log (post-verdict edits, owner-approved 2026-11-02)
+
+- **C1** → Gate V2a (logo chrome-free grep) добавлен в contracts/verify-gates.md и T005; T010 включает V2a для обоих брендов.
+- **C2** → LCP spot-check (≤ 1.5 s, оба бренда) добавлен в T011.
+- **F1** → theme.css undreading закреплён на палитре `_template` (#030712/#2563eb); свап токенов — вне 004.
+- **F2** → plan.md Phase 1 §6: dual content layer задокументирован как осознанный, миграция underundre на JSON — 003-scope.
+- **F3** → quickstart.md: default-brand поведение verify оговорено.
+- **G1** → принят как есть ([FE] для i18n-резолвера).
+
+Все MEDIUM/LOW findings закрыты или приняты. Verdict PASS подтверждается.

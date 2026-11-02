@@ -23,6 +23,13 @@ Input: `public/projects/*/`.
 - Duplicate scan: no icon asset files under `projects/<slug>/public/` (path must not exist).
 - Cross-brand isolation: build of brand A does not reference `public/projects/<B>/` (grep build output for other-brand asset paths = 0).
 
+## Gate V2a — Logo chrome-free (FR-005)
+
+Input: `components/ui/logo.tsx` + rendered header HTML.
+
+- Assert logo wrapper JSX contains no inline `style={{` with `backgroundColor`, `borderColor`, or `padding` derived from `config.theme` (grep = 0).
+- Assert rendered header wrapper element has no `background-color` inline style.
+
 ## Gate V3 — Locale fallback (FR-010, NFR-003)
 
 Input: brand data JSON/TS + rendered HTML.
