@@ -9,10 +9,10 @@ export default function LoomDemoSection() {
   const t = getUnderundreCopy(lang).telemetry;
 
   return (
-    <section id="stack" className="py-20 bg-[#08030f] border-b border-brand-border">
+    <section id="stack" className="py-20 bg-brand-bg border-b border-brand-border">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-12">
-          <span className="inline-block px-3 py-1 bg-brand-green/10 text-brand-green text-xs font-semibold rounded-full uppercase tracking-wider mb-3">
+          <span className="inline-block px-3 py-1 bg-brand-green/10 text-green-700 dark:text-brand-green text-xs font-semibold rounded-full uppercase tracking-wider mb-3">
             {t.badge}
           </span>
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
@@ -28,7 +28,6 @@ export default function LoomDemoSection() {
               className="px-6 py-3 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-lg transition-all text-sm shadow-md flex items-center gap-2"
             >
               <span>{t.ctaPrimary}</span>
-              <span>→</span>
             </a>
             <a
               href={process.env.NEXT_PUBLIC_SOCIAL_GITHUB || "https://github.com/UnderUndre"}

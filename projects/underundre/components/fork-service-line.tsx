@@ -13,7 +13,7 @@ export default function ForkServiceLine() {
   const isRu = lang === "ru";
 
   return (
-    <section id="fork-care" className="py-20 bg-[#08030f] border-b border-brand-border">
+    <section id="fork-care" className="py-20 bg-brand-bg border-b border-brand-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center mb-14">
           <span className="inline-block px-3 py-1 bg-purple-950/40 text-orange-400 text-xs font-semibold rounded-full uppercase tracking-wider mb-3 border border-purple-800/40">
