@@ -65,9 +65,10 @@ services:
       - caddy
       - internal
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:3000/api/heartbeat || exit 1"]
+      # busybox wget in this image can't reach localhost — use node fetch.
+      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000/api/heartbeat').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
       interval: 30s
-      timeout: 5s
+      timeout: 10s
       retries: 5
 
   umami-db:
