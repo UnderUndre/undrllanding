@@ -10,12 +10,13 @@
 interface RateLimitOptions {
   windowMs: number;        // default 60_000
   maxRequests: number;     // default 5
-  maxMapSize: number;      // default 10_000 — eviction sweep threshold
+  maxMapSize: number;      // default 10_000 — hard cap threshold
+  sweepIntervalMs: number; // default 10_000 — throttle between full sweeps
   trustedIpHeader?: string; // from LEAD_TRUSTED_IP_HEADER env, default "x-real-ip"
 }
-resolveClientIp(req, opts): string   // trusted header value if present, else socket address
+resolveClientIp(req, opts): string   // trusted header value if present, else x-forwarded-for first hop, else 127.0.0.1
 check(key): { allowed: boolean; retryAfterSec: number }
-// eviction: at insert, when map.size > maxMapSize — sweep expired windows
+// eviction: throttled sweep (now - lastSweep > sweepIntervalMs); if map.size >= maxMapSize, FIFO drop oldest
 ```
 
 Data classification: Internal (IP strings + counters; no PII beyond network identifiers, no persistence).
@@ -40,7 +41,7 @@ Strict-Transport-Security: max-age=63072000; includeSubDomains
 X-Frame-Options: DENY
 X-Content-Type-Options: nosniff
 Referrer-Policy: strict-origin-when-cross-origin
-Content-Security-Policy: default-src 'self'; script-src 'self' https://analytics.underundre.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+Content-Security-Policy: default-src 'self'; script-src 'self' https://analytics.underundre.com; connect-src 'self' https://analytics.underundre.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
 // icon route (per-response, SVG only): Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'
 ```
 
@@ -50,10 +51,11 @@ Data classification: Public.
 
 ```ts
 // app/icon.svg/route.ts
-resolved = path.resolve(cwd, "public", config.iconUrl)
+cleanIconUrl = config.iconUrl.replace(/^\/+/, "")
+resolved = path.resolve(cwd, "public", cleanIconUrl)
 assert resolved.startsWith(path.resolve(cwd, "public") + path.sep)   // else 404
 assert extname ∈ {".svg", ".png", ".ico"}                             // else 404
-read: fs/promises, buffer cached at module init keyed by resolved path
+read: fs/promises, lazy buffer cache on first request keyed by resolved path
 cache: public, max-age=86400, stale-while-revalidate=604800           // was immutable-1y
 ```
 

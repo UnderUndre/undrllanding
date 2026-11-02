@@ -7,7 +7,7 @@
 
 | Variable | Scope | Default | Purpose |
 |---|---|---|---|
-| `LEAD_TRUSTED_IP_HEADER` | runtime (server) | `x-real-ip` | Header set by the trusted edge (Caddy) carrying the real client IP. Empty/unset → limiter falls back to socket remote address. |
+| `LEAD_TRUSTED_IP_HEADER` | runtime (server) | `x-real-ip` | Header set by the trusted edge (Caddy) carrying the real client IP. Empty/unset → limiter falls back to `x-forwarded-for` (first hop) or loopback `127.0.0.1` (with dev warning), as Next.js Web Request lacks direct socket access. |
 | `NEXT_PUBLIC_PROJECT_NAME` | build + runner ARG/ENV | `underundre` | Existing; runner stage now receives it too (FR-012). |
 
 No other env changes. `TELEGRAM_*` secrets remain runtime-only via `env_file` (unchanged).
@@ -20,9 +20,10 @@ Global (`next.config.js headers()`), all routes, enforcing:
 - `X-Frame-Options: DENY`
 - `X-Content-Type-Options: nosniff`
 - `Referrer-Policy: strict-origin-when-cross-origin`
-- `Content-Security-Policy: default-src 'self'; script-src 'self' https://analytics.underundre.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'`
+- `Content-Security-Policy: default-src 'self'; script-src 'self' https://analytics.underundre.com; connect-src 'self' https://analytics.underundre.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'none'; base-uri 'self'; form-action 'self'`
 
 Icon route SVG responses additionally carry `Content-Security-Policy: default-src 'none'; style-src 'unsafe-inline'` (per-response override) and `X-Content-Type-Options: nosniff`.
+*Dual-CSP Note (analyze L1)*: On `/icon.svg`, the global CSP and per-route CSP merge via browser conjunction (intersection); `default-src 'none'` strictly blocks any script execution in direct SVG view.
 
 ## 3. Gitleaks contract (FR-013)
 
@@ -33,14 +34,14 @@ Icon route SVG responses additionally carry `Content-Security-Policy: default-sr
 
 ## 4. Test contour contract (FR-006/007)
 
-- `pnpm test` → vitest, files under `tests/unit/**`:
+- `pnpm test` → vitest (configured with `vitest.config.ts` mapping `@/*` path alias), files under `tests/unit/**`:
   - `pick.test.ts` — fallback matrix: uk present/absent × lang ru/en/uk; empty input → `""`.
   - `mask-escape.test.ts` — `maskEmail` (a@b.c → a***@b.c shapes), `escapeHtml` (`<>&"'`).
   - `lead-schema.test.ts` — metadata bounds: 20/21 keys, key length 50/51, `1e308` → reject, finite ok; message/email caps.
   - `content-loaders.test.ts` — fixtures from `projects/_template/data` parse; malformed fixture → typed error (no `process.exit`).
-  - `rate-limit.test.ts` — window BVA (5 ok / 6th 429), eviction sweep at 10,001 entries, header-present/absent matrix.
-  - `project-config.test.ts` — registry miss → throw; alias `undreseller` → `underundre`.
-- `pnpm verify` → `scripts/verify-gates.mjs` per `specs/004-landing-template-updates/contracts/verify-gates.md` with the amendment: **gate V3 byte-diff compares the response BODY only** — security headers (FR-004) are response-level and excluded from baseline comparison (audit hand-off #2).
+  - `rate-limit.test.ts` — window BVA (5 ok / 6th 429), eviction throttle + FIFO cap at 10,000 entries, header-present/absent matrix.
+  - `project-config.test.ts` — registry miss → throw; `projectPages` miss → throw; alias `undreseller` → `underundre`.
+- `pnpm verify` → `scripts/verify-gates.mjs` per `specs/004-landing-template-updates/contracts/verify-gates.md` with the amendment: **gate V3 byte-diff compares normalized DOM content (stripping `<script>` tags and `self.__next_f` RSC hydration payloads, since component chunk hashes change)** — security headers (FR-004) are response-level and excluded from baseline comparison (audit hand-off #2).
 - CI order: `pnpm validate → pnpm test → pnpm build → pnpm verify` (SC-002).
 
 ## 5. Error-response contract (FR-014)

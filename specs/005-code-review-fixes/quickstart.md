@@ -12,8 +12,9 @@ Verify the hardening in under 15 minutes.
 
 ```bash
 pnpm build && pnpm start
-# security headers present on every route:
+# security headers present on every route (verifies connect-src and script-src):
 curl -sI localhost:3000/ | grep -Ei "strict-transport|x-frame|x-content-type|referrer-policy|content-security"
+curl -sI localhost:3000/ | grep -i "content-security-policy" | grep -o "connect-src [^;]*"
 # rate limit: 6th POST /api/lead within 60s from one IP → 429
 # icon traversal: brand config with "../.env" → 404, no body leak
 # SVG direct navigation:
@@ -54,3 +55,9 @@ NEXT_PUBLIC_PROJECT_NAME=demo pnpm build                 # compiles; unknown nam
 grep -rn "revshare_\|econ_domain\|undrlla_lang" lib/ context/ components/ projects/ | wc -l   # → 0
 curl -s -o /dev/null -w "%{http_code}" localhost:3000/api/hello                               # → 404
 ```
+
+## 7. Rollback strategy (Operational Readiness)
+
+В случае регрессий на проде:
+- Изменения заголовков/CSP и логики: `git revert <commit-sha> && ./deploy-vps.sh` (RTO < 3 минут).
+- Токены: ротация через @BotFather переопределяется прямо в `.env`/`.env.production` на сервере без пересборки контейнера (`docker compose up -d`).
