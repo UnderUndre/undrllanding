@@ -52,8 +52,13 @@ async function dispatchTelegram(lead: {
   message: string;
   metadata: Record<string, unknown>;
 }): Promise<boolean> {
-  const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_ALERT_CHAT_ID || process.env.TELEGRAM_CHAT_ID;
+  const botToken = (process.env.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_NOTIFY_TOKEN || "").trim();
+  const chatId = (
+    process.env.TELEGRAM_ALERT_CHAT_ID ||
+    process.env.TELEGRAM_CHAT_ID ||
+    process.env.TELEGRAM_NOTIFY_CHAT_ID ||
+    ""
+  ).trim();
   if (!botToken || !chatId) return true; // not configured — counts as delivered (no-op)
 
   const metadataLines = Object.entries(lead.metadata)
@@ -83,7 +88,7 @@ async function dispatchTelegram(lead: {
     });
     return res.ok;
   } catch (err) {
-    console.error("Telegram dispatch failed:", err instanceof Error ? err.message : String(err));
+    console.error("Telegram dispatch failed:", err instanceof Error ? `${err.message} (${err.cause || "timeout/network"})` : String(err));
     return false;
   }
 }
@@ -161,8 +166,10 @@ export async function POST(request: Request) {
     const lead = { ...parsed.data, timestamp: new Date().toISOString() };
 
     const telegramConfigured = Boolean(
-      process.env.TELEGRAM_BOT_TOKEN &&
-        (process.env.TELEGRAM_ALERT_CHAT_ID || process.env.TELEGRAM_CHAT_ID)
+      (process.env.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_NOTIFY_TOKEN) &&
+        (process.env.TELEGRAM_ALERT_CHAT_ID ||
+          process.env.TELEGRAM_CHAT_ID ||
+          process.env.TELEGRAM_NOTIFY_CHAT_ID)
     );
     const webhookConfigured = Boolean(process.env.LEAD_WEBHOOK_URL);
 
