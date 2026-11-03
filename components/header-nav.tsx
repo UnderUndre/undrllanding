@@ -72,10 +72,10 @@ export default function HeaderNav() {
     item.labelKey ? t(item.labelKey as TranslationKey) : item.labelFallback;
 
   return (
-    <header className="fixed top-2 z-50 w-full px-4 sm:px-6 md:top-4">
+    <header className="fixed top-2 z-50 w-full px-2 sm:px-6 md:top-4">
       <div className="mx-auto max-w-6xl">
-        <div className="relative flex h-14 items-center justify-between gap-4 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/80 px-4 shadow-xl backdrop-blur-xl transition-colors">
-          <div className="flex items-center gap-5 min-w-0">
+        <div className="relative flex h-14 items-center justify-between gap-2 sm:gap-4 rounded-2xl border border-slate-200 dark:border-slate-800/80 bg-white/90 dark:bg-slate-950/80 px-2.5 sm:px-4 shadow-xl backdrop-blur-xl transition-colors">
+          <div className="flex items-center gap-2 sm:gap-5 min-w-0">
             <Logo />
             <nav className="hidden lg:flex items-center gap-4 text-xs font-semibold text-slate-500 dark:text-slate-400">
               {config.navigation.items.map((item) => (
@@ -86,11 +86,11 @@ export default function HeaderNav() {
             </nav>
           </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1.5 sm:gap-3 shrink-0">
             <button
               type="button"
               onClick={toggleLang}
-              className="inline-flex items-center gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-2 py-1 text-[11px] font-bold text-slate-700 dark:text-slate-300 hover:border-orange-500/40 transition-all cursor-pointer"
+              className="inline-flex items-center gap-1 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 px-2 py-1 text-[11px] font-bold text-slate-700 dark:text-slate-300 hover:border-orange-500/40 transition-all cursor-pointer shrink-0"
               title="Switch language / Сменить язык"
             >
               {lang.toUpperCase()}
@@ -100,7 +100,7 @@ export default function HeaderNav() {
             <button
               type="button"
               onClick={cycleTheme}
-              className="flex sm:hidden items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 p-2 text-slate-700 dark:text-slate-300 hover:border-orange-500/40 transition-all cursor-pointer"
+              className="flex sm:hidden items-center justify-center rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-900 p-1.5 text-slate-700 dark:text-slate-300 hover:border-orange-500/40 transition-all cursor-pointer shrink-0"
               title={`Theme: ${theme} — tap to cycle`}
               aria-label={`Theme: ${theme} — tap to cycle (system, dark, light)`}
             >
@@ -190,7 +190,7 @@ export default function HeaderNav() {
             {config.navigation.ctaButton && (
               <a
                 href={config.navigation.ctaButton.href}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-orange-500 hover:bg-orange-400 active:scale-95 px-3 sm:px-4 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-orange-500/25 transition-all"
+                className="inline-flex items-center gap-1 sm:gap-1.5 rounded-xl bg-orange-500 hover:bg-orange-400 active:scale-95 px-2.5 sm:px-4 py-1.5 text-xs font-bold text-slate-950 shadow-md shadow-orange-500/25 transition-all whitespace-nowrap shrink-0"
               >
                 <span>{navLabel(config.navigation.ctaButton)}</span>
                 <span aria-hidden>→</span>
