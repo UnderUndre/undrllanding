@@ -12,7 +12,8 @@ interface LangContextType {
 const LangContext = createContext<LangContextType | undefined>(undefined);
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Language>("ru");
+  // Default UI language: English (international audience); saved preference wins.
+  const [lang, setLangState] = useState<Language>("en");
 
   useEffect(() => {
     // Spec 005 FR-011: single storage key — legacy "undrlla_lang" removed.
@@ -43,7 +44,7 @@ export function useLang() {
   if (!context) {
     // Fallback if rendered outside provider
     return {
-      lang: "ru" as Language,
+      lang: "en" as Language,
       setLang: () => {},
       t: (key: keyof typeof translations["ru"]) => translations["ru"][key] || key,
     };
