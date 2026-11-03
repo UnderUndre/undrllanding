@@ -51,6 +51,8 @@ services:
     environment:
       DATABASE_URL: postgresql://umami:${UMAMI_DB_PASSWORD:?set UMAMI_DB_PASSWORD in .env}@umami-db:5432/umami
       APP_SECRET: ${UMAMI_APP_SECRET:?set UMAMI_APP_SECRET in .env}
+      # Required for two-factor authentication, generate with: openssl rand -hex 32
+      TWO_FACTOR_ENCRYPTION_KEY: ${UMAMI_TWO_FACTOR_ENCRYPTION_KEY:?set UMAMI_TWO_FACTOR_ENCRYPTION_KEY in .env}
       COLLECT_API_ENDPOINT: /api/collect
     depends_on:
       umami-db:
