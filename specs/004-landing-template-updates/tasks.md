@@ -15,30 +15,30 @@
 
 ## Phase 0: Setup & Baseline
 
-- [x] **T001 [SETUP] US1–US3 baseline already in tree**: `lib/project-config.ts` (faviconUrl/appleIconUrl), `projects/underundre/brand.ts`, `app/layout.tsx` metadata, `app/icon.svg/route.ts` MIME map, `components/ui/logo.tsx` chrome-free, citation «§ 1 (Via Negativa)» + anchors, PNG assets generated. (Session 2026-11-02; commit fcd5ef9 + working tree.) Verify each against FR-001..FR-007 acceptance scenarios — re-implementation forbidden.
-- [ ] **T002 [SETUP] US1 Capture baseline (SC-005, Gate V3)**: build `NEXT_PUBLIC_PROJECT_NAME=underundre pnpm build` pre-FR-010; copy `.next/server/app/index.html` output into `specs/004-landing-template-updates/qa/baseline/index.html`; commit. **Blocks T007.**
+- [X] **T001 [SETUP] US1–US3 baseline already in tree**: `lib/project-config.ts` (faviconUrl/appleIconUrl), `projects/underundre/brand.ts`, `app/layout.tsx` metadata, `app/icon.svg/route.ts` MIME map, `components/ui/logo.tsx` chrome-free, citation «§ 1 (Via Negativa)» + anchors, PNG assets generated. (Session 2026-11-02; commit fcd5ef9 + working tree.) Verify each against FR-001..FR-007 acceptance scenarios — re-implementation forbidden.
+- [X] **T002 [SETUP] US1 Capture baseline (SC-005, Gate V3)**: build `NEXT_PUBLIC_PROJECT_NAME=underundre pnpm build` pre-FR-010; copy `.next/server/app/index.html` output into `specs/004-landing-template-updates/qa/baseline/index.html`; commit. **Blocks T007.**
 
 ## Phase 1: Locale Extension (FR-010)
 
-- [ ] **T003 [FE] US4 Extend `LocalizedText` to `{ ru: string; en: string; uk?: string }`**: `lib/project-config.ts` type + `lib/i18n.ts` resolver — single choke point `pick(t, lang)` with fallback `uk→en→ru→""`. No per-component fallbacks. Files: `lib/project-config.ts`, `lib/i18n.ts`, type consumers (tsc-guided). Parallel with T002.
-- [ ] **T004 [FE] US4 Wire shared shared-section components through the new resolver**: replace direct `t.ru/t.en` indexing with `pick()` wherever `uk` may appear (grep `\.ru\b|\.en\b` in components rendering brand copy). Acceptance: underundre ru/en output unchanged (T007 gate).
+- [X] **T003 [FE] US4 Extend `LocalizedText` to `{ ru: string; en: string; uk?: string }`**: `lib/project-config.ts` type + `lib/i18n.ts` resolver — single choke point `pick(t, lang)` with fallback `uk→en→ru→""`. No per-component fallbacks. Files: `lib/project-config.ts`, `lib/i18n.ts`, type consumers (tsc-guided). Parallel with T002.
+- [X] **T004 [FE] US4 Wire shared shared-section components through the new resolver**: replace direct `t.ru/t.en` indexing with `pick()` wherever `uk` may appear (grep `\.ru\b|\.en\b` in components rendering brand copy). Acceptance: underundre ru/en output unchanged (T007 gate).
 
 ## Phase 2: Verify Gates (contracts/verify-gates.md)
 
-- [ ] **T005 [E2E] US1–US3 Implement `scripts/verify-gates.mjs`**: gates V1 (citation grep + anchor resolution), V2 (asset existence/size/dimensions via PNG header parse, duplicate + cross-brand scans), V2a (logo chrome-free: no inline theme-derived backgroundColor/borderColor/padding in logo wrapper — grep JSX + rendered HTML = 0), V3 (uk contract fallback + byte-diff vs T002 baseline), CLI `--brand`. Add `"verify": "node scripts/verify-gates.mjs"` to package.json. Depends: T002.
-- [ ] **T006 [OPS] US1 Create GitHub Actions CI workflow `.github/workflows/ci.yml`**: automated pipeline running `pnpm validate && pnpm build && pnpm verify` on main push and PRs. Depends: T005.
+- [X] **T005 [E2E] US1–US3 Implement `scripts/verify-gates.mjs`**: gates V1 (citation grep + anchor resolution), V2 (asset existence/size/dimensions via PNG header parse, duplicate + cross-brand scans), V2a (logo chrome-free: no inline theme-derived backgroundColor/borderColor/padding in logo wrapper — grep JSX + rendered HTML = 0), V3 (uk contract fallback + byte-diff vs T002 baseline), CLI `--brand`. Add `"verify": "node scripts/verify-gates.mjs"` to package.json. Depends: T002.
+- [X] **T006 [OPS] US1 Create GitHub Actions CI workflow `.github/workflows/ci.yml`**: automated pipeline running `pnpm validate && pnpm build && pnpm verify` on main push and PRs. Depends: T005.
 
 ## Phase 3: Pilot Brand undreading (FR-011)
 
-- [ ] **T007 [SETUP] US4 Fix template + scaffold emission (audit §2)**: `projects/_template/` icon assets move to `public/projects/<slug>/`; `scripts/create-project.mjs` emits `icon.svg` + `icon-48.png` + `apple-icon-180.png` per FR-003/FR-004 (48/180 px PNG templates from neutral placeholder art). Depends: T005 (gates validate emission).
-- [ ] **T008 [SETUP] US4 Scaffold `projects/undreading/`**: `pnpm project:create --slug=undreading --name=Undreading`; brand.ts (domain undreading.com), theme.css = `_template` palette (`#030712` / `#2563eb`) until a dedicated brand kit lands (token swap = separate task outside 004), copy/pricing/faq/manifest from `undreplans/docs/projects/undreading/undreading-business-plan.md` v2.5 (§1 positioning, §2 pricing grid: PWYW $5/$12.99, KDP $24.99 EN/UK, Lulu DTC RU, GitHub Sponsors), legal.json (Paddle MoR, NACE 62.01, retention 12mo). Includes `uk` locale — pilot of FR-010. Depends: T003, T004, T007.
-- [ ] **T009 [FE] US4 Generate undreading icon set**: source artwork from undreading assets (repos/undreading cover-art or placeholder until brand kit); produce `public/projects/undreading/{icon.svg,icon-48.png,apple-icon-180.png}` meeting size budgets. Depends: T007.
-- [ ] **T010 [E2E] US4 Full-gate pass for undreading**: `NEXT_PUBLIC_PROJECT_NAME=undreading pnpm build && pnpm verify -- --brand undreading`; grep output for `underundre` = 0; gate V2a pass for both brands. Depends: T005, T008, T009.
+- [X] **T007 [SETUP] US4 Fix template + scaffold emission (audit §2)**: `projects/_template/` icon assets move to `public/projects/<slug>/`; `scripts/create-project.mjs` emits `icon.svg` + `icon-48.png` + `apple-icon-180.png` per FR-003/FR-004 (48/180 px PNG templates from neutral placeholder art). Depends: T005 (gates validate emission).
+- [X] **T008 [SETUP] US4 Scaffold `projects/undreading/`**: `pnpm project:create --slug=undreading --name=Undreading`; brand.ts (domain undreading.com), theme.css = `_template` palette (`#030712` / `#2563eb`) until a dedicated brand kit lands (token swap = separate task outside 004), copy/pricing/faq/manifest from `undreplans/docs/projects/undreading/undreading-business-plan.md` v2.5 (§1 positioning, §2 pricing grid: PWYW $5/$12.99, KDP $24.99 EN/UK, Lulu DTC RU, GitHub Sponsors), legal.json (Paddle MoR, NACE 62.01, retention 12mo). Includes `uk` locale — pilot of FR-010. Depends: T003, T004, T007.
+- [X] **T009 [FE] US4 Generate undreading icon set**: source artwork from undreading assets (repos/undreading cover-art or placeholder until brand kit); produce `public/projects/undreading/{icon.svg,icon-48.png,apple-icon-180.png}` meeting size budgets. Depends: T007.
+- [X] **T010 [E2E] US4 Full-gate pass for undreading**: `NEXT_PUBLIC_PROJECT_NAME=undreading pnpm build && pnpm verify -- --brand undreading`; grep output for `underundre` = 0; gate V2a pass for both brands. Depends: T005, T008, T009.
 
 ## Phase 4: Acceptance & Gates
 
-- [ ] **T011 [QA] US1–US4 Manual acceptance**: quickstart.md walkthrough (icons MIME probes, logo hover, citation scroll under fixed header, iOS emulator apple icon, uk locale spot-check, LCP spot-check both brands via Lighthouse — NFR-002, target ≤ 1.5 s, no regression vs pre-004 build). Records results in `specs/004-landing-template-updates/qa/`.
-- [ ] **T012 [OPS] US1 Final pipeline**: `pnpm validate && pnpm build && pnpm verify` green on both brands; PR prep. Depends: T006, T010, T011.
+- [X] **T011 [QA] US1–US4 Manual acceptance**: quickstart.md walkthrough (icons MIME probes, logo hover, citation scroll under fixed header, iOS emulator apple icon, uk locale spot-check, LCP spot-check both brands via Lighthouse — NFR-002, target ≤ 1.5 s, no regression vs pre-004 build). Records results in `specs/004-landing-template-updates/qa/`.
+- [X] **T012 [OPS] US1 Final pipeline**: `pnpm validate && pnpm build && pnpm verify` green on both brands; PR prep. Depends: T006, T010, T011.
 
 ---
 

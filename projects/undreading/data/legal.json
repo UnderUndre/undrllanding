@@ -1,0 +1,8 @@
+{
+  "contactEmail": "legal@undreading.com",
+  "entityName": "Undreading Publishing & Architecture Bureau",
+  "jurisdiction": "EU NACE Rev. 2, code 62.01",
+  "retentionMonths": 12,
+  "escrowProvider": "Paddle Merchant of Record (Paddle Payments Ltd)",
+  "warrantyDays": 14
+}

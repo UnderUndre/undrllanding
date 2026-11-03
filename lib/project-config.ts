@@ -67,6 +67,8 @@ export interface ProjectConfig {
   };
   navigation: NavigationConfig;
   footer: FooterConfig;
+  /** Brand-specific social profile links (overrides global env for multi-brand isolation) */
+  social?: Record<string, string>;
   /** Locales supported by this brand (default: ["ru", "en"]) */
   supportedLocales?: Language[];
   /** Optional fallback — preferred source is projects/<slug>/data/legal.json */
@@ -75,10 +77,12 @@ export interface ProjectConfig {
 
 // BEGIN GENERATED PROJECT REGISTRY (managed by scripts/create-project.mjs — do not edit outside this block)
 import { underundreBrand } from "@/projects/underundre/brand";
+import { undreadingBrand } from "@/projects/undreading/brand";
 
 const projectRegistry: Record<string, ProjectConfig> = {
   underundre: underundreBrand,
 };
+projectRegistry["undreading"] = undreadingBrand;
 // END GENERATED PROJECT REGISTRY
 
 export function getActiveProjectConfig(): ProjectConfig {

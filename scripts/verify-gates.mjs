@@ -14,12 +14,25 @@ import fs from "node:fs";
 import path from "node:path";
 
 const repoRoot = path.resolve(new URL("..", import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1"));
-const args = Object.fromEntries(
-  process.argv.slice(2).map((a) => {
-    const m = a.match(/^--([a-z-]+)=(.*)$/);
-    return m ? [m[1], m[2]] : [];
-  })
-);
+function parseArgs(argv) {
+  const args = {};
+  for (let i = 0; i < argv.length; i++) {
+    const arg = argv[i];
+    const m = arg.match(/^--([a-z-]+)(?:=(.*))?$/);
+    if (m) {
+      const key = m[1];
+      if (m[2] !== undefined) {
+        args[key] = m[2];
+      } else if (i + 1 < argv.length && !argv[i + 1].startsWith("--")) {
+        args[key] = argv[++i];
+      } else {
+        args[key] = "true";
+      }
+    }
+  }
+  return args;
+}
+const args = parseArgs(process.argv.slice(2));
 const brand = (args.brand || process.env.NEXT_PUBLIC_PROJECT_NAME || "underundre").toLowerCase();
 
 const results = [];
@@ -98,30 +111,38 @@ const html = fs.readFileSync(prerendered, "utf-8");
   gate("V2a-logo-chrome", inlineThemeStyles === 0, `theme-derived inline styles in logo.tsx: ${inlineThemeStyles} (expect 0)`);
 }
 
-// --- Gate V3: baseline byte-identity (normalized DOM, body only) -----------
+// --- Gate V3: locale fallback & baseline byte-identity (contract 004) -------
 {
-  if (!fs.existsSync(baseline)) {
-    gate("V3-baseline", false, `baseline missing: ${baseline}`);
-  } else {
-    const normalize = (src) =>
-      src
-        // strip hydration/RSC payloads and script tags (chunk hashes change on edit)
-        .replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "")
-        .replace(/<script\b[^>]*\/>/g, "")
-        .replace(/self\.__next_f\.push\([\s\S]*?\)\);?/g, "")
-        // strip preload/modulepreload links (chunk-hash bearing)
-        .replace(/<link[^>]+rel="(preload|modulepreload)"[^>]*>/g, "")
-        // canonicalize hashed asset URLs (css/js chunk hashes change on edit;
-        // the css bundle *set* is content-addressed by the build itself)
-        .replace(/(\/_next\/static\/(?:css|chunks)\/)[^"']+/g, "$1<HASH>")
-        .trim();
+  if (brand === "underundre") {
+    if (!fs.existsSync(baseline)) {
+      gate("V3-baseline", false, `baseline missing: ${baseline}`);
+    } else {
+      const normalize = (src) =>
+        src
+          // strip hydration/RSC payloads and script tags (chunk hashes change on edit)
+          .replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "")
+          .replace(/<script\b[^>]*\/>/g, "")
+          .replace(/self\.__next_f\.push\([\s\S]*?\)\);?/g, "")
+          // strip preload/modulepreload links (chunk-hash bearing)
+          .replace(/<link[^>]+rel="(preload|modulepreload)"[^>]*>/g, "")
+          // canonicalize hashed asset URLs (css/js chunk hashes change on edit;
+          // the css bundle *set* is content-addressed by the build itself)
+          .replace(/(\/_next\/static\/(?:css|chunks)\/)[^"']+/g, "$1<HASH>")
+          .trim();
 
-    const a = normalize(fs.readFileSync(baseline, "utf-8"));
-    const b = normalize(html);
-    gate("V3-baseline-identity", a === b,
-      a === b
-        ? `normalized DOM identical to 004 baseline (${a.length} bytes)`
-        : `normalized DOM differs from baseline (baseline ${a.length}B vs current ${b.length}B) — if this change is intentional, regenerate the baseline per the 004 contract Maintenance section`);
+      const a = normalize(fs.readFileSync(baseline, "utf-8"));
+      const b = normalize(html);
+      gate("V3-baseline-identity", a === b,
+        a === b
+          ? `normalized DOM identical to 004 baseline (${a.length} bytes)`
+          : `normalized DOM differs from baseline (baseline ${a.length}B vs current ${b.length}B) — if this change is intentional, regenerate the baseline per the 004 contract Maintenance section`);
+    }
+  } else {
+    // For undreading (contract 004 Gate V3): verify brand isolation (zero
+    // references to underundre in user-visible HTML) and valid rendering.
+    const underundreRefs = (html.match(/\bunderundre\b/gi) || []).length;
+    gate("V3-brand-isolation", underundreRefs === 0,
+      `brand isolation for ${brand}: ${underundreRefs} references to underundre in rendered output (expect 0)`);
   }
 }
 

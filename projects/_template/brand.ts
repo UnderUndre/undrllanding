@@ -11,7 +11,9 @@ export const templateBrand: ProjectConfig = {
   title: "[PLACEHOLDER] Brand Name — One-line value proposition",
   description:
     "[PLACEHOLDER] Short landing description shown in the hero, metadata and privacy policy context.",
-  iconUrl: "/projects/_template/favicon.ico",
+  iconUrl: "/projects/[SLUG]/icon.svg",
+  faviconUrl: "/projects/[SLUG]/icon-48.png",
+  appleIconUrl: "/projects/[SLUG]/apple-icon-180.png",
   heroBadge: "[PLACEHOLDER] TRUST BADGE LINE",
   theme: {
     primaryColor: "#2563eb",

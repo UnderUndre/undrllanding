@@ -7,11 +7,13 @@ import { getActiveProjectConfig } from "@/lib/project-config";
 // BEGIN GENERATED PROJECT PAGES (managed by scripts/create-project.mjs — do not edit outside this block)
 import { UnderundreHome } from "@/projects/underundre/config";
 import { TemplateHome } from "@/projects/_template/config";
+import { undreadingHome } from "@/projects/undreading/config";
 
 const projectPages: Record<string, ComponentType> = {
   underundre: UnderundreHome,
   _template: TemplateHome,
 };
+projectPages["undreading"] = undreadingHome;
 // END GENERATED PROJECT PAGES
 
 export function getActiveProjectHome(): ComponentType {

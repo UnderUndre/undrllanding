@@ -1,0 +1,61 @@
+{
+  "sectionBadge": {
+    "ru": "Частые вопросы",
+    "en": "FAQ",
+    "uk": "Часті запитання"
+  },
+  "sectionTitle": {
+    "ru": "Ответы на ключевые вопросы",
+    "en": "Frequently Asked Questions",
+    "uk": "Відповіді на ключові запитання"
+  },
+  "sectionSubtitle": {
+    "ru": "Всё об открытом доступе, лицензиях на код, языковых версиях и доставке печатных томов.",
+    "en": "Everything about open access, code licensing, language editions, and print fulfillment.",
+    "uk": "Все про відкритий доступ, ліцензії на код, мовні версії та доставку книг."
+  },
+  "items": [
+    {
+      "question": {
+        "ru": "Почему текст книги открыт на 100% бесплатно?",
+        "en": "Why is the book text 100% free online?",
+        "uk": "Чому текст книги відкритий на 100% безкоштовно?"
+      },
+      "answers": [
+        {
+          "ru": "Фундаментальная миссия Undreading — быть открытой базой знаний и лидогенератором доверия. Мы зарабатываем на коммерческих архитектурных спринтах, а не на ограничении доступа к истине.",
+          "en": "The core mission of Undreading is to serve as an open knowledge base and trust anchor. We generate commercial revenue through architectural sprints, not by paywalling knowledge.",
+          "uk": "Фундаментальна місія Undreading — бути відкритою базою знань та джерелом довіри. Ми заробляємо на архітектурних спринтах, а не на обмеженні доступу до знань."
+        }
+      ]
+    },
+    {
+      "question": {
+        "ru": "На каких языках издается книга?",
+        "en": "What languages is the monograph published in?",
+        "uk": "Якими мовами видається монографія?"
+      },
+      "answers": [
+        {
+          "ru": "Книга выходит в полноценном трилингвальном формате: русский (RU), английский (EN) и украинский (UK). Английское и украинское издания доступны напрямую на Amazon KDP с доставкой Prime.",
+          "en": "The book is published in a trilingual format: Russian (RU), English (EN), and Ukrainian (UK). English and Ukrainian editions are available directly via Amazon KDP with Prime delivery.",
+          "uk": "Книга виходить у трилінгвальному форматі: українська (UK), англійська (EN) та російська (RU). Англійське та українське видання доступні напряму на Amazon KDP з доставкою Prime."
+        }
+      ]
+    },
+    {
+      "question": {
+        "ru": "Что входит в ZTA Security Architecture Kit?",
+        "en": "What is included in the ZTA Security Architecture Kit?",
+        "uk": "Що входить до ZTA Security Architecture Kit?"
+      },
+      "answers": [
+        {
+          "ru": "Комплект содержит готовые Docker Compose конфигурации с Memory Fencing, шаблоны Terraform для изолированных Hetzner Cloud серверов, матрицу сетевой сегментации WireGuard/Traefik и скрипты автоматического бэкапа Restic S3.",
+          "en": "The kit includes production-ready Docker Compose configurations with Memory Fencing, Terraform templates for Hetzner Cloud nodes, WireGuard/Traefik network segmentation matrices, and automated Restic S3 backup scripts.",
+          "uk": "Комплект містить готові конфігурації Docker Compose з Memory Fencing, шаблони Terraform для Hetzner Cloud, матрицю сегментації WireGuard/Traefik та скрипти бекапу Restic S3."
+        }
+      ]
+    }
+  ]
+}

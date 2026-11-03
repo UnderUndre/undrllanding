@@ -1,0 +1,36 @@
+{
+  "title": {
+    "ru": "Политика конфиденциальности",
+    "en": "Privacy Policy"
+  },
+  "updatedAt": {
+    "ru": "Дата последнего обновления: [PLACEHOLDER ДАТА]",
+    "en": "Last updated: [PLACEHOLDER DATE]"
+  },
+  "sections": [
+    {
+      "heading": {
+        "ru": "1. Контролёр данных",
+        "en": "1. Data Controller"
+      },
+      "paragraphs": [
+        {
+          "ru": "Оператор: {{entityName}} ({{jurisdiction}}). Контакт: {{contactEmail}}. [PLACEHOLDER] Дополните раздел до публикации.",
+          "en": "Controller: {{entityName}} ({{jurisdiction}}). Contact: {{contactEmail}}. [PLACEHOLDER] Complete this section before publishing."
+        }
+      ]
+    },
+    {
+      "heading": {
+        "ru": "2. Какие данные мы собираем",
+        "en": "2. What data we collect"
+      },
+      "paragraphs": [
+        {
+          "ru": "[PLACEHOLDER] Опишите категории данных, цели, правовое основание, срок хранения и права субъектов по GDPR Art. 13.",
+          "en": "[PLACEHOLDER] Describe data categories, purposes, lawful basis, retention and data-subject rights per GDPR Art. 13."
+        }
+      ]
+    }
+  ]
+}

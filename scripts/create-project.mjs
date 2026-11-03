@@ -93,8 +93,10 @@ async function main() {
     fail(`Slug "${slug}" is reserved.`);
   }
   const targetDir = path.join(projectsDir, slug);
-  if (fs.existsSync(targetDir)) {
-    fail(`Project "${slug}" already exists at projects/${slug}`);
+  const publicTemplateDir = path.join(repoRoot, "public", "projects", "_template");
+  const publicTargetDir = path.join(repoRoot, "public", "projects", slug);
+  if (fs.existsSync(targetDir) || fs.existsSync(publicTargetDir)) {
+    fail(`Project "${slug}" already exists at projects/${slug} or public/projects/${slug}`);
   }
   if (!fs.existsSync(templateDir)) {
     fail("projects/_template/ not found — repository is broken.");
@@ -118,6 +120,7 @@ async function main() {
       fs.writeFileSync(filePath, content);
     }
     fs.rmSync(targetDir, { recursive: true, force: true });
+    fs.rmSync(publicTargetDir, { recursive: true, force: true });
     fail(reason);
   }
 
@@ -134,7 +137,11 @@ async function main() {
   // Spec 005 FR-002: any failure from here to the successful validate
   // triggers a full rollback to the pre-run repository state.
   try {
-  fs.cpSync(templateDir, targetDir, { recursive: true });  const vars = {
+    fs.cpSync(templateDir, targetDir, { recursive: true });
+    if (fs.existsSync(publicTemplateDir)) {
+      fs.cpSync(publicTemplateDir, publicTargetDir, { recursive: true });
+    }
+    const vars = {
     SLUG: slug,
     NAME: name,
     DOMAIN: domain,

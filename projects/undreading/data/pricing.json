@@ -1,0 +1,183 @@
+{
+  "sectionBadge": {
+    "ru": "Издания & Доступ",
+    "en": "Editions & Access",
+    "uk": "Видання & Доступ"
+  },
+  "sectionTitle": {
+    "ru": "«Сантехника Бытия» — Книга & ZTA Kit",
+    "en": "“Plumbing of Being” — Book & ZTA Kit",
+    "uk": "«Сантехніка Буття» — Книга & ZTA Kit"
+  },
+  "sectionSubtitle": {
+    "ru": "Открытый доступ онлайн, цифровая поддержка с исходным кодом и международная печать.",
+    "en": "Free open-access online reader, supporter bundle with architecture templates, and print editions.",
+    "uk": "Відкритий онлайн-доступ, цифрова підтримка з кодом та міжнародний друк."
+  },
+  "plans": [
+    {
+      "id": "web-reader",
+      "tierName": {
+        "ru": "ОТКРЫТЫЙ РИДЕР",
+        "en": "OPEN WEB READER",
+        "uk": "ВІДКРИТИЙ РІДЕР"
+      },
+      "title": {
+        "ru": "Бесплатное чтение онлайн",
+        "en": "Free Online Reader",
+        "uk": "Безкоштовне читання онлайн"
+      },
+      "description": {
+        "ru": "Полный текст фундаментальной монографии (v23.x, ~500 стр.) в открытом доступе.",
+        "en": "Full text of the engineering monograph (v23.x, ~500 pages) freely available online.",
+        "uk": "Повний текст монографії (v23.x, ~500 стор.) у відкритому онлайн-доступі."
+      },
+      "price": "$0",
+      "turnaround": {
+        "ru": "Мгновенный доступ",
+        "en": "Instant access",
+        "uk": "Миттєвий доступ"
+      },
+      "deliverablesTitle": {
+        "ru": "Что включено:",
+        "en": "What is included:",
+        "uk": "Що входить:"
+      },
+      "deliverables": [
+        {
+          "ru": "100% текста книги онлайн (RU / EN / UK)",
+          "en": "100% of the book text online (RU / EN / UK)",
+          "uk": "100% тексту книги онлайн (RU / EN / UK)"
+        },
+        {
+          "ru": "Быстрый поиск и оглавление",
+          "en": "Full-text search and navigation",
+          "uk": "Швидкий пошук і зміст"
+        },
+        {
+          "ru": "Регулярные обновления глав",
+          "en": "Continuous chapter updates",
+          "uk": "Регулярні оновлення глав"
+        }
+      ],
+      "ctaText": {
+        "ru": "Читать онлайн бесплатно →",
+        "en": "Read online for free →",
+        "uk": "Читати онлайн безкоштовно →"
+      },
+      "ctaHref": "https://undreading.com",
+      "isHero": false
+    },
+    {
+      "id": "zta-kit",
+      "tierName": {
+        "ru": "SUPPORTER & ZTA KIT",
+        "en": "SUPPORTER & ZTA KIT",
+        "uk": "SUPPORTER & ZTA KIT"
+      },
+      "title": {
+        "ru": "Цифровой бандл + код ZTA",
+        "en": "Digital Bundle + ZTA Code",
+        "uk": "Цифровий бандл + код ZTA"
+      },
+      "description": {
+        "ru": "EPUB/PDF сборки для оффлайн-чтения + комплект production Terraform/Docker шаблонов (NACE 62.01).",
+        "en": "DRM-free EPUB/PDF offline builds + production Zero Trust Architecture Terraform & Docker stack.",
+        "uk": "EPUB/PDF збірки для читання + комплект production Terraform/Docker шаблонів (NACE 62.01)."
+      },
+      "price": "PWYW: $5 – $12.99",
+      "priceNote": {
+        "ru": "Плоти сколько хочешь (от $5, рекомендовано $12.99)",
+        "en": "Pay What You Want (min $5, recommended $12.99)",
+        "uk": "Плати скільки хочеш (від $5, рекомендовано $12.99)"
+      },
+      "turnaround": {
+        "ru": "Мгновенная цифровая выдача",
+        "en": "Instant digital delivery",
+        "uk": "Миттєва цифрова видача"
+      },
+      "deliverablesTitle": {
+        "ru": "Состав комплекта:",
+        "en": "Bundle contents:",
+        "uk": "Склад комплекту:"
+      },
+      "deliverables": [
+        {
+          "ru": "Мультиязычный EPUB 3 + Typst PDF высокого разрешения",
+          "en": "Multilingual EPUB 3 + high-res Typst PDF",
+          "uk": "Мультимовний EPUB 3 + Typst PDF високої якості"
+        },
+        {
+          "ru": "Zero Trust Architecture Terraform & Docker шаблоны",
+          "en": "Zero Trust Architecture Terraform & Docker templates",
+          "uk": "Zero Trust Architecture Terraform & Docker шаблони"
+        },
+        {
+          "ru": "Право использования по NACE 62.01 через Paddle MoR",
+          "en": "Commercial use rights under NACE 62.01 via Paddle MoR",
+          "uk": "Право використання за NACE 62.01 через Paddle MoR"
+        }
+      ],
+      "ctaText": {
+        "ru": "Поддержать и скачать ($12.99) →",
+        "en": "Support & Download ($12.99) →",
+        "uk": "Підтримати та завантажити ($12.99) →"
+      },
+      "ctaHref": "https://undreading.com/buy",
+      "isHero": true
+    },
+    {
+      "id": "paperback",
+      "tierName": {
+        "ru": "ПЕЧАТНОЕ ИЗДАНИЕ",
+        "en": "PAPERBACK PRINT",
+        "uk": "ДРУКОВАНЕ ВИДАННЯ"
+      },
+      "title": {
+        "ru": "Trade Paperback 6×9″",
+        "en": "Trade Paperback 6×9″",
+        "uk": "Trade Paperback 6×9″"
+      },
+      "description": {
+        "ru": "Качественная печать, плотная белая бумага, матовая ламинация обложки (~500 страниц).",
+        "en": "Premium print on cream/white stock with matte cover lamination (~500 pages).",
+        "uk": "Якісний друк на білому папері з матовою ламінацією обкладинки (~500 стор.)."
+      },
+      "price": "$24.99",
+      "turnaround": {
+        "ru": "Доставка Amazon Prime / Lulu PoD",
+        "en": "Amazon Prime / Lulu PoD shipping",
+        "uk": "Доставка Amazon Prime / Lulu PoD"
+      },
+      "deliverablesTitle": {
+        "ru": "Каналы доставки:",
+        "en": "Fulfillment channels:",
+        "uk": "Канали доставки:"
+      },
+      "deliverables": [
+        {
+          "ru": "Amazon KDP (EN & UK издания с Prime-доставкой)",
+          "en": "Amazon KDP (EN & UK editions with 1-2 day Prime)",
+          "uk": "Amazon KDP (EN & UK видання з Prime-доставкою)"
+        },
+        {
+          "ru": "Lulu Direct-to-Consumer (Русское издание по всему миру)",
+          "en": "Lulu Direct-to-Consumer (Russian edition worldwide)",
+          "uk": "Lulu Direct-to-Consumer (Російське видання по світу)"
+        },
+        {
+          "ru": "Прямая отправка типографией без посредников",
+          "en": "Print-on-demand drop-shipping directly from print facility",
+          "uk": "Пряме відправлення друкарнею без посередників"
+        }
+      ],
+      "ctaText": {
+        "ru": "Заказать печатный том ($24.99) →",
+        "en": "Order Paperback ($24.99) →",
+        "uk": "Замовити друкований том ($24.99) →"
+      },
+      "ctaHref": "https://undreading.com/print",
+      "isHero": false
+    }
+  ]
+}
