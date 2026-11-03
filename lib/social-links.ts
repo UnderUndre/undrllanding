@@ -40,12 +40,10 @@ function parseContactAllowlist(): string[] | null {
 export function getSocialLinks(): SocialLink[] {
   const allowlist = parseContactAllowlist();
   const config = getActiveProjectConfig();
-  const isDefaultBrand = config.slug === "underundre" || config.slug === "undreseller";
 
   const getUrl = (key: string, envVal?: string) => {
     if (config.social?.[key] !== undefined) return config.social[key];
-    if (isDefaultBrand && envVal) return envVal;
-    return "";
+    return envVal || "";
   };
 
   return [

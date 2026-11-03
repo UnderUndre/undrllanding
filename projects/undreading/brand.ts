@@ -19,11 +19,6 @@ export const undreadingBrand: ProjectConfig = {
     secondaryColor: "#030712",
   },
   supportedLocales: ["ru", "en", "uk"],
-  social: {
-    github: "https://github.com/undreading",
-    twitter: "https://x.com/undreading",
-    telegram: "https://t.me/undreading",
-  },
   navigation: {
     items: [
       { labelFallback: "Monograph", href: "https://undreading.com" },

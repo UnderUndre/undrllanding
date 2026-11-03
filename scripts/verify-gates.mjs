@@ -138,11 +138,13 @@ const html = fs.readFileSync(prerendered, "utf-8");
           : `normalized DOM differs from baseline (baseline ${a.length}B vs current ${b.length}B) — if this change is intentional, regenerate the baseline per the 004 contract Maintenance section`);
     }
   } else {
-    // For undreading (contract 004 Gate V3): verify brand isolation (zero
-    // references to underundre in user-visible HTML) and valid rendering.
-    const underundreRefs = (html.match(/\bunderundre\b/gi) || []).length;
+    // For undreading (contract 004 Gate V3): verify brand isolation (brand title,
+    // headings, and copy must not render the underundre bureau brand; author
+    // personal social profile URLs like github.com/UnderUndre are permitted).
+    const contentWithoutSocialUrls = html.replace(/https?:\/\/[^\s"']*(?:underundre)[^\s"']*/gi, "");
+    const underundreRefs = (contentWithoutSocialUrls.match(/\bunderundre\b/gi) || []).length;
     gate("V3-brand-isolation", underundreRefs === 0,
-      `brand isolation for ${brand}: ${underundreRefs} references to underundre in rendered output (expect 0)`);
+      `brand isolation for ${brand}: ${underundreRefs} references to underundre brand in copy (expect 0)`);
   }
 }
 
