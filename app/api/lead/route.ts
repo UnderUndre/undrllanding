@@ -64,13 +64,18 @@ async function dispatchTelegram(lead: {
   const metadataLines = Object.entries(lead.metadata)
     .slice(0, 20)
     .map(([key, value]) => `<b>${escapeHtml(key)}:</b> ${escapeHtml(String(value))}`);
+
+  const channelType = lead.metadata?.channelType ? String(lead.metadata.channelType) : "";
+  const contactText = lead.contact || "Not provided";
+  const contactDisplay = channelType ? `${contactText} [via ${channelType}]` : contactText;
+
   const text = [
-    "<b>[NEW LEAD]</b>",
-    `<b>Email:</b> ${escapeHtml(lead.email)}`,
-    `<b>Contact:</b> ${escapeHtml(lead.contact || "Not provided (email only)")}`,
+    "<b>[NEW LEAD — DUPLEX PROTOCOL]</b>",
+    `<b>Work Email (Trunk):</b> ${escapeHtml(lead.email)}`,
+    `<b>Preferred Channel (Ping):</b> ${escapeHtml(contactDisplay)}`,
     `<b>Topic:</b> ${escapeHtml(lead.topic)}`,
     ...metadataLines,
-    "<b>Brief:</b>",
+    "<b>Brief Payload:</b>",
     escapeHtml(lead.message),
   ].join("\n");
 

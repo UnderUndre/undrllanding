@@ -5,8 +5,10 @@ import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
 import { getContactChannels } from "@/lib/social-links";
 
-// v20.2a (Lean Intake & Zero Hallucination Gate)
-// Mandate 5 (Guessing Ban): Odometer strictly calculates physical hours (Hours/Year),
+// v20.2b (Duplex Delivery Protocol & Zero Hallucination Gate)
+// 1. Email is the mandatory B2B trunk line (for CFO budget approvals and video breakdowns).
+// 2. Messengers (Telegram / WhatsApp / LinkedIn / Email only) are impulse bypass pings.
+// 3. Mandate 5 (Guessing Ban): Odometer strictly calculates physical hours (Hours/Year),
 // zero dollar revenue/savings estimation before verified payroll telemetry.
 
 type RoleType = "owner" | "ops_lead" | "manager";
@@ -14,6 +16,7 @@ type SymptomType = "whatsapp_manual" | "excel_chaos" | "saas_tax" | "custom_proc
 type TeamSizeType = "1-3" | "4-10" | "11-25" | "25+";
 type TelemetryType = "csv_logs" | "live_screen" | "verbal";
 type RoutineHoursType = "under_5" | "5-15" | "15-30" | "over_30";
+type ChannelType = "telegram" | "whatsapp" | "linkedin" | "email_only";
 
 const ODOMETER_RANGES: Record<TeamSizeType, Record<RoutineHoursType, [number, number]>> = {
   "1-3": {
@@ -50,7 +53,12 @@ export default function CtaUnderundre() {
   const [fallbackMode, setFallbackMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  // v20.2a Intake state
+  // v20.2b Intake state
+  const [channelType, setChannelType] = useState<ChannelType>("telegram");
+  const [channelHandle, setChannelHandle] = useState("");
+  const [submittedEmail, setSubmittedEmail] = useState("");
+  const [submittedChannel, setSubmittedChannel] = useState<ChannelType>("telegram");
+
   const [role, setRole] = useState<RoleType>("owner");
   const [symptom, setSymptom] = useState<SymptomType>("whatsapp_manual");
   const [teamSize, setTeamSize] = useState<TeamSizeType>("4-10");
@@ -83,25 +91,38 @@ export default function CtaUnderundre() {
     over_30: lang === "ru" ? "30+ ч" : "30+ hrs",
   };
 
+  const channelLabels: Record<ChannelType, string> = {
+    telegram: "Telegram",
+    whatsapp: "WhatsApp",
+    linkedin: "LinkedIn",
+    email_only: lang === "ru" ? "Только Email" : "Email only",
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
     setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
-    const email = (formData.get("email") as string) || "";
-    const messenger = (formData.get("messenger") as string) || "";
-    const website = (formData.get("website") as string) || "";
+    const email = ((formData.get("email") as string) || "").trim();
+    const handleInput = ((formData.get("channelHandle") as string) || "").trim();
+    const contact = channelType === "email_only" ? "Email only" : handleInput;
+
+    const website = ((formData.get("website") as string) || "").trim();
+
+    setSubmittedEmail(email);
+    setSubmittedChannel(channelType);
 
     const structuredMessage =
       `[Role: ${role}] [Symptom: ${symptom}] [Team: ${teamSize}] ` +
       `[Telemetry: ${telemetry}] [RoutineHours: ${routineHours}] ` +
+      `[Channel: ${channelType} -> ${contact}] ` +
       `[Odometer: ${minHours.toLocaleString()}–${maxHours.toLocaleString()} hrs/yr]`;
 
     const payload = {
       email,
-      contact: messenger,
-      topic: "tco-audit-v20.2a",
+      contact,
+      topic: "tco-audit-v20.2b",
       message: structuredMessage,
       metadata: {
         role,
@@ -111,8 +132,10 @@ export default function CtaUnderundre() {
         routineHoursPerWeek: routineHours,
         annualHoursMin: minHours,
         annualHoursMax: maxHours,
-        website: website.trim(),
-        protocolVersion: "v20.2a-lean-intake",
+        channelType,
+        channelHandle: contact,
+        website,
+        protocolVersion: "v20.2b-duplex",
       },
     };
 
@@ -172,16 +195,29 @@ export default function CtaUnderundre() {
               </h3>
             </div>
 
-            {/* Контур 3: Smart Two-Speed (80% Default Queue) */}
-            <div className="p-4 bg-purple-950/40 border border-purple-800/40 rounded-xl text-xs text-purple-200 leading-relaxed">
-              <strong>{lang === "ru" ? "Заявка в очереди:" : "Queue status:"}</strong>{" "}
-              {role === "manager"
-                ? (lang === "ru"
-                    ? "Персональный 45–60 сек Loom-разбор для защиты перед руководством придёт в Telegram / WhatsApp в течение 24 рабочих часов."
-                    : "A personalized 45–60 sec Loom teardown to champion before leadership will arrive in Telegram / WhatsApp within 24 business hours.")
-                : (lang === "ru"
-                    ? "Персональный 60–90 сек Loom-разбор вашего процесса придёт в Telegram / WhatsApp в течение 24 рабочих часов."
-                    : "A personalized 60–90 sec Loom teardown of your process will arrive in Telegram / WhatsApp within 24 business hours.")}
+            {/* Контур 3: Smart Two-Speed & Duplex Dispatch Feedback */}
+            <div className="p-4 bg-purple-950/40 border border-purple-800/40 rounded-xl text-xs text-purple-200 leading-relaxed space-y-1.5">
+              <div>
+                <strong>{lang === "ru" ? "Магистральный стояк (Email):" : "Primary Trunk (Email):"}</strong>{" "}
+                {lang === "ru"
+                  ? `Полный видеоразбор процесса и отчёт одометра придут на почту ${submittedEmail ? `(${submittedEmail})` : ""} в течение 24 рабочих часов.`
+                  : `Full process video teardown and odometer report will be sent to your email ${submittedEmail ? `(${submittedEmail})` : ""} within 24 business hours.`}
+              </div>
+              {submittedChannel !== "email_only" && (
+                <div className="text-purple-300/80">
+                  <strong>{lang === "ru" ? "Импульсный пинг:" : "Impulse ping:"}</strong>{" "}
+                  {lang === "ru"
+                    ? `Короткое уведомление с прямой ссылкой продублируется в ${channelLabels[submittedChannel]}.`
+                    : `A direct notification with link will be mirrored to ${channelLabels[submittedChannel]}.`}
+                </div>
+              )}
+              {role === "manager" && (
+                <div className="text-orange-400 font-medium pt-1 border-t border-purple-900/30">
+                  {lang === "ru"
+                    ? "🛡️ Staff Proxy: Видео разбито на 45–60 сек выжимку специально для быстрой защиты перед вашим руководством."
+                    : "🛡️ Staff Proxy: Video is tailored as a 45–60 sec briefing specifically for defending before leadership."}
+                </div>
+              )}
             </div>
 
             {/* Контур 3: Green Corridor for Urgent Inquiries */}
@@ -237,11 +273,13 @@ export default function CtaUnderundre() {
               </div>
             )}
 
-            {/* Контур 1: Landing Gate */}
+            {/* Контур 1: Landing Gate (Протокол «Дуплекс») */}
             <div className="space-y-4">
               <div>
                 <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-email">
-                  {lang === "ru" ? "Рабочий Email *" : "Work Email *"}
+                  {lang === "ru"
+                    ? "Рабочий Email * (куда прислать спецификацию и ссылку на видеоразбор)"
+                    : "Work Email * (where to send specification and video breakdown link)"}
                 </label>
                 <input
                   id="lead-email"
@@ -253,18 +291,45 @@ export default function CtaUnderundre() {
                 />
               </div>
 
+              {/* Протокол «Дуплекс»: Выбор импульсного канала связи */}
               <div>
-                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-messenger">
-                  {lang === "ru" ? "Telegram / WhatsApp * (для отправки 60-сек Loom)" : "Telegram / WhatsApp * (for 60-sec Loom video)"}
+                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-channel-handle">
+                  {lang === "ru"
+                    ? "Предпочитаемый канал связи * (импульсный пинг)"
+                    : "Preferred contact channel * (impulse ping)"}
                 </label>
-                <input
-                  id="lead-messenger"
-                  type="text"
-                  name="messenger"
-                  required
-                  placeholder={lang === "ru" ? "@username или номер телефона" : "@handle or phone number"}
-                  className="w-full px-4 py-2.5 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
-                />
+                <div className="flex gap-2">
+                  <select
+                    id="lead-channel-type"
+                    value={channelType}
+                    onChange={(e) => setChannelType(e.target.value as ChannelType)}
+                    className="w-1/3 min-w-[110px] sm:min-w-[130px] px-3 py-2.5 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-xs sm:text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
+                  >
+                    <option value="telegram">Telegram</option>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="linkedin">LinkedIn</option>
+                    <option value="email_only">{lang === "ru" ? "Только Email" : "Email only"}</option>
+                  </select>
+                  <input
+                    id="lead-channel-handle"
+                    type="text"
+                    name="channelHandle"
+                    value={channelHandle}
+                    onChange={(e) => setChannelHandle(e.target.value)}
+                    disabled={channelType === "email_only"}
+                    required={channelType !== "email_only"}
+                    placeholder={
+                      channelType === "email_only"
+                        ? (lang === "ru" ? "Вся доставка строго в почту" : "All delivery via email only")
+                        : channelType === "telegram"
+                        ? "@username"
+                        : channelType === "whatsapp"
+                        ? "+1 234 567 8900"
+                        : "linkedin.com/in/username"
+                    }
+                    className="w-2/3 px-4 py-2.5 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange disabled:opacity-50 disabled:bg-slate-100 dark:disabled:bg-slate-900/50"
+                  />
+                </div>
               </div>
 
               {/* Gate 1: Role */}
