@@ -1,9 +1,46 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
 import { getContactChannels } from "@/lib/social-links";
+
+// v20.2a (Lean Intake & Zero Hallucination Gate)
+// Mandate 5 (Guessing Ban): Odometer strictly calculates physical hours (Hours/Year),
+// zero dollar revenue/savings estimation before verified payroll telemetry.
+
+type RoleType = "owner" | "ops_lead" | "manager";
+type SymptomType = "whatsapp_manual" | "excel_chaos" | "saas_tax" | "custom_process";
+type TeamSizeType = "1-3" | "4-10" | "11-25" | "25+";
+type TelemetryType = "csv_logs" | "live_screen" | "verbal";
+type RoutineHoursType = "under_5" | "5-15" | "15-30" | "over_30";
+
+const ODOMETER_RANGES: Record<TeamSizeType, Record<RoutineHoursType, [number, number]>> = {
+  "1-3": {
+    under_5: [104, 780],
+    "5-15": [260, 2340],
+    "15-30": [780, 4680],
+    over_30: [1560, 6240],
+  },
+  "4-10": {
+    under_5: [416, 2600],
+    "5-15": [1040, 3900],
+    "15-30": [3120, 7800],
+    over_30: [6240, 15600],
+  },
+  "11-25": {
+    under_5: [1144, 6500],
+    "5-15": [2860, 19500],
+    "15-30": [8580, 39000],
+    over_30: [17160, 58500],
+  },
+  "25+": {
+    under_5: [2600, 13000],
+    "5-15": [6500, 39000],
+    "15-30": [19500, 78000],
+    over_30: [39000, 117000],
+  },
+};
 
 export default function CtaUnderundre() {
   const { lang } = useLang();
@@ -12,6 +49,14 @@ export default function CtaUnderundre() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [fallbackMode, setFallbackMode] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+
+  // v20.2a Intake state
+  const [role, setRole] = useState<RoleType>("owner");
+  const [symptom, setSymptom] = useState<SymptomType>("whatsapp_manual");
+  const [teamSize, setTeamSize] = useState<TeamSizeType>("4-10");
+  const [telemetry, setTelemetry] = useState<TelemetryType>("csv_logs");
+  const [routineHours, setRoutineHours] = useState<RoutineHoursType>("5-15");
+
   // Spec 005 FR-017: no setState after unmount — abort the in-flight fetch.
   const abortRef = useRef<AbortController | null>(null);
   useEffect(() => () => abortRef.current?.abort(), []);
@@ -19,21 +64,55 @@ export default function CtaUnderundre() {
   const triageUrl = process.env.NEXT_PUBLIC_CAL_TRIAGE_URL;
   const socialLinks = getContactChannels();
 
+  // Dynamic Odometer bounds (pure physical hours per year)
+  const [minHours, maxHours] = useMemo(() => {
+    return ODOMETER_RANGES[teamSize][routineHours] || [1040, 3900];
+  }, [teamSize, routineHours]);
+
+  const teamLabels: Record<TeamSizeType, string> = {
+    "1-3": lang === "ru" ? "1–3 чел" : "1–3 people",
+    "4-10": lang === "ru" ? "4–10 чел" : "4–10 people",
+    "11-25": lang === "ru" ? "11–25 чел" : "11–25 people",
+    "25+": lang === "ru" ? "25+ чел" : "25+ people",
+  };
+
+  const hoursLabels: Record<RoutineHoursType, string> = {
+    under_5: lang === "ru" ? "<5 ч" : "<5 hrs",
+    "5-15": lang === "ru" ? "5–15 ч" : "5–15 hrs",
+    "15-30": lang === "ru" ? "15–30 ч" : "15–30 hrs",
+    over_30: lang === "ru" ? "30+ ч" : "30+ hrs",
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("loading");
     setErrorMessage("");
 
     const formData = new FormData(e.currentTarget);
-    // Generic contract (spec 003 FR-005, T-024): legacy fields map as
-    // messenger → contact, stackAndTeam → message, bottleneckType → metadata.
+    const email = (formData.get("email") as string) || "";
+    const messenger = (formData.get("messenger") as string) || "";
+    const website = (formData.get("website") as string) || "";
+
+    const structuredMessage =
+      `[Role: ${role}] [Symptom: ${symptom}] [Team: ${teamSize}] ` +
+      `[Telemetry: ${telemetry}] [RoutineHours: ${routineHours}] ` +
+      `[Odometer: ${minHours.toLocaleString()}–${maxHours.toLocaleString()} hrs/yr]`;
+
     const payload = {
-      email: (formData.get("email") as string) || "",
-      contact: (formData.get("messenger") as string) || "",
-      message: (formData.get("stackAndTeam") as string) || "",
+      email,
+      contact: messenger,
+      topic: "tco-audit-v20.2a",
+      message: structuredMessage,
       metadata: {
-        bottleneckType: (formData.get("bottleneckType") as string) || "other",
-        website: ((formData.get("website") as string) || "").trim(),
+        role,
+        symptom,
+        teamSize,
+        telemetryReadiness: telemetry,
+        routineHoursPerWeek: routineHours,
+        annualHoursMin: minHours,
+        annualHoursMax: maxHours,
+        website: website.trim(),
+        protocolVersion: "v20.2a-lean-intake",
       },
     };
 
@@ -85,26 +164,51 @@ export default function CtaUnderundre() {
         </p>
 
         {status === "success" ? (
-          <div className="p-8 bg-brand-green/10 border border-brand-green/30 rounded-2xl text-left max-w-xl mx-auto mb-10 space-y-4">
-            <p className="text-brand-green font-bold text-lg">{t.thankYouTitle}</p>
-            <p className="text-sm text-purple-100 leading-relaxed">{t.thankYouLoom}</p>
-            <p className="text-sm text-purple-100 leading-relaxed">{t.thankYouEscrow}</p>
-            {triageUrl && triageUrl.trim().length > 0 && (
-              <div className="pt-4 border-t border-purple-900/40">
-                <p className="text-xs text-purple-200/70 mb-2">{t.thankYouTriage}</p>
-                <a
-                  href={triageUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-4 py-2 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-lg transition-all text-sm"
-                >
-                  {t.triageBtn}
-                </a>
+          <div className="p-8 bg-brand-surface dark:bg-[#120524] border border-brand-border dark:border-purple-800/40 rounded-2xl text-left max-w-xl mx-auto mb-10 space-y-5 shadow-2xl">
+            <div className="flex items-center gap-3">
+              <span className="text-2xl">☕</span>
+              <h3 className="text-brand-green font-bold text-lg">
+                {lang === "ru" ? "Бриф принят и поставлен в очередь" : "Brief accepted & queued"}
+              </h3>
+            </div>
+
+            {/* Контур 3: Smart Two-Speed (80% Default Queue) */}
+            <div className="p-4 bg-purple-950/40 border border-purple-800/40 rounded-xl text-xs text-purple-200 leading-relaxed">
+              <strong>{lang === "ru" ? "Заявка в очереди:" : "Queue status:"}</strong>{" "}
+              {role === "manager"
+                ? (lang === "ru"
+                    ? "Персональный 45–60 сек Loom-разбор для защиты перед руководством придёт в Telegram / WhatsApp в течение 24 рабочих часов."
+                    : "A personalized 45–60 sec Loom teardown to champion before leadership will arrive in Telegram / WhatsApp within 24 business hours.")
+                : (lang === "ru"
+                    ? "Персональный 60–90 сек Loom-разбор вашего процесса придёт в Telegram / WhatsApp в течение 24 рабочих часов."
+                    : "A personalized 60–90 sec Loom teardown of your process will arrive in Telegram / WhatsApp within 24 business hours.")}
+            </div>
+
+            {/* Контур 3: Green Corridor for Urgent Inquiries */}
+            <div className="space-y-2 pt-2 border-t border-purple-900/40">
+              <a
+                href={triageUrl || "#contact"}
+                id="btn-instant-escrow"
+                target={triageUrl ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="block w-full py-3.5 px-4 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white text-center font-bold rounded-lg text-xs shadow-md transition-all cursor-pointer"
+              >
+                {lang === "ru"
+                  ? "Забронировать 48-часовой слот аудита ($350) без ожидания очереди →"
+                  : "Book a 48-hour audit slot ($350) without queue delay →"}
+              </a>
+              <div className="text-[11px] text-purple-300/60 text-center leading-relaxed">
+                {lang === "ru"
+                  ? "Безопасный расчёт: средства депонируются в независимый эскроу (Upwork / Stripe) до вашей приёмки спецификации."
+                  : "Protected escrow: funds remain held in escrow (Upwork / Stripe) until you approve the specification."}
               </div>
-            )}
+            </div>
+
             {fallbackMode && socialLinks.length > 0 && (
               <div className="pt-4 border-t border-purple-900/40">
-                <p className="text-xs text-orange-300 mb-2">{t.fallbackNotice}</p>
+                <p className="text-xs text-orange-300 mb-2">
+                  {lang === "ru" ? "Не дошло уведомление? Напишите напрямую:" : "Need direct contact? Reach out here:"}
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {socialLinks.map(({ key, label, url, Icon }) => (
                     <a
@@ -125,7 +229,7 @@ export default function CtaUnderundre() {
         ) : (
           <form
             onSubmit={handleSubmit}
-            className="p-8 bg-brand-surface dark:bg-[#120524] rounded-2xl border border-brand-border dark:border-purple-800/40 text-left max-w-xl mx-auto mb-10 space-y-4 shadow-2xl"
+            className="p-6 sm:p-8 bg-brand-surface dark:bg-[#120524] rounded-2xl border border-brand-border dark:border-purple-800/40 text-left max-w-xl mx-auto mb-10 space-y-5 shadow-2xl"
           >
             {status === "error" && (
               <div className="p-3 bg-red-50 dark:bg-red-950/50 border border-red-300 dark:border-red-800/50 rounded-lg text-xs text-red-700 dark:text-red-300">
@@ -133,61 +237,198 @@ export default function CtaUnderundre() {
               </div>
             )}
 
-            <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.email}</label>
-              <input
-                type="email"
-                name="email"
-                required
-                placeholder="name@company.com"
-                className="w-full px-4 py-3 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
-              />
+            {/* Контур 1: Landing Gate */}
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-email">
+                  {lang === "ru" ? "Рабочий Email *" : "Work Email *"}
+                </label>
+                <input
+                  id="lead-email"
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="name@company.com"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-messenger">
+                  {lang === "ru" ? "Telegram / WhatsApp * (для отправки 60-сек Loom)" : "Telegram / WhatsApp * (for 60-sec Loom video)"}
+                </label>
+                <input
+                  id="lead-messenger"
+                  type="text"
+                  name="messenger"
+                  required
+                  placeholder={lang === "ru" ? "@username или номер телефона" : "@handle or phone number"}
+                  className="w-full px-4 py-2.5 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
+                />
+              </div>
+
+              {/* Gate 1: Role */}
+              <div>
+                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-role">
+                  {lang === "ru" ? "Ваша роль в компании (Gate 1) *" : "Your role in the company (Gate 1) *"}
+                </label>
+                <select
+                  id="lead-role"
+                  value={role}
+                  onChange={(e) => setRole(e.target.value as RoleType)}
+                  className="w-full px-4 py-2.5 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
+                >
+                  <option value="owner">
+                    {lang === "ru" ? "Владелец / CEO / COO (Решаю по бюджету лично)" : "Owner / CEO / COO (Direct economic decision-maker)"}
+                  </option>
+                  <option value="ops_lead">
+                    {lang === "ru" ? "Руководитель направления / Operations Lead" : "Operations Lead / Department Head"}
+                  </option>
+                  <option value="manager">
+                    {lang === "ru" ? "Менеджер / Подбираю решение для руководства" : "Manager / Researching solution for leadership"}
+                  </option>
+                </select>
+              </div>
+
+              {/* Gate 2: Symptom */}
+              <div>
+                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-symptom">
+                  {lang === "ru" ? "Главный симптом / засор (Gate 2) *" : "Primary symptom / bottleneck (Gate 2) *"}
+                </label>
+                <select
+                  id="lead-symptom"
+                  value={symptom}
+                  onChange={(e) => setSymptom(e.target.value as SymptomType)}
+                  className="w-full px-4 py-2.5 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
+                >
+                  <option value="whatsapp_manual">
+                    {lang === "ru" ? "Ручная запись в мессенджерах, пустые окна, no-show" : "Manual booking in WhatsApp/chat, empty slots, no-show"}
+                  </option>
+                  <option value="excel_chaos">
+                    {lang === "ru" ? "Хаос в таблицах: ручная сверка счетов и оплат" : "Excel chaos: manual reconciliation of invoices and payments"}
+                  </option>
+                  <option value="saas_tax">
+                    {lang === "ru" ? "Переплата за SaaS-лицензии (хотим FOSS-стек)" : "Excessive SaaS seat taxes (want self-hosted FOSS stack)"}
+                  </option>
+                  <option value="custom_process">
+                    {lang === "ru" ? "Кастомный нестандартный процесс" : "Custom unique operational process"}
+                  </option>
+                </select>
+              </div>
+
+              {/* Gate 6: Team Size */}
+              <div>
+                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-team">
+                  {lang === "ru" ? "Команда в процессе (Gate 6) *" : "Team involved in process (Gate 6) *"}
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {(["1-3", "4-10", "11-25", "25+"] as TeamSizeType[]).map((size) => (
+                    <button
+                      key={size}
+                      type="button"
+                      onClick={() => setTeamSize(size)}
+                      className={`py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
+                        teamSize === size
+                          ? "bg-brand-orange text-white border-brand-orange shadow-sm"
+                          : "bg-white dark:bg-[#090212] border-slate-300 dark:border-purple-900/50 text-slate-700 dark:text-purple-200 hover:border-orange-500/50"
+                      }`}
+                    >
+                      {teamLabels[size]}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-website">
+                  {lang === "ru" ? "Сайт компании (опционально)" : "Company website (optional)"}
+                </label>
+                <input
+                  id="lead-website"
+                  type="url"
+                  name="website"
+                  placeholder="https://yourcompany.com"
+                  className="w-full px-4 py-2.5 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
+                />
+              </div>
             </div>
 
-            <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.messenger}</label>
-              <input
-                type="text"
-                name="messenger"
-                placeholder={t.labels.messengerPlaceholder}
-                className="w-full px-4 py-3 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
-              />
+            {/* Контур 2: Telemetry & Depth Gate */}
+            <div className="pt-4 border-t border-slate-200 dark:border-purple-900/40 space-y-4">
+              <div>
+                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-telemetry">
+                  {lang === "ru"
+                    ? "Доступ к данным для аудита (Gate 5 — Telemetry Readiness) *"
+                    : "Data access for audit (Gate 5 — Telemetry Readiness) *"}
+                </label>
+                <select
+                  id="lead-telemetry"
+                  value={telemetry}
+                  onChange={(e) => setTelemetry(e.target.value as TelemetryType)}
+                  className="w-full px-4 py-2.5 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
+                >
+                  <option value="csv_logs">
+                    {lang === "ru" ? "Есть выгрузка / логи / CSV (W = 1.0)" : "CSV export / server logs / structured data available (W = 1.0)"}
+                  </option>
+                  <option value="live_screen">
+                    {lang === "ru" ? "Покажем живой экран 15 минут (W = 0.9)" : "Live 15-min screen share of actual workflow (W = 0.9)"}
+                  </option>
+                  <option value="verbal">
+                    {lang === "ru" ? "Только расскажем на словах (W = 0.5)" : "Verbal walkthrough only (W = 0.5)"}
+                  </option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1" htmlFor="lead-hours">
+                  {lang === "ru" ? "Сколько часов в неделю уходит на рутину на человека? *" : "Weekly routine hours per team member? *"}
+                </label>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                  {(["under_5", "5-15", "15-30", "over_30"] as RoutineHoursType[]).map((h) => (
+                    <button
+                      key={h}
+                      type="button"
+                      onClick={() => setRoutineHours(h)}
+                      className={`py-2 px-3 text-xs font-semibold rounded-lg border transition-all ${
+                        routineHours === h
+                          ? "bg-brand-orange text-white border-brand-orange shadow-sm"
+                          : "bg-white dark:bg-[#090212] border-slate-300 dark:border-purple-900/50 text-slate-700 dark:text-purple-200 hover:border-orange-500/50"
+                      }`}
+                    >
+                      {hoursLabels[h]}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
-            <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.bottleneck}</label>
-              <select
-                name="bottleneckType"
-                defaultValue="whatsapp-manual"
-                className="w-full px-4 py-3 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
-              >
-                <option value="whatsapp-manual">{t.bottlenecks.whatsapp}</option>
-                <option value="excel-chaos">{t.bottlenecks.excel}</option>
-                <option value="saas-tax-foss">{t.bottlenecks.saasTax}</option>
-                <option value="custom-sprint">{t.bottlenecks.custom}</option>
-                <option value="other">{t.bottlenecks.other}</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.website}</label>
-              <input
-                type="url"
-                name="website"
-                placeholder={t.labels.websitePlaceholder}
-                className="w-full px-4 py-3 bg-brand-surface border border-brand-border rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
-              />
-            </div>
-
-            <div>
-              <label className="block text-xs font-medium text-slate-700 dark:text-purple-200 mb-1">{t.labels.stack}</label>
-              <textarea
-                name="stackAndTeam"
-                required
-                rows={3}
-                placeholder={t.labels.stackPlaceholder}
-                className="w-full px-4 py-3 bg-white dark:bg-[#090212] border border-slate-300 dark:border-purple-900/50 rounded-lg text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-orange"
-              ></textarea>
+            {/* Контур 2.5: Одометр нагрузки (ЧИСТЫЕ ЧАСЫ, НОЛЬ ГАДАНИЯ НА ДЕНЬГАХ) */}
+            <div className="p-4 bg-[#090212] border border-orange-500/30 rounded-xl text-left text-xs space-y-1.5 shadow-inner">
+              <div className="text-orange-400 font-mono font-bold uppercase tracking-wide">
+                {lang === "ru" ? "Предварительный одометр нагрузки:" : "Preliminary Load Odometer:"}
+              </div>
+              <div className="text-purple-200/90 font-medium text-xs sm:text-sm">
+                {lang === "ru" ? (
+                  <>
+                    Команда {teamLabels[teamSize]} × {hoursLabels[routineHours]} рутины/нед ={" "}
+                    <strong className="text-white font-bold">
+                      {minHours.toLocaleString()} – {maxHours.toLocaleString()} часов ручного труда в год
+                    </strong>.
+                  </>
+                ) : (
+                  <>
+                    Team {teamLabels[teamSize]} × {hoursLabels[routineHours]} routine/wk ={" "}
+                    <strong className="text-white font-bold">
+                      {minHours.toLocaleString()} – {maxHours.toLocaleString()} hours of manual labor / year
+                    </strong>.
+                  </>
+                )}
+              </div>
+              <div className="text-slate-500 text-[11px] leading-relaxed">
+                {lang === "ru"
+                  ? "* Денежный эквивалент вымывания ФОТ и потерь от DSO рассчитывается в отчёте аудита строго по подтверждённой ставке (Guessing Ban)."
+                  : "* The monetary equivalent of payroll leakage and DSO losses is calculated in the audit report strictly from verified payroll rates (Guessing Ban)."}
+              </div>
             </div>
 
             <button
@@ -195,7 +436,9 @@ export default function CtaUnderundre() {
               disabled={status === "loading"}
               className="w-full py-4 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] disabled:opacity-50 text-white font-bold rounded-lg shadow-lg shadow-orange-950/40 transition-all text-sm cursor-pointer"
             >
-              {status === "loading" ? t.labels.submitting : t.labels.submitBtn}
+              {status === "loading"
+                ? (lang === "ru" ? "Отправляю бриф..." : "Submitting brief...")
+                : (lang === "ru" ? "Запросить TCO-аудит за $350 →" : "Request TCO Audit for $350 →")}
             </button>
           </form>
         )}

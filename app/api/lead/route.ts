@@ -69,8 +69,9 @@ async function dispatchTelegram(lead: {
     escapeHtml(lead.message),
   ].join("\n");
 
+  const apiRoot = process.env.TELEGRAM_API_ROOT || "https://api.telegram.org";
   try {
-    const res = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    const res = await fetch(`${apiRoot}/bot${botToken}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -78,11 +79,11 @@ async function dispatchTelegram(lead: {
         text,
         parse_mode: "HTML",
       }),
-      signal: AbortSignal.timeout(4000),
+      signal: AbortSignal.timeout(10000),
     });
     return res.ok;
   } catch (err) {
-    console.error("Telegram dispatch failed:", err);
+    console.error("Telegram dispatch failed:", err instanceof Error ? err.message : String(err));
     return false;
   }
 }
