@@ -33,9 +33,12 @@ export function IconReddit({ className = "w-4 h-4" }: { className?: string }) {
 }
 
 export function IconLinkedIn({ className = "w-4 h-4" }: { className?: string }) {
+  // Canonical fa-linkedin-in glyph: the "i" dot is clearly separated from the
+  // stem (gap ~1.3px at 16px render), unlike the Mdi glyph where sub-pixel
+  // gap made the dot merge into the stem.
   return (
-    <svg className={className} fill="currentColor" viewBox="0 0 24 24">
-      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9h2.8v8.37h-2.8v-8.37M7.86 6.72a1.63 1.63 0 1 0 0 3.26 1.63 1.63 0 0 0 0-3.26Z" />
+    <svg className={className} fill="currentColor" viewBox="0 0 448 512">
+      <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 155.6V448z" />
     </svg>
   );
 }
