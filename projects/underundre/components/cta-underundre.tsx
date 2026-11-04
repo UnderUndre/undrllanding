@@ -230,8 +230,8 @@ export default function CtaUnderundre() {
                 className="block w-full py-3.5 px-4 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white text-center font-bold rounded-lg text-xs shadow-md transition-all cursor-pointer"
               >
                 {lang === "ru"
-                  ? "Забронировать 48-часовой слот аудита ($350) без ожидания очереди →"
-                  : "Book a 48-hour audit slot ($350) without queue delay →"}
+                  ? "Забронировать 48-часовой слот Discovery ($350) без ожидания очереди →"
+                  : "Book a 48-hour Discovery slot ($350) without queue delay →"}
               </a>
               <div className="text-[11px] text-purple-300/60 text-center leading-relaxed">
                 {lang === "ru"
@@ -503,7 +503,7 @@ export default function CtaUnderundre() {
             >
               {status === "loading"
                 ? (lang === "ru" ? "Отправляю бриф..." : "Submitting brief...")
-                : (lang === "ru" ? "Запросить TCO-аудит за $350 →" : "Request TCO Audit for $350 →")}
+                : (lang === "ru" ? "Запросить SpecKit Discovery за $350 →" : "Request SpecKit Discovery for $350 →")}
             </button>
           </form>
         )}

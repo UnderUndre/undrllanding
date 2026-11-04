@@ -14,9 +14,9 @@ export const underundreProject = {
   slug: "underundre",
   name: "UnderUndre",
   domain: "underundre.com",
-  title: "UnderUndre — Productized Engineering & Workaround TCO Audit",
+  title: "UnderUndre — Productized Engineering & SpecKit Discovery",
   description:
-    "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
+    "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour SpecKit Discovery, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
   Hero: HeroUnderundre,
   TaglineReveal: TaglineRevealSection,
   LoomDemo: LoomDemoSection,

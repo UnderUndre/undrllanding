@@ -8,9 +8,9 @@ export const underundreBrand: ProjectConfig = {
   slug: "underundre",
   name: "UnderUndre",
   domain: "underundre.com",
-  title: "UnderUndre — Productized Engineering & Workaround TCO Audit",
+  title: "UnderUndre — Productized Engineering & SpecKit Discovery",
   description:
-    "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
+    "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour SpecKit Discovery, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
   iconUrl: "/projects/underundre/icon.svg",
   faviconUrl: "/projects/underundre/icon-48.png",
   appleIconUrl: "/projects/underundre/apple-icon-180.png",
@@ -22,7 +22,7 @@ export const underundreBrand: ProjectConfig = {
   },
   navigation: {
     items: [
-      { labelKey: "nav_audit", labelFallback: "TCO Audit", href: "#audit" },
+      { labelKey: "nav_audit", labelFallback: "Discovery", href: "#audit" },
       { labelKey: "nav_stack", labelFallback: "FOSS Stack", href: "#stack" },
       { labelKey: "nav_pricing", labelFallback: "Pricing", href: "#pricing" },
       {
@@ -34,14 +34,14 @@ export const underundreBrand: ProjectConfig = {
     ],
     ctaButton: {
       labelKey: "nav_cta_audit",
-      labelFallback: "Audit for $350",
+      labelFallback: "Discovery for $350",
       href: "#contact",
     },
   },
   footer: {
     taglineKey: "footer_uu_tagline",
     taglineFallback:
-      "Productized Engineering Bureau — Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems shipped with zero seat fees.",
+      "Productized Engineering Bureau — SpecKit Discovery, OpenAPI specifications, and self-hosted FOSS systems shipped with zero seat fees.",
     columns: [
       {
         titleKey: "footer_uu_products",
@@ -49,7 +49,7 @@ export const underundreBrand: ProjectConfig = {
         links: [
           {
             labelKey: "footer_uu_product0",
-            labelFallback: "Product 0: TCO Audit ($350 pilot)",
+            labelFallback: "Product 0: SpecKit Discovery ($350 pilot)",
             href: "#audit",
           },
           {

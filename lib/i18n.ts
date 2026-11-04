@@ -27,15 +27,15 @@ const ru = {
     breadcrumb_econ: "Экономика и Манифест",
 
     // UnderUndre brand nav/footer (spec 003 T-004 — ported from hardcoded branches)
-    nav_audit: "TCO-Аудит",
+    nav_audit: "SpecKit Discovery",
     nav_stack: "FOSS-Стек",
     nav_comparison: "Сравнение",
     nav_faq: "Вопросы",
-    nav_cta_audit: "Аудит за $350",
+    nav_cta_audit: "Discovery за $350",
     footer_uu_tagline:
-      "Инженерное продуктовое бюро — TCO-аудиты костылей, спецификации OpenAPI и приватные FOSS-системы с нулевыми лицензионными поборами.",
+      "Инженерное продуктовое бюро — SpecKit Discovery, спецификации OpenAPI и приватные FOSS-системы с нулевыми лицензионными поборами.",
     footer_uu_products: "Продукты",
-    footer_uu_product0: "Продукт 0: TCO-Аудит ($350 пилот)",
+    footer_uu_product0: "Продукт 0: SpecKit Discovery ($350 пилот)",
     footer_uu_product_a: "Спринт А: FOSS-Офис ($3.5k)",
     footer_uu_custom: "Кастомная разработка — через бриф",
     footer_uu_escrow: "Оплата и Эскроу",
@@ -241,15 +241,15 @@ const en = {
     breadcrumb_econ: "Economics & Manifest",
 
     // UnderUndre brand nav/footer (spec 003 T-004 — ported from hardcoded branches)
-    nav_audit: "TCO Audit",
+    nav_audit: "SpecKit Discovery",
     nav_stack: "FOSS Stack",
     nav_comparison: "Comparison",
     nav_faq: "FAQ",
-    nav_cta_audit: "Audit for $350",
+    nav_cta_audit: "Discovery for $350",
     footer_uu_tagline:
-      "Productized Engineering Bureau — Workaround TCO Audits, OpenAPI specifications, and self-hosted FOSS systems shipped with zero seat fees.",
+      "Productized Engineering Bureau — SpecKit Discovery, OpenAPI specifications, and self-hosted FOSS systems shipped with zero seat fees.",
     footer_uu_products: "Product Ladder",
-    footer_uu_product0: "Product 0: TCO Audit ($350 pilot)",
+    footer_uu_product0: "Product 0: SpecKit Discovery ($350 pilot)",
     footer_uu_product_a: "Sprint A: FOSS Office ($3.5k)",
     footer_uu_custom: "Custom Dev — via brief",
     footer_uu_escrow: "Payments & Escrow",
@@ -458,15 +458,15 @@ const uk = {
     breadcrumb_econ: "Економіка та Маніфест",
 
     // UnderUndre brand nav/footer fallback
-    nav_audit: "TCO-Аудит",
+    nav_audit: "SpecKit Discovery",
     nav_stack: "FOSS-Стек",
     nav_comparison: "Порівняння",
     nav_faq: "Питання",
-    nav_cta_audit: "Аудит за $350",
+    nav_cta_audit: "Discovery за $350",
     footer_uu_tagline:
-      "Інженерне продуктове бюро — TCO-аудити милиць, специфікації OpenAPI та приватні FOSS-системи з нульовими ліцензійними поборами.",
+      "Інженерне продуктове бюро — SpecKit Discovery, специфікації OpenAPI та приватні FOSS-системи з нульовими ліцензійними поборами.",
     footer_uu_products: "Продукти",
-    footer_uu_product0: "Продукт 0: TCO-Аудит ($350 пілот)",
+    footer_uu_product0: "Продукт 0: SpecKit Discovery ($350 пілот)",
     footer_uu_product_a: "Спринт А: FOSS-Офіс ($3.5k)",
     footer_uu_custom: "Кастомна розробка — через бриф",
     footer_uu_escrow: "Оплата та Ескроу",

@@ -167,14 +167,14 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       titleAccent: "SaaS-подписках",
       title2: "и ручных костылях.",
       subtitle:
-        "Провожу 48-часовой Workaround TCO Audit по методологии TDABC: оцифровываю скрытые расходы на ручной труд, срезаю лишние подписки и выдаю спецификацию OpenAPI 3.0 со схемой БД и Docker-моком. Пилотная цена $350 (далее $490). 100% стоимости засчитывается в разработку.",
-      ctaPrimary: "Запросить аудит за $350 →",
+        "Провожу 48-часовой SpecKit Discovery по методологии TDABC: оцифровываю скрытые расходы на ручной труд, срезаю лишние подписки и выдаю спецификацию OpenAPI 3.0 со схемой БД и Docker-моком. Пилотная цена $350 (далее $490). 100% стоимости засчитывается в разработку.",
+      ctaPrimary: "Запросить SpecKit Discovery за $350 →",
       ctaSecondary: "Смотреть FOSS-стек без лицензий",
       microcopy:
-        "Пилотная квота: первые 10 аудитов по $350 вместо $490 (Demand Gate). Ответ — персональный 90-секундный Loom-разбор в течение 4 рабочих часов. Оплата — защищённый эскроу Upwork Direct Contracts (5% комиссия, 0% для вас). NACE 62.01.",
+        "Пилотная квота: первые 10 Discovery по $350 вместо $490 (Demand Gate). Ответ — персональный 90-секундный Loom-разбор в течение 4 рабочих часов. Оплата — защищённый эскроу (Upwork / Stripe). NACE 62.01.",
       badges: {
         escrow: { label: "Защита капитала", value: "Upwork 5% Эскроу" },
-        sla: { label: "Срок аудита", value: "48 часов жесткий SLA" },
+        sla: { label: "Срок Discovery", value: "48 часов жесткий SLA" },
         viaNegativa: { label: "Via Negativa", value: "Защита от сжигания бюджета" },
         ip: { label: "Права на код", value: "100% передача прав" },
         tax: { label: "Налоговый код", value: "Стандарт NACE 62.01" },
@@ -190,10 +190,10 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
     telemetry: {
       badge: "Инженерный стандарт поставки",
-      title: "Каждый аудит собирается тем же конвейером, что и боевые системы клиентов.",
+      title: "Каждый Discovery собирается тем же конвейером, что и боевые системы клиентов.",
       subtitle:
         "Каждый бриф, валидация и артефакт проходят через строгий типизированный пайплайн: никакого «на глаз», только схемы, контракты и алерты о сбоях.",
-      ctaPrimary: "Запросить свой аудит ($350) →",
+      ctaPrimary: "Запросить SpecKit Discovery ($350) →",
       ctaSecondary: "Код и артефакты — на GitHub",
       cards: [
         {
@@ -227,12 +227,12 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       badge: "Продуктовая лестница — Фиксированная цена и SLA",
       title: "Фиксированные чеки. Ноль почасовой оплаты.",
       subtitle:
-        "Выберите формат входа: 48-часовой аудит костылей за $350 или опенсорсный офис под ключ без лицензий. Средства замораживаются в Upwork Direct Contracts (5% эскроу).",
+        "Выберите формат входа: 48-часовой SpecKit Discovery за $350 или опенсорсный офис под ключ без лицензий. Средства депонируются в независимый эскроу (Upwork / Stripe).",
       card0: {
-        heroTag: "ПИЛОТ — ПЕРВЫЕ 10 АУДИТОВ (100% В СЧЁТ РАЗРАБОТКИ)",
-        tier: "ПРОДУКТ 0 — 48H АУДИТ КОСТЫЛЕЙ",
-        title: "Workaround TCO Audit & Architecture Spec",
-        desc: "Безопасный вход под лимитом корпоративных карт ($500). Одометр скрытых расходов на ручной труд и SaaS-поборы по TDABC.",
+        heroTag: "ПИЛОТ — ПЕРВЫЕ 10 DISCOVERY (100% В СЧЁТ РАЗРАБОТКИ)",
+        tier: "ПРОДУКТ 0 — SPECKIT DISCOVERY (24–48H)",
+        title: "SpecKit Discovery & Architecture Spec",
+        desc: "Безопасный вход под лимитом корпоративных карт ($500). Оцифровка операционных костылей по TDABC, лестница решений (Build vs Don't Build) и архитектурная спецификация.",
         price: "$350",
         priceAnchor: "вместо $490 после пилотной десятки",
         flatFee: "фикс под ключ",
@@ -241,17 +241,17 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         deliverablesTitle: "Состав поставки (Код NACE 62.01):",
         deliverables: [
           "Оцифровка расходов TDABC: выявление скрытого ФОТ (WhatsApp, сверка счетов, DSO).",
-          "Штамп Via Negativa: запрет автоматизации, если затраты на переход выше экономии.",
-          "Спецификация OpenAPI 3.0 для сквозной интеграции.",
+          "Штамп Via Negativa: вердикт Build vs Don't Build — запрет автоматизации, если затраты на переход выше экономии.",
+          "Спецификация OpenAPI 3.0 и архитектурная матрица решения.",
           "Схема PostgreSQL DDL и Docker Compose mock-контейнер.",
         ],
-        demandGate: "Обязательный Demand Gate: начальный аудит перед крупными кастомными спринтами.",
-        cta: "Запросить аудит за $350 →",
+        demandGate: "Обязательный Demand Gate: начальный SpecKit Discovery перед крупными кастомными спринтами.",
+        cta: "Запросить Discovery за $350 →",
       },
       card1: {
         tier: "СПРИНТ А — FOSS ОФИСНЫЙ СТЕК",
         title: "B2B Operations & FOSS Office Stack",
-        desc: "Ликвидация $15k–$40k/год поборов за лицензии (Salesforce, Notion, Linear, Intercom) на приватном сервере Hetzner.",
+        desc: "Ликвидация $15k–$40k/год поборов за лицензии (Salesforce, Notion, Linear, Intercom) на приватном сервере Hetzner. Состав подбирается по аудиту.",
         price: "$3,500",
         flatFee: "разовый сетап под ключ",
         retainer: "+ $500/мес за мониторинг бэкапов Restic S3 и безопасность",
@@ -268,12 +268,12 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         cta: "Обсудить FOSS-офис ($3,500) →",
       },
       card2: {
-        tier: "СПРИНТ Б — СИСТЕМЫ ПОСЛЕ АУДИТА",
+        tier: "СПРИНТ Б — СИСТЕМЫ ПОСЛЕ DISCOVERY",
         title: "Sovereign Booking & Custom Systems",
-        desc: "Автономная платформа онлайн-записи для сервисного бизнеса (3–25 сотрудников). Доступна по результатам TCO-аудита.",
+        desc: "Автономная платформа онлайн-записи для сервисного бизнеса (3–25 сотрудников). Доступна по результатам SpecKit Discovery.",
         price: "$4,900",
         flatFee: "фикс под ключ",
-        gatedNote: "Доступен строго после прохождения TCO-аудита",
+        gatedNote: "Доступен строго после прохождения SpecKit Discovery",
         delivery: "Срок: 14 календарных дней (Timebox)",
         scopeTitle: "Состав системы (Fixed Scope Knife):",
         scope: [
@@ -282,8 +282,8 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           "3 фиксированные роли: OWNER / OPERATOR / PERFORMER, отзыв доступов.",
           "Локализация ru/en из коробки; валюта, таймзона и брендинг через конфиг.",
         ],
-        gatedNotice: "Защищённый гейт: сначала TCO-аудит за $350 для верификации требований.",
-        cta: "Запросить через TCO-аудит →",
+        gatedNotice: "Защищённый гейт: сначала SpecKit Discovery за $350 для верификации требований.",
+        cta: "Запросить через SpecKit Discovery →",
       },
     },
     fork: {
@@ -322,11 +322,11 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       badge: "Протокол нулевого финансового риска",
       title: "Как бюро на 100% исключает ваш финансовый и технический риск.",
       subtitle:
-        "Вы никогда не переводите деньги на анонимные счета. Все расчёты идут через официальный Upwork Direct Contracts Escrow с независимым арбитражем.",
+        "Вы никогда не переводите деньги на анонимные счета. Все расчёты идут через официальный эскроу (Upwork Direct Contracts / Stripe) с независимым арбитражем.",
       steps: [
         {
           num: "1",
-          title: "Эскроу и аудит (День 1)",
+          title: "Эскроу и SpecKit Discovery (День 1)",
           desc: "Вы замораживаете депозит в эскроу. Бюро разбирает архитектуру: если подходит готовое FOSS-решение, разворачиваем без лишних затрат. Если нужна кастомная логика — фиксируем схему DDL.",
         },
         {
@@ -457,14 +457,14 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       titleAccent: "SaaS Seat Taxes",
       title2: "& Manual Workarounds.",
       subtitle:
-        "I perform a 48-Hour Workaround TCO Audit using Time-Driven Activity-Based Costing (TDABC): I pinpoint exact manual labor payroll leaks, eliminate redundant subscriptions, and deliver an OpenAPI 3.0 specification with a Docker mock. Pilot price $350 (then $490). 100% credited toward implementation.",
-      ctaPrimary: "Request the Audit for $350 →",
+        "I perform a 48-Hour SpecKit Discovery using Time-Driven Activity-Based Costing (TDABC): I pinpoint exact manual labor payroll leaks, eliminate redundant subscriptions, and deliver an OpenAPI 3.0 specification with a Docker mock. Pilot price $350 (then $490). 100% credited toward implementation.",
+      ctaPrimary: "Request SpecKit Discovery for $350 →",
       ctaSecondary: "Explore Grand Slam FOSS Stack",
       microcopy:
-        "Pilot quota: first 10 audits at $350 instead of $490 (Demand Gate). You get a personal 90-second Loom teardown within 4 business hours. Payment via Upwork Direct Contracts escrow (5% fee, 0% for you). NACE 62.01.",
+        "Pilot quota: first 10 Discoveries at $350 instead of $490 (Demand Gate). You get a personal 90-second Loom teardown within 4 business hours. Payment via protected escrow (Upwork / Stripe). NACE 62.01.",
       badges: {
         escrow: { label: "Escrow Protection", value: "Upwork 5% Escrow" },
-        sla: { label: "Turnaround SLA", value: "48-Hour Forensics" },
+        sla: { label: "Turnaround SLA", value: "48-Hour Discovery" },
         viaNegativa: { label: "Via Negativa", value: "Anti-Waste Guarantee" },
         ip: { label: "IP Ownership", value: "100% Code Transfer" },
         tax: { label: "Tax Compliance", value: "NACE 62.01 Code" },
@@ -480,10 +480,10 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
     telemetry: {
       badge: "Engineering Delivery Standard",
-      title: "Every audit runs through the same typed pipeline the bureau ships for client systems.",
+      title: "Every Discovery runs through the same typed pipeline the bureau ships for client systems.",
       subtitle:
         "Every brief, validation, and artifact goes through a strict typed pipeline: no eyeballing, only schemas, contracts, and failure alerts.",
-      ctaPrimary: "Request your audit ($350) →",
+      ctaPrimary: "Request SpecKit Discovery ($350) →",
       ctaSecondary: "Code & artifacts on GitHub",
       cards: [
         {
@@ -498,13 +498,13 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         },
         {
           step: "03 / TELEMETRY & TRIAGE",
-          title: "Telemetry Triage",
-          desc: "Intent classification and task priority scoring in <1.2 seconds.",
+          title: "Telemetry & Triage",
+          desc: "Intent classification and triage routing completed under 1.2s.",
         },
         {
           step: "04 / DB STORAGE",
           title: "Supabase RLS DB",
-          desc: "Encrypted write to PostgreSQL with strict Row Level Security (RLS) policies.",
+          desc: "Encrypted PostgreSQL audit sink using Row Level Security.",
         },
         {
           step: "05 / INCIDENT DLQ",
@@ -517,12 +517,12 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       badge: "Sovereign Product Ladder — Fixed Price & SLA",
       title: "Fixed-Price Product Ladder. Zero Hourly Billing.",
       subtitle:
-        "Pick your entry point: a 48-hour Workaround TCO Audit at $350 or a turnkey license-free FOSS office stack. Funds stay protected in Upwork Direct Contracts Escrow (5% fee).",
+        "Pick your entry point: a 48-hour SpecKit Discovery at $350 or a turnkey license-free FOSS office stack. Funds stay protected in independent escrow (Upwork / Stripe).",
       card0: {
-        heroTag: "PILOT — FIRST 10 AUDITS (100% CREDITED)",
-        tier: "PRODUCT 0 — 48H WORKAROUND AUDIT",
-        title: "Workaround TCO Audit & Architecture Spec",
-        desc: "Low-risk entry under corporate card limits ($500). Odometer for manual labor payroll leaks & SaaS waste using TDABC.",
+        heroTag: "PILOT — FIRST 10 DISCOVERIES (100% CREDITED)",
+        tier: "PRODUCT 0 — SPECKIT DISCOVERY (24–48H)",
+        title: "SpecKit Discovery & Architecture Spec",
+        desc: "Low-risk entry under corporate card limits ($500). Operational workaround forensics via TDABC, decision ladder (Build vs Don't Build), and architectural spec.",
         price: "$350",
         priceAnchor: "instead of $490 after the pilot ten",
         flatFee: "flat fee",
@@ -531,17 +531,17 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         deliverablesTitle: "Included Deliverables (EU NACE 62.01):",
         deliverables: [
           "TDABC Cost Forensics: uncovers WhatsApp copy-paste, billing reconciliation & DSO leaks.",
-          "Official Via Negativa Verdict: stops wasteful automation when switching costs exceed savings.",
-          "OpenAPI 3.0 specification for automated bypass.",
+          "Official Via Negativa Verdict: Build vs Don't Build decision — stops wasteful automation when switching costs exceed savings.",
+          "OpenAPI 3.0 specification and solution architecture matrix.",
           "PostgreSQL DDL schema & Docker Compose mock container.",
         ],
-        demandGate: "Demand Gate: Required first step before executing large custom engineering sprints.",
-        cta: "Request the Audit for $350 →",
+        demandGate: "Demand Gate: Required SpecKit Discovery step before executing large custom engineering sprints.",
+        cta: "Request Discovery for $350 →",
       },
       card1: {
         tier: "SPRINT A — FOSS OFFICE STACK",
         title: "B2B Operations & Office Stack",
-        desc: "Erase $15k–$40k/yr in SaaS seat taxes (Salesforce, Notion, Linear, Intercom) with private cloud FOSS on Hetzner.",
+        desc: "Erase $15k–$40k/yr in SaaS seat taxes (Salesforce, Notion, Linear, Intercom) with private cloud FOSS on Hetzner. Stack tailored per Discovery profile.",
         price: "$3,500",
         flatFee: "setup flat fee",
         retainer: "+ $500/month monitoring & Restic backup retainer",
@@ -558,12 +558,12 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
         cta: "Discuss FOSS Office ($3,500) →",
       },
       card2: {
-        tier: "SPRINT B — POST-AUDIT SPRINT",
+        tier: "SPRINT B — POST-DISCOVERY SPRINT",
         title: "Sovereign Booking & Custom Systems",
-        desc: "Turnkey booking platform for multi-staff service businesses (3–25 employees). Available upon successful TCO audit completion.",
+        desc: "Turnkey booking platform for multi-staff service businesses (3–25 employees). Available upon successful SpecKit Discovery completion.",
         price: "$4,900",
         flatFee: "flat fee",
-        gatedNote: "Available Upon TCO Audit Completion",
+        gatedNote: "Available Upon SpecKit Discovery Completion",
         delivery: "Delivery: 14 Calendar Days Flat",
         scopeTitle: "Included Scope (Fixed Scope Knife):",
         scope: [
@@ -572,38 +572,38 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
           "Three roles: OWNER / OPERATOR / PERFORMER, individual accounts, access revocation.",
           "ru/en out of the box; currency, timezone & branding via configuration.",
         ],
-        gatedNotice: "Gated SKU: start with the $350 TCO Audit to qualify for this 14-day production sprint.",
-        cta: "Request via TCO Audit First →",
+        gatedNotice: "Gated SKU: start with the $350 SpecKit Discovery to qualify for this 14-day production sprint.",
+        cta: "Request via SpecKit Discovery First →",
       },
     },
     fork: {
-      badge: "For Sprint B Clients Who Outgrow the Template",
-      title: "Fork & Care: Custom Development on Your Sprint B Base",
+      badge: "Custom Engineering On Core",
+      title: "Fork & Care: Specialized Workflows On Top of Sprint B",
       subtitle:
-        "Niche workflows, non-standard payment gateways, extra languages, integrations. Your custom code lives in isolated adapters — the core template stays untouched.",
-      step1: "Step 1 — Fork Deployment (one-time)",
-      step2: "Step 2 — Monthly Care (required 3–6 months with any fork)",
-      step3: "Step 3 — Change Packs (results, not hours)",
+        "Niche workflows, alternative payment gateways, ERP/warehouse sync. Custom code is strictly isolated in adapters — core stays upgradeable without drift.",
+      step1: "Step 1 — Fork Deployment (One-Time)",
+      step2: "Step 2 — Monthly Care Retainer (from $149/mo)",
+      step3: "Step 3 — Change Packs (Outcome Over Hours)",
       cards: [
         {
           title: "Fork Foundation",
-          subtitle: "Clean Sprint B Deploy",
+          subtitle: "Clean Sprint B Deployment",
           price: "$4,900",
-          details: "Hetzner VPS · Docker · Traefik · Postgres · branding · bots · crypto/Stars — zero custom code.",
-          cta: "Start Fork Foundation →",
+          details: "Hetzner VPS · Docker · Traefik · Postgres · bots — zero custom code. Care from $149/mo.",
+          cta: "Select Foundation →",
         },
         {
           title: "Fork Tailored",
-          subtitle: "Sprint B + up to 25h customization",
+          subtitle: "Base + up to 25h customization",
           price: "$6,800",
-          details: "Custom booking fields, niche adaptation, +1 integration. Care $349/mo.",
-          cta: "Start Fork Tailored →",
+          details: "Custom booking fields, niche adaptation, +1 external integration. Care $349/mo.",
+          cta: "Select Tailored →",
         },
         {
           title: "Fork Enterprise-Lite",
-          subtitle: "Complex scenarios & custom reports",
+          subtitle: "Complex integrations & gateways",
           price: "$8,900+",
-          details: "Custom payment gateways, warehouse CRM sync, custom reporting. Care $349–$690/mo.",
+          details: "Custom business logic, niche bank gateways, ERP sync. Care $349–$690/mo.",
           cta: "Discuss Enterprise →",
         },
       ],
@@ -612,11 +612,11 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
       badge: "Zero Risk & Instant Contract Protocol",
       title: "How the Bureau Eliminates 100% of Your Financial and Technical Risk.",
       subtitle:
-        "You never transfer money to unverified personal accounts. The bureau utilizes standardized escrow mechanisms (Upwork Direct Contracts) or instant e-Signed agreements.",
+        "You never transfer money to unverified personal accounts. The bureau utilizes standardized escrow mechanisms (Upwork Direct Contracts / Stripe) with independent arbitration.",
       steps: [
         {
           num: "1",
-          title: "Escrow & TCO Audit (Day 1)",
+          title: "Escrow & SpecKit Discovery (Day 1)",
           desc: "You fund escrow safely. The lead architect audits your business model using TDABC: if a battle-tested engine fits best, it is leveraged directly. If proprietary architecture is required, strict DDL schemas are locked.",
         },
         {

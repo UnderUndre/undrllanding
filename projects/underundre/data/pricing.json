@@ -8,23 +8,23 @@
     "en": "Fixed-Price Product Ladder. Zero Hourly Billing."
   },
   "sectionSubtitle": {
-    "ru": "Выберите формат входа: 48-часовой аудит костылей за $350 или опенсорсный офис под ключ без лицензий. Средства замораживаются в Upwork Direct Contracts (5% эскроу).",
-    "en": "Pick your entry point: a 48-hour Workaround TCO Audit at $350 or a turnkey license-free FOSS office stack. Funds stay protected in Upwork Direct Contracts Escrow (5% fee)."
+    "ru": "Выберите формат входа: 48-часовой SpecKit Discovery за $350 или опенсорсный офис под ключ без лицензий. Средства депонируются в независимый эскроу (Upwork / Stripe).",
+    "en": "Pick your entry point: a 48-hour SpecKit Discovery at $350 or a turnkey license-free FOSS office stack. Funds protected in independent escrow (Upwork / Stripe)."
   },
   "plans": [
     {
-      "id": "tco-audit",
+      "id": "speckit-discovery",
       "tierName": {
-        "ru": "ПРОДУКТ 0 — 48H АУДИТ КОСТЫЛЕЙ",
-        "en": "PRODUCT 0 — 48H WORKAROUND AUDIT"
+        "ru": "ПРОДУКТ 0 — SPECKIT DISCOVERY (24–48H)",
+        "en": "PRODUCT 0 — SPECKIT DISCOVERY (24–48H)"
       },
       "title": {
-        "ru": "Workaround TCO Audit & Architecture Spec",
-        "en": "Workaround TCO Audit & Architecture Spec"
+        "ru": "SpecKit Discovery & Architecture Spec",
+        "en": "SpecKit Discovery & Architecture Spec"
       },
       "description": {
-        "ru": "Безопасный вход под лимитом корпоративных карт ($500). Одометр скрытых расходов на ручной труд и SaaS-поборы по TDABC.",
-        "en": "Low-risk entry under corporate card limits ($500). Odometer for manual labor payroll leaks & SaaS waste using TDABC."
+        "ru": "Безопасный вход под лимитом корпоративных карт ($500). Оцифровка операционных костылей по TDABC, лестница решений (Build vs Don't Build) и архитектурная спецификация.",
+        "en": "Low-risk entry under corporate card limits ($500). Operational workaround forensics via TDABC, decision ladder (Build vs Don't Build), and architectural spec."
       },
       "price": "$350",
       "originalPrice": "$490",
@@ -50,12 +50,12 @@
           "en": "TDABC Cost Forensics: uncovers WhatsApp copy-paste, billing reconciliation & DSO leaks."
         },
         {
-          "ru": "Штамп Via Negativa: запрет автоматизации, если затраты на переход выше экономии.",
-          "en": "Official Via Negativa Verdict: stops wasteful automation when switching costs exceed savings."
+          "ru": "Штамп Via Negativa: вердикт Build vs Don't Build — запрет автоматизации, если затраты на переход выше экономии.",
+          "en": "Official Via Negativa Verdict: Build vs Don't Build decision — stops wasteful automation when switching costs exceed savings."
         },
         {
-          "ru": "Спецификация OpenAPI 3.0 для сквозной интеграции.",
-          "en": "OpenAPI 3.0 specification for automated bypass."
+          "ru": "Спецификация OpenAPI 3.0 и архитектурная матрица решения.",
+          "en": "OpenAPI 3.0 specification and solution architecture matrix."
         },
         {
           "ru": "Схема PostgreSQL DDL и Docker Compose mock-контейнер.",
@@ -63,18 +63,18 @@
         }
       ],
       "demandGateNote": {
-        "ru": "Обязательный Demand Gate: начальный аудит перед крупными кастомными спринтами.",
-        "en": "Demand Gate: Required first step before executing large custom engineering sprints."
+        "ru": "Обязательный Demand Gate: начальный SpecKit Discovery перед крупными кастомными спринтами.",
+        "en": "Demand Gate: Required SpecKit Discovery step before executing large custom engineering sprints."
       },
       "ctaText": {
-        "ru": "Запросить аудит за $350 →",
-        "en": "Request the Audit for $350 →"
+        "ru": "Запросить Discovery за $350 →",
+        "en": "Request Discovery for $350 →"
       },
       "ctaHref": "#contact",
       "isHero": true,
       "heroTag": {
-        "ru": "ПИЛОТ — ПЕРВЫЕ 10 АУДИТОВ (100% В СЧЁТ РАЗРАБОТКИ)",
-        "en": "PILOT — FIRST 10 AUDITS (100% CREDITED)"
+        "ru": "ПИЛОТ — ПЕРВЫЕ 10 DISCOVERY (100% В СЧЁТ РАЗРАБОТКИ)",
+        "en": "PILOT — FIRST 10 DISCOVERIES (100% CREDITED)"
       }
     },
     {
@@ -88,8 +88,8 @@
         "en": "B2B Operations & Office Stack"
       },
       "description": {
-        "ru": "Ликвидация $15k–$40k/год поборов за лицензии на приватном сервере Hetzner. Состав стека подбирается под потребности вашего бизнеса по результатам TCO-аудита (профильная модель развёртывания), а не «всё селфхостим подряд».",
-        "en": "Erase $15k–$40k/yr in SaaS seat taxes with private cloud FOSS on Hetzner. The stack composition is tailored to your business needs from the TCO audit findings (deployment-profile model) — never a one-size-fits-all zoo."
+        "ru": "Ликвидация $15k–$40k/год поборов за лицензии на приватном сервере Hetzner. Состав стека подбирается под потребности вашего бизнеса по результатам SpecKit Discovery (профильная модель развёртывания), а не «всё селфхостим подряд».",
+        "en": "Erase $15k–$40k/yr in SaaS seat taxes with private cloud FOSS on Hetzner. The stack composition is tailored to your business needs from the SpecKit Discovery findings (deployment-profile model) — never a one-size-fits-all zoo."
       },
       "price": "$3,500",
       "turnaround": {
@@ -123,8 +123,8 @@
         }
       ],
       "demandGateNote": {
-        "ru": "Профиль развёртывания и сервер (CPX42 16 GB / CCX33 32 GB / выделенная нода) фиксируются в скоупе договора по результату TCO-аудита. Опция: + $500/мес за мониторинг бэкапов Restic S3 и безопасность.",
-        "en": "The deployment profile and server size (CPX42 16 GB / CCX33 32 GB / dedicated node) are fixed in the contract scope based on the TCO audit. Optional: + $500/month monitoring & Restic S3 backup retainer."
+        "ru": "Профиль развёртывания и сервер (CPX42 16 GB / CCX33 32 GB / выделенная нода) фиксируются в скоупе договора по результату SpecKit Discovery. Опция: + $500/мес за мониторинг бэкапов Restic S3 и безопасность.",
+        "en": "The deployment profile and server size (CPX42 16 GB / CCX33 32 GB / dedicated node) are fixed in the contract scope based on the SpecKit Discovery. Optional: + $500/month monitoring & Restic S3 backup retainer."
       },
       "ctaText": {
         "ru": "Обсудить FOSS-офис ($3,500) →",
