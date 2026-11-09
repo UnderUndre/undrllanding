@@ -15,23 +15,23 @@
 
 ## Phase 1: Metadata Spine (P1)
 
-- [ ] **T001 [FE] US1/US2 Metadata spine**: `app/layout.tsx generateMetadata` — `metadataBase: new URL("https://<config.domain>")`, default canonical `/`, `openGraph` (title, description, url, siteName, locale, images), `twitter: card=summary_large_image`, `metadata.verification` from optional `NEXT_PUBLIC_GSC_VERIFICATION` / `NEXT_PUBLIC_YANDEX_VERIFICATION` (FR-003/004/010). Depends: none.
-- [ ] **T002 [FE] US1 Page-level canonical + auth noindex**: static `metadata` exports with page-specific canonical for `/manifest`, `/privacy`, `/terms`; `robots: { index: false }` on `/signin`, `/signup`, `/reset-password` (FR-003, FR-001 defense-in-depth). Depends: T001.
-- [ ] **T003 [FE] US1 Brand-scoped robots + sitemap**: `app/robots.ts` (allow all, disallow `/api/`, `/signin`, `/signup`, `/reset-password`, sitemap pointer) and `app/sitemap.ts` (``, `/manifest`, `/privacy`, `/terms` on `https://<config.domain>`; auth/API excluded) (FR-001/002). Parallel with T001. Depends: none.
-- [ ] **T004 [OPS] US1 Baseline refresh**: regenerate gate V3 baseline for `underundre` (intentional `<head>` additions); re-verify both brands. Depends: T001, T002, T003.
+- [x] **T001 [FE] US1/US2 Metadata spine**: `app/layout.tsx generateMetadata` — `metadataBase: new URL("https://<config.domain>")`, default canonical `/`, `openGraph` (title, description, url, siteName, locale, images), `twitter: card=summary_large_image`, `metadata.verification` from optional `NEXT_PUBLIC_GSC_VERIFICATION` / `NEXT_PUBLIC_YANDEX_VERIFICATION` (FR-003/004/010). Depends: none.
+- [x] **T002 [FE] US1 Page-level canonical + auth noindex**: static `metadata` exports with page-specific canonical for `/manifest`, `/privacy`, `/terms`; `robots: { index: false }` on `/signin`, `/signup`, `/reset-password` (FR-003, FR-001 defense-in-depth). Depends: T001.
+- [x] **T003 [FE] US1 Brand-scoped robots + sitemap**: `app/robots.ts` (allow all, disallow `/api/`, `/signin`, `/signup`, `/reset-password`, sitemap pointer) and `app/sitemap.ts` (``, `/manifest`, `/privacy`, `/terms` on `https://<config.domain>`; auth/API excluded) (FR-001/002). Parallel with T001. Depends: none.
+- [x] **T004 [OPS] US1 Baseline refresh**: regenerate gate V3 baseline for `underundre` (intentional `<head>` additions); re-verify both brands. Depends: T001, T002, T003.
 
 ## Phase 2: Share Cards & Structured Data (P1)
 
-- [ ] **T005 [BE] US2 Dynamic OG image**: `app/opengraph-image.tsx` — `ImageResponse` 1200×630, nodejs runtime, gradient from `config.theme`, brand name + domain + tagline, logo as base64 data URI from `public/projects/<slug>/icon.svg` via `fs` (FR-005). Depends: T001 (metadata spine).
-- [ ] **T006 [FE] US3 JSON-LD core**: `lib/seo/build-json-ld.ts` (WebSite + brand entity via new optional `config.schemaType`: ProfessionalService default / Organization / Book+Author; `sameAs` from brand socials; `contactEmail` from `data/legal.json`) + `lib/seo/json-ld.tsx` server component with `<` escape; `ProjectConfig.schemaType` field (additive); render from both projects' `config.tsx` (FR-006). Depends: none.
-- [ ] **T007 [FE] US3 FAQPage JSON-LD**: build `FAQPage` block from `loadFaqData(slug)` (`mainEntity` ← items), rendered alongside the FAQ section in both projects' `config.tsx` (FR-007). Depends: T006.
-- [ ] **T008 [SETUP] US3 llms.txt manifest**: `app/llms.txt/route.ts` — generated markdown (brand overview, key pages, FAQ questions, contact email), `text/markdown; charset=utf-8` (FR-008). Depends: none.
+- [x] **T005 [BE] US2 Dynamic OG image**: `app/opengraph-image.tsx` — `ImageResponse` 1200×630, nodejs runtime, gradient from `config.theme`, brand name + domain + tagline, logo as base64 data URI from `public/projects/<slug>/icon.svg` via `fs` (FR-005). Depends: T001 (metadata spine).
+- [x] **T006 [FE] US3 JSON-LD core**: `lib/seo/build-json-ld.ts` (WebSite + brand entity via new optional `config.schemaType`: ProfessionalService default / Organization / Book+Author; `sameAs` from brand socials; `contactEmail` from `data/legal.json`) + `lib/seo/json-ld.tsx` server component with `<` escape; `ProjectConfig.schemaType` field (additive); render from both projects' `config.tsx` (FR-006). Depends: none.
+- [x] **T007 [FE] US3 FAQPage JSON-LD**: build `FAQPage` block from `loadFaqData(slug)` (`mainEntity` ← items), rendered alongside the FAQ section in both projects' `config.tsx` (FR-007). Depends: T006.
+- [x] **T008 [SETUP] US3 llms.txt manifest**: `app/llms.txt/route.ts` — generated markdown (brand overview, key pages, FAQ questions, contact email), `text/markdown; charset=utf-8` (FR-008). Depends: none.
 
 ## Phase 3: UX-Language & Verification Contour (P2/P3)
 
-- [ ] **T009 [FE] US4 html lang sync**: `LangProvider` sets `document.documentElement.lang` on mount and on every language change (FR-009). Depends: none.
-- [ ] **T010 [TEST] SC-005 SEO gate V4**: `scripts/verify-gates.mjs` — `V4-robots` (body: Sitemap pointer + `/api` disallow), `V4-sitemap` (urlset + brand domain + `/manifest`, zero auth routes), `V4-head` (canonical + `og:image` + `twitter:card`), `V4-jsonld` (all blocks parse, `@context` schema.org, `WebSite` + brand entity required, `FAQPage` required when `data/faq.json` exists); vitest unit tests for `build-json-ld` builders (escape guard, entity selection) (Q3). Depends: T003, T005, T006, T007, T008.
-- [ ] **T011 [OPS] SC-005 CI wiring**: verify `.github/workflows/ci.yml` runs gate V4 for both brands (extend pipeline with a `undreading` verify step if needed). Depends: T010.
+- [x] **T009 [FE] US4 html lang sync**: `LangProvider` sets `document.documentElement.lang` on mount and on every language change (FR-009). Depends: none.
+- [x] **T010 [TEST] SC-005 SEO gate V4**: `scripts/verify-gates.mjs` — `V4-robots` (body: Sitemap pointer + `/api` disallow), `V4-sitemap` (urlset + brand domain + `/manifest`, zero auth routes), `V4-head` (canonical + `og:image` + `twitter:card`), `V4-jsonld` (all blocks parse, `@context` schema.org, `WebSite` + brand entity required, `FAQPage` required when `data/faq.json` exists); vitest unit tests for `build-json-ld` builders (escape guard, entity selection) (Q3). Depends: T003, T005, T006, T007, T008.
+- [x] **T011 [OPS] SC-005 CI wiring**: verify `.github/workflows/ci.yml` runs gate V4 for both brands (extend pipeline with a `undreading` verify step if needed). Depends: T010.
 
 ## Phase 4: Acceptance & Gates
 

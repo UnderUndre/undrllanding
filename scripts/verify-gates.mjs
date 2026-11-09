@@ -148,6 +148,68 @@ const html = fs.readFileSync(prerendered, "utf-8");
   }
 }
 
+// --- Gate V4: SEO foundation (spec 006) ------------------------------------
+{
+  const domain = process.env.NEXT_PUBLIC_BRAND_DOMAIN || "";
+
+  // V4-robots: prerendered robots.txt body
+  const robotsPath = path.join(repoRoot, ".next", "server", "app", "robots.txt.body");
+  if (fs.existsSync(robotsPath)) {
+    const robots = fs.readFileSync(robotsPath, "utf-8");
+    const robotsOk = /Sitemap:\s*https:\/\/[^\s]+\/sitemap\.xml/.test(robots) && robots.includes("Disallow: /api/");
+    gate("V4-robots", robotsOk, `robots.txt: sitemap pointer + /api disallow: ${robotsOk}`);
+  } else {
+    gate("V4-robots", false, "robots.txt.body not found in build output");
+  }
+
+  // V4-sitemap: prerendered sitemap body
+  const sitemapPath = path.join(repoRoot, ".next", "server", "app", "sitemap.xml.body");
+  if (fs.existsSync(sitemapPath)) {
+    const sitemap = fs.readFileSync(sitemapPath, "utf-8");
+    const hasUrlset = sitemap.includes("<urlset");
+    // /manifest is listed only for brands shipping data/manifest.json (003 FR-008
+    // absence semantics — the route 404s otherwise, so the gate mirrors that).
+    const manifestShipped = fs.existsSync(path.join(repoRoot, "projects", brand, "data", "manifest.json"));
+    const hasManifest = sitemap.includes("/manifest");
+    const noAuth = !/(signin|signup|reset-password|\/api\/)/.test(sitemap);
+    gate("V4-sitemap", hasUrlset && (hasManifest === manifestShipped) && noAuth,
+      `sitemap.xml: urlset=${hasUrlset}, manifest listed=${hasManifest} (shipped=${manifestShipped}), auth routes excluded=${noAuth}`);
+  } else {
+    gate("V4-sitemap", false, "sitemap.xml.body not found in build output");
+  }
+
+  // V4-head: canonical + OG image + twitter card in rendered homepage head
+  const headOk =
+    /<link rel="canonical" href="https:\/\/[^"]+"/.test(html) &&
+    html.includes('property="og:image"') &&
+    html.includes('name="twitter:card" content="summary_large_image"');
+  gate("V4-head", headOk, `head: canonical + og:image + twitter:card: ${headOk}`);
+
+  // V4-jsonld: every ld+json block parses; WebSite + brand entity required;
+  // FAQPage required when the brand ships faq.json.
+  const ldMatches = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+  const blocks = [];
+  let parseErrors = 0;
+  for (const m of ldMatches) {
+    try {
+      blocks.push(JSON.parse(m[1].replace(/\u003c/g, "<")));
+    } catch {
+      parseErrors += 1;
+    }
+  }
+  const types = new Set(blocks.map((b) => b["@type"]));
+  const faqFile = path.join(repoRoot, "projects", brand, "data", "faq.json");
+  const jsonLdOk =
+    ldMatches.length > 0 &&
+    parseErrors === 0 &&
+    blocks.every((b) => b["@context"] === "https://schema.org") &&
+    types.has("WebSite") &&
+    ["ProfessionalService", "Organization", "Book"].some((t) => types.has(t)) &&
+    (fs.existsSync(faqFile) ? types.has("FAQPage") : true);
+  gate("V4-jsonld", jsonLdOk,
+    `JSON-LD: ${blocks.length} blocks, parseErrors=${parseErrors}, types=[${[...types].join(", ")}]`);
+}
+
 // --- Report ----------------------------------------------------------------
 const failed = results.filter((r) => !r.ok);
 console.log(`\nverify-gates: ${results.length - failed.length}/${results.length} gates passed (brand: ${brand})`);

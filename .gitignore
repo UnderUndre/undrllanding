@@ -46,3 +46,5 @@ projects/*/preview.html
 
 # umami compose with real secrets — local-only, never commit
 docker-compose.umami.yml
+
+.ai/

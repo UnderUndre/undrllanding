@@ -71,6 +71,10 @@ export interface ProjectConfig {
   social?: Record<string, string>;
   /** Locales supported by this brand (default: ["ru", "en"]) */
   supportedLocales?: Language[];
+  /** JSON-LD entity type for the homepage (spec 006 FR-006; default "ProfessionalService") */
+  schemaType?: "ProfessionalService" | "Organization" | "Book";
+  /** Author name for schemaType "Book" (spec 006 FR-006, publishing brands) */
+  bookAuthor?: string;
   /** Optional fallback — preferred source is projects/<slug>/data/legal.json */
   legal?: LegalConfig;
 }

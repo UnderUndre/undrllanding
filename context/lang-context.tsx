@@ -15,6 +15,12 @@ export function LangProvider({ children }: { children: React.ReactNode }) {
   // Default UI language: English (international audience); saved preference wins.
   const [lang, setLangState] = useState<Language>("en");
 
+  // Spec 006 FR-009: keep <html lang> in sync with the active UI locale
+  // (client-side; no [lang] routing — rejected in the 004 review).
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
+
   useEffect(() => {
     // Spec 005 FR-011: single storage key — legacy "undrlla_lang" removed.
     const saved = localStorage.getItem("app_lang") as Language | null;

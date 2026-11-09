@@ -1,2 +1,3 @@
 patchedDependencies:
   '@underundre/undesign': patches/@underundre__undesign.patch
+  next@15.1.11: patches/next@15.1.11.patch

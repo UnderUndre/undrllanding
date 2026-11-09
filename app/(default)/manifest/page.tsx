@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+// Spec 006 FR-003: page-specific canonical (fixes the layout-inherited canonical leak).
+export const metadata: Metadata = {
+  title: "Engineering Manifesto",
+  alternates: { canonical: "/manifest" },
+};
+
 import { notFound } from "next/navigation";
 import { getActiveProjectConfig } from "@/lib/project-config";
 import { loadManifestData } from "@/lib/schemas/content-loaders";

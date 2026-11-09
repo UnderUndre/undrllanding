@@ -11,6 +11,8 @@ export const undreadingBrand: ProjectConfig = {
   description:
     "Открытая международная издательская платформа и база знаний суверенной инженерии. Монография «Сантехника бытия» (RU/EN/UK) и ZTA Security Architecture Kit.",
   iconUrl: "/projects/undreading/icon.svg",
+  schemaType: "Book",
+  bookAuthor: "Undre",
   faviconUrl: "/projects/undreading/icon-48.png",
   appleIconUrl: "/projects/undreading/apple-icon-180.png",
   heroBadge: "PRIX PASCAL 2026 NOMINEE | OPEN SOURCE ZTA ARCHITECTURE | TRILINGUAL RU / EN / UK",
