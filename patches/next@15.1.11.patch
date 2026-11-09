@@ -1,15 +1,17 @@
 diff --git a/dist/compiled/@vercel/og/index.node.js b/dist/compiled/@vercel/og/index.node.js
-index 0a2ac1d8a20d04ee11f59bba4ba0baafca81888b..94d5b4a8e5568d93e45216ac81fb8bf11eaa3d84 100644
+index 0a2ac1d8a20d04ee11f59bba4ba0baafca81888b..5cee0ac588ec26ab3dbf49c46a75bd7add77a346 100644
 --- a/dist/compiled/@vercel/og/index.node.js
 +++ b/dist/compiled/@vercel/og/index.node.js
-@@ -18926,8 +18926,8 @@ function assertValue(v2, errorMessage) {
+@@ -18926,9 +18926,9 @@ function assertValue(v2, errorMessage) {
  
  // src/index.node.ts
  var satori = El.default || El;
 -var fontData = fs.readFileSync(fileURLToPath(join(import.meta.url, "../noto-sans-v27-latin-regular.ttf")));
 -var yoga_wasm = fs.readFileSync(fileURLToPath(join(import.meta.url, "../yoga.wasm")));
+-var resvg_wasm = fs.readFileSync(fileURLToPath(join(import.meta.url, "../resvg.wasm")));
 +var fontData = fs.readFileSync(fileURLToPath(new URL("./noto-sans-v27-latin-regular.ttf", import.meta.url)));
 +var yoga_wasm = fs.readFileSync(fileURLToPath(new URL("./yoga.wasm", import.meta.url)));
- var resvg_wasm = fs.readFileSync(fileURLToPath(new URL("./resvg.wasm", import.meta.url)));
++var resvg_wasm = fs.readFileSync(fileURLToPath(new URL("./resvg.wasm", import.meta.url)));
  var initializedResvg = initWasm(resvg_wasm);
  var initializedYoga = initYoga(yoga_wasm).then((yoga2) => Ll(yoga2));
+ var ImageResponse = class extends Response {

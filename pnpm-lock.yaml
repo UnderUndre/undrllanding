@@ -9,7 +9,7 @@ patchedDependencies:
     hash: 8f03982c867f8ee3d8c6e0fd4df4f0a069b264c475cb2600d95adb7e98e98751
     path: patches/@underundre__undesign.patch
   next@15.1.11:
-    hash: 68fa019ebdfea30c31247a35db8023e743974b8040929723b05d5a5b1dcc0ef9
+    hash: 903836d1a0e6fb096b8a34ab6e21b3993a8f735ebc577df1d2e1cf536182d431
     path: patches/next@15.1.11.patch
 
 importers:
@@ -36,7 +36,7 @@ importers:
         version: 3.0.0-beta.6
       next:
         specifier: 15.1.11
-        version: 15.1.11(patch_hash=68fa019ebdfea30c31247a35db8023e743974b8040929723b05d5a5b1dcc0ef9)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+        version: 15.1.11(patch_hash=903836d1a0e6fb096b8a34ab6e21b3993a8f735ebc577df1d2e1cf536182d431)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       prettier-plugin-tailwindcss:
         specifier: ^0.6.11
         version: 0.6.11(prettier@3.4.2)
@@ -1989,7 +1989,7 @@ snapshots:
 
   nanoid@3.3.8: {}
 
-  next@15.1.11(patch_hash=68fa019ebdfea30c31247a35db8023e743974b8040929723b05d5a5b1dcc0ef9)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+  next@15.1.11(patch_hash=903836d1a0e6fb096b8a34ab6e21b3993a8f735ebc577df1d2e1cf536182d431)(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
     dependencies:
       '@next/env': 15.1.11
       '@swc/counter': 0.1.3
