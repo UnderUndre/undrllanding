@@ -7,12 +7,16 @@
 ```ts
 // lib/referral.ts
 interface ReferralRecord { nick: string; ts: number }
-// localStorage key: "undr.referral"
-captureRef(): void          // reads location.search ?ref=, sanitizes, persists (idempotent)
-getReferral(): string | undefined  // returns nick or undefined; consumed by lead forms
+// localStorage key: "undr.referral" (Last-touch policy: new ?ref= overwrites stored record)
+captureRef(): void          // reads window.location.search ?ref= in browser useEffect, sanitizes, persists
+getReferral(): string | undefined  // returns sanitized lowercase nick or undefined; consumed by lead forms
 ```
 
-Sanitizer: `nick = raw.trim().match(/^[a-zA-Z0-9_.-]{1,32}$/) ? raw : undefined`.
+Sanitizer:
+```ts
+const trimmed = raw.trim().toLowerCase();
+const nick = /^[a-z0-9_.-]{1,32}$/.test(trimmed) ? trimmed : undefined;
+```
 
 **Lead form contract**: `metadata.referral?: string` — present only when `getReferral()` yields a value (no empty strings). Downstream: unchanged Telegram dispatch (005).
 
@@ -36,7 +40,7 @@ interface RewardRecord {
   referrerNick: string;
   clientLeadId: string;     // ties to touch-log / invoice
   payerVerification: string;// why payer ≠ referrer
-  amountUsd: number;        // against D6 table + $150 cap
+  amountUsd: number;        // against D6 table + $200 total cap (max $125 referrer cash)
   status: "queued" | "paid" | "rejected";
   rejectionReason?: string;
   trc20Address?: string;    // private repo only
@@ -49,7 +53,12 @@ Ledger: `undreplans/docs/projects/undrllanding/referral-ledger.md` — append-on
 
 ## Cap accounting invariant
 
-Per converted client: |discount| + Σ(referrer payouts) + Σ(client credits) ≤ $150 (D6). Ledger column `capUsed` recomputed on every append.
+Per converted client: |discount| + Σ(referrer payouts) + Σ(client credits) ≤ $200 (D6).
+- Max referrer cash payouts: $125 ($50 base + $50 1st review + $25 2nd review).
+- Client invoice discount: $50 (applied once to actual invoice).
+- Client service credit: $25 (single-use toward next service, expires in 6 months).
+- Maximum total combined value: $200 (max net cash/discount exposure to bureau: $175).
+Ledger column `capUsed` recomputed on every append.
 
 ## Public copy surface
 

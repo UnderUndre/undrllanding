@@ -23,4 +23,4 @@ npm run validate && npm run verify
 
 ## 5. Ledger discipline (manual, owner)
 
-Paid invoice with `referral: alice` → append row to `undreplans/.../referral-ledger.md` → verify payer ≠ referrer → queue $50 USDT → mark paid + TRC-20 txid. Review bonus: register review URL → calendar +30 days → verify still live → append bonus row.
+Paid invoice with `referral: alice` → append row to `undreplans/.../referral-ledger.md` → verify payer ≠ referrer → queue $50 USDT (invoice discounted by −$50) → mark paid + TRC-20 txid. Review bonus: register review URL → calendar +30 days → verify still live → append bonus row (+$50 referrer / +$25 client service credit; +$25 on 2nd platform; total value capped at $200 per converted client).

@@ -21,7 +21,7 @@ The landing has zero warm-traffic channels beyond direct outreach; the touch-log
 | D3 | Review platforms: **LinkedIn, X, профильные комьюнити**; Google Maps excluded (owner + platform ToS); **Upwork excluded** (ToS bans incentivized reviews) |
 | D4 | Review bonus scales to max **2 platforms**: 1 platform = base bonus, 2nd platform = +50%, hard cap |
 | D5 | Payout asset: **USDT TRC-20** (USD-pegged; ~$1 network fee); wallet address collected at payout time only |
-| D6 | Amounts (owner-approved defaults, revisable at plan): $50 referrer / −$50 client discount / +$50 referrer & +$25 client service-credit for review (+50% on 2nd platform); **hard cap $150 total value per converted client** |
+| D6 | Amounts (owner-approved defaults, revisable at plan): $50 referrer / −$50 client discount / +$50 referrer & +$25 client service-credit for review (+50% = +$25 on 2nd platform); **hard cap $200 total incentive value ($175 max cash/discount exposure: $50 discount + $125 max referrer payouts; +$25 single-use client service credit) per converted client** |
 
 ## 3. User Scenarios & Testing *(mandatory)*
 
@@ -55,7 +55,7 @@ so that sharing the link has concrete value.
 
 1. **Given** a paid audit whose lead carried `metadata.referral = alice`, **When** the owner verifies the payer is a third party (not the referrer's own identity/wallet), **Then** a $50 USDT TRC-20 payout is queued; the client's invoice shows −$50.
 2. **Given** a referral whose payer matches the referrer (self-referral), **When** reviewed, **Then** the payout is rejected and logged as rejected.
-3. **Given** multiple referrals converted by one referrer, **When** payouts are queued, **Then** each converted client yields at most one base payout (cap accounting: total value per converted client ≤ $150 across all rewards).
+3. **Given** multiple referrals converted by one referrer, **When** payouts are queued, **Then** each converted client yields at most one base payout (cap accounting: total incentive value per converted client ≤ $200 across all rewards, with max $125 in referrer payouts).
 
 ### User Story 3 — Verified Review Bonus (Priority: P3)
 
@@ -76,6 +76,8 @@ so that honest, lasting reviews are worth more than drive-by ratings.
 
 ### Edge Cases
 
+- Attribution overwrite policy: **Last-touch** — arriving with a new valid `?ref=<nickname>` parameter overwrites the existing referral in localStorage and updates the timestamp.
+- Brand isolation: program is active exclusively for brand `underundre`; `/referral` renders 404 (`notFound()`) on non-underundre brands, and footer links are configured via `projects/underundre/brand.ts`.
 - Nickname collision: two referrers pick the same nickname → payouts reconcile to distinct identities only via manually verified payer context; `/referral` page displays a notice that nicknames are not reserved and duplicates resolve at payout review.
 - Referral lead never converts: no payout, no reminder infrastructure (out of scope).
 - Client requests payout in something other than USDT: out of scope — USDT TRC-20 only (D5).
@@ -86,11 +88,11 @@ so that honest, lasting reviews are worth more than drive-by ratings.
 
 ### Functional Requirements
 
-- **FR-001**: `/referral` page MUST render a mint form (nickname input + social network select ≥ LinkedIn, X, «профильное комьюнити») producing a canonical share link `https://<domain>/?ref=<nickname>` fully client-side, with a copy-to-clipboard button and program rules (rewards, caps, eligibility, ineligible platforms).
-- **FR-002**: All landing pages MUST persist a `?ref=<nickname>` query parameter to localStorage (key documented in plan) and include it as `metadata.referral` in every lead-form submission; absence MUST omit the field.
-- **FR-003**: Program rules MUST state: referrer reward $50 USDT TRC-20 per converted (paid) referral; client discount −$50 applied to the actual invoiced amount exactly once per converted client and never stacked with any other promotion (example: pilot $350 → $300); review bonus +$50 referrer / +$25 client service credit per verified 30-day review; +50% referrer bonus on a 2nd platform; hard cap $150 total value per converted client; ineligible platforms: Upwork, Google Maps. Client credit mechanics: single-use credit toward any next service, expires 6 months after issue, applied manually at invoicing.
+- **FR-001**: `/referral` page MUST render a mint form (nickname input + social network select ≥ LinkedIn, X, «профильное комьюнити») producing a canonical share link `https://<domain>/?ref=<nickname>` fully client-side, with a copy-to-clipboard button and program rules (rewards, caps, eligibility, ineligible platforms). Gated to brand `underundre` (other brands return 404).
+- **FR-002**: All landing pages MUST persist a `?ref=<nickname>` query parameter to localStorage (key `undr.referral`, last-touch overwrite policy) and include it as `metadata.referral` in every lead-form submission; absence MUST omit the field.
+- **FR-003**: Program rules MUST state: referrer reward $50 USDT TRC-20 per converted (paid) referral; client discount −$50 applied to the actual invoiced amount exactly once per converted client and never stacked with any other promotion (example: pilot $350 → $300); review bonus +$50 referrer / +$25 client service credit per verified 30-day review; +50% referrer bonus on a 2nd platform (+$25); hard cap $200 total incentive value per converted client (max $125 referrer cash payouts, −$50 client invoice discount, +$25 client service credit); ineligible platforms: Upwork, Google Maps. Client credit mechanics: single-use credit toward any next service, expires 6 months after issue, applied manually at invoicing.
 - **FR-004**: A manual payout ledger (markdown in the private plans repo `undreplans` — never the public landing repo) MUST record every queued/paid/rejected reward with: referrer identity, referral lead id, payer verification note, amount, TRC-20 address, date, review URL(s).
-- **FR-005**: Payout verification MUST reject self-referrals A review platform is eligible only if the review is a public, retrievable-by-URL post under the reviewer's real identity; eligibility of «профильное комьюнити» posts is decided by the owner at review time. (payer identity = referrer identity by any reasonable signal) and duplicate reward claims for the same converted client; rejections logged per FR-004.
+- **FR-005**: Payout verification MUST reject self-referrals (payer identity = referrer identity by any reasonable signal) and duplicate reward claims for the same converted client; rejections logged per FR-004. A review platform is eligible only if the review is a public, retrievable-by-URL post under the reviewer's real identity; eligibility of «профильное комьюнити» posts is decided by the owner at review time.
 - **FR-006**: TRC-20 wallet addresses MUST be collected only at payout time (form/page field or direct message), MUST NOT be stored in public repo files, and the referral flow MUST NOT collect any other personal data beyond nickname.
 - **FR-007**: Bilingual (RU/EN) page copy per existing `LocalizedText` engine conventions.
 
