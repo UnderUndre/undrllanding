@@ -34,6 +34,8 @@ const ru = {
     nav_cta_audit: "Discovery за $350",
     footer_uu_tagline:
       "Инженерное продуктовое бюро — SpecKit Discovery, спецификации OpenAPI и приватные FOSS-системы с нулевыми лицензионными поборами.",
+    footer_uu_refer:
+      "Refer & Save — $50 за клиента",
     footer_uu_products: "Продукты",
     footer_uu_product0: "Продукт 0: SpecKit Discovery ($350 пилот)",
     footer_uu_product_a: "Спринт А: FOSS-Офис ($3.5k)",
@@ -248,6 +250,8 @@ const en = {
     nav_cta_audit: "Discovery for $350",
     footer_uu_tagline:
       "Productized Engineering Bureau — SpecKit Discovery, OpenAPI specifications, and self-hosted FOSS systems shipped with zero seat fees.",
+    footer_uu_refer:
+      "Refer & Save — $50 per client",
     footer_uu_products: "Product Ladder",
     footer_uu_product0: "Product 0: SpecKit Discovery ($350 pilot)",
     footer_uu_product_a: "Sprint A: FOSS Office ($3.5k)",
@@ -465,6 +469,8 @@ const uk = {
     nav_cta_audit: "Discovery за $350",
     footer_uu_tagline:
       "Інженерне продуктове бюро — SpecKit Discovery, специфікації OpenAPI та приватні FOSS-системи з нульовими ліцензійними поборами.",
+    footer_uu_refer:
+      "Refer & Save — $50 per client",
     footer_uu_products: "Продукти",
     footer_uu_product0: "Продукт 0: SpecKit Discovery ($350 пілот)",
     footer_uu_product_a: "Спринт А: FOSS-Офіс ($3.5k)",

@@ -54,6 +54,11 @@ export const underundreBrand: ProjectConfig = {
             href: "#audit",
           },
           {
+            labelKey: "footer_uu_refer",
+            labelFallback: "Refer & Save — $50 per client",
+            href: "/referral",
+          },
+          {
             labelKey: "footer_uu_product_a",
             labelFallback: "Sprint A: FOSS Office ($3.5k)",
             href: "#pricing",

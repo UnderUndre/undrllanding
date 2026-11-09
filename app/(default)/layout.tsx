@@ -5,6 +5,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 
 import { LangProvider } from "@/context/lang-context";
+import ReferralCapture from "@/components/referral/referral-capture";
 import Header from "@/components/ui/header";
 import Footer from "@/components/ui/footer";
 
@@ -26,6 +27,7 @@ export default function DefaultLayout({
 
   return (
     <LangProvider>
+      <ReferralCapture />
       <Header />
       <main className="grow">{children}</main>
       <Footer border={true} />

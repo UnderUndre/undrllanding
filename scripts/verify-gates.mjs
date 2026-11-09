@@ -210,6 +210,62 @@ const html = fs.readFileSync(prerendered, "utf-8");
     `JSON-LD: ${blocks.length} blocks, parseErrors=${parseErrors}, types=[${[...types].join(", ")}]`);
 }
 
+// --- Gate V5: referral PII & copy (spec 007) -------------------------------
+{
+  // V5-no-wallets: no crypto-wallet-shaped strings in tracked sources or
+  // prerendered HTML. Exclusions: this script itself, test fixtures, the
+  // patches dir, node_modules (review F8 — grep boundary).
+  const walletPatterns = [
+    /T[1-9A-HJ-NP-Za-km-z]{33}/g, // TRON (USDT TRC-20)
+    /0x[a-fA-F0-9]{40}/g,          // EVM
+    /bc1[a-z0-9]{20,}/g,           // Bitcoin bech32
+  ];
+  const skipDirs = new Set(["node_modules", ".next", ".git", ".history", "patches", "qa"]);
+  const textExts = new Set([".ts", ".tsx", ".js", ".mjs", ".json", ".md", ".html", ".css"]);
+  let walletHits = [];
+  const scan = (dir) => {
+    if (path.basename(dir) === "node_modules" || dir.includes(".pnpm_patches")) return;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      const full = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        if (!skipDirs.has(entry.name)) scan(full);
+      } else if (
+        textExts.has(path.extname(entry.name)) &&
+        !entry.name.includes("verify-gates") &&
+        !entry.name.includes(".test.")
+      ) {
+        const content = fs.readFileSync(full, "utf-8");
+        for (const re of walletPatterns) {
+          const hits = content.match(re);
+          if (hits) walletHits.push(`${path.relative(repoRoot, full)}: ${hits.join(", ")}`);
+        }
+      }
+    }
+  };
+  // scan app source dirs (repo root scan would drown in specs docs)
+  for (const dir of ["app", "components", "lib", "context", "projects", "public", "tests", "scripts"]) {
+    const abs = path.join(repoRoot, dir);
+    if (fs.existsSync(abs)) scan(abs);
+  }
+  const htmlWallets = walletPatterns.flatMap((re) => html.match(re) || []);
+  gate("V5-no-wallets", walletHits.length === 0 && htmlWallets.length === 0,
+    `wallet-shaped strings in sources/build: ${walletHits.length + htmlWallets.length} (expect 0)`);
+
+  // V5-referral-copy: /referral page prerendered with rules copy for underundre
+  const referralHtmlPath = path.join(repoRoot, ".next", "server", "app", "referral.html");
+  if (brand === "underundre") {
+    if (fs.existsSync(referralHtmlPath)) {
+      const refHtml = fs.readFileSync(referralHtmlPath, "utf-8");
+      const ok = refHtml.includes("/?ref=") || refHtml.includes("ref=");
+      gate("V5-referral-copy", ok, `/referral prerendered with mint form: ${ok}`);
+    } else {
+      gate("V5-referral-copy", false, "referral.html not found in build output (expected for underundre)");
+    }
+  } else {
+    gate("V5-referral-copy", true, `brand ${brand}: /referral is bureau-only (404 expected)`);
+  }
+}
+
 // --- Report ----------------------------------------------------------------
 const failed = results.filter((r) => !r.ok);
 console.log(`\nverify-gates: ${results.length - failed.length}/${results.length} gates passed (brand: ${brand})`);

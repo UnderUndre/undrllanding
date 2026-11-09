@@ -157,10 +157,55 @@ export interface UnderundreCopy {
       note: string;
     };
   };
+  referral: {
+    title: string;
+    subtitle: string;
+    nickLabel: string;
+    nickInvalid: string;
+    networkLabel: string;
+    networkLinkedIn: string;
+    networkX: string;
+    networkCommunity: string;
+    linkLabel: string;
+    copyButton: string;
+    copiedButton: string;
+    rulesTitle: string;
+    ruleBase: string;
+    ruleDiscount: string;
+    ruleReview: string;
+    ruleReview2: string;
+    ruleCap: string;
+    ruleIneligible: string;
+    rulePayout: string;
+    ruleCollision: string;
+  };
+
 }
 
 export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
   ru: {
+  referral: {
+    title: "Refer & Save — приведи клиента, получи $50",
+    subtitle: "Поделись личной ссылкой: за каждый оплаченный аудит по твоей ссылке — $50 в USDT (TRC-20), а твой знакомый получает скидку −$50 на счёт. Никаких регистраций — только никнейм.",
+    nickLabel: "Твой никнейм (латиница, цифры, . _ -)",
+    nickInvalid: "Никнейм: 1–32 символа, только a-z, 0-9, точка, подчёркивание, дефис.",
+    networkLabel: "Где будешь делиться ссылкой",
+    networkLinkedIn: "LinkedIn",
+    networkX: "X / Twitter",
+    networkCommunity: "Профильное комьюнити",
+    linkLabel: "Твоя ссылка",
+    copyButton: "Скопировать",
+    copiedButton: "Скопировано ✓",
+    rulesTitle: "Правила программы",
+    ruleBase: "Оплаченный аудит по твоей ссылке → тебе $50 USDT TRC-20, клиенту — скидка −$50 на счёт (один раз, не суммируется с другими промо; пилот $350 → $300).",
+    ruleDiscount: "Скидка подтверждается при выставлении счёта — ничего копон-кодного, никакого геморроя.",
+    ruleReview: "Клиент публикует отзыв (LinkedIn, X или профильное комьюнити) под реальным именем, и отзыв провисел 30+ дней → тебе ещё +$50, клиенту — сервисный кредит +$25 (на любой следующий сервис, 6 месяцев, однократно).",
+    ruleReview2: "Второй отзыв на другой платформе → тебе ещё +$25 (+50% за вторую платформу). Максимум — 2 платформы.",
+    ruleCap: "Жёсткий потолок: не больше $200 суммарной ценности на одного приведённого клиента (максимум $125 выплат рефералщику).",
+    ruleIneligible: "Не элигибельные платформы: Upwork и Google Maps — их правила запрещают поощряемые отзывы, и нам бан не нужен.",
+    rulePayout: "Выплаты — вручную в USDT TRC-20 после проверки оплаты; адрес кошелька запрашивается только в момент выплаты.",
+    ruleCollision: "Никнеймы не резервируются: коллизии разрешаются при сверке выплат по payer-контексту.",
+  },
     hero: {
       badge: "3X СЕРТИФИЦИРОВАННЫЙ АРХИТЕКТОР SALESFORCE | 0% SAAS-ПОБОРОВ | ЭСКРОУ UPWORK",
       title1: "Хватит сжигать $15k–$40k/год на",
@@ -451,6 +496,29 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
   },
   en: {
+  referral: {
+    title: "Refer & Save — bring a client, earn $50",
+    subtitle: "Share your personal link: $50 in USDT (TRC-20) for every paid audit coming through it, and your contact gets a −$50 discount on their invoice. No sign-ups — just a nickname.",
+    nickLabel: "Your nickname (latin letters, digits, . _ -)",
+    nickInvalid: "Nickname: 1–32 characters, only a-z, 0-9, dot, underscore, dash.",
+    networkLabel: "Where you plan to share the link",
+    networkLinkedIn: "LinkedIn",
+    networkX: "X / Twitter",
+    networkCommunity: "Niche community",
+    linkLabel: "Your link",
+    copyButton: "Copy",
+    copiedButton: "Copied ✓",
+    rulesTitle: "Program rules",
+    ruleBase: "A paid audit via your link → you get $50 USDT TRC-20, the client gets a −$50 invoice discount (once, never stacked with other promotions; pilot $350 → $300).",
+    ruleDiscount: "The discount is confirmed at invoicing — no coupon codes, no hassle.",
+    ruleReview: "The client publishes a review (LinkedIn, X, or a niche community) under their real name and it stays live for 30+ days → you get another +$50, the client a +$25 service credit (any next service, 6 months, single-use).",
+    ruleReview2: "A second review on another platform → another +$25 for you (+50% for the 2nd platform). Maximum 2 platforms.",
+    ruleCap: "Hard cap: no more than $200 of total value per referred client (max $125 in referrer payouts).",
+    ruleIneligible: "Ineligible platforms: Upwork and Google Maps — their rules prohibit incentivized reviews, and neither of us needs a ban.",
+    rulePayout: "Payouts are manual in USDT TRC-20 after payment verification; the wallet address is requested only at payout time.",
+    ruleCollision: "Nicknames are not reserved: collisions are resolved at payout review via payer context.",
+  },
+
     hero: {
       badge: "3X SALESFORCE CERTIFIED ARCHITECT | ZERO SAAS TAXES | UPWORK ESCROW VERIFIED",
       title1: "Stop Burning $15k–$40k/Yr on",

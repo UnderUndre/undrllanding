@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useId, useMemo, useRef, useState } from "react";
+import { referralMetadata } from "@/lib/referral";
 import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
 import { getContactChannels } from "@/lib/social-links";
@@ -125,6 +126,7 @@ export default function CtaUnderundre() {
       topic: "tco-audit-v20.2b",
       message: structuredMessage,
       metadata: {
+        ...referralMetadata(), // spec 007 FR-002: absent when no referral stored
         role,
         symptom,
         teamSize,
