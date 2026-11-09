@@ -39,4 +39,5 @@ Zero-backend referral loop: client-side link minting on `/referral`, attribution
 4. **Discount mechanics**: no promo-code system — the −$50 is applied manually at invoicing; rules page states «скидка подтверждается при выставлении счёта». Cheap and unfakeable.
 5. **Verify gate V5** (extends `scripts/verify-gates.mjs`): grep repo + build output for wallet-shaped strings (`T[LM3][A-HJ-NP-Za-km-z1-9]{33}`, `0x[a-fA-F0-9]{40}`, `bc1[a-z0-9]{20,}`) → 0 hits; bilingual keys present for `/referral` copy.
 6. **Navigation**: footer link «Refer & save» + CTA mention on pricing section; header nav untouched (avoid nav churn).
-7. **Excluded**: server-side attribution, referral dashboard, promo codes, auto-payouts, reminder emails — all deferred (documented in research R-08).
+7. **Discount base (audit F1)**: −$50 applies to the actual invoiced amount once per converted client; never stacked with other promotions (pilot $350 → $300); +$25 client credit = single-use, any next service, 6-month expiry, manual application.
+8. **Excluded**: server-side attribution, referral dashboard, promo codes, auto-payouts, reminder emails — all deferred (documented in research R-08).

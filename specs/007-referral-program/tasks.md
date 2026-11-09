@@ -14,7 +14,7 @@
 ## Phase 0: Attribution Core
 
 - [ ] **T001 [FE] US1 Implement `lib/referral.ts`**: `captureRef()` (idempotent `?ref=` capture → localStorage `undr.referral`, sanitizer `^[a-zA-Z0-9_.-]{1,32}$`, silent no-op without localStorage), `getReferral()`. Wire `captureRef()` once from root layout client boundary. Files: `lib/referral.ts`, root layout.
-- [ ] **T002 [FE] US1 Pass `metadata.referral` through lead forms**: forms read `getReferral()`; include key only when defined (no empty strings). Files: lead form components (grep `metadata` builders), Zod schema extension if typed.
+- [ ] **T002 [FE] US1 Pass `metadata.referral` through lead forms**: forms read `getReferral()`; include key only when defined (no empty strings). Extend the metadata Zod schema with an optional typed `referral` field. Files: lead form components (grep `metadata` builders), Zod schema module.
 
 ## Phase 1: Mint Page
 
@@ -28,7 +28,7 @@
 
 ## Phase 3: Acceptance
 
-- [ ] **T007 [QA] US1–US3 Manual acceptance**: quickstart.md §1–§4 walkthrough + rules copy review (RU/EN tone, first person, D6 amounts) + 30-day review-bonus calendar entry created. Results → `specs/007-referral-program/qa/manual-qa.md`. Depends: T003, T005.
+- [ ] **T007 [QA] US1–US3 Manual acceptance**: quickstart.md §1–§4 walkthrough + rules copy review (RU/EN tone, first person, D6 amounts) + 30-day review-bonus calendar entry created. Results → `specs/007-referral-program/qa/manual-qa.md`. Perf: Lighthouse LCP ≤ 1.5 s and added JS ≤ 5 KB gz on `/referral` (NFR-002). Depends: T003, T005.
 - [ ] **T008 [OPS] US1 Final pipeline**: `npm run validate && npm run build && npm run verify` green. Depends: T002, T004, T005, T007.
 
 ---
