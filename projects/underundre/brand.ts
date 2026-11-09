@@ -12,6 +12,7 @@ export const underundreBrand: ProjectConfig = {
   description:
     "Eliminate $15k–$40k/yr in SaaS seat taxes and manual labor leaks. 48-Hour SpecKit Discovery, OpenAPI specifications, and self-hosted FOSS systems under NACE 62.01.",
   iconUrl: "/projects/underundre/icon.svg",
+  schemaType: "ProfessionalService",
   faviconUrl: "/projects/underundre/icon-48.png",
   appleIconUrl: "/projects/underundre/apple-icon-180.png",
   heroBadge:

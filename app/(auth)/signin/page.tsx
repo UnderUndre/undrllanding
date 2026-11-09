@@ -1,4 +1,5 @@
 export const metadata = {
+  robots: { index: false, follow: false }, // spec 006 FR-001 defense-in-depth
   title: "Sign In - Simple",
   description: "Page description",
 };

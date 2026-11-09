@@ -35,5 +35,11 @@ jobs:
       - name: Build UnderUndre
         run: pnpm build:underundre
 
-      - name: Run verification gates
+      - name: Run verification gates (underundre)
         run: pnpm verify --brand underundre
+
+      - name: Build undreading
+        run: pnpm exec cross-env NEXT_PUBLIC_PROJECT_NAME=undreading next build
+
+      - name: Run verification gates (undreading)
+        run: pnpm verify --brand undreading

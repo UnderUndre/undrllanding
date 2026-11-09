@@ -7,12 +7,14 @@ import VibeCodingWarning from "./components/vibe-coding-warning";
 import FaqSection from "./components/faq-section";
 import CtaUnderundre from "./components/cta-underundre";
 import TaglineRevealSection from "./components/tagline-reveal";
+import { HomeJsonLd, FaqJsonLd } from "@/lib/seo/json-ld";
 
 // ForkServiceLine stays available for v2 re-enable once the undreseller
 // engine passes release verification; it is intentionally not exported here.
 export const underundreProject = {
   slug: "underundre",
   name: "UnderUndre",
+  schemaType: "ProfessionalService",
   domain: "underundre.com",
   title: "UnderUndre — Productized Engineering & SpecKit Discovery",
   description:
@@ -35,6 +37,7 @@ export function UnderundreHome() {
 
   return (
     <main className="bg-brand-bg text-purple-50 min-h-screen transition-colors">
+      <HomeJsonLd />
       <Hero />
       <TaglineReveal />
       <LoomDemo />
@@ -45,6 +48,7 @@ export function UnderundreHome() {
       <Comparison />
       <VibeWarning />
       <FAQ />
+      <FaqJsonLd slug={underundreProject.slug} />
       <CTA />
     </main>
   );

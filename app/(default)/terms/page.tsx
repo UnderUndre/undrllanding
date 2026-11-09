@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+// Spec 006 FR-003: page-specific canonical (fixes the layout-inherited canonical leak).
+export const metadata: Metadata = {
+  title: "Terms of Service",
+  alternates: { canonical: "/terms" },
+};
+
 import { getActiveProjectConfig } from "@/lib/project-config";
 import { loadTermsData, loadLegalConfig } from "@/lib/schemas/content-loaders";
 import LegalDocumentView, { type LegalTokens } from "@/components/content/legal-document-view";
