@@ -180,10 +180,63 @@ export interface UnderundreCopy {
     ruleCollision: string;
   };
 
+  calculator: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    teamSizeLabel: string;
+    hoursLabel: string;
+    rateLabel: string;
+    rateHint: string;
+    toolsLabel: string;
+    physicalWasteLabel: string;
+    laborWasteLabel: string;
+    saasTaxLabel: string;
+    totalFrictionLabel: string;
+    rateDisclaimer: string;
+    applyButton: string;
+  };
+  inspector: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    fragileTabLabel: string;
+    sovereignTabLabel: string;
+    latencyLabel: string;
+    failureRiskLabel: string;
+    monthlyCostLabel: string;
+  };
+
 }
 
 export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
   ru: {
+  calculator: {
+    badge: "ОДОМЕТР ОПЕРАЦИОННОГО ТРЕНИЯ",
+    title: "Посчитай, сколько твоя контора сливает на ручной перенос данных",
+    subtitle: "Двигай ползунки под свою команду — формулы TDABC пересчитают физические часы ручного труда и проекцию потерь по твоей собственной ставке. Никакой магии, только арифметика.",
+    teamSizeLabel: "Размер команды",
+    hoursLabel: "Часов ручной возни в неделю (на человека)",
+    rateLabel: "Смешанная ставка часа, $/ч",
+    rateHint: "Твоя собственная оценка — сайт ничего не угадывает про твой ФОТ",
+    toolsLabel: "SaaS-зоопарк в работе",
+    physicalWasteLabel: "Физический одометр ручного труда",
+    laborWasteLabel: "Проекция потерь труда (по твоей ставке)",
+    saasTaxLabel: "SaaS-налог за места",
+    totalFrictionLabel: "Общий налог на трение",
+    rateDisclaimer: "Доллары — проекция по введённой тобой ставке. Первичный инвариант — часы.",
+    applyButton: "Заказать аудит с этими цифрами →",
+  },
+  inspector: {
+    badge: "АНАТОМИЯ АРХИТЕКТУРЫ",
+    title: "Костыль из SaaS-коннекторов против суверенного контракта",
+    subtitle: "Нажми на шаг цепочки — увидишь задержки, точки отказа и постоянные расходы обоих миров.",
+    fragileTabLabel: "Хрупкий SaaS-костыль",
+    sovereignTabLabel: "Суверенный FOSS-контракт",
+    latencyLabel: "Задержка",
+    failureRiskLabel: "Точка отказа",
+    monthlyCostLabel: "Расходы",
+  },
   referral: {
     title: "Refer & Save — приведи клиента, получи $50",
     subtitle: "Поделись личной ссылкой: за каждый оплаченный аудит по твоей ссылке — $50 в USDT (TRC-20), а твой знакомый получает скидку −$50 на счёт. Никаких регистраций — только никнейм.",
@@ -496,6 +549,32 @@ export const underundreCopy: Record<"ru" | "en", UnderundreCopy> = {
     },
   },
   en: {
+  calculator: {
+    badge: "OPERATIONAL FRICTION ODOMETER",
+    title: "See what your company burns on manual data transfer",
+    subtitle: "Move the sliders to match your team — TDABC formulas recalculate physical manual hours and a cost projection using your own blended rate. No magic, just arithmetic.",
+    teamSizeLabel: "Team size",
+    hoursLabel: "Hours of manual work per week (per person)",
+    rateLabel: "Blended hourly rate, $/h",
+    rateHint: "Your own estimate — this site never guesses your payroll",
+    toolsLabel: "SaaS stack in the loop",
+    physicalWasteLabel: "Physical manual-labor odometer",
+    laborWasteLabel: "Labor waste projection (at your rate)",
+    saasTaxLabel: "SaaS seat tax",
+    totalFrictionLabel: "Total friction tax",
+    rateDisclaimer: "Dollar figures are a projection of the rate you entered. The primary invariant is hours.",
+    applyButton: "Book an audit with these numbers →",
+  },
+  inspector: {
+    badge: "ARCHITECTURE ANATOMY",
+    title: "Fragile SaaS patchwork vs sovereign contract",
+    subtitle: "Click a chain step to expose latencies, failure points, and running costs of both worlds.",
+    fragileTabLabel: "Fragile SaaS patchwork",
+    sovereignTabLabel: "Sovereign FOSS contract",
+    latencyLabel: "Latency",
+    failureRiskLabel: "Failure point",
+    monthlyCostLabel: "Costs",
+  },
   referral: {
     title: "Refer & Save — bring a client, earn $50",
     subtitle: "Share your personal link: $50 in USDT (TRC-20) for every paid audit coming through it, and your contact gets a −$50 discount on their invoice. No sign-ups — just a nickname.",

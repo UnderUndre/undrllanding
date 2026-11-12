@@ -73,6 +73,10 @@ export interface ProjectConfig {
   supportedLocales?: Language[];
   /** JSON-LD entity type for the homepage (spec 006 FR-006; default "ProfessionalService") */
   schemaType?: "ProfessionalService" | "Organization" | "Book";
+  /** Teardowns vault routes enabled (spec 008 FR-009; brands without data render 404) */
+  hasTeardowns?: boolean;
+  /** Standalone /calculator route enabled (spec 008 FR-009) */
+  hasCalculator?: boolean;
   /** Author name for schemaType "Book" (spec 006 FR-006, publishing brands) */
   bookAuthor?: string;
   /** Optional fallback — preferred source is projects/<slug>/data/legal.json */

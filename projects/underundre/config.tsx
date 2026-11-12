@@ -7,6 +7,7 @@ import VibeCodingWarning from "./components/vibe-coding-warning";
 import FaqSection from "./components/faq-section";
 import CtaUnderundre from "./components/cta-underundre";
 import TaglineRevealSection from "./components/tagline-reveal";
+import CalculatorSection from "@/app/(default)/calculator/calculator-section";
 import { HomeJsonLd, FaqJsonLd } from "@/lib/seo/json-ld";
 
 // ForkServiceLine stays available for v2 re-enable once the undreseller
@@ -41,6 +42,7 @@ export function UnderundreHome() {
       <Hero />
       <TaglineReveal />
       <LoomDemo />
+      <CalculatorSection mode="homepage" />
       <Pricing />
       {/* ForkServiceLine & Sprint B SKU hidden in v1: undreseller engine not release-ready yet.
           Re-enable in v2 by restoring <ForkServiceLine /> and the third pricing card. */}

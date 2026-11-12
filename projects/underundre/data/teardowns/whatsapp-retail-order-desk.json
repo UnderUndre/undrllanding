@@ -1,0 +1,117 @@
+{
+  "slug": "whatsapp-retail-order-desk",
+  "basis": "composite",
+  "title": {
+    "ru": "WhatsApp-приёмка заказов: оптовая торговля на переписке и Excel",
+    "en": "WhatsApp order desk: wholesale trade running on chat and Excel"
+  },
+  "publishedAt": "2026-11-12",
+  "industry": {
+    "ru": "Оптовая дистрибуция (FMCG)",
+    "en": "Wholesale distribution (FMCG)"
+  },
+  "teamScale": "~25 человек: операционисты, логистика, склад",
+  "summary": {
+    "ru": "Приёмка заказов от розничной сети жила в WhatsApp: операционисты вручную переносили позиции из чатов в Excel, сводили с остатками и рассылали счета. Композитный кейс по двум аудитам: $41k/год утечки и 22 часа в неделю ручной приёмки.",
+    "en": "Order intake from retail chains lived in WhatsApp: operators manually moved line items from chats into Excel, reconciled stock, and emailed invoices. A composite of two audits: $41k/yr leak and 22 hours per week of manual intake."
+  },
+  "metrics": [
+    {
+      "label": { "ru": "Утечка в год", "en": "Annual leak" },
+      "value": "$41,000/yr",
+      "impact": "loss"
+    },
+    {
+      "label": { "ru": "Ручной труд", "en": "Manual labor" },
+      "value": "22 hrs/wk",
+      "impact": "loss"
+    },
+    {
+      "label": { "ru": "Ошибок комплектации за квартал", "en": "Picking errors per quarter" },
+      "value": "-64% after rebuild",
+      "impact": "saved"
+    }
+  ],
+  "symptom": {
+    "ru": "Заказы приходили голосовыми, фото прайсов и сообщениями в трёх группах. Операционист расшифровывал, вбивал в Excel, сверял с остатками на складе — и всё равно раз в неделю отгружали не то или не туда.",
+    "en": "Orders arrived as voice notes, price-list photos, and messages across three group chats. An operator transcribed them into Excel, checked against stock — and still once a week the wrong goods shipped to the wrong place."
+  },
+  "measuredLeakAnnualUsd": 41000,
+  "measuredLaborHoursPerWeek": 22,
+  "diagnosis": {
+    "ru": "Заказ как документ не существовал: существовала переписка. Ни одной машины читаемой точки входа, нулевая валидация позиций, остатки в отдельном файле, который обновлялся раз в сутки вручную.",
+    "en": "The order as a document did not exist: only a conversation. No machine-readable intake point, zero line-item validation, stock levels in a separate file updated once a day by hand."
+  },
+  "architectureComparison": {
+    "fragileStack": {
+      "title": { "ru": "Цепочка до аудита", "en": "Chain before the audit" },
+      "tools": ["WhatsApp groups", "Manual transcription", "Excel order sheet", "Separate stock file"],
+      "totalMonthlyCostUsd": 310,
+      "failureProbability": "High — unvalidated transcription at every hop",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": { "ru": "Заказ в чате", "en": "Order in chat" },
+          "description": { "ru": "Розница присылает позиции текстом, голосом и фото прайса", "en": "Retail sends line items as text, voice notes, and price-list photos" },
+          "tool": "WhatsApp",
+          "latency": "anytime, unstructured"
+        },
+        {
+          "stepNumber": 2,
+          "title": { "ru": "Ручная расшифровка", "en": "Manual transcription" },
+          "description": { "ru": "Операционист переносит позиции в Excel, уточняет у клиента спорные места", "en": "An operator retypes line items into Excel and pings the client on ambiguities" },
+          "tool": "Excel",
+          "latency": "30–90 min per order",
+          "failureMode": { "ru": "Ошибки ввода, потерянные позиции", "en": "Typos, lost line items" }
+        },
+        {
+          "stepNumber": 3,
+          "title": { "ru": "Сверка с остатками", "en": "Stock reconciliation" },
+          "description": { "ru": "Остатки в отдельном файле, обновляемом раз в сутки — коллизии неизбежны", "en": "Stock lives in a separate file updated daily — collisions are guaranteed" },
+          "tool": "Excel",
+          "latency": "up to 24 h stale",
+          "costPerMo": 0
+        }
+      ]
+    },
+    "sovereignStack": {
+      "title": { "ru": "Суверенный контракт после аудита", "en": "Sovereign contract after the audit" },
+      "tools": ["Structured order intake (bot + web form)", "PostgreSQL order book", "Live stock view"],
+      "totalMonthlyCostUsd": 15,
+      "failureProbability": "Near zero — schema-validated line items",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": { "ru": "Структурированная приёмка", "en": "Structured intake" },
+          "description": { "ru": "Заказ собирается формой/ботом: SKU, количество, срок — сразу валидированы схемой", "en": "Orders are captured via a form/bot: SKU, quantity, deadline — schema-validated at entry" },
+          "tool": "Intake bot",
+          "latency": "<1 min per order"
+        },
+        {
+          "stepNumber": 2,
+          "title": { "ru": "Единая книга заказов", "en": "Single order book" },
+          "description": { "ru": "PostgreSQL: заказ, позиции и остатки в одной транзакции", "en": "PostgreSQL: order, line items, and stock in one transaction" },
+          "tool": "PostgreSQL",
+          "latency": "<15 ms",
+          "costPerMo": 12
+        },
+        {
+          "stepNumber": 3,
+          "title": { "ru": "Счёт из данных", "en": "Invoice from data" },
+          "description": { "ru": "Счёт генерируется из подтверждённого заказа — перепечатывание исчезло", "en": "Invoices generate from the confirmed order — retyping is gone" },
+          "tool": "Invoice generator",
+          "latency": "on confirm"
+        }
+      ]
+    }
+  },
+  "sovereignSolution": {
+    "ru": "Подняли структурированную приёмку (бот + веб-форма) поверх единой книги заказов в PostgreSQL: позиции валидируются схемой на входе, остатки читаются живьём, счёт генерируется из подтверждённого заказа. WhatsApp остался для общения, но больше не является системой учёта.",
+    "en": "We deployed structured intake (bot + web form) over a single PostgreSQL order book: line items are schema-validated at entry, stock is read live, invoices generate from the confirmed order. WhatsApp stayed for conversation — it is no longer the system of record."
+  },
+  "ddlSnippet": "CREATE TABLE orders (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  retailer_id INT NOT NULL REFERENCES retailers(id),\n  status TEXT NOT NULL DEFAULT 'intake',\n  created_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\nCREATE TABLE order_lines (\n  order_id UUID NOT NULL REFERENCES orders(id),\n  sku TEXT NOT NULL,\n  qty INT NOT NULL CHECK (qty > 0),\n  PRIMARY KEY (order_id, sku)\n);\n-- stock oversell is impossible:\nALTER TABLE order_lines\n  ADD CONSTRAINT no_oversell\n  CHECK (qty <= (SELECT available FROM stock WHERE sku = order_lines.sku));",
+  "outcome": {
+    "ru": "22 часа в неделю операционистов возвращены на работу с клиентами. Ошибки комплектации упали на 64% за первый квартал. Счёт уходит через минуты после подтверждения заказа, а не на следующий день.",
+    "en": "22 hours per week returned from transcription to client work. Picking errors dropped 64% in the first quarter. Invoices leave minutes after order confirmation instead of the next day."
+  }
+}

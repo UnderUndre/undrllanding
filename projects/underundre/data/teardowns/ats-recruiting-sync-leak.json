@@ -1,0 +1,117 @@
+{
+  "slug": "ats-recruiting-sync-leak",
+  "basis": "audit",
+  "title": {
+    "ru": "Разрыв синхронизации ATS: ручной перенос кандидатов между вакансиями",
+    "en": "ATS Sync Breakdown: manual candidate transfer between pipelines"
+  },
+  "publishedAt": "2026-11-12",
+  "industry": {
+    "ru": "B2B-рекрутинговое агентство",
+    "en": "B2B recruiting agency"
+  },
+  "teamScale": "~15 рекрутеров и ресёрчеров",
+  "summary": {
+    "ru": "Агентство вело воронку кандидатов в двух несовместимых системах: клиентский ATS и внутренние таблицы. Каждый переход кандидата по стадиям дублировался руками. Аудит зафиксировал утечку $32k/год и 18 часов в неделю ручной синхронизации.",
+    "en": "The agency ran its candidate pipeline in two incompatible systems: the client's ATS and internal spreadsheets. Every stage transition was duplicated by hand. The audit measured a $32k/yr leak and 18 hours per week of manual sync."
+  },
+  "metrics": [
+    {
+      "label": { "ru": "Утечка в год", "en": "Annual leak" },
+      "value": "$32,000/yr",
+      "impact": "loss"
+    },
+    {
+      "label": { "ru": "Ручной труд", "en": "Manual labor" },
+      "value": "18 hrs/wk",
+      "impact": "loss"
+    },
+    {
+      "label": { "ru": "Дублирующих SaaS-подписок срезано", "en": "Duplicate SaaS seats cut" },
+      "value": "2 tools",
+      "impact": "saved"
+    }
+  ],
+  "symptom": {
+    "ru": "Ресёрчеры тратили утро на перепечатывание статусов кандидатов из почты и мессенджеров в ATS, а вечера — на сверку расхождений между двумя системами. Клиенты жаловались на устаревшие данные в отчётах.",
+    "en": "Researchers spent mornings retyping candidate statuses from email and messengers into the ATS, and evenings reconciling discrepancies between the two systems. Clients complained about stale data in reports."
+  },
+  "measuredLeakAnnualUsd": 32000,
+  "measuredLaborHoursPerWeek": 18,
+  "diagnosis": {
+    "ru": "Классический интеграционный засор: у ATS был экспорт в CSV, но не было входящего API-контракта. Заплатили за автоматизацию через Zapier — на объёме в 4 000+ событий в месяц упёрлись в лимиты тарифа и получили тихие пропуски вебхуков без алертов.",
+    "en": "A classic integration clog: the ATS exposed CSV export but no inbound API contract. The agency paid for Zapier automation — at 4,000+ events/month they hit plan limits and got silent webhook drops with no alerts."
+  },
+  "architectureComparison": {
+    "fragileStack": {
+      "title": { "ru": "Хрупкая цепочка до аудита", "en": "Fragile stack before the audit" },
+      "tools": ["ATS (CSV export)", "Zapier", "Google Sheets", "WhatsApp coordination"],
+      "totalMonthlyCostUsd": 1240,
+      "failureProbability": "High — silent webhook drops at plan limits",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": { "ru": "Экспорт статусов", "en": "Status export" },
+          "description": { "ru": "Рекрутер вручную выгружает CSV из ATS и грузит в Zapier-триггер", "en": "Recruiter manually exports CSV from ATS into a Zapier trigger" },
+          "tool": "ATS",
+          "latency": "2–4 h (manual)"
+        },
+        {
+          "stepNumber": 2,
+          "title": { "ru": "Zapier-маршрутизация", "en": "Zapier routing" },
+          "description": { "ru": "Zapier пишет в таблицу; на лимите тарифа события молча теряются", "en": "Zapier writes to the sheet; at plan limits events drop silently" },
+          "tool": "Zapier",
+          "latency": "5–15 min polling",
+          "costPerMo": 40,
+          "failureMode": { "ru": "Тихие пропуски без алертов", "en": "Silent drops, no alerts" }
+        },
+        {
+          "stepNumber": 3,
+          "title": { "ru": "Сверка вручную", "en": "Manual reconciliation" },
+          "description": { "ru": "Старший ресёрчер сверяет таблицу с ATS и правит расхождения", "en": "Lead researcher reconciles the sheet against the ATS and fixes drift" },
+          "tool": "Google Sheets",
+          "latency": "6 h/wk (manual)"
+        }
+      ]
+    },
+    "sovereignStack": {
+      "title": { "ru": "Суверенный контракт после аудита", "en": "Sovereign contract after the audit" },
+      "tools": ["PostgreSQL (single source of truth)", "Next.js intake UI", "Webhook receiver with idempotency"],
+      "totalMonthlyCostUsd": 12,
+      "failureProbability": "Near zero — transactional upserts with unique keys",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": { "ru": "Прямой контракт", "en": "Direct contract" },
+          "description": { "ru": "ATS пушит события на входящую точку с идемпотентным ключом", "en": "ATS pushes events to an intake endpoint with an idempotency key" },
+          "tool": "Webhook receiver",
+          "latency": "<1 s"
+        },
+        {
+          "stepNumber": 2,
+          "title": { "ru": "Транзакционный апсерт", "en": "Transactional upsert" },
+          "description": { "ru": "PostgreSQL writes with unique constraint — дубль невозможен физически", "en": "PostgreSQL writes with a unique constraint — duplicates are physically impossible" },
+          "tool": "PostgreSQL",
+          "latency": "<15 ms",
+          "costPerMo": 10
+        },
+        {
+          "stepNumber": 3,
+          "title": { "ru": "Единый отчёт", "en": "Single report" },
+          "description": { "ru": "Клиентский отчёт читает одну базу — расхождения исключены по построению", "en": "Client reports read one database — drift is impossible by construction" },
+          "tool": "Next.js",
+          "latency": "on demand"
+        }
+      ]
+    }
+  },
+  "sovereignSolution": {
+    "ru": "Собрали входящую точку приёма событий с идемпотентным ключом и транзакционной записью в PostgreSQL. ATS стал единственным источником истины, таблицы — представлениями над базой, а не вторым источником. Сверка исчезла как класс работы.",
+    "en": "We built an event intake endpoint with an idempotency key and transactional writes into PostgreSQL. The ATS became the single source of truth; spreadsheets turned into views over the database rather than a second source. Reconciliation disappeared as a category of work."
+  },
+  "ddlSnippet": "CREATE TABLE candidate_stage_events (\n  idempotency_key TEXT PRIMARY KEY,\n  candidate_email TEXT NOT NULL,\n  stage TEXT NOT NULL,\n  occurred_at TIMESTAMPTZ NOT NULL,\n  payload JSONB NOT NULL DEFAULT '{}',\n  ingested_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\n-- duplicates are physically impossible:\nCREATE UNIQUE INDEX uq_candidate_stage\n  ON candidate_stage_events (candidate_email, stage, occurred_at);",
+  "outcome": {
+    "ru": "18 часов в неделю возвращены ресёрчерам: поиск и переговоры вместо перепечатывания. Две подписки-дубля срезаны. Клиентские отчёты перестали врать.",
+    "en": "18 hours per week returned to research work instead of retyping. Two duplicate subscriptions cut. Client reports stopped lying."
+  }
+}

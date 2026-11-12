@@ -266,6 +266,108 @@ const html = fs.readFileSync(prerendered, "utf-8");
   }
 }
 
+// --- Gate V6: proof engine — teardowns & calculator (spec 008) --------------
+{
+  const teardownsDir = path.join(repoRoot, "projects", brand, "data", "teardowns");
+  const brandShipsTeardowns = brand === "underundre"; // hasTeardowns flag source of truth
+  if (brandShipsTeardowns) {
+    // V6.1: Zod-equivalent structural validation + slug uniqueness
+    let v61ok = true, v61detail = "";
+    if (!fs.existsSync(teardownsDir)) {
+      v61ok = false;
+      v61detail = "teardowns dir missing for underundre";
+    } else {
+      const files = fs.readdirSync(teardownsDir).filter((f) => f.endsWith(".json"));
+      const slugs = new Set();
+      for (const f of files) {
+        try {
+          const c = JSON.parse(fs.readFileSync(path.join(teardownsDir, f), "utf-8"));
+          if (!c.slug || !/^[a-z0-9-]+$/.test(c.slug)) { v61ok = false; v61detail = `${f}: bad slug`; break; }
+          if (slugs.has(c.slug)) { v61ok = false; v61detail = `${f}: duplicate slug ${c.slug}`; break; }
+          slugs.add(c.slug);
+          for (const req of ["title", "summary", "symptom", "diagnosis", "outcome", "architectureComparison", "ddlSnippet", "metrics"]) {
+            if (!(req in c)) { v61ok = false; v61detail = `${f}: missing ${req}`; break; }
+          }
+          if (!v61ok) break;
+        } catch (e) {
+          v61ok = false; v61detail = `${f}: JSON parse error`;
+          break;
+        }
+      }
+      if (v61ok && files.length === 0) { v61ok = false; v61detail = "no teardown files"; }
+      if (v61ok) v61detail = `${files.length} cases, slugs unique, required fields present`;
+    }
+    gate("V6.1-teardowns-schema", v61ok, v61detail);
+
+    // V6.2: OpSec PII scan on localized human-text fields only (review F6)
+    const phoneRe = /\+[1-9]\d{8,14}/g;
+    const emailRe = /[a-zA-Z0-9._%+-]+@(?!example\.com|underundre\.com)[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
+    let piiHits = [];
+    for (const f of fs.readdirSync(teardownsDir).filter((x) => x.endsWith(".json"))) {
+      const c = JSON.parse(fs.readFileSync(path.join(teardownsDir, f), "utf-8"));
+      const textFields = [c.symptom, c.diagnosis, c.outcome, c.sovereignSolution, c.summary].map((x) => `${x?.ru || ""} ${x?.en || ""}`).join(" ");
+      for (const re of [phoneRe, emailRe]) {
+        const hits = textFields.match(re);
+        if (hits) piiHits.push(`${f}: ${hits.join(", ")}`);
+      }
+    }
+    gate("V6.2-opsec-pii", piiHits.length === 0,
+      `PII hits in teardown human-text fields: ${piiHits.length}${piiHits.length ? " -> " + piiHits.join("; ") : ""}`);
+
+    // V6.3: prerender + Article JSON-LD via data-testid contracts (review F14a)
+    const idxHtml = path.join(repoRoot, ".next", "server", "app", "teardowns.html");
+    const idxOk = fs.existsSync(idxHtml) && fs.readFileSync(idxHtml, "utf-8").includes('data-testid="teardown-card"');
+    let articleOk = true;
+    let articleDetail = "";
+    for (const f of fs.readdirSync(teardownsDir).filter((x) => x.endsWith(".json"))) {
+      const c = JSON.parse(fs.readFileSync(path.join(teardownsDir, f), "utf-8"));
+      const p = path.join(repoRoot, ".next", "server", "app", "teardowns", c.slug + ".html");
+      if (!fs.existsSync(p)) { articleOk = false; articleDetail = `${c.slug}.html missing`; break; }
+      const body = fs.readFileSync(p, "utf-8");
+      const ld = [...body.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)];
+      const hasArticle = ld.some((m) => {
+        try { return JSON.parse(m[1].replace(/\u003c/g, "<"))["@type"] === "Article"; }
+        catch { return false; }
+      });
+      if (!hasArticle) { articleOk = false; articleDetail = `${c.slug}: Article JSON-LD missing`; break; }
+    }
+    gate("V6.3-routes", idxOk && articleOk, `index ${idxOk ? "ok" : "missing cards"}; article JSON-LD: ${articleOk ? "ok" : articleDetail}`);
+
+    // V6.5: calculator math bounds (review F8) — verify constants in source
+    const mathSrc = fs.readFileSync(path.join(repoRoot, "lib", "calculator-math.ts"), "utf-8");
+    const boundsOk =
+      mathSrc.includes("min: 1, max: 500") &&
+      mathSrc.includes("min: 1, max: 80") &&
+      mathSrc.includes("min: 15, max: 250") &&
+      mathSrc.includes("function clamp(");
+    const calcHtml = path.join(repoRoot, ".next", "server", "app", "calculator.html");
+    const calcPrerendered = fs.existsSync(calcHtml) && fs.readFileSync(calcHtml, "utf-8").includes('data-testid="tdabc-calculator"');
+    gate("V6.5-calculator-bounds", boundsOk && calcPrerendered,
+      `bounds clamping: ${boundsOk}; /calculator prerendered: ${calcPrerendered}`);
+  } else {
+    // V6.4: brand isolation — non-bureau brands must not ship bureau teardowns
+    const buildsDir = path.join(repoRoot, ".next", "server", "app", "teardowns");
+    const leakFiles = [];
+    if (fs.existsSync(buildsDir)) {
+      const collect = (dir) => {
+        for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+          const full = path.join(dir, e.name);
+          if (e.isDirectory()) collect(full);
+          else if (e.name.endsWith(".html")) {
+            const body = fs.readFileSync(full, "utf-8");
+            if (body.includes("/teardowns/") && body.includes("franchise") === false && /ats-recruiting|whatsapp-retail|field-service/.test(body)) {
+              leakFiles.push(path.relative(repoRoot, full));
+            }
+          }
+        }
+      };
+      collect(buildsDir);
+    }
+    gate("V6.4-brand-isolation", leakFiles.length === 0,
+      `bureau teardown leakage into ${brand} build: ${leakFiles.length} files`);
+  }
+}
+
 // --- Report ----------------------------------------------------------------
 const failed = results.filter((r) => !r.ok);
 console.log(`\nverify-gates: ${results.length - failed.length}/${results.length} gates passed (brand: ${brand})`);

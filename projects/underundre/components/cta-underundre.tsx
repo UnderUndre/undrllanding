@@ -2,6 +2,7 @@
 
 import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import { referralMetadata } from "@/lib/referral";
+import { consumeBridge, type CalculatorTelemetry } from "@/components/calculator/tdabc-calculator";
 import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
 import { getContactChannels } from "@/lib/social-links";
@@ -66,6 +67,28 @@ export default function CtaUnderundre() {
   const [telemetry, setTelemetry] = useState<TelemetryType>("csv_logs");
   const [routineHours, setRoutineHours] = useState<RoutineHoursType>("5-15");
 
+  // Spec 008 FR-002 (review F3): hydrate calculator bridge from sessionStorage
+  // (cross-route /calculator -> /#contact) and listen for in-page apply events.
+  const calcMetaRef = useRef<Partial<CalculatorTelemetry>>({});
+  useEffect(() => {
+    const applyTelemetry = (t: CalculatorTelemetry) => {
+      calcMetaRef.current = t;
+      const hours = Number(t.routineHoursPerWeek);
+      if (Number.isFinite(hours)) {
+        setRoutineHours(hours < 5 ? "under_5" : hours <= 15 ? "5-15" : hours <= 30 ? "15-30" : "over_30");
+      }
+      const team = Number(t.teamSize);
+      if (Number.isFinite(team)) {
+        setTeamSize(team <= 3 ? "1-3" : team <= 10 ? "4-10" : team <= 25 ? "11-25" : "25+");
+      }
+    };
+    const bridged = consumeBridge();
+    if (bridged) applyTelemetry(bridged);
+    const onApply = (e: Event) => applyTelemetry((e as CustomEvent<CalculatorTelemetry>).detail);
+    window.addEventListener("undr:calculator-apply", onApply);
+    return () => window.removeEventListener("undr:calculator-apply", onApply);
+  }, []);
+
   // Spec 005 FR-017: no setState after unmount — abort the in-flight fetch.
   const abortRef = useRef<AbortController | null>(null);
   useEffect(() => () => abortRef.current?.abort(), []);
@@ -127,6 +150,7 @@ export default function CtaUnderundre() {
       message: structuredMessage,
       metadata: {
         ...referralMetadata(), // spec 007 FR-002: absent when no referral stored
+        ...calcMetaRef.current, // spec 008 FR-002: calculator telemetry (absent when unused)
         role,
         symptom,
         teamSize,

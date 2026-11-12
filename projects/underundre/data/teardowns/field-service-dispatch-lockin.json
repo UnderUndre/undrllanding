@@ -1,0 +1,120 @@
+{
+  "slug": "field-service-dispatch-lockin",
+  "basis": "audit",
+  "title": {
+    "ru": "Кабала диспетчерской SaaS: выездной сервис платит за каждое место и каждый клик",
+    "en": "Field-service dispatch lock-in: every seat and every click billed"
+  },
+  "publishedAt": "2026-11-12",
+  "industry": {
+    "ru": "Выездной сервис (обслуживание оборудования)",
+    "en": "Field service (equipment maintenance)"
+  },
+  "teamScale": "~40 выездных инженеров + диспетчерская",
+  "summary": {
+    "ru": "Компания платила за диспетчерскую SaaS-платформу по счётчику: места, заявки, SMS-уведомления, интеграции. Данные о клиентах были заперты внутри. Аудит показал $27k/год чистого SaaS-налога и составил план миграции на суверенный стек без лицензионных поборов.",
+    "en": "The company paid a dispatch SaaS platform by the meter: seats, tickets, SMS notifications, integrations. Customer data was locked inside. The audit measured a clean $27k/yr SaaS tax and drafted a migration plan to a sovereign stack with zero license fees."
+  },
+  "metrics": [
+    {
+      "label": { "ru": "SaaS-налог в год", "en": "Annual SaaS tax" },
+      "value": "$27,000/yr",
+      "impact": "loss"
+    },
+    {
+      "label": { "ru": "Экономия после миграции", "en": "Savings after migration" },
+      "value": "$24,600/yr",
+      "impact": "saved"
+    },
+    {
+      "label": { "ru": "Простои диспетчерской", "en": "Dispatch downtime" },
+      "value": "0 during cutover",
+      "impact": "saved"
+    }
+  ],
+  "symptom": {
+    "ru": "Каждый новый инженер — +$79/мес. Каждый SMS-пейджинг — по тарифу. Выгрузить полную историю заявок платформа позволяла только в урезанном CSV без вложений. Расторжение контракта означало потерю истории.",
+    "en": "Every new engineer cost +$79/mo. Every SMS page was metered. Exporting full ticket history was only possible as a stripped CSV without attachments. Leaving the contract meant losing the history."
+  },
+  "measuredLeakAnnualUsd": 27000,
+  "measuredLaborHoursPerWeek": 6,
+  "diagnosis": {
+    "ru": "Вендорский lock-in в чистом виде: данные структурно принадлежали платформе, а тариф рос быстрее команды. Диспетчеры вдобавок вели теневую таблицу в Excel для заявок, которые платформа не умела представлять.",
+    "en": "Textbook vendor lock-in: the data structurally belonged to the platform, and pricing grew faster than the team. Dispatchers also kept a shadow spreadsheet for tickets the platform could not represent."
+  },
+  "architectureComparison": {
+    "fragileStack": {
+      "title": { "ru": "Тарифная сетка вендора", "en": "Vendor metering" },
+      "tools": ["Dispatch SaaS ($79/seat)", "SMS add-on", "API add-on", "Shadow Excel"],
+      "totalMonthlyCostUsd": 3820,
+      "failureProbability": "Pricing risk — metered growth, exit penalty",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": { "ru": "Заявка в платформе", "en": "Ticket in platform" },
+          "description": { "ru": "Диспетчер заводит заявку в чужом интерфейсе с чужими правилами", "en": "Dispatcher creates tickets in someone else's UI with someone else's rules" },
+          "tool": "Dispatch SaaS",
+          "latency": "2–5 min",
+          "costPerMo": 3160
+        },
+        {
+          "stepNumber": 2,
+          "title": { "ru": "Пейджинг инженера", "en": "Engineer paging" },
+          "description": { "ru": "SMS-уведомления тарифицируются поштучно", "en": "SMS notifications billed per message" },
+          "tool": "SMS add-on",
+          "latency": "1–3 min",
+          "costPerMo": 240,
+          "failureMode": { "ru": "Сбой шлюза вендора = тишина", "en": "Vendor gateway outage = silence" }
+        },
+        {
+          "stepNumber": 3,
+          "title": { "ru": "Теневой Excel", "en": "Shadow spreadsheet" },
+          "description": { "ru": "Заявки, которые платформа не представляет, живут в Excel параллельно", "en": "Tickets the platform cannot represent live in a parallel Excel" },
+          "tool": "Excel",
+          "latency": "manual",
+          "costPerMo": 0
+        }
+      ]
+    },
+    "sovereignStack": {
+      "title": { "ru": "Суверенный стек после миграции", "en": "Sovereign stack after migration" },
+      "tools": ["Self-hosted dispatch (PostgreSQL + Next.js)", "Telegram bot paging", "Full data ownership"],
+      "totalMonthlyCostUsd": 195,
+      "failureProbability": "Near zero — own infrastructure, own backups",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "title": { "ru": "Своя диспетчерская", "en": "Own dispatch" },
+          "description": { "ru": "Схема заявок спроектирована под реальный процесс, а не под тарифную сетку вендора", "en": "The ticket schema is designed around the real process, not the vendor's price list" },
+          "tool": "PostgreSQL + Next.js",
+          "latency": "<1 min",
+          "costPerMo": 145
+        },
+        {
+          "stepNumber": 2,
+          "title": { "ru": "Пейджинг через Telegram", "en": "Telegram paging" },
+          "description": { "ru": "Уведомления через бота: нулевая маржинальная стоимость сообщения", "en": "Notifications via bot: zero marginal cost per message" },
+          "tool": "Telegram bot",
+          "latency": "<5 s",
+          "costPerMo": 0
+        },
+        {
+          "stepNumber": 3,
+          "title": { "ru": "Полное владение данными", "en": "Full data ownership" },
+          "description": { "ru": "История, вложения и бэкапы — на своём сервере, выгрузка не нужна", "en": "History, attachments, and backups on your own server — no export needed" },
+          "tool": "Backups",
+          "latency": "continuous"
+        }
+      ]
+    }
+  },
+  "sovereignSolution": {
+    "ru": "Спроектировали и развернули собственную диспетчерскую: PostgreSQL со схемой под реальный процесс, веб-интерфейс для диспетчеров, Telegram-бот для пейджинга инженеров. Историю перенесли целиком, включая вложения; двойной ввод в теневой Excel закрыли за первую неделю.",
+    "en": "We designed and deployed an own dispatch system: PostgreSQL schema around the real process, a web UI for dispatchers, a Telegram bot for engineer paging. History migrated in full, attachments included; the shadow-Excel double entry was retired within the first week."
+  },
+  "ddlSnippet": "CREATE TABLE work_orders (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  site_id INT NOT NULL REFERENCES sites(id),\n  assigned_engineer INT REFERENCES engineers(id),\n  status TEXT NOT NULL DEFAULT 'dispatched',\n  priority INT NOT NULL CHECK (priority BETWEEN 1 AND 5),\n  opened_at TIMESTAMPTZ NOT NULL DEFAULT now()\n);\nCREATE TABLE work_order_events (\n  order_id UUID NOT NULL REFERENCES work_orders(id),\n  event TEXT NOT NULL,\n  actor TEXT NOT NULL,\n  at TIMESTAMPTZ NOT NULL DEFAULT now()\n); -- full audit trail, owned by you",
+  "outcome": {
+    "ru": "SaaS-налог срезан с $27k до $2.3k в год (экономия $24.6k). Диспетчеры перестали вести теневой учёт. Растущий штат больше не означает растущий счёт за места.",
+    "en": "SaaS tax cut from $27k to $2.3k/yr ($24.6k saved). Dispatchers dropped the shadow ledger. A growing headcount no longer means a growing seat bill."
+  }
+}
