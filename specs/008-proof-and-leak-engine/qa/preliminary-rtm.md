@@ -13,7 +13,7 @@
 | **FR-005** | FR | Статические страницы кейсов `/teardowns/[slug]` | 4 | 3 | 12 | Dynamic Route `generateStaticParams`, 404 Error State | Automated Route & 404 Test |
 | **FR-006** | FR | Zod-схема кейса (`TeardownSchema`) с билингвальностью | 5 | 3 | 15 | Negative Contract Testing, Schema Fuzzing | Unit Test (`tests/unit/teardown-schema.test.ts`) |
 | **FR-007** | FR | Интерактивный инспектор архитектуры (SaaS vs FOSS) | 3 | 2 | 6 | Visual Interaction Smoke, Mobile Responsive Test | Manual QA + Component Test |
-| **FR-008** | FR | Расширенная телеметрия лида (`sourceComponent`, `leak`) | 4 | 2 | 8 | Payload Contract Validation with `GenericLeadSubmissionSchema` | Unit Test (`tests/unit/lead-metadata.test.ts`) |
+| **FR-008** | FR | Расширенная телеметрия лида (`sourceComponent`, `leak`) | 4 | 2 | 8 | Payload Contract Validation with `GenericLeadSubmissionSchema` | Unit Test (`tests/unit/lead-metadata.test.ts` via T004) |
 | **FR-009** | FR | Изоляция брендов (404/пропуск для брендов без кейсов) | 4 | 3 | 12 | Cross-Brand Build Isolation, Boundary Verification | Automated CI Gate (`verify-gates.mjs`) |
 | **FR-010** | FR | `Article` + `BreadcrumbList` JSON-LD и каноникалы | 4 | 2 | 8 | Schema.org Syntax Validation, `<`-escape Assertion | Unit Test + Gate V6 |
 | **FR-011** | FR | 3 канонических де-анонимизированных кейса | 4 | 2 | 8 | Content Integrity Check, OpSec Leakage Scan | Automated CI Gate V6 |

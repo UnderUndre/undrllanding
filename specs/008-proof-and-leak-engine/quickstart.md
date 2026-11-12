@@ -25,13 +25,19 @@ pnpm install
    - Manual Hours: `20 hrs/week`
    - Select tools: `Salesforce` + `Zapier`
 4. Verify dynamic recalculation:
-   - Annual Labor Leak: `$18,200/yr`
+   - Annual Physical Waste: `15,600 hrs/yr`
+   - Annual Labor Leak Projection: `$546,000/yr` (at $35/h user-supplied rate)
    - SaaS Seat Tax: `$36,900/yr`
-   - Total Friction Tax: `$55,100/yr`
+   - Total Friction Tax: `$582,900/yr`
 5. Click **"Apply to Audit Brief"** (or **"Book Audit with these Metrics"**):
-   - Page smoothly scrolls to `#contact`.
+   - System transfers state and smoothly navigates to `/#contact`.
    - Contact form fields reflect routine hours and team size.
-   - Submitting the form transmits `metadata.sourceComponent = "calculator"` and `metadata.totalLeakUsd = "55100"`.
+   - Submitting the form transmits canonical telemetry:
+     `metadata.sourceComponent = "calculator"`,
+     `metadata.teamSize = "15"`,
+     `metadata.routineHoursPerWeek = "20"`,
+     `metadata.totalHoursPerYear = "15600"`,
+     `metadata.totalLeakUsd = "582900"`.
 
 ---
 
@@ -57,7 +63,7 @@ pnpm verify --brand underundre
 # -> Expect all gates passed (V1..V6)
 
 # Test undreading brand isolation
-pnpm exec cross-env NEXT_PUBLIC_PROJECT_NAME=undreading next build
+pnpm build:undreading
 pnpm verify --brand undreading
 # -> Expect 404 / no leaks for teardowns
 ```

@@ -99,3 +99,24 @@ low_count: 3
 ```
 
 **Verdict is PASS**. Zero CRITICAL, zero HIGH, zero MEDIUM findings. The specification, technical plan, data contracts, and task breakdown are fully consistent and ready for review/implementation.
+
+
+---
+
+## Remediation Log (External Review zcode.md Resolutions — 2026-11-12)
+
+All 16 findings from external review `zcode.md` (0 CRITICAL, 4 HIGH, 6 MEDIUM, 6 LOW) have been systematically resolved:
+
+- **F1 (HIGH — Math & Formula Contradiction)**: Unified formula semantics to per-person weekly hours. Recomputed AC-1 defaults ($91,000 labor waste + $13,740 SaaS bloat = $104,740 total friction tax) and quickstart §2 ($546,000 labor waste + $36,900 SaaS bloat = $582,900 total). Defined compact formatting for numbers >= $1M.
+- **F2 (HIGH — Guessing Ban v20.2a Reconciliation)**: Explicitly reconciled with Business Plan v20.2a/v20.3 Mandate 5. Established physical manual hours (`totalHoursPerYear`) as primary invariant odometer; dollar values are user-supplied rate projections; teardown figures are bound to audit-verified records.
+- **F3 (HIGH — Standalone `/calculator` to `/#contact` Handoff)**: Designed cross-route state bridge via `sessionStorage` (`undr.calculator_bridge`) + `router.push('/#contact')` with form hydration on mount. Preserves 007 referral codes. Fallback uses plain `<a href="/#contact">`.
+- **F4 (HIGH — Canonical Metadata Key Set)**: Froze unified canonical schema in `data-model.md` §3 (`sourceComponent`, `targetWorkflow`, `teamSize`, `routineHoursPerWeek`, `totalHoursPerYear`, `annualLaborLeakUsd`, `saasBloatUsd`, `totalLeakUsd`, `referral`). Realigned all specs, tasks, and audit matrices.
+- **F5 (MEDIUM — Content Provenance & Voice)**: Bound T006 directly to delivered audit corpus (`clients/` folder & `content-pack.md`). Enforced Principle XV first-person voice rules. Added `basis: "audit" | "composite"` attribute.
+- **F6 (MEDIUM — OpSec Phone Regex)**: Refined V6.2 scan to check localized human-readable text fields with international regex `\+[1-9]\d{8,14}`, preventing false-positive matches on code, ports, or metric integers.
+- **F7 (MEDIUM — Bilingual Copy i18n)**: Added typed `calculator` and `inspector` copy interfaces to `projects/underundre/locales.ts` for RU and EN.
+- **F8 (MEDIUM — Gate V6 Calculator Bounds)**: Added Check V6.5 to `contracts/verify-gates-v6.md` and T010 asserting deterministic input clamping.
+- **F9 (MEDIUM — Lead Metadata Test)**: Added `tests/unit/lead-metadata.test.ts` into T004 to test metadata construction against `GenericLeadSubmissionSchema`.
+- **F10 (MEDIUM — Git Stage Tags)**: Synchronized all stage tags in both `undrllanding` and `repos`.
+- **F11–F16 (LOW — Typo, Count, Script Reuse, Robustness, Clarity)**: Fixed FR-011 directory path, updated gate count to 20 in T012, switched to `pnpm build:undreading`, added `data-testid` contracts, reworded to "sanitized teardowns", and date-stamped SaaS pricing constants.
+
+**Effective Status after Remediation**: **PASS** (0 open CRITICAL / 0 open HIGH / 0 open MEDIUM).

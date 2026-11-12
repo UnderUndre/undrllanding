@@ -6,7 +6,7 @@
 **Status**: Clarified (Ready for Plan & Tasks)  
 **Parent Features**: `specs/005-code-review-fixes` (Duplex Intake + Metadata Pipeline), `specs/006-seo-geo-foundation` (Canonical/Sitemap/JSON-LD), `specs/007-referral-program` (Attribution & Incentives)  
 **Input Directive**: Synthesize all 3 brainstorm vectors into a single conversion-focused proof engine:
-1. Public Sanitized Teardowns (`/teardowns` and `/teardowns/[slug]`) showing forensic step-by-step autopsies of real client SaaS workarounds.
+1. Public Sanitized Teardowns (`/teardowns` and `/teardowns/[slug]`) showing fully readable, ungated forensic step-by-step autopsies of real client SaaS workarounds.
 2. Self-Serve TDABC Leak Calculator (`/calculator` and homepage interactive widget) that quantifies annual financial waste and pipes it into the lead intake metadata.
 3. Zero-dependency Visual Architecture Inspector contrasting fragile SaaS webhook chains with sovereign schema-first FOSS systems.
 
@@ -20,6 +20,14 @@ Currently, the landing provides philosophical arguments (Manifesto §1–§7) an
 1. **Tangible Forensic Precedents**: No public view of actual delivered audits showing what a $350 TDABC audit inspects and discovers.
 2. **Instant Self-Quantification**: Prospects cannot calculate their own operational burn before engaging in a dialogue.
 3. **Concrete Architecture Contrast**: No visual, interactive demonstration of why custom code or self-hosted FOSS is more resilient than a 7-tool Zapier/Make/Airtable patchwork.
+
+
+### Epistemic Invariant: Guessing Ban Reconciliation (Mandate 5 v20.2a)
+UnderUndre's business plan v20.2a/v20.3 strictly bans fabricating monetary estimates without verified payroll records (*«Оценка в деньгах без подтверждённой ведомости ФОТ — галлюцинация»*).
+This feature reconciles with Mandate 5 via three strict principles:
+1. **Physical Hours Odometer as Primary Invariant**: The primary truth metric displayed and transmitted into telemetry is physical manual hours wasted (hours/year and hours/week), matching the Thank-You odometer.
+2. **User-Supplied Rate Projection**: Monetary friction figures ($/yr) are strictly calculated from user-entered blended hourly rates, transparently framed as user-supplied cost projections rather than a site-asserted diagnosis.
+3. **Audit-Verified Teardowns**: Monetary figures in case studies are derived directly from delivered historical audits with verified client payroll and subscription data.
 
 This feature resolves all three friction points without adding backend complexity or external database dependencies, preserving the multi-brand architecture and strict performance budgets (LCP ≤ 1.5s, static prerender).
 
@@ -38,8 +46,8 @@ so that I can see an instant, deterministic dollar calculation of my annual oper
 **Independent Test**: Navigate to `/calculator` (or homepage calculator widget), adjust team size to 15, manual hours to 20h/week, select 3 SaaS tools. Verify that calculated annual loss matches the TDABC formula, and clicking "Book Audit with these Metrics" scrolls to `#contact` with form state populated and payload carrying `metadata.odometer` & `metadata.leakCalculation`.
 
 **Acceptance Scenarios**:
-1. **Given** default parameters (Team: 5, Routine: 10h/wk, Hourly blended rate: $35/h, SaaS tools: 3), **When** rendered, **Then** annual labor leak displays $18,200/yr, SaaS bloat displays $4,320/yr, and total friction tax displays $22,520/yr.
-2. **Given** any combination of slider inputs, **When** the user clicks "Export to Audit Brief", **Then** the page smoothly navigates to `#contact`, pre-selects corresponding routine hour bands, and sets internal form metadata `{ teamSize, manualHours, annualLaborLeakUsd, saasBloatUsd, totalLeakUsd }`.
+1. **Given** default parameters (Team: 5, Routine: 10h/wk per person, Hourly blended rate: $35/h, Default SaaS tools: Salesforce + Zapier + Airtable at $229/seat/mo), **When** rendered, **Then** annual physical labor leak displays 2,600 hrs/yr ($91,000/yr labor waste projection), SaaS seat bloat displays $13,740/yr, and total friction tax displays $104,740/yr (with compact formatting for large numbers).
+2. **Given** any combination of slider inputs on `/calculator` or the homepage, **When** the user clicks "Export to Audit Brief", **Then** the system transfers state (via sessionStorage + smooth navigation to `/#contact`), pre-selects corresponding routine hour bands in the form, and sets canonical form metadata `{ sourceComponent: "calculator", teamSize, routineHoursPerWeek, totalHoursPerYear, annualLaborLeakUsd, saasBloatUsd, totalLeakUsd }`.
 3. **Given** a visitor with an active referral code (`?ref=partner`), **When** submitting a brief from the calculator, **Then** `metadata.referral` is preserved alongside calculator telemetry.
 
 ---
@@ -47,7 +55,7 @@ so that I can see an instant, deterministic dollar calculation of my annual oper
 ### User Story 2 — Public Forensic Teardown Vault (Priority: P1)
 
 As a B2B buyer or cold outreach recipient,  
-I want to read deep, de-anonymized step-by-step case teardowns of real operational failures,  
+I want to read deep, fully readable, ungated sanitized step-by-step case teardowns of real operational failures,  
 so that I can verify the auditor's diagnostic rigor and recognize my company's exact failure modes.
 
 **Why this priority**: Serves as the Level 1/Level 2 proof artifact cited in cold outreach emails and social posts. Eliminates "who are you and why should I pay $350" skepticism.
@@ -95,6 +103,7 @@ so that existing brands remain isolated and an automated gate in `verify-gates.m
 ## 3. Edge Cases & Boundary Conditions
 
 - **Negative or extreme calculator inputs**: Handled via strict slider/input boundaries (Team: 1–500, Hours: 1–80h/wk, Hourly rate: $15–$250/h). Formulas clip values deterministically to avoid negative or NaN displays.
+- **Cross-route `/calculator` to `/#contact` handoff**: Navigating from standalone `/calculator` to `#contact` writes parameters to `sessionStorage` (`undr.calculator_bridge`) and performs `router.push('/#contact')`. On mount, `cta-underundre` hydrates these fields. Fallback without JS uses standard `<a href="/#contact">`.
 - **Teardown slug not found**: `/teardowns/[invalid-slug]` invokes Next.js `notFound()` rendering clean 404.
 - **Calculated leak exported to form while JS disabled**: Handled gracefully via HTML hash anchor `#contact` and default select options.
 - **OpSec PII leakage in teardowns**: Teardowns use fictionalized company names, masked domains (`client-corp.internal`), and normalized monetary figures (verified by automated regex checks in Gate V6).
@@ -105,11 +114,13 @@ so that existing brands remain isolated and an automated gate in `verify-gates.m
 
 ### Functional Requirements
 
-- **FR-001**: System MUST provide an interactive TDABC Leak Calculator component (`components/calculator/tdabc-calculator.tsx`) evaluating:
-  $$\text{LaborWaste} = \text{TeamSize} \times \text{WeeklyHours} \times 52 \times \text{HourlyRate}$$
-  $$\text{SaaSSeatTax} = \text{TeamSize} \times \text{SelectedToolSeatCost} \times 12$$
+- **FR-001**: System MUST provide an interactive TDABC Leak Calculator component (`components/calculator/tdabc-calculator.tsx`) evaluating physical hours and user-projected financial waste:
+  $$\text{LaborHoursYear} = \text{TeamSize} \times \text{WeeklyHoursPerPerson} \times 52$$
+  $$\text{LaborWaste} = \text{LaborHoursYear} \times \text{HourlyRate}$$
+  $$\text{SaaSSeatTax} = \text{TeamSize} \times \left(\sum \text{ToolMonthlySeatCosts}\right) \times 12$$
   $$\text{TotalFriction} = \text{LaborWaste} + \text{SaaSSeatTax}$$
-- **FR-002**: Calculator MUST provide an "Apply to Audit Brief" action that scrolls to `#contact` and populates the lead intake state with `{ teamSize, weeklyHours, totalLeakUsd, primarySymptom }`.
+  Values $\ge \$1,000,000$ MUST use compact number formatting ($1.2M).
+- **FR-002**: Calculator MUST provide an "Apply to Audit Brief" action that navigates/scrolls to `#contact` and populates the lead intake state with canonical keys: `{ sourceComponent: "calculator", teamSize, routineHoursPerWeek, totalHoursPerYear, annualLaborLeakUsd, saasBloatUsd, totalLeakUsd }`.
 - **FR-003**: System MUST provide both an embedded interactive section on the bureau homepage (`projects/underundre/config.tsx` placed between Loom demo and Pricing) and a dedicated standalone route `/calculator` sharing `components/calculator/tdabc-calculator.tsx`.
 - **FR-004**: System MUST provide a Teardown Vault index route `/teardowns` listing all published forensic case studies loaded dynamically from `projects/<brand>/data/teardowns/*.json` via a typed loader.
 - **FR-005**: System MUST provide statically pre-rendered dynamic routes `/teardowns/[slug]` loaded from individual `projects/<brand>/data/teardowns/[slug].json` files, rendering:
@@ -121,10 +132,10 @@ so that existing brands remain isolated and an automated gate in `verify-gates.m
   - Delivered ROI & outcome metrics
 - **FR-006**: Teardown data schema (`lib/schemas/teardown-schema.ts`) MUST be validated with Zod at build time, ensuring bilingual support (`{ ru: string; en: string }`) for all titles, executive summaries, and body sections.
 - **FR-007**: System MUST provide a zero-runtime Visual Architecture Inspector component (`components/architecture/visual-contract-inspector.tsx`) providing side-by-side comparative inspection between SaaS patchwork and Sovereign FOSS architecture.
-- **FR-008**: Lead form submissions originating from the calculator or teardowns MUST pass extended telemetry: `metadata.sourceComponent` (`"calculator"` | `"teardown"`), `metadata.estimatedLeakUsd`, and `metadata.targetWorkflow`.
+- **FR-008**: Lead form submissions originating from the calculator or teardowns MUST pass canonical telemetry conforming to the unified metadata contract: `metadata.sourceComponent`, `metadata.teamSize`, `metadata.routineHoursPerWeek`, `metadata.totalHoursPerYear`, `metadata.annualLaborLeakUsd`, `metadata.saasBloatUsd`, `metadata.totalLeakUsd`, and optional `metadata.targetWorkflow`.
 - **FR-009**: Brand isolation MUST be enforced: `/teardowns` and `/calculator` MUST check `getActiveProjectConfig().hasTeardowns` / `hasCalculator` (or render 404 if data file is absent for the brand).
 - **FR-010**: All teardown pages MUST generate valid `Article` and `BreadcrumbList` JSON-LD structured data and declare canonical URLs under `https://<domain>/teardowns/<slug>`.
-- **FR-011**: System MUST include 3 initial sanitized case studies in `projects/underundre/data/teardowns.json`:
+- **FR-011**: System MUST include 3 initial sanitized case studies in `projects/underundre/data/teardowns/` directory:
   1. `ats-recruiting-sync-leak`: B2B Recruiting/ATS manual copy-paste bottleneck ($32k/yr leak).
   2. `whatsapp-retail-order-desk`: E-commerce wholesale WhatsApp-to-Excel order capture ($41k/yr leak).
   3. `field-service-dispatch-lockin`: Field service dispatch & invoicing SaaS seat tax trap ($27k/yr leak).
@@ -162,6 +173,6 @@ so that existing brands remain isolated and an automated gate in `verify-gates.m
 
 - **SC-001**: A user can calculate their operational friction tax on `/calculator` in under 30 seconds and transfer parameters into the lead form in 1 click.
 - **SC-002**: `/teardowns` and 3 canonical case studies render as statically prerendered pages with valid canonicals, OG tags, and Article JSON-LD.
-- **SC-003**: 100% of lead submissions originating from the calculator carry structured `metadata.estimatedLeakUsd` and `metadata.odometer`.
+- **SC-003**: 100% of lead submissions originating from the calculator carry structured `metadata.totalLeakUsd` and `metadata.totalHoursPerYear`.
 - **SC-004**: CI verification pipeline passes with Gate V6 active across both brands (`underundre` and `undreading`).
 - **SC-005**: Zero bundle size regression beyond the 15 KB budget.

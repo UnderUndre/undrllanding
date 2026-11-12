@@ -71,17 +71,17 @@ export type TeardownCase = z.infer<typeof TeardownCaseSchema>;
 
 ```ts
 export interface CalculatorInputState {
-  teamSize: number;       // 1 - 500
-  weeklyHours: number;    // 1 - 80
-  hourlyRate: number;     // 15 - 250
-  selectedToolIds: string[]; // ids matching ToolDefinition
+  teamSize: number;               // 1 - 500 (default: 5)
+  weeklyHoursPerPerson: number;   // 1 - 80 (default: 10)
+  hourlyRate: number;             // 15 - 250 (default: 35)
+  selectedToolIds: string[];      // default: ["salesforce", "zapier", "airtable"]
 }
 
 export interface CalculatorComputedOutput {
-  annualLaborWasteUsd: number;
-  annualSaaSSeatTaxUsd: number;
-  totalAnnualFrictionUsd: number;
-  totalAnnualHoursWasted: number;
+  totalHoursPerYear: number;      // physical hours: teamSize * weeklyHoursPerPerson * 52
+  annualLaborWasteUsd: number;    // totalHoursPerYear * hourlyRate
+  annualSaaSSeatTaxUsd: number;   // teamSize * sum(selectedToolCosts) * 12
+  totalAnnualFrictionUsd: number; // labor + saas
 }
 ```
 
@@ -91,20 +91,21 @@ export interface CalculatorComputedOutput {
 
 Lead submission payload (`GenericLeadSubmissionSchema`) carries these optional keys when originating from the calculator or teardowns:
 
-```json
-{
-  "metadata": {
-    "sourceComponent": "calculator" | "teardown",
-    "targetWorkflow": "ats-recruiting-sync-leak",
-    "teamSize": "15",
-    "routineHoursPerWeek": "20",
-    "annualLaborLeakUsd": "18200",
-    "saasBloatUsd": "4320",
-    "totalLeakUsd": "22520",
-    "referral": "partner_nick"
-  }
+```ts
+export interface LeadCalculatorTelemetry {
+  sourceComponent: "calculator" | "teardown";
+  targetWorkflow?: string;        // e.g. "ats-recruiting-sync-leak"
+  teamSize: string;               // e.g. "15"
+  routineHoursPerWeek: string;    // e.g. "20" (per person)
+  totalHoursPerYear: string;      // e.g. "15600" (physical odometer invariant)
+  annualLaborLeakUsd: string;     // e.g. "546000"
+  saasBloatUsd: string;           // e.g. "36900"
+  totalLeakUsd: string;           // e.g. "582900"
+  referral?: string;              // preserved from 007
 }
 ```
+All keys are flat strings conforming to `GenericLeadSubmissionSchema` (<= 20 keys, <= 50 chars).
+The legacy `odometer` string is normalized to `${totalHoursPerYear} hrs/yr`.
 
 ---
 
@@ -119,3 +120,38 @@ export interface ProjectConfig {
   hasCalculator?: boolean;
 }
 ```
+
+
+---
+
+## 5. Entity: Brand Locale Interface Extension (`projects/underundre/locales.ts`)
+
+```ts
+export interface CalculatorCopy {
+  badge: string;
+  title: string;
+  subtitle: string;
+  teamSizeLabel: string;
+  hoursLabel: string;
+  rateLabel: string;
+  toolsLabel: string;
+  physicalWasteLabel: string;
+  laborWasteLabel: string;
+  saasTaxLabel: string;
+  totalFrictionLabel: string;
+  rateDisclaimer: string;
+  applyButton: string;
+}
+
+export interface InspectorCopy {
+  badge: string;
+  title: string;
+  subtitle: string;
+  fragileTabLabel: string;
+  sovereignTabLabel: string;
+  latencyLabel: string;
+  failureRiskLabel: string;
+  monthlyCostLabel: string;
+}
+```
+Both `CalculatorCopy` and `InspectorCopy` are added to `UnderundreCopy` and translated into `ru` and `en`.

@@ -5,7 +5,7 @@
 - **Audit Date**: 2026-11-12
 - **Auditor**: Valera (Digital Plumber Standard / Antigravity Rigor)
 - **Feature Target**: `undrllanding/specs/008-proof-and-leak-engine/spec.md`
-- **Commercial Source of Truth**: `undreplans/docs/projects/underundre/business-plan.md` v20.2b (Product 0 $350, Sprint A $3.5k)
+- **Commercial Source of Truth**: `undreplans/docs/projects/underundre/business-plan.md` v20.3 (Product 0 $350, Sprint A $3.5k)
 
 ---
 
@@ -16,7 +16,7 @@
 - **Обнаружено нарушений**: **0**
 - Все функциональные и нефункциональные требования имеют строгие численные или бинарные метрики:
   - `FR-001`: Детерминированные математические формулы TDABC для $\text{LaborWaste}$, $\text{SaaSSeatTax}$ и $\text{TotalFriction}$ с фиксированными границами инпутов (Team: 1–500, Hours: 1–80h/wk, Rate: $15–$250/h).
-  - `FR-002`, `FR-008`: Точные ключи телеметрии лида (`metadata.odometer`, `metadata.estimatedLeakUsd`, `metadata.sourceComponent`, `metadata.targetWorkflow`).
+  - `FR-002`, `FR-008`: Точные ключи телеметрии лида (`metadata.sourceComponent`, `metadata.teamSize`, `metadata.routineHoursPerWeek`, `metadata.totalHoursPerYear`, `metadata.annualLaborLeakUsd`, `metadata.saasBloatUsd`, `metadata.totalLeakUsd`, `metadata.targetWorkflow`).
   - `FR-003`, `FR-004`, `FR-005`: Строго фиксированные маршруты (`/calculator`, `/teardowns`, `/teardowns/[slug]`) со статической предгенерацией (`generateStaticParams`).
   - `FR-006`: Build-time Zod-валидация через `lib/schemas/teardown-schema.ts` с обязательной билингвальной формой `{ ru: string; en: string }`.
   - `FR-007`: Бинарный контракт сравнения (2 режима: SaaS Webhook Cascade vs Sovereign FOSS Pipeline).

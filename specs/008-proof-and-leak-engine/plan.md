@@ -95,8 +95,11 @@ specs/004-landing-template-updates/qa/baseline/index.html # REFRESH: Updated DOM
 
 ## Phase 1 Design Decisions
 
-1. **DD-1: TDABC Calculator Math Engine**: Implemented as pure TypeScript function `calculateTdabcLeak(inputs)` in `lib/calculator-math.ts` to allow 100% unit-test isolation in Vitest without React DOM mounting overhead.
-2. **DD-2: Seamless Form Scroll & State Transfer**: The calculator's "Apply to Audit Brief" button updates a client context / state store (`useCalculatorBridge`), which pre-selects the routine hours radio and injects `metadata` into `projects/underundre/components/cta-underundre.tsx` before triggering `element.scrollIntoView({ behavior: 'smooth' })`.
+1. **DD-1: TDABC Calculator Math Engine & Guessing Ban Invariant**: Implemented as pure TypeScript function `calculateTdabcLeak(inputs)` in `lib/calculator-math.ts` with 100% Vitest unit-test coverage. Reconciles with Business Plan Mandate 5 (Guessing Ban) by establishing physical work hours (`totalHoursPerYear`) as the primary invariant metric, while dollar figures are transparently projected from user-entered blended hourly rates.
+2. **DD-2: Seamless Form State Transfer & Cross-Route Bridge**: The calculator's "Apply to Audit Brief" button triggers the `calculatorBridge` module:
+   - On the homepage: directly pre-selects the routine hours radio, sets canonical metadata, and triggers `element.scrollIntoView({ behavior: 'smooth' })`.
+   - On standalone `/calculator`: writes `{ sourceComponent: "calculator", teamSize, routineHoursPerWeek, totalHoursPerYear, annualLaborLeakUsd, saasBloatUsd, totalLeakUsd }` to `sessionStorage` (`undr.calculator_bridge`) and performs `router.push('/#contact')`. `cta-underundre` hydrates these values on mount.
+   - Referral codes from 007 (`?ref=...`) are preserved intact. Fallback without JS uses standard `<a href="/#contact">`.
 3. **DD-3: Modular Case Study File System**: Case studies reside in `projects/<brand>/data/teardowns/*.json`. `loadAllTeardowns(slug)` reads and validates all JSON files in the folder. If directory is missing, returns `[]` without error (safe for `undreading`).
 4. **DD-4: Next.js 15 Static Prerendering (`generateStaticParams`)**: `app/(default)/teardowns/[slug]/page.tsx` declares `generateStaticParams()` reading all slugs from the active brand's teardowns directory at build time. Missing or unconfigured brands return `[]`, ensuring `○ Static` build behavior.
 5. **DD-5: Zero-Dependency Visual Comparison Widget**: The `VisualContractInspector` accepts `comparison: TeardownArchitectureComparison` prop. It renders a clean interactive tab/toggle with step cards, latency counters, failure probability badges, and cost counters using Tailwind v4 arbitrary values and CSS transitions.
@@ -108,5 +111,5 @@ specs/004-landing-template-updates/qa/baseline/index.html # REFRESH: Updated DOM
 ## Deployment Readiness
 
 - `pnpm validate && pnpm test && pnpm build:underundre && pnpm verify --brand underundre` green.
-- `pnpm exec cross-env NEXT_PUBLIC_PROJECT_NAME=undreading next build && pnpm verify --brand undreading` green (no 404 leaks, no cross-contamination).
+- `pnpm build:undreading && pnpm verify --brand undreading` green (no 404 leaks, no cross-contamination).
 - Gate V3 baseline updated and committed.
