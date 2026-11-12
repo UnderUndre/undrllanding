@@ -3,7 +3,7 @@
 **Feature Branch**: `feature/008-proof-and-leak-engine`  
 **Repository**: `undrllanding`  
 **Created**: 2026-11-12  
-**Status**: Draft (Clarification in progress)  
+**Status**: Clarified (Ready for Plan & Tasks)  
 **Parent Features**: `specs/005-code-review-fixes` (Duplex Intake + Metadata Pipeline), `specs/006-seo-geo-foundation` (Canonical/Sitemap/JSON-LD), `specs/007-referral-program` (Attribution & Incentives)  
 **Input Directive**: Synthesize all 3 brainstorm vectors into a single conversion-focused proof engine:
 1. Public Sanitized Teardowns (`/teardowns` and `/teardowns/[slug]`) showing forensic step-by-step autopsies of real client SaaS workarounds.
@@ -110,9 +110,9 @@ so that existing brands remain isolated and an automated gate in `verify-gates.m
   $$\text{SaaSSeatTax} = \text{TeamSize} \times \text{SelectedToolSeatCost} \times 12$$
   $$\text{TotalFriction} = \text{LaborWaste} + \text{SaaSSeatTax}$$
 - **FR-002**: Calculator MUST provide an "Apply to Audit Brief" action that scrolls to `#contact` and populates the lead intake state with `{ teamSize, weeklyHours, totalLeakUsd, primarySymptom }`.
-- **FR-003**: System MUST provide a dedicated route `/calculator` as well as an embedded section on the bureau homepage (`projects/underundre/config.tsx`).
-- **FR-004**: System MUST provide a Teardown Vault index route `/teardowns` listing all published forensic case studies from `projects/<brand>/data/teardowns.json`.
-- **FR-005**: System MUST provide dynamic static routes `/teardowns/[slug]` rendering individual case studies with:
+- **FR-003**: System MUST provide both an embedded interactive section on the bureau homepage (`projects/underundre/config.tsx` placed between Loom demo and Pricing) and a dedicated standalone route `/calculator` sharing `components/calculator/tdabc-calculator.tsx`.
+- **FR-004**: System MUST provide a Teardown Vault index route `/teardowns` listing all published forensic case studies loaded dynamically from `projects/<brand>/data/teardowns/*.json` via a typed loader.
+- **FR-005**: System MUST provide statically pre-rendered dynamic routes `/teardowns/[slug]` loaded from individual `projects/<brand>/data/teardowns/[slug].json` files, rendering:
   - Client background (sanitized sector, team scale)
   - Pre-audit symptom & operational bottleneck
   - Measured quantitative leak (hours/week + $/year)
@@ -138,7 +138,16 @@ so that existing brands remain isolated and an automated gate in `verify-gates.m
 
 ---
 
-## 5. Security & Threat Mitigation (STRIDE)
+## 5. Clarification Log (Phase 2)
+
+| # | Question | Decision / Best Judgment |
+|---|---|---|
+| Q1 | Placement of TDABC Calculator | **Both**: Embedded interactive section on homepage (`projects/underundre/config.tsx` before Pricing) AND dedicated standalone route `/calculator` sharing the same core component. |
+| Q2 | Storage format for Teardowns | **Individual JSON files**: `projects/<slug>/data/teardowns/<case-slug>.json` to ensure modularity, easy addition of new audits, and clean schema validation without monolithic file drift. |
+| Q3 | Visual Architecture Inspector placement | **Both in teardowns and homepage**: Reusable component `VisualContractInspector` renders canonical SaaS vs FOSS comparison on homepage, and case-specific contract/latency diffs in `/teardowns/[slug]`. |
+
+---
+## 6. Security & Threat Mitigation (STRIDE)
 
 - **Spoofing**: N/A (Client calculation & static content only).
 - **Tampering**: All calculator parameters passed to `metadata` are sanitized and constrained as scalar values within `GenericLeadSubmissionSchema` bounds.
@@ -149,7 +158,7 @@ so that existing brands remain isolated and an automated gate in `verify-gates.m
 
 ---
 
-## 6. Success Criteria *(mandatory)*
+## 7. Success Criteria *(mandatory)*
 
 - **SC-001**: A user can calculate their operational friction tax on `/calculator` in under 30 seconds and transfer parameters into the lead form in 1 click.
 - **SC-002**: `/teardowns` and 3 canonical case studies render as statically prerendered pages with valid canonicals, OG tags, and Article JSON-LD.

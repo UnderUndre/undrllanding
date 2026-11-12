@@ -2,7 +2,7 @@
 
 **Feature Directory**: `specs/008-proof-and-leak-engine`  
 **Date**: 2026-11-12  
-**Status**: PASSED (Phase 1 Complete, ready for Phase 2 Clarification)
+**Status**: PASSED (Phase 1 & Phase 2 Clarification Complete)
 
 ---
 
@@ -28,3 +28,10 @@
 
 - [x] **Business Plan Concordance**: Supports Product 0 ($350 SpecKit Discovery) and Sprint A ($3.5k) from `undreseller-business-plan.md` v20.x and bureau plan v20.2b.
 - [x] **No Commercial Drift**: No new SKUs, no pricing changes, purely conversion enablement. Business plan: unchanged.
+
+---
+
+## 4. Clarification Resolutions Verified
+- [x] **Q1 (Calculator placement)**: Dedicated `/calculator` + homepage section between Loom demo and Pricing.
+- [x] **Q2 (Teardowns storage)**: Modular `projects/<brand>/data/teardowns/*.json` with typed schema loader.
+- [x] **Q3 (Inspector placement)**: Reusable component rendered on homepage and embedded in teardown detail views.
