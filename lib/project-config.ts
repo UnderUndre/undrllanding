@@ -49,6 +49,14 @@ export interface LegalConfig {
   warrantyDays?: number; // default 7
 }
 
+export interface PersonaVariant {
+  id: "owner" | "ops" | "cto";
+  badge: { ru: string; en: string };
+  title: { ru: string; en: string };
+  subtitle: { ru: string; en: string };
+  ctaLabel: { ru: string; en: string };
+}
+
 export interface ProjectConfig {
   slug: string;
   name: string;
@@ -75,6 +83,10 @@ export interface ProjectConfig {
   schemaType?: "ProfessionalService" | "Organization" | "Book";
   /** Teardowns vault routes enabled (spec 008 FR-009; brands without data render 404) */
   hasTeardowns?: boolean;
+  /** Public SpecKit prompt library enabled (spec 009 FR-004; bureau program) */
+  hasPrompts?: boolean;
+  /** Hero persona variants (spec 009 FR-005; copy-only UX segments) */
+  personas?: PersonaVariant[];
   /** Standalone /calculator route enabled (spec 008 FR-009) */
   hasCalculator?: boolean;
   /** Author name for schemaType "Book" (spec 006 FR-006, publishing brands) */

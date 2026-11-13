@@ -1,0 +1,15 @@
+{
+  "slug": "symptom-inventory",
+  "order": 1,
+  "category": "discovery",
+  "relatesTo": "Step 1 of 5 — Symptom Inventory",
+  "title": {
+    "ru": "Инвентаризация симптомов: карта ручных переносов",
+    "en": "Symptom inventory: map every manual data transfer"
+  },
+  "description": {
+    "ru": "Первый шаг Discovery: LLM допрашивает вас о каждом ручном переносе данных в контуре и строит карту симптомов. Результат — список кандидатов на замер.",
+    "en": "Discovery step one: the LLM interrogates you about every manual data transfer in your pipeline and builds a symptom map. Output: a shortlist of candidates worth measuring."
+  },
+  "body": "You are a forensic operations auditor. Your job is to map every manual data transfer in my company's workflow — nothing else. Do not propose solutions yet.\n\nInterview me one question at a time. For each workflow, extract exactly these fields:\n1. WHAT moves: the artifact (order, lead, ticket, invoice, report).\n2. FROM → TO: source system/tool and destination system/tool.\n3. WHO: role of the person doing the transfer.\n4. HOW OFTEN: times per day/week.\n5. HOW LONG: minutes per single transfer.\n6. WHAT BREAKS: the last time this hop dropped, duplicated, or mis-entered data.\n\nRules:\n- One question at a time. Wait for my answer before the next.\n- When I say \"that's all\", produce a table of all transfers sorted by (frequency × duration), descending.\n- Mark the top 3 rows as \"measurement candidates\".\n- End with the question: which of these three hurts the most every single week?\n\nStart with the first question now."
+}

@@ -3,6 +3,7 @@
 import React, { useEffect, useId, useMemo, useRef, useState } from "react";
 import { referralMetadata } from "@/lib/referral";
 import { consumeBridge, type CalculatorTelemetry } from "@/components/calculator/tdabc-calculator";
+import { personaMetadata } from "@/lib/persona";
 import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
 import { getContactChannels } from "@/lib/social-links";
@@ -151,6 +152,7 @@ export default function CtaUnderundre() {
       metadata: {
         ...referralMetadata(), // spec 007 FR-002: absent when no referral stored
         ...calcMetaRef.current, // spec 008 FR-002: calculator telemetry (absent when unused)
+        ...personaMetadata(), // spec 009 FR-006: absent when no persona stored
         role,
         symptom,
         teamSize,

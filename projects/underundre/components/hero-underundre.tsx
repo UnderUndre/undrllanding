@@ -1,12 +1,31 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLang } from "@/context/lang-context";
 import { getUnderundreCopy } from "../locales";
+import { getActiveProjectConfig } from "@/lib/project-config";
+import { capturePersona, getPersona } from "@/lib/persona";
 
 export default function HeroUnderundre() {
   const { lang } = useLang();
   const t = getUnderundreCopy(lang).hero;
+
+  // Spec 009 FR-005: persona-aware hero copy. Default variant IS the current
+  // copy — byte-identity preserved when no valid ?persona is present (NFR-004).
+  const [personaId, setPersonaId] = useState<string | undefined>(undefined);
+  useEffect(() => {
+    capturePersona(); // effect-order safety: direct capture fallback
+    setPersonaId(getPersona());
+  }, []);
+  const variant = getActiveProjectConfig().personas?.find((p) => p.id === personaId);
+  const personaCopy = variant
+    ? {
+        badge: (lang === "ru" ? variant.badge.ru : variant.badge.en),
+        title: (lang === "ru" ? variant.title.ru : variant.title.en),
+        subtitle: (lang === "ru" ? variant.subtitle.ru : variant.subtitle.en),
+        ctaPrimary: (lang === "ru" ? variant.ctaLabel.ru : variant.ctaLabel.en),
+      }
+    : undefined;
 
   return (
     <section id="audit" className="relative pt-28 pb-20 bg-brand-bg text-slate-900 dark:text-purple-50 transition-colors border-b border-brand-border overflow-hidden">
@@ -14,21 +33,27 @@ export default function HeroUnderundre() {
         {/* Top Trust Badge */}
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-purple-100 dark:bg-purple-950/60 border border-purple-300 dark:border-purple-800/40 text-orange-600 dark:text-orange-400 text-xs font-semibold tracking-wide uppercase mb-8 shadow-sm">
           <span className="w-2 h-2 rounded-full bg-brand-green animate-pulse inline-block mr-1" />
-          {t.badge}
+          {personaCopy ? personaCopy.badge : t.badge}
         </div>
 
         {/* H1 Main Headline with text-balance */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-6 max-w-[680px] mx-auto leading-tight text-slate-900 dark:text-white text-balance">
-          {t.title1}{" "}
-          <span className="text-brand-orange bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-500 to-orange-600">
-            {t.titleAccent}
-          </span>{" "}
-          {t.title2}
+          {personaCopy ? (
+            personaCopy.title
+          ) : (
+            <>
+              {t.title1}{" "}
+              <span className="text-brand-orange bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-amber-500 to-orange-600">
+                {t.titleAccent}
+              </span>{" "}
+              {t.title2}
+            </>
+          )}
         </h1>
 
         {/* Subtitle */}
         <p className="text-base sm:text-lg text-slate-600 dark:text-purple-200/80 max-w-[680px] mx-auto mb-10 leading-relaxed text-pretty">
-          {t.subtitle}
+          {personaCopy ? personaCopy.subtitle : t.subtitle}
         </p>
 
         {/* CTA Buttons with active state physical feedback & focus rings */}
@@ -37,7 +62,7 @@ export default function HeroUnderundre() {
             href="#contact"
             className="w-full sm:w-auto px-6 py-3 bg-brand-orange hover:bg-orange-600 active:scale-[0.98] text-white font-bold rounded-lg shadow-lg shadow-orange-950/30 transition-all text-sm text-center focus-visible:outline-2 focus-visible:outline-orange-400"
           >
-            {t.ctaPrimary}
+            {personaCopy ? personaCopy.ctaPrimary : t.ctaPrimary}
           </a>
         <a
           href="#stack"

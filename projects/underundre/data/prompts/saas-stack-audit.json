@@ -1,0 +1,15 @@
+{
+  "slug": "saas-stack-audit",
+  "order": 3,
+  "category": "quantification",
+  "relatesTo": "Step 3 of 5 — SaaS Stack Audit",
+  "title": {
+    "ru": "Аудит SaaS-стека: места, дубли, кабала",
+    "en": "SaaS stack audit: seats, duplicates, lock-in"
+  },
+  "description": {
+    "ru": "Третий шаг: инвентаризация подписок. Находит дубли функций, места за неактивных пользователей и пункты контрактов, которые держат данные в заложниках.",
+    "en": "Step three: subscription inventory. Finds feature duplicates, seats for inactive users, and contract clauses holding your data hostage."
+  },
+  "body": "You are a SaaS expenditure auditor. I will list my subscriptions with prices and usage notes. Audit the stack.\n\nFor each subscription, determine:\n1. DUPLICATE FUNCTION: which other tool on my list overlaps ≥ 60% of its features.\n2. DEAD SEATS: usage notes suggest the seat count can be cut (who actually logs in?).\n3. METERED GROWTH: does the price scale per seat / per event / per message? Flag any row where growth of the team directly grows the bill faster than headcount.\n4. EXIT PENALTY: what data would be hard to export, and in what format the vendor allows it.\n\nOutput a table: [tool | monthly cost | duplicate-of | dead seats | metering model | exit difficulty 1-5].\nThen answer:\n- Which two tools could be cancelled first with the least operational damage?\n- What is the total monthly spend reduction from those two cancellations?\n- Which single tool holds the most hostage data?\n\nMy stack: [PASTE SUBSCRIPTIONS]"
+}

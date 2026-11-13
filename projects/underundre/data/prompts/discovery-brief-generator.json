@@ -1,0 +1,15 @@
+{
+  "slug": "discovery-brief-generator",
+  "order": 5,
+  "category": "brief",
+  "relatesTo": "Step 5 of 5 — Discovery Brief Generator",
+  "title": {
+    "ru": "Генератор брифа: собери всё в одностраничник для аудита",
+    "en": "Brief generator: compress everything into a one-page audit brief"
+  },
+  "description": {
+    "ru": "Финальный шаг: сжать результаты шагов 1–4 в бриф, с которым приходит инженер. Это тот же формат брифа, с которым я беру аудит за $350 — вы можете принести его готовым.",
+    "en": "Final step: compress steps 1–4 into the brief an engineer works from. This is the same brief format I take into a $350 audit — you can arrive with it already written."
+  },
+  "body": "You are a technical brief writer. I will give you the outputs of my self-audit: a symptom table, a TDABC friction calculation, a SaaS stack audit, and a sovereign architecture sketch. Compress them into a one-page brief for a contracted engineer.\n\nOutput structure (markdown, in this order):\n1. ## BLUF — three sentences: what breaks, what it costs in hours/year, what the sovereign replacement is.\n2. ## MEASURED LEAK — the hours table with TOTAL_HOURS and the dollar projection labeled as rate-based.\n3. ## FAILURE AUTOPSY — top 3 failure modes, each with the business consequence.\n4. ## PROPOSED CONTRACTS — the entity list and the two most critical constraints from the DDL.\n5. ## WHAT I WANT PRICED — exactly what an engineer should quote (scope, not solution).\n\nRules:\n- Maximum 400 words. No adjectives without numbers.\n- Hours are facts; dollar projections must be labeled with the rate used.\n- Every claim must trace to one of my four inputs — do not invent anything.\n- End with 3 questions the engineer must answer before quoting.\n\nMy four inputs: [PASTE ALL FOUR OUTPUTS]"
+}

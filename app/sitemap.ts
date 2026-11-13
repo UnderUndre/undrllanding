@@ -12,6 +12,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/manifest`, changeFrequency: "monthly", priority: 0.7 },
     { url: `${base}/teardowns`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/calculator`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${base}/prompts`, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${base}/waitlist`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${base}/privacy`, changeFrequency: "yearly", priority: 0.3 },
     { url: `${base}/terms`, changeFrequency: "yearly", priority: 0.3 },
   ];
@@ -21,11 +23,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entries.splice(entries.findIndex((e) => e.url === `${base}/manifest`), 1);
   }
   // Spec 008 FR-009: bureau-only routes appear only for participating brands.
-  if (!config.hasTeardowns) {
-    entries.splice(entries.findIndex((e) => e.url === `${base}/teardowns`), 1);
-  }
-  if (!config.hasCalculator) {
-    entries.splice(entries.findIndex((e) => e.url === `${base}/calculator`), 1);
-  }
+  const drop = (path: string) => {
+    const i = entries.findIndex((e) => e.url === `${base}${path}`);
+    if (i >= 0) entries.splice(i, 1);
+  };
+  if (!config.hasTeardowns) drop("/teardowns");
+  if (!config.hasCalculator) drop("/calculator");
+  // Spec 009 FR-010: prompts bureau-only; waitlist undreading-only.
+  if (!config.hasPrompts) drop("/prompts");
+  if (config.slug !== "undreading") drop("/waitlist");
   return entries;
 }

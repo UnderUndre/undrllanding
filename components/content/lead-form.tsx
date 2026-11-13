@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { GenericLeadSubmissionSchema } from "@/lib/schemas/content-schema";
 import { referralMetadata } from "@/lib/referral";
+import { personaMetadata } from "@/lib/persona";
 
 // Generic lead form for scaffolded brands (spec 003 FR-005 consumer contract):
 // posts {email, contact, message, metadata} to /api/lead.
@@ -27,6 +28,7 @@ export default function LeadForm() {
         source: "generic-brand-form",
         website: ((formData.get("website") as string) || "").trim(),
         ...referralMetadata(), // spec 007 FR-002: absent when no referral stored
+        ...personaMetadata(), // spec 009 FR-006: absent when no persona stored
       },
     };
 

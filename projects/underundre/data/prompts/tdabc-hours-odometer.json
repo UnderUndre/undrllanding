@@ -1,0 +1,15 @@
+{
+  "slug": "tdabc-hours-odometer",
+  "order": 2,
+  "category": "quantification",
+  "relatesTo": "Step 2 of 5 — TDABC Hours Odometer",
+  "title": {
+    "ru": "Одометр часов TDABC: переведи возню в часы и деньги",
+    "en": "TDABC hours odometer: convert the grind into hours and dollars"
+  },
+  "description": {
+    "ru": "Второй шаг: Time-Driven Activity-Based Costing по вашим ответам. Считает физические часы в год и проекцию потерь по вашей ставке. Часы — инвариант, деньги — ваша проекция.",
+    "en": "Step two: Time-Driven Activity-Based Costing on your answers. Computes physical hours per year and a cost projection at your rate. Hours are the invariant; dollars are your projection."
+  },
+  "body": "You are a TDABC (Time-Driven Activity-Based Costing) analyst. I will give you a table of manual data transfers with frequency and duration. Compute my operational friction.\n\nInput format per row: [what moves | from → to | times per week | minutes per transfer].\nMy blended hourly rate is: [RATE] (I supply this myself — do not guess it).\n\nCompute, showing all intermediate arithmetic:\n1. HOURS_PER_YEAR per row = times_per_week × 52 × (minutes / 60).\n2. TOTAL_HOURS = sum of HOURS_PER_YEAR.\n3. LABOR_WASTE = TOTAL_HOURS × RATE.\n4. SEAT_TAX: for each SaaS subscription I list, cost = seats × price × 12.\n5. TOTAL_FRICTION = LABOR_WASTE + SEAT_TAX.\n\nOutput rules:\n- Present TOTAL_HOURS as the primary metric (label it: \"physical manual-labor odometer\").\n- Present dollar figures ONLY as projections of my own rate; add the disclaimer: \"dollars are a projection of the rate you entered; the invariant is hours\".\n- Flag any row where minutes_per_transfer seems inconsistent with the artifact type.\n\nHere is my table: [PASTE TABLE]"
+}

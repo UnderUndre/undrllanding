@@ -368,6 +368,85 @@ const html = fs.readFileSync(prerendered, "utf-8");
   }
 }
 
+// --- Gate V7: conversion layer — prompts, personas, waitlist (spec 009) ----
+{
+  // V7.1: prompt library integrity (underundre only)
+  if (brand === "underundre") {
+    const promptsDir = path.join(repoRoot, "projects", brand, "data", "prompts");
+    let v71ok = true, v71detail = "";
+    if (!fs.existsSync(promptsDir)) {
+      v71ok = false; v71detail = "prompts dir missing for underundre";
+    } else {
+      const files = fs.readdirSync(promptsDir).filter((f) => f.endsWith(".json"));
+      const slugs = new Set();
+      for (const f of files) {
+        try {
+          const c = JSON.parse(fs.readFileSync(path.join(promptsDir, f), "utf-8"));
+          if (!c.slug || !c.relatesTo || !c.title?.ru || !c.title?.en || !(c.body || "").length >= 40) {
+            v71ok = false; v71detail = `${f}: missing required fields`; break;
+          }
+          if (slugs.has(c.slug)) { v71ok = false; v71detail = `${f}: duplicate slug`; break; }
+          slugs.add(c.slug);
+        } catch { v71ok = false; v71detail = `${f}: JSON parse error`; break; }
+      }
+      if (v71ok && files.length < 5) { v71ok = false; v71detail = `expected >= 5 prompts, found ${files.length}`; }
+      if (v71ok) v71detail = `${files.length} prompts, slugs unique, fields present`;
+    }
+    gate("V7.1-prompts", v71ok, v71detail);
+
+    const packRoute = path.join(repoRoot, "app", "prompt-pack.md", "route.ts");
+    gate("V7.1-pack-route", fs.existsSync(packRoute), "prompt-pack.md route exists");
+  } else {
+    gate("V7.1-prompts", true, `brand ${brand}: prompt library is bureau-only (404 expected)`);
+  }
+
+  // V7.2: persona source contract (FR-005/006)
+  {
+    const personaSrc = fs.readFileSync(path.join(repoRoot, "lib", "persona.ts"), "utf-8");
+    const contractOk =
+      personaSrc.includes('"owner"') &&
+      personaSrc.includes('"ops"') &&
+      personaSrc.includes('"cto"') &&
+      personaSrc.includes('"undr.persona"');
+    gate("V7.2-persona-contract", contractOk, "persona.ts exports owner/ops/cto + undr.persona key");
+  }
+
+  // V7.3: waitlist brand isolation (both directions, review-flagged mirror)
+  {
+    const waitlistHtml = path.join(repoRoot, ".next", "server", "app", "waitlist.html");
+    if (brand === "undreading") {
+      let ok = fs.existsSync(waitlistHtml);
+      let detail = `waitlist.html in undreading build: ${ok}`;
+      if (ok) {
+        const body = fs.readFileSync(waitlistHtml, "utf-8");
+        const copyFile = path.join(repoRoot, "projects", "undreading", "data", "waitlist.json");
+        const copyJson = JSON.parse(fs.readFileSync(copyFile, "utf-8"));
+        const trilingual = Object.values(copyJson).every((x) => x.ru && x.en && x.uk);
+        ok = body.includes('data-testid="waitlist-form"') && body.includes("/privacy") && trilingual;
+        detail += `; form+privacy+trilingual: ${ok}`;
+      }
+      gate("V7.3-waitlist-isolation", ok, detail);
+    } else {
+      // notFound() pages may still emit a waitlist.html containing the 404 body —
+      // isolation means: file absent OR present WITHOUT the actual waitlist form.
+      let isolated = true;
+      let detail = '';
+      if (fs.existsSync(waitlistHtml)) {
+        const body = fs.readFileSync(waitlistHtml, 'utf-8');
+        if (body.includes('data-testid="waitlist-form"')) {
+          isolated = false;
+          detail = 'waitlist-form rendered in non-undreading build';
+        } else {
+          detail = 'waitlist.html present but renders 404 body (no form) — isolated';
+        }
+      } else {
+        detail = 'waitlist.html absent — isolated';
+      }
+      gate("V7.3-waitlist-isolation", isolated, `mirror isolation for ${brand}: ${detail}`);
+    }
+  }
+}
+
 // --- Report ----------------------------------------------------------------
 const failed = results.filter((r) => !r.ok);
 console.log(`\nverify-gates: ${results.length - failed.length}/${results.length} gates passed (brand: ${brand})`);

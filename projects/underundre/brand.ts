@@ -15,6 +15,30 @@ export const underundreBrand: ProjectConfig = {
   schemaType: "ProfessionalService",
   hasTeardowns: true,
   hasCalculator: true,
+  hasPrompts: true,
+  personas: [
+    {
+      id: "owner",
+      badge: { ru: "НАЛОГ НА ТРЕНИЕ СЖИГАЕТ ВАШ БЮДЖЕТ", en: "THE FRICTION TAX IS BURNING YOUR BUDGET" },
+      title: { ru: "Пока вы не считаете часы ручной возни, вы платите зарплату за дублирование данных", en: "While you don't count manual-work hours, you pay salaries for duplicating data" },
+      subtitle: { ru: "Я измеряю операционный засор в часах и деньгах за 24–48 часов. Счёт за подписки и переработки перестаёт расти после внедрения контрактов.", en: "I measure your operational clog in hours and dollars within 24–48 hours. Subscription bills and overtime stop growing once contracts are in." },
+      ctaLabel: { ru: "Посчитать мой налог на трение", en: "Price my friction tax" },
+    },
+    {
+      id: "ops",
+      badge: { ru: "ХВАТИТ ПЕРЕПЕЧАТЫВАТЬ ИЗ ЧАТА В ТАБЛИЦУ", en: "STOP RETYPING FROM CHAT INTO SPREADSHEETS" },
+      title: { ru: "Ваши операции текут через WhatsApp и Excel — я превращаю переписку в контракты", en: "Your operations flow through WhatsApp and Excel — I turn conversations into contracts" },
+      subtitle: { ru: "48-часовой аудит находит, где заказы теряются при ручном переносе, и заменяет переписку схемами с валидацией. Без смены команды и без шестинедельного внедрения.", en: "A 48-hour audit finds where orders get lost in manual transfer and replaces chat chaos with validated schemas. No team swap, no six-week rollout." },
+      ctaLabel: { ru: "Найти мои протечки", en: "Find my leaks" },
+    },
+    {
+      id: "cto",
+      badge: { ru: "АРХИТЕКТУРА КАК КОНТРАКТ, А НЕ КАК ЗАМОЧНАЯ СКЛАДКА", en: "ARCHITECTURE AS A CONTRACT, NOT A LOCK-STITCH" },
+      title: { ru: "SaaS-зоопарк и склейка на вебхуках против схемы с DDL и идемпотентностью", en: "SaaS sprawl and webhook glue versus schema with DDL and idempotency" },
+      subtitle: { ru: "Каждый вскрытый кейс показывает контракты: таблицы, уникальные индексы, идемпотентные ключи. OpenAPI 3.0 и Docker-mock в поставке — проверяйте, а не верьте.", en: "Every teardown shows the contracts: tables, unique indexes, idempotency keys. OpenAPI 3.0 and a Docker mock ship with delivery — verify, don't trust." },
+      ctaLabel: { ru: "Смотреть вскрытия архитектуры", en: "See the architecture teardowns" },
+    },
+  ],
   faviconUrl: "/projects/underundre/icon-48.png",
   appleIconUrl: "/projects/underundre/apple-icon-180.png",
   heroBadge:
@@ -59,6 +83,11 @@ export const underundreBrand: ProjectConfig = {
             labelKey: "footer_uu_refer",
             labelFallback: "Refer & Save — $50 per client",
             href: "/referral",
+          },
+          {
+            labelKey: "footer_uu_prompts",
+            labelFallback: "Free prompts — run a mini-audit yourself",
+            href: "/prompts",
           },
           {
             labelKey: "footer_uu_product_a",

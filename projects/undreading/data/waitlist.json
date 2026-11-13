@@ -1,0 +1,32 @@
+{
+  "title": {
+    "ru": "«Сантехника бытия» — уведомить о выходе",
+    "en": "«The Plumbing of Being» — notify me at launch",
+    "uk": "«Сантехніка буття» — повідомити про вихід"
+  },
+  "subtitle": {
+    "ru": "Оставьте email — пришлю уведомление о выходе книги и бесплатную главу в PDF. Никакого спама: одно письмо о запуске, одно о бумажной версии.",
+    "en": "Leave your email — I'll send one launch notification and a free sample chapter (PDF). No spam: one email at launch, one when the paperback ships.",
+    "uk": "Залишіть email — надішлю повідомлення про вихід книги та безкоштовну главу у PDF. Без спаму: один лист про запуск, один про друковану версію."
+  },
+  "emailLabel": {
+    "ru": "Ваш email",
+    "en": "Your email",
+    "uk": "Ваш email"
+  },
+  "consentLabel": {
+    "ru": "Согласен на уведомление о запуске (см. Политику конфиденциальности)",
+    "en": "I agree to launch notifications (see the Privacy Policy)",
+    "uk": "Згоден на повідомлення про запуск (див. Політику конфіденційності)"
+  },
+  "submitLabel": {
+    "ru": "В лист ожидания →",
+    "en": "Join the waitlist →",
+    "uk": "До листа очікування →"
+  },
+  "successMessage": {
+    "ru": "Готово. Одно письмо о запуске — и тишина до тех пор.",
+    "en": "Done. One launch email — then silence until then.",
+    "uk": "Готово. Один лист про запуск — і тиша до того часу."
+  }
+}

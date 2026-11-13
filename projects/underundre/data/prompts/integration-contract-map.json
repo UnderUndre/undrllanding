@@ -1,0 +1,15 @@
+{
+  "slug": "integration-contract-map",
+  "order": 4,
+  "category": "architecture",
+  "relatesTo": "Step 4 of 5 — Integration Contract Map",
+  "title": {
+    "ru": "Карта интеграционных контрактов: что склеено и где порвётся",
+    "en": "Integration contract map: what is glued and where it tears"
+  },
+  "description": {
+    "ru": "Четвёртый шаг: проектирование суверенного контура. Превращает карту симптомов в DDL-схему, идемпотентные контракты и точки отказа старого мира.",
+    "en": "Step four: sovereign pipeline design. Turns the symptom map into a DDL schema, idempotent contracts, and the old world's failure points."
+  },
+  "body": "You are a schema-first systems architect. I will describe my current workflow: the tools involved, the manual transfers, and where data breaks. Design the sovereign replacement.\n\nDeliver, in this exact order:\n1. FAILURE AUTOPSY: for each manual hop, the failure mode (silent drop, duplicate, stale read, transcription error) and why the current glue allows it.\n2. ENTITY MODEL: the core entities (max 6) with relationships. Use plain nouns from my business, not framework jargon.\n3. DDL SKETCH: PostgreSQL DDL for the entity model. Include: primary keys, unique constraints that make duplicates physically impossible, and NOT NULL on every field the business considers mandatory.\n4. IDEMPOTENT INTAKE: the intake contract for each external system pushing data in (idempotency key definition + retry semantics).\n5. WHAT DISAPPEARS: the manual work categories that become impossible by construction.\n\nRules:\n- Every constraint must cite the business reason in a comment.\n- No ORM, no framework names — pure SQL and contracts.\n- If my description is ambiguous, ask ONE clarifying question before designing.\n\nMy workflow: [PASTE DESCRIPTION]"
+}

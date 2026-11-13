@@ -38,6 +38,7 @@ export const undreadingBrand: ProjectConfig = {
       {
         titleFallback: "Monograph Editions",
         links: [
+          { labelFallback: "Waitlist — notify me at launch", href: "/waitlist" },
           { labelFallback: "Web Reader (Free)", href: "https://undreading.com" },
           { labelFallback: "Supporter & ZTA Kit (PWYW)", href: "#pricing" },
           { labelFallback: "Paperback Edition", href: "#pricing" },
