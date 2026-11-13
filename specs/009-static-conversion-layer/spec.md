@@ -3,7 +3,7 @@
 **Feature Branch**: `feature/009-static-conversion-layer`
 **Repository**: `undrllanding`
 **Created**: 2026-11-14
-**Status**: Draft (clarify in progress)
+**Status**: Clarified (ready for plan)
 **Parent Features**: `specs/008-proof-and-leak-engine` (calculator bridge + telemetry contour), `specs/007-referral-program` (`?ref=` attribution), `specs/006-seo-geo-foundation` (metadata/JSON-LD spine)
 **Input Directive**: Market research 2026-11-14 (see `research.md` R-01..R-06) identified three zero-runtime, high-demand conversion features validated by external data:
 1. **Prompt Library as lead magnet** — SaaS vendors (Aha!, Glean, Productboard) ship prompt libraries as product features; for the bureau this publishes the actual discovery methodology in public (same ungated philosophy as 008 teardowns).
@@ -91,6 +91,15 @@ so that I don't miss the release while paid channels are silent.
 - **Waitlist submitted from the wrong brand build**: impossible by construction — the route 404s on underundre.
 - **Prompt pack download offline**: static `.md` asset served from `public/`, no runtime generation to fail.
 - **Persona param set by a referral partner to mislead attribution**: persona is a UX segment, not an economic reward key — no payout depends on it (zero fraud surface, unlike 007 nicknames).
+
+
+## 5. Clarification Log (Phase 2, 2026-11-14)
+
+| # | Question | Resolution |
+|---|---|---|
+| Q1 | Prompt pack gating | **Fully open**: page with per-card copy buttons + static `.md` download; no email gates (same ungated philosophy as 008 teardowns). |
+| Q2 | Persona set | **3 personas** mapped 1:1 to the existing intake-form roles: `owner` (Owner/CEO), `ops` (Operations Lead), `cto` (manager/architecture) — metadata maps cleanly into lead analytics. |
+| Q3 | Waitlist mechanics | **Email → existing `/api/lead` → Telegram dispatch + private ledger** in `undreplans` with manual dedup; consent checkbox + `/privacy` link; no double-opt-in SMTP contour in scope. |
 
 ## 3. Requirements *(mandatory)*
 

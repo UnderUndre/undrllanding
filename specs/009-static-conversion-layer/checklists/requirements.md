@@ -2,7 +2,7 @@
 
 **Feature Directory**: `specs/009-static-conversion-layer`
 **Date**: 2026-11-14
-**Status**: PASSED (Phase 1; Phase 2 clarify questions pending)
+**Status**: PASSED (Phase 1 + Phase 2 clarify complete)
 
 ## 1. Content & Completeness
 
@@ -19,11 +19,13 @@
 - [x] **Guessing Ban clean**: no monetary figures asserted by the site anywhere in this spec.
 - [x] **Existing pipes reused**: `/api/lead` + bounded metadata map (≤20 keys), localStorage contour from 007, Gate V3 baseline contract from 004, Gate pattern from 005–008.
 
-## 3. Phase 1 [NEEDS CLARIFICATION] items (→ Phase 2)
+## 3. Clarification Log
 
-1. Prompt pack gating: fully open page + copy buttons + static `.md` download (recommended), or email-gated pack?
-2. Persona set: 3 variants matching the existing intake-form roles (owner / ops_lead / manager→cto) — confirm or extend?
-3. Waitlist mechanics: email → existing Telegram dispatch + private ledger (recommended), or full double-opt-in confirmation flow?
+| # | Question | Resolution |
+|---|---|---|
+| Q1 | Prompt pack gating | Fully open (page + copy buttons + static .md download) |
+| Q2 | Persona set | 3 personas mapped 1:1 to intake-form roles (owner / ops / cto) |
+| Q3 | Waitlist mechanics | Email → /api/lead → Telegram dispatch + private ledger, no double-opt-in |
 
 ## 4. Dependencies
 
