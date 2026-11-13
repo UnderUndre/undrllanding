@@ -4,32 +4,32 @@
 
 ## Phase 1: Foundation
 
-- [ ] **T001 [SETUP] [US1/US2] Schemas, loaders, config flags**: `lib/schemas/prompt-schema.ts` (PromptPackItemSchema), `lib/schemas/prompt-loaders.ts` (loadAllPrompts, slug uniqueness, missing dir → []), `lib/persona.ts` (resolvePersona/capturePersona/getPersona/personaMetadata, VALID_PERSONA_IDS), `lib/project-config.ts` (+`hasPrompts?`, +`personas?: PersonaVariant[]`).
-- [ ] **T002 [TEST] [US1/US2] Schema & persona unit tests**: `tests/unit/prompt-schema.test.ts` (valid, invalid slug, missing bilingual field, short body), `tests/unit/persona.test.ts` (resolve valid/invalid/absent, last-touch overwrite, metadata omission, storage-unavailable no-op).
+- [x] **T001 [SETUP] [US1/US2] Schemas, loaders, config flags**: `lib/schemas/prompt-schema.ts` (PromptPackItemSchema), `lib/schemas/prompt-loaders.ts` (loadAllPrompts, slug uniqueness, missing dir → []), `lib/persona.ts` (resolvePersona/capturePersona/getPersona/personaMetadata, VALID_PERSONA_IDS), `lib/project-config.ts` (+`hasPrompts?`, +`personas?: PersonaVariant[]`).
+- [x] **T002 [TEST] [US1/US2] Schema & persona unit tests**: `tests/unit/prompt-schema.test.ts` (valid, invalid slug, missing bilingual field, short body), `tests/unit/persona.test.ts` (resolve valid/invalid/absent, last-touch overwrite, metadata omission, storage-unavailable no-op).
 
 ## Phase 2: US1 — Prompt Library
 
-- [ ] **T003 [SETUP] [US1] Five provenance prompts**: `projects/underundre/data/prompts/*.json` bound to the real SpecKit Discovery workflow: (1) symptom inventory, (2) TDABC hours odometer, (3) SaaS stack audit, (4) integration workflow map, (5) discovery brief generator. Principle XV voice; body EN, meta RU+EN.
-- [ ] **T004 [FE] [US1] `/prompts` page + pack route**: `app/(default)/prompts/page.tsx` (brand-gated 404, canonical, CollectionPage JSON-LD), `prompts-content.tsx` (cards + copy buttons, zero network), `app/prompt-pack.md/route.ts` (`force-static`, generated from the same JSON — plan DD-1). Footer link «Free prompts» in `projects/underundre/brand.ts`.
+- [x] **T003 [SETUP] [US1] Five provenance prompts**: `projects/underundre/data/prompts/*.json` bound to the real SpecKit Discovery workflow: (1) symptom inventory, (2) TDABC hours odometer, (3) SaaS stack audit, (4) integration workflow map, (5) discovery brief generator. Principle XV voice; body EN, meta RU+EN.
+- [x] **T004 [FE] [US1] `/prompts` page + pack route**: `app/(default)/prompts/page.tsx` (brand-gated 404, canonical, CollectionPage JSON-LD), `prompts-content.tsx` (cards + copy buttons, zero network), `app/prompt-pack.md/route.ts` (`force-static`, generated from the same JSON — plan DD-1). Footer link «Free prompts» in `projects/underundre/brand.ts`.
 
 ## Phase 3: US2 — Persona Variants
 
-- [ ] **T005 [FE] [US2] Persona hero variants + capture**: `personas` array in `projects/underundre/brand.ts` (3 bilingual variants matching intake roles), persona capture added to the visit-capture boundary in `app/(default)/layout.tsx`, hero `projects/underundre/components/hero-underundre.tsx` renders variant by stored/`?persona` value (default = current copy, byte-identity), `cta-underundre.tsx` + `lead-form.tsx` attach `personaMetadata()`.
-- [ ] **T006 [TEST] [US2] Composition test**: `tests/unit/lead-metadata.test.ts` — persona + referral + calculator telemetry compose into one valid `GenericLeadSubmissionSchema` payload ≤ 20 keys; invalid persona omits key.
+- [x] **T005 [FE] [US2] Persona hero variants + capture**: `personas` array in `projects/underundre/brand.ts` (3 bilingual variants matching intake roles), persona capture added to the visit-capture boundary in `app/(default)/layout.tsx`, hero `projects/underundre/components/hero-underundre.tsx` renders variant by stored/`?persona` value (default = current copy, byte-identity), `cta-underundre.tsx` + `lead-form.tsx` attach `personaMetadata()`.
+- [x] **T006 [TEST] [US2] Composition test**: `tests/unit/lead-metadata.test.ts` — persona + referral + calculator telemetry compose into one valid `GenericLeadSubmissionSchema` payload ≤ 20 keys; invalid persona omits key.
 
 ## Phase 4: US3 — Undreading Waitlist
 
-- [ ] **T007 [FE] [US3] `/waitlist` (undreading-only)**: `projects/undreading/data/waitlist.json` (trilingual copy), `app/(default)/waitlist/page.tsx` (gated `slug !== "undreading"` → 404, canonical, WebPage JSON-LD), `waitlist-content.tsx` (email + consent + submit → `/api/lead` with `topic: "undreading-waitlist"`, referralMetadata composes), footer link in `projects/undreading/brand.ts`.
-- [ ] **T008 [TEST] [US3] Waitlist payload test**: `tests/unit/waitlist-payload.test.ts` — payload validates against `GenericLeadSubmissionSchema`; consent-unchecked payload shape; metadata composition.
+- [x] **T007 [FE] [US3] `/waitlist` (undreading-only)**: `projects/undreading/data/waitlist.json` (trilingual copy), `app/(default)/waitlist/page.tsx` (gated `slug !== "undreading"` → 404, canonical, WebPage JSON-LD), `waitlist-content.tsx` (email + consent + submit → `/api/lead` with `topic: "undreading-waitlist"`, referralMetadata composes), footer link in `projects/undreading/brand.ts`.
+- [x] **T008 [TEST] [US3] Waitlist payload test**: `tests/unit/waitlist-payload.test.ts` — payload validates against `GenericLeadSubmissionSchema`; consent-unchecked payload shape; metadata composition.
 
 ## Phase 5: Gates & Isolation
 
-- [ ] **T009 [TEST] [US4] Gate V7 in `scripts/verify-gates.mjs`**: V7.1 prompts integrity + pack route; V7.2 persona source contract; V7.3 waitlist isolation both directions (present in undreading build, absent in underundre build) + no emails in tracked sources.
-- [ ] **T010 [OPS] [US4] Sitemap, ledger, baseline**: `app/sitemap.ts` conditional entries (`/prompts` underundre, `/waitlist` undreading); init `undreplans/docs/projects/undreading/waitlist-ledger.md`; refresh Gate V3 baseline (footer link DOM change).
+- [x] **T009 [TEST] [US4] Gate V7 in `scripts/verify-gates.mjs`**: V7.1 prompts integrity + pack route; V7.2 persona source contract; V7.3 waitlist isolation both directions (present in undreading build, absent in underundre build) + no emails in tracked sources.
+- [x] **T010 [OPS] [US4] Sitemap, ledger, baseline**: `app/sitemap.ts` conditional entries (`/prompts` underundre, `/waitlist` undreading); init `undreplans/docs/projects/undreading/waitlist-ledger.md`; refresh Gate V3 baseline (footer link DOM change).
 
 ## Phase 6: Acceptance
 
-- [ ] **T011 [QA] Full pipeline & walkthrough**: `pnpm validate && pnpm test && pnpm build:underundre && pnpm verify --brand underundre` + `pnpm build:undreading && pnpm verify --brand undreading`; browser walkthrough per `quickstart.md`; results → `qa/manual-qa.md`.
+- [x] **T011 [QA] Full pipeline & walkthrough**: `pnpm validate && pnpm test && pnpm build:underundre && pnpm verify --brand underundre` + `pnpm build:undreading && pnpm verify --brand undreading`; browser walkthrough per `quickstart.md`; results → `qa/manual-qa.md`.
 
 ---
 
