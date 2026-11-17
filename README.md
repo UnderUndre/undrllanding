@@ -1,10 +1,9 @@
 # undrllanding
 
-**UnderUndre** & **Undrlla** Multi-Project Isolated Landing Engine.  
+**UnderUndre** Multi-Project Isolated Landing Engine.  
 Next.js 15 · React 19 · Tailwind CSS v4 · Geist Typography · `@underundre/undesign` tokens.
 
 Ecosystem role: serves isolated product and marketing landing pages for **UnderUndre** (`underundre.com` — Productized Engineering Bureau & Workaround TCO Audit).  
-Commercial SoT: [`specs/002-underundre-landing-v1/spec.md`](./specs/002-underundre-landing-v1/spec.md) · Business Plan: `undreplans/docs/projects/undreseller/undreseller-business-plan.md` (v18.9).
 
 ---
 
@@ -62,17 +61,6 @@ app/
 - **Emergency Cash Flow Valve**: **Grand Slam FOSS Office Stack ($3,500 setup + $500/mo retainer)** deployed on Hetzner CPX42 with Docker Memory Fencing and 16GB Swap.
 - **Contract Rail**: 100% Upwork Direct Contracts Escrow (5% fee, zero client fee).
 - **Technical Hygiene**: Zero silent lead loss (`/api/lead`), lightweight `favicon.ico` (<15 KB), Umami analytics, WCAG 2.1 AA compliant color contrast, and Geist typography.
-
----
-
-## Related Repositories
-
-| Repo | Role |
-|------|------|
-| `undreseller` | Core template codebase for Sprint B (Service Booking & Professional Portfolio Template) |
-| `undreplans` | Business plans (`undreseller-business-plan.md` v18.9, `undreading-business-plan.md` v2.5) |
-| `undevops` | One-click server provisioning & Docker Compose stack |
-| `undesign` | Shared design tokens package (`@underundre/undesign`) |
 
 ---
 
